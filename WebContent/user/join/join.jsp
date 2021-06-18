@@ -38,9 +38,8 @@
 				<div>
 				<input type="text" name="inter" class="subjectInput" id="inter" placeholder="관심분야">
 				</div>
-				<div id="searchBox1"></div>
+				<div id="searchBox2"></div>
 			</div>	
-		</div>
 		</div>
 		<button id="joinSubmit">회원가입</button>
 	</form>
