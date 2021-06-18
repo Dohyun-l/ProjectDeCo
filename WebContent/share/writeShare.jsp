@@ -47,11 +47,11 @@ function readContent() {
 		String nickname = udao.getUserNickNameByNum(userNum); */
 		String nickname = "admin";
 		
-		// enctype="multipart/form-data"
+		
 	%>
 	
 		
-		<form action="./shareWriteAction" method="post" onsubmit="readContent()" name="fr">
+		<form action="./shareWriteAction.sh" method="post" onsubmit="readContent()" name="fr" enctype="multipart/form-data">
 		<!-- 닉네임 -->
 		<input type="text" id="nickname" name="nickname" value="<%=nickname%>"readonly><br>
 		<!-- 게시판 분류 -->
