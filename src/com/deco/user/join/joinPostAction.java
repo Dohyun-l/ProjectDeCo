@@ -40,7 +40,7 @@ public class joinPostAction implements Action{
 	
 	private boolean isValid(HttpServletRequest req, userDTO uDTO){
 		int majorLen = uDTO.getMajor().split(",").length;
-		
+		System.out.println(majorLen);
 		if(!req.getParameter("pw").equals(req.getParameter("pw2"))){
 			return false;
 		}

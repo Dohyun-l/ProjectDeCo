@@ -19,7 +19,7 @@
 		<input type="text" name="name" id="name" placeholder="이름">
 		<input type="text" name="nickname" id="nickname" placeholder="닉네임">
 		<input type="text" name="phone" id="phone" placeholder="휴대전화">
-		<input type="text" name="addr" id="addr" placeholder="주소">
+		<input type="text" name="addr" id="addr" placeholder="주소" readonly>
 		<button onclick="return callAddress()">주소찾기</button>
 		<button style="display: none;" value="Hi" name="Hi" onclick="return false">안녕</button>
 
