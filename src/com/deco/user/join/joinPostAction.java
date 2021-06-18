@@ -16,13 +16,14 @@ public class joinPostAction implements Action{
 		ActionForward forward = null;
 		
 		req.setCharacterEncoding("utf-8");
-		if(!isValid(req)){
-			ValueException(res,"정보입력이 잘못됐습니다! (서로 다른 비밀번호... 등)");
-			return forward; // null 반환
-		}
-		
+
 		userDTO uDTO = new userDTO();
 		uDTO.setReq(req);
+		
+		if(!isValid(req,uDTO)){
+			ValueException(res,"정보입력이 잘못됐습니다! (서로 다른 비밀번호, 정보 입력 등..)");
+			return forward; // null 반환
+		}
 
 		userDAO uDAO = new userDAO();
 		int flag = uDAO.insertUser(uDTO);
@@ -37,8 +38,13 @@ public class joinPostAction implements Action{
 		return forward;
 	}
 	
-	private boolean isValid(HttpServletRequest req){
+	private boolean isValid(HttpServletRequest req, userDTO uDTO){
+		int majorLen = uDTO.getMajor().split(",").length;
+		
 		if(!req.getParameter("pw").equals(req.getParameter("pw2"))){
+			return false;
+		}
+		if(5 < majorLen || majorLen < 1){
 			return false;
 		}
 		
@@ -55,5 +61,4 @@ public class joinPostAction implements Action{
 		
 		out.close();
 	}
-	
 }
