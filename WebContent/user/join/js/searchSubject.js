@@ -1,7 +1,6 @@
 import {getPostRequest} from "./searchData.js"
 const majorInput = document.querySelector("#major");
 const interInput = document.querySelector("#inter");
-const InputContainer = document.querySelector(".InputContainer");
 const searchBox1 = document.querySelector("#searchBox1");
 const searchBox2 = document.querySelector("#searchBox2");
 
@@ -44,19 +43,42 @@ const searchInter = async (event) => {
 }
 
 const getKeyword = (event) => {
-    const comfirmContainer = event.target.parentElement.parentElement.parentElement.parentElement.querySelector(".cofirmContainer");
+    const CONTAINER = event.target.parentElement.parentElement.parentElement.parentElement;
+    const comfirmContainer = CONTAINER.querySelector(".cofirmContainer");
     const inputBox = event.target.parentElement.parentElement.parentElement.querySelector(".subjectInput");
     const clickValue = event.target.innerText;
-
+    
     if (comfirmContainer.childNodes.length > 4) {
+        alert("과목은 최대 5개까지 선택해주세요!");
         return event.preventDefault();
     }
 
-    const targetItem = document.createElement("div");
-    targetItem.dataset.id = comfirmContainer.childNodes.length;
-    targetItem.dataset.value 
+    const subSmallContainer = document.createElement("div");
+    const inputElement = document.createElement("input");
+    inputElement.type = "hidden";
+    inputElement.name = CONTAINER.id;
+    inputElement.value = clickValue;
 
-    inputBox.value = clickValue;
+    const targetItem = document.createElement("span");
+    targetItem.dataset.id = comfirmContainer.childNodes.length;
+    targetItem.dataset.value = clickValue;
+    targetItem.innerText = clickValue;
+
+    const remove = document.createElement("span");
+    remove.dataset.role = "remove";
+    remove.innerText = "❌"
+
+    targetItem.appendChild(remove);
+    remove.addEventListener("click",e => e.target.parentElement.parentElement.remove())
+    
+    subSmallContainer.appendChild(inputElement);
+    subSmallContainer.appendChild(targetItem);
+
+    comfirmContainer.appendChild(subSmallContainer);
+    console.log(targetItem.style.display);
+    inputBox.value = "";
+    inputBox.focus();
+
     event.preventDefault();
 }
 
@@ -65,6 +87,7 @@ const moveWord = (event) => {
     let nowIdx = Number($searchNode.dataset.id);
     const parent = event.target.parentElement.parentElement;
     const resultLen = parent.childNodes.length;
+    const inputBox = event.target.parentElement.parentElement.parentElement.querySelector(".subjectInput");
     console.log("검색어 개수 => ",resultLen);
 
     if (event.key === 'ArrowUp') {
@@ -75,6 +98,9 @@ const moveWord = (event) => {
         
         nowIdx = nowIdx + 1 > resultLen - 1 ? 0 : nowIdx + 1;
         parent.childNodes[nowIdx].firstChild.focus();
+    
+    }else if (event.key === 'Escape') {
+        inputBox.focus();
     }
 }
 

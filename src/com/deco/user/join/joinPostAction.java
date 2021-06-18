@@ -20,7 +20,7 @@ public class joinPostAction implements Action{
 			ValueException(res,"정보입력이 잘못됐습니다! (서로 다른 비밀번호... 등)");
 			return forward; // null 반환
 		}
-		
+		System.out.println(req.getParameter("Hi"));
 		userDTO uDTO = new userDTO();
 		uDTO.setReq(req);
 

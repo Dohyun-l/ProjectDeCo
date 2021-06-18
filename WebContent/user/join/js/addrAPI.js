@@ -7,7 +7,5 @@ let callAddress = () =>{
             inputTarget.style.color='gray';
         }
     }).open();
+    return false;
 }
-// const ee = document.querySelector("#qwe");
-// ee.addEventListener("click", (e) => { e.preventDefault(); console.log(e.target.innerText);});
-// ee.focus();

@@ -11,6 +11,8 @@
     position: absolute;
     width: auto;
     height: 50px;
+    outline: none;
+    border: none;
 }
 .InputContainer{
     display: grid;
@@ -19,4 +21,7 @@
 #searchBox1{
     display: flex;
     flex-direction: column;
+}
+.cofirmContainer{
+    display: flex;
 }

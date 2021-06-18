@@ -44,11 +44,17 @@ const nicknameSearchHandler = async(event) => {
 
 const checkAuthHandler = async(event) => {
     if(!emailInput.classList.contains("permit") || !nicknameInput.classList.contains("permit")){
-        event.preventDefault()
-    } 
+        return event.preventDefault();
+    }
+
+    const majorLen = document.querySelector("#majorContainer .cofirmContainer").childNodes.length;
+    if(majorLen <= 0){
+        alert("전문분야는 최소 1개 이상 선택해주세요!");
+        document.querySelector("#searchBox1").focus();
+        return event.preventDefault();
+    }
 }
 
 emailInput.addEventListener("keyup",emailSearchHandler);
 nicknameInput.addEventListener("keyup",nicknameSearchHandler);
 joinForm.addEventListener("submit", checkAuthHandler);
-
