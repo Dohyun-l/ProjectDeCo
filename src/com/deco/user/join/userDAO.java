@@ -115,6 +115,7 @@ public class userDAO {
 	
 	//setJoinPreState
 	private void setJoinPreState(userDTO uDTO) throws SQLException{
+		
 		pstmt.setInt(1, uDTO.getUser_num());
 		pstmt.setString(2, uDTO.getEmail());
 		pstmt.setString(3, HashPW(uDTO.getPw()));

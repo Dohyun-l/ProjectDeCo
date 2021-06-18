@@ -156,8 +156,23 @@ public class userDTO {
 		nickname = req.getParameter("nickname");
 		addr = req.getParameter("addr");
 		phone = req.getParameter("phone");
-		major = req.getParameter("major");
-		inter = req.getParameter("inter");
+
+		String[] getMajor = req.getParameterValues("majorContainer");
+		String[] getInter = req.getParameterValues("interContainer");
+		
+		if(getMajor != null){
+			major = "";
+			for(int i = 0; i < getMajor.length; i++){
+				major += getMajor[i]+(i != getMajor.length-1 ? "," : "");
+			}
+		}
+		
+		if(getInter != null){
+			inter = "";
+			for(int i = 0; i < getInter.length; i++){
+				inter += getInter[i]+(i != getInter.length-1 ? "," : "");
+			}
+		}
 	}
 
 	@Override
