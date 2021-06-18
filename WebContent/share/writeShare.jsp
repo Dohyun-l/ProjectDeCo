@@ -53,7 +53,10 @@ function readContent() {
 		
 		<form action="./shareWriteAction.sh" method="post" onsubmit="readContent()" name="fr" enctype="multipart/form-data">
 		<!-- 닉네임 -->
-		<input type="text" id="nickname" name="nickname" value="<%=nickname%>"readonly><br>
+		<input type="text" id="nickname" name="nickname" value="<%=nickname%>"readonly>
+		<input type="radio" name="anony" value="공개" checked="checked">공개
+		<input type="radio" name="anony" value="비공개">비공개
+		<br>
 		<!-- 게시판 분류 -->
 		<select name='category'>
   			<option value='' selected>게시판을 선택해주세요</option>

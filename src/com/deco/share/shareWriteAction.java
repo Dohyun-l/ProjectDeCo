@@ -39,7 +39,7 @@ public class shareWriteAction implements Action {
 	     String filename = multi.getFilesystemName("filename");
 	     String anony = multi.getParameter("anony");
 		  
-	     //다중선택 배열로 받아오기..맞나요..? ㅠㅠ
+	     //다중선택 배열로 받기
 	     String[] tag = multi.getParameterValues("tag");    
 	     for(int i=0;i<tag.length;i++){
 	    	 System.out.println(tag[i]);
