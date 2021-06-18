@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.deco.ActionForward;
 import com.deco.Controller;
 
 @WebServlet("*.sh")
@@ -21,7 +22,18 @@ public class shareFrontController extends Controller {
 		
 		/////////////////////////////////////////////////////////
 		
-		
+		if (command.equals("/share/shareWrite.sh")){
+			System.out.println("C : /share/shareWrite.sh 호출");
+			forward = new ActionForward("./writeShare.jsp", false);
+		} else if(command.equals("/shareWriteAction.sh")){
+			System.out.println("C : /shareWriteAction.sh 호출");
+			action = new shareWriteAction();
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
 		
 		

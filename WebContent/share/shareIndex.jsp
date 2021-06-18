@@ -8,5 +8,11 @@
 </head>
 <body>
 
+
+	<%
+		response.sendRedirect("./shareWrite.sh");
+	%>
+
+
 </body>
 </html>
