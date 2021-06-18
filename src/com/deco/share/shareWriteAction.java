@@ -3,6 +3,7 @@ package com.deco.share;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.deco.Action;
 import com.deco.ActionForward;
@@ -15,6 +16,11 @@ public class shareWriteAction implements Action {
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		
 		req.setCharacterEncoding("utf-8");
+		
+		// HttpSession session = req.getSession();
+		// int user_num = (int) session.getAttribute("user_num");
+		
+		
 		
 		//파일 업로드
 		ServletContext ctx = req.getServletContext();
@@ -32,25 +38,39 @@ public class shareWriteAction implements Action {
 				);
 		
 		System.out.println("파일 업로드 완료");
-						
-		 String nickname = multi.getParameter("nickname");
-	     String title = multi.getParameter("title");
-	   	 String category = multi.getParameter("category"); 
-	     String filename = multi.getFilesystemName("filename");
-	     String anony = multi.getParameter("anony");
-		  
+		
+		shareDTO sDTO = new shareDTO();
+		
+		 // sDTO.setUser_num(user_num);
+		 sDTO.setUser_num(1);
+		 //sDTO.setAnony(Integer.parseInt(multi.getParameter("anony")));
+	     sDTO.setTitle(multi.getParameter("title"));
+	   	 sDTO.setCategory(multi.getParameter("category"));
+	     sDTO. setFile(multi.getFilesystemName("file"));
+	     		  
 	     //다중선택 배열로 받기
-	     String[] tag = multi.getParameterValues("tag");    
-	     for(int i=0;i<tag.length;i++){
-	    	 System.out.println(tag[i]);
-	    	 //다중 선택시 디비에( , )로 나눠서 저장할건지... 알려줘 
+	     String[] tags = multi.getParameterValues("tag");
+	     String tag = "";
+	     for(int i=0;i<tags.length;i++){
+	    	 tag += tags[i];
+	    	 //다중 선택시 디비에( , )로 나눠서 저장할건지... 알려줘
+	    	 
+	    	 if((tags.length-1) != i){
+	    		 tag += ","; 
+	    	 }
 	     }
+	     
+	     System.out.println(tag);
 	     
 	     //디비처리 
 	     shareDAO sDAO = new shareDAO();
-	    //sDAO.insertShare(sDTO);
+	     sDAO.insertShare(sDTO);
 	     
-		return null;
+	     //페이지이동
+	     ActionForward forward = new ActionForward();
+	    forward.setRedirect(true);
+	     
+		return forward;
 	}
 
 }

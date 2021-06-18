@@ -1,5 +1,4 @@
 package com.deco.share;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -52,4 +51,69 @@ public class shareDAO {
 		}
 	}
 
+	// insertShare
+		public void insertShare(shareDTO sDTO){
+			int idx = 0;
+			try {
+				// 1 드라이버 로드
+				// 2 디비 연결
+				// => 한번에 처리 하는 메서드로 변경
+				conn = getConnection();		
+				
+				// 3 sql (글번호를 계산하는 구문)
+				sql = "select max(idx) from share";
+
+				pstmt = conn.prepareStatement(sql);
+				
+				// 4 sql 실행
+				rs = pstmt.executeQuery();
+				
+				// 5 데이터 처리
+				if(rs.next()){
+					idx = rs.getInt(1)+1;
+				}
+				
+				// 3 sql 작성 (insert) & pstmt 객체 생성
+				sql = "insert into share "
+						+ "values(?,?,?,?,?,?,?,?,now(),?,?)";
+				
+				pstmt = conn.prepareStatement(sql);
+				
+				// ?
+				pstmt.setInt(1, idx);
+				pstmt.setInt(2, sDTO.getUser_num());
+				pstmt.setString(3, sDTO.getTitle());
+				pstmt.setString(4, sDTO.getContent());
+				pstmt.setString(5, sDTO.getFile());
+				pstmt.setString(6, sDTO.getCategory());
+				pstmt.setInt(7, sDTO.getRead_cnt());
+				pstmt.setInt(8, sDTO.getLike());
+				pstmt.setString(9, sDTO.getTag());
+				pstmt.setInt(10, sDTO.getAnony());
+				
+				// 4 sql 실행	
+				
+				pstmt.executeUpdate();
+				
+				System.out.println(" sql 구문 실행완료  : 글쓰기 완료! ");
+				
+			} catch (SQLException e) {
+				System.out.println("디비 연결 실패!!");
+				e.printStackTrace();
+			} finally{
+				closeDB();
+				
+			}
+			
+		}
+		// insertShare
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
