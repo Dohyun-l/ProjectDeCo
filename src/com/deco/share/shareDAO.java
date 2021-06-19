@@ -111,8 +111,8 @@ public class shareDAO {
 		}
 		// insertShare
 	
-		//shareReadCount() 글의 개수 계산
-		public int shareReadCount(){
+		//getShareReadCount() 글의 개수 계산
+		public int getShareReadCount(){
 			int cnt =0;
 			
 			try{
@@ -134,7 +134,7 @@ public class shareDAO {
 			
 			return cnt;
 		}
-		//shareReadCount()
+		//getShareReadCount()
 	
 		//getShareList()
 		public List getShareList(){

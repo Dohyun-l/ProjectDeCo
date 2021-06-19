@@ -24,7 +24,7 @@ public class shareListAction implements Action {
 		//객체 생성
 		shareDAO sDAO = new shareDAO();
 		//디비 메서드 생성
-	    int cnt = sDAO.shareReadCount();
+	    int cnt = sDAO.getShareReadCount();
 		
 	    int pageSize = 5;
 	    
