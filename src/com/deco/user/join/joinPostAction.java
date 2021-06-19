@@ -34,7 +34,7 @@ public class joinPostAction implements Action{
 			return forward; // null 반환
 		}
 		
-		forward = new ActionForward("./emailComfirm", true);
+		forward = new ActionForward("./sendEmailAction.us", true);
 		return forward;
 	}
 	

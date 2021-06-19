@@ -17,12 +17,17 @@ public class userController extends Controller{
 		
 		if(command.equals("/join.us")){
 			action = new joinGetAction();
-			forward = action.execute(req,res);
+			forward = action.execute(req, res);
 		
 		}else if(command.equals("/joinAction.us")){
 			action = new joinPostAction();
-			forward = action.execute(req,res);
+			forward = action.execute(req, res);
+		
+		}else if(command.equals("/sendEmailAction.us")){
+			action = new sendEmailAction();
+			forward = action.execute(req, res);
 		}
+		
 		render(forward,req,res);
 	}
 	
