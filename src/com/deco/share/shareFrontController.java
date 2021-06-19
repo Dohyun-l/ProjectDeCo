@@ -26,8 +26,16 @@ public class shareFrontController extends Controller {
 			System.out.println("C : /share/shareWrite.sh 호출");
 			forward = new ActionForward("./writeShare.jsp", false);
 		} else if(command.equals("/share/shareWriteAction.sh")){
-			System.out.println("C : /shareWriteAction.sh 호출");
+			System.out.println("C : /share/shareWriteAction.sh 호출");
 			action = new shareWriteAction();
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/share/shareList.sh")) {
+			System.out.println("C : /share/shareList.sh 호출");
+			action = new shareListAction();
 			try {
 				forward = action.execute(req, resp);
 			} catch (Exception e) {
