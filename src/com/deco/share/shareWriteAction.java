@@ -27,7 +27,7 @@ public class shareWriteAction implements Action {
 		String realpath = ctx.getRealPath("/share/upload");
 		
 		int maxSize = 5 * 1024 * 1024;
-		
+		    
 		MultipartRequest multi 
 		  = new MultipartRequest(
 				  req,
