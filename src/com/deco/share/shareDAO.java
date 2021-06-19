@@ -158,6 +158,7 @@ public class shareDAO {
 				sDTO.setContent(rs.getString("content"));
 				sDTO.setCreate_at(rs.getString("create_at"));
 				sDTO.setFile(rs.getString("file"));
+				sDTO.setTitle(rs.getString("title"));
 				sDTO.setIdx(rs.getInt("idx"));
 				sDTO.setLike(rs.getInt("like"));
 				sDTO.setRead_cnt(rs.getInt("read_cnt"));
