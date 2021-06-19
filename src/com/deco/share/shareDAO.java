@@ -227,6 +227,45 @@ public class shareDAO {
 		}
 		//getShareList(startRow,pageSize)
 	
+		//getShare(idx)
+		public shareDTO getShare(int idx){
+			shareDTO sDTO = null;
+		try{	
+		conn = getConnection();
+		
+		sql="select * from share where idx=?";
+		pstmt = conn.prepareStatement(sql);
+		
+		pstmt.setInt(1, idx);
+		rs = pstmt.executeQuery();
+		
+		if(rs.next()){
+			sDTO = new shareDTO();
+			
+			sDTO.setAnony(rs.getInt("anony"));
+			sDTO.setCategory(rs.getString("category"));
+			sDTO.setContent(rs.getString("content"));
+			sDTO.setCreate_at(rs.getString("create_at"));
+			sDTO.setFile(rs.getString("file"));
+			sDTO.setIdx(rs.getInt("idx"));
+			sDTO.setLike(rs.getInt("like"));
+			sDTO.setRead_cnt(rs.getInt("read_cnt"));
+			sDTO.setTag(rs.getString("tag"));
+			sDTO.setTitle(rs.getString("title"));
+			sDTO.setUser_num(rs.getInt("user_num"));
+			
+		}
+		
+		
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			
+		}
+		
+			return sDTO;
+		}
+		//getShare(idx)
 	
 	
 	

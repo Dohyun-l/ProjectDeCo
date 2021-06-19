@@ -41,6 +41,14 @@ public class shareFrontController extends Controller {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if(command.equals("/share/shareContent.sh")){
+			System.out.println("C : /share/shareContent.sh 호출");
+			action = new shareContentAction();
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		
