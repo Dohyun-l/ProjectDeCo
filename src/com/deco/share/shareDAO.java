@@ -3,11 +3,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+
 
 public class shareDAO {
 	
@@ -108,9 +111,121 @@ public class shareDAO {
 		}
 		// insertShare
 	
+		//shareReadCount() 글의 개수 계산
+		public int shareReadCount(){
+			int cnt =0;
+			
+			try{
+		  conn = getConnection();
+		  sql="select count(*) from share";
+		  pstmt = conn.prepareStatement(sql);
+		  
+		  rs = pstmt.executeQuery();
+		  
+		  if(rs.next()){
+			  cnt = rs.getInt(1);
+		  }
+		  
+			}catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				closeDB();
+			}
+			
+			return cnt;
+		}
+		//shareReadCount()
 	
+		//getShareList()
+		public List getShareList(){
+			
+			List shareList = new ArrayList();
+			
+			shareDTO sDTO = null;
+			try{
+			conn = getConnection();
+			sql="select * from share";
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				
+				sDTO = new shareDTO();
+				
+				sDTO.setAnony(rs.getInt("anony"));
+				sDTO.setCategory(rs.getString("category"));
+				sDTO.setContent(rs.getString("content"));
+				sDTO.setCreate_at(rs.getString("create_at"));
+				sDTO.setFile(rs.getString("file"));
+				sDTO.setIdx(rs.getInt("idx"));
+				sDTO.setLike(rs.getInt("like"));
+				sDTO.setRead_cnt(rs.getInt("read_cnt"));
+				sDTO.setTag(rs.getString("tag"));
+				sDTO.setTitle(rs.getString("tag"));
+				sDTO.setUser_num(rs.getInt("user_num"));
+				
+				
+				shareList.add(sDTO);
+			}
+			
+			
+			}catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				closeDB();
+			}
+			
+			return shareList;
+			
+		}
+		//getShareList()
 	
-	
+		//getShareList(startRow,pageSize)
+		public List getShareList(int startRow,int pageSize){
+			
+			List shareList = new ArrayList();
+			
+			shareDTO sDTO = null;
+			try{
+			conn = getConnection();
+			sql="select * from share limit ?,?";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, startRow-1);
+			pstmt.setInt(2, pageSize);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				
+				sDTO = new shareDTO();
+				
+				sDTO.setAnony(rs.getInt("anony"));
+				sDTO.setCategory(rs.getString("category"));
+				sDTO.setContent(rs.getString("content"));
+				sDTO.setCreate_at(rs.getString("create_at"));
+				sDTO.setFile(rs.getString("file"));
+				sDTO.setIdx(rs.getInt("idx"));
+				sDTO.setLike(rs.getInt("like"));
+				sDTO.setRead_cnt(rs.getInt("read_cnt"));
+				sDTO.setTag(rs.getString("tag"));
+				sDTO.setTitle(rs.getString("tag"));
+				sDTO.setUser_num(rs.getInt("user_num"));
+				
+				
+				shareList.add(sDTO);
+			}			
+			}catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				closeDB();
+			}
+			
+			return shareList;
+			
+		}
+		//getShareList(startRow,pageSize)
 	
 	
 	

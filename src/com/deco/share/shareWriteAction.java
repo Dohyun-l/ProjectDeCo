@@ -19,7 +19,7 @@ public class shareWriteAction implements Action {
 		
 		// HttpSession session = req.getSession();
 		// int user_num = (int) session.getAttribute("user_num");
-		
+		//ActionForward forward = new ActionForward();
 		
 		
 		//파일 업로드
@@ -67,9 +67,8 @@ public class shareWriteAction implements Action {
 	     sDAO.insertShare(sDTO);
 	     
 	     //페이지이동
-	     ActionForward forward = new ActionForward();
-	    forward.setRedirect(true);
-	     
+	     ActionForward forward = new ActionForward("./shareList.sh",true);
+	 
 		return forward;
 	}
 

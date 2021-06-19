@@ -1,5 +1,8 @@
 package com.deco.share;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,13 +19,34 @@ public class shareListAction implements Action {
 		
 		// HttpSession session = req.getSession();
 		// int user_num = (int) session.getAttribute("user_num");
+		//ActionForward forward = new ActionForward();
 		
+		//객체 생성
+		shareDAO sDAO = new shareDAO();
+		//디비 메서드 생성
+	    int cnt = sDAO.shareReadCount();
 		
+	    int pageSize = 5;
+	    
+	    String pageNum = req.getParameter("pageNum");
 		
+	    if(pageNum == null){
+	 	   pageNum = "1";
+	 	   
+	    }
+	   int currentPage = Integer.parseInt(pageNum);
+	   int startRow = (currentPage-1)*pageSize+1;
+	   int endRow = currentPage*pageSize;
+	   
+	   List shareList = sDAO.getShareList(startRow,pageSize);
 		
+		req.setAttribute("shareList", shareList);
+		req.setAttribute("pageNum", pageNum);
+		req.setAttribute("pageSize", pageSize);
 		
+		ActionForward forward = new ActionForward("./share/shareList.jsp",false);
 		
-		return null;
+		return forward;
 	}
 
 	
