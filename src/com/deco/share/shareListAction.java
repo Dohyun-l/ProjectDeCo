@@ -44,7 +44,7 @@ public class shareListAction implements Action {
 		req.setAttribute("pageNum", pageNum);
 		req.setAttribute("pageSize", pageSize);
 		
-		ActionForward forward = new ActionForward("./share/shareList.jsp",false);
+		ActionForward forward = new ActionForward("./shareList.jsp",false);
 		
 		return forward;
 	}

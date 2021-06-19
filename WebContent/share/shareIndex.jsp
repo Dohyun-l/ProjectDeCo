@@ -10,7 +10,8 @@
 
 
 	<%
-		response.sendRedirect("./shareWrite.sh");
+		//response.sendRedirect("./shareWrite.sh");
+		response.sendRedirect("./shareList.sh");
 	%>
 
 
