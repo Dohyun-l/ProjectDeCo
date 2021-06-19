@@ -10,6 +10,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>정보공유</title>
+
+
+
 </head>
 <body>
 
@@ -23,12 +26,21 @@
 		
 	%>
 	
-	<select>
-		<option></option>
-		<option>5개씩 보기</option>
-		<option>10개씩 보기</option>
-		<option>15개씩 보기</option>
-		<option>20개씩 보기</option>
+	<script type="text/javascript">
+	function changeBoardSize(){
+		pageSize = document.fr.changePageSize.value;
+		location.href = "./shareList.sh?pageNum=" + <%=pageNum %> + "&pageSize="+ <%=pageSize%>;
+	}
+	</script>
+	
+	<input type="button" onclick="loaction.href='./shareWrite.sh'">
+	
+	<select id="boardSize" onchange="changeBoardSize()">
+		<option>n개씩 보기</option>
+		<option value="5">5개씩 보기</option>
+		<option value="10">10개씩 보기</option>
+		<option value="15">15개씩 보기</option>
+		<option value="20">20개씩 보기</option>
 	</select>
 	
 	<table border="1">

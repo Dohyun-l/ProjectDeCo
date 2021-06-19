@@ -26,7 +26,15 @@ public class shareListAction implements Action {
 		//디비 메서드 생성
 	    int cnt = sDAO.getShareReadCount();
 		
-	    int pageSize = 5;
+	    String curruntPage = req.getParameter("pageSize");
+	    
+	    int pageSize = 0;
+	    
+	    if (curruntPage == null){
+	    	pageSize = 5;
+	    } else {
+	    	pageSize = Integer.parseInt(curruntPage);
+	    }
 	    
 	    String pageNum = req.getParameter("pageNum");
 		
