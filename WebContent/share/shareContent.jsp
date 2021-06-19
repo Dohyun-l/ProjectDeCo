@@ -55,7 +55,7 @@ String pageNum = request.getParameter("pageNum");
 	</tr>
 </table>
 
-<input type="button" value="목록으로" onclick="location.href='shareList.sh?pageNum=<%=pageNum %>';">
+<input type="button" value="목록으로" onclick="location.href='shareList.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>';">
 
 </body>
 </html>
