@@ -28,14 +28,14 @@
 	
 	<script type="text/javascript">
 	function changeBoardSize(){
-		pageSize = document.fr.changePageSize.value;
+		pageSize = document.getElementsByName("changePageSize").value;
 		location.href = "./shareList.sh?pageNum=" + <%=pageNum %> + "&pageSize="+ <%=pageSize%>;
 	}
 	</script>
 	
-	<input type="button" onclick="loaction.href='./shareWrite.sh'">
+	<input type="button" onclick="loaction.href='./shareWrite.sh'" value="글쓰기">
 	
-	<select id="boardSize" onchange="changeBoardSize()">
+	<select id="boardSize" onchange="changeBoardSize()" name="changePageSize">
 		<option>n개씩 보기</option>
 		<option value="5">5개씩 보기</option>
 		<option value="10">10개씩 보기</option>
