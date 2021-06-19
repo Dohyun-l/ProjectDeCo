@@ -226,4 +226,29 @@ public class userDAO {
 		return flag;
 	}
 	//searchUserNickname
+	
+	//getAuthEmail
+	public int getAuthEmail(String code, String email){
+		int flag = -1;
+		try {
+			System.out.println(email);
+			conn = getConnection();
+			sql = "select email_auth from user where email=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				flag = rs.getString(1).equals(code) ? 1 : 0;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+		
+		return flag;
+	}
+	//getAuthEmail
 }

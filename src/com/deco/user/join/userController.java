@@ -23,13 +23,10 @@ public class userController extends Controller{
 			action = new joinPostAction();
 			forward = action.execute(req, res);
 		
-		}else if(command.equals("/sendEmailAuthAction.us")){
-			action = new sendEmailAction();
+		}else if(command.equals("/emailAuthAction.us")){
+			action = new EmailAuthAction();
 			forward = action.execute(req, res);
 		
-		}else if(command.equals("/emailAuthPermit.us")){
-			
-			forward = new ActionForward("./user/join/needEmail_auth.jsp", false);
 		}
 		
 		render(forward,req,res);

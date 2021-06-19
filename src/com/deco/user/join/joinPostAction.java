@@ -2,7 +2,6 @@ package com.deco.user.join;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,7 +33,6 @@ public class joinPostAction implements Action{
 				sendMailAuthcode.sendCode(uDTO);
 			}
 		}.start();
-		
 
 		userDAO uDAO = new userDAO();
 		int flag = uDAO.insertUser(uDTO);
@@ -45,7 +43,9 @@ public class joinPostAction implements Action{
 			return forward; // null 반환
 		}
 		
-		forward = new ActionForward("./emailAuthPermit.us", true);
+		//인증할 유저 email req영역에 속성으로 저장
+		req.setAttribute("email", uDTO.getEmail());
+		forward = new ActionForward("./user/join/needEmail_auth.jsp", false);
 		return forward;
 	}
 	
@@ -56,6 +56,11 @@ public class joinPostAction implements Action{
 			return false;
 		}
 		if(5 < majorLen || majorLen < 1){
+			return false;
+		}
+		
+		//패스워드 공백
+		if(uDTO.getPw().indexOf(32) != -1){
 			return false;
 		}
 		
