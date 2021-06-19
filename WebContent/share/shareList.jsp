@@ -57,7 +57,7 @@
 	%>
 		<tr>
 			<td><%=sdto.getIdx() %></td>
-			<td><%=sdto.getTitle() %></td>
+			<td><a href="./shareContent.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>"><%=sdto.getTitle() %></a></td>
 			<td><%=new userDAO().getUserNickNameByNum(sdto.getUser_num())%></td>
 			<td><%=sdto.getCreate_at() %></td>
 			<td><%=sdto.getRead_cnt() %></td>
