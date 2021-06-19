@@ -251,4 +251,23 @@ public class userDAO {
 		return flag;
 	}
 	//getAuthEmail
+	
+	//setUserAuth
+	public void setUserAuth(int authCode, String email){
+		try {
+			conn = getConnection();
+			sql = "update user set admin_auth=? where email=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, authCode);
+			pstmt.setString(2, email);
+			
+			pstmt.executeUpdate();
+			System.out.println(email + " 유저 권한 부여 => " + authCode);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	//setUserAuth
 }
