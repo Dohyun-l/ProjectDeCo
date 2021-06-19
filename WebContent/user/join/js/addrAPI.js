@@ -3,7 +3,7 @@ let callAddress = () =>{
     new daum.Postcode({
         oncomplete: function(data) {
             console.log(data.address);
-            inputTarget.value = data.address;
+            inputTarget.value = data.zonecode+','+data.address+','+data.jibunAddress;
             inputTarget.style.color='gray';
         }
     }).open();

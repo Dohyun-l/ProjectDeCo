@@ -20,6 +20,7 @@ public class userDTO {
 	private int private_user;
 	private int point;
 	private int admin_auth;
+	private String email_auth;
 	
 	public int getUser_num() {
 		return user_num;
@@ -149,6 +150,14 @@ public class userDTO {
 		this.admin_auth = admin_auth;
 	}
 	
+	public String getEmail_auth() {
+		return email_auth;
+	}
+
+	public void setEmail_auth(String email_auth) {
+		this.email_auth = email_auth;
+	}
+
 	public void setReq(HttpServletRequest req){
 		email = req.getParameter("email");
 		pw = req.getParameter("pw");

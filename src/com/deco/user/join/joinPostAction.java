@@ -2,6 +2,7 @@ package com.deco.user.join;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,11 +20,21 @@ public class joinPostAction implements Action{
 
 		userDTO uDTO = new userDTO();
 		uDTO.setReq(req);
+		uDTO.setEmail_auth(new RandomCode().getCode(6));
 		
 		if(!isValid(req,uDTO)){
 			ValueException(res,"정보입력이 잘못됐습니다! (서로 다른 비밀번호, 정보 입력 등..)");
 			return forward; // null 반환
 		}
+		
+		new Thread(){
+
+			@Override
+			public void run() {
+				sendMailAuthcode.sendCode(uDTO);
+			}
+		}.start();
+		
 
 		userDAO uDAO = new userDAO();
 		int flag = uDAO.insertUser(uDTO);
@@ -34,7 +45,7 @@ public class joinPostAction implements Action{
 			return forward; // null 반환
 		}
 		
-		forward = new ActionForward("./sendEmailAction.us", true);
+		forward = new ActionForward("./emailAuthPermit.us", true);
 		return forward;
 	}
 	

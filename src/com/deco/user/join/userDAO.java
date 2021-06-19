@@ -131,6 +131,9 @@ public class userDAO {
 		
 		//회원가입한 유저는 -1로 이메일 인증을 안한 유저이다.
 		pstmt.setInt(11, -1);
+		
+		//회원가입한 유저의 발송된 인증 코드 저장
+		pstmt.setString(12, uDTO.getEmail_auth());
 	}
 	//setJoinPreState
 	
@@ -153,8 +156,9 @@ public class userDAO {
 			//유저 DB에 넣기
 			//관리자면 1, 일반 유저 0, 이메일 인증전 유저 -1
 			sql = "insert into user (user_num, email, pw, name, nickname, addr, "
-					+ "phone, major, inter, create_at, last_login, private_user, admin_auth) "
-					+ "values(?,?,?,?,?,?,?,?,?,now(),now(),?,?)";
+					+ "phone, major, inter, create_at, last_login, private_user, admin_auth, "
+					+ "email_auth) "
+					+ "values(?,?,?,?,?,?,?,?,?,now(),now(),?,?,?)";
 
 			pstmt = conn.prepareStatement(sql);
 			setJoinPreState(uDTO);

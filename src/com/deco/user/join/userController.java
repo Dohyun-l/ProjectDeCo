@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.deco.ActionForward;
 import com.deco.Controller;
 
 @WebServlet("*.us")
@@ -16,16 +17,19 @@ public class userController extends Controller{
 		setInit(req, res);
 		
 		if(command.equals("/join.us")){
-			action = new joinGetAction();
-			forward = action.execute(req, res);
+			forward = new ActionForward("./user/join/join.jsp", false);
 		
 		}else if(command.equals("/joinAction.us")){
 			action = new joinPostAction();
 			forward = action.execute(req, res);
 		
-		}else if(command.equals("/sendEmailAction.us")){
+		}else if(command.equals("/sendEmailAuthAction.us")){
 			action = new sendEmailAction();
 			forward = action.execute(req, res);
+		
+		}else if(command.equals("/emailAuthPermit.us")){
+			
+			forward = new ActionForward("./user/join/needEmail_auth.jsp", false);
 		}
 		
 		render(forward,req,res);
