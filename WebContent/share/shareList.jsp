@@ -28,21 +28,22 @@
 	
 	<script type="text/javascript">
 	function changeBoardSize(){
-		pageSize = document.getElementsByName("changePageSize").value;
-		location.href = "./shareList.sh?pageNum=" + <%=pageNum %> + "&pageSize="+ <%=pageSize%>;
+		pageSize = document.fr.boardSize.value;
+		location.href = "./shareList.sh?pageNum=<%=pageNum %>&pageSize="+pageSize;
 	}
 	</script>
 	
-	<input type="button" onclick="loaction.href='./shareWrite.sh'" value="글쓰기">
+	<input type="button" onclick="location.href='./shareWrite.sh'" value="글쓰기">
 	
-	<select id="boardSize" onchange="changeBoardSize()" name="changePageSize">
-		<option>n개씩 보기</option>
-		<option value="5">5개씩 보기</option>
-		<option value="10">10개씩 보기</option>
-		<option value="15">15개씩 보기</option>
-		<option value="20">20개씩 보기</option>
-	</select>
-	
+	<form name="fr">
+		<select id="boardSize" onchange="changeBoardSize()" name="changePageSize">
+			<option>n개씩 보기</option>
+			<option value="5">5개씩 보기</option>
+			<option value="10">10개씩 보기</option>
+			<option value="15">15개씩 보기</option>
+			<option value="20">20개씩 보기</option>
+		</select>
+	</form>
 	<table border="1">
 		<tr>
 			<th>글 번호</th>
@@ -57,7 +58,7 @@
 		<tr>
 			<td><%=sdto.getIdx() %></td>
 			<td><%=sdto.getTitle() %></td>
-			<td><%=new userDAO().getUserNickNameByNum(sdto.getIdx()) %></td>
+			<td><%=new userDAO().getUserNickNameByNum(sdto.getUser_num())%></td>
 			<td><%=sdto.getCreate_at() %></td>
 			<td><%=sdto.getRead_cnt() %></td>
 		</tr>
@@ -65,7 +66,6 @@
 	</table>
 	
 	<%
-	
 	shareDAO sdao = new shareDAO();
 	
 	int cnt = sdao.getShareReadCount();
@@ -74,31 +74,25 @@
 	if(cnt != 0){
 	
 		int pageCount = cnt/pageSize + (cnt % pageSize == 0 ? 0 : 1);
-		
-		
 		int pageBlock = 2;
-		
-		
 		int startPage = ((currentpage - 1)/pageBlock) * pageBlock + 1;
-		
 		int endPage = startPage + pageBlock -1;
-		
 		if(endPage > pageCount){
 			endPage = pageCount;
 		}
 		if(startPage > pageBlock){
 			%>
-			<a href="list.jsp?pageNum=<%=startPage-pageBlock %>">[이전]</a>
+			<a href="./shareList.sh?pageNum=<%=startPage-pageBlock %>&pageSize=<%=pageSize%>">[이전]</a>
 			<%
 		}
 		for(int i=startPage; i<=endPage; i++){
 			%>
-				<a href="list.jsp?pageNum=<%=i%>">[<%=i %>]</a>
+				<a href="./shareList.sh?pageNum=<%=i%>&pageSize=<%=pageSize%>">[<%=i %>]</a>
 			<%
 		}
 		if(endPage < pageCount){
 			%>
-			<a href="list.jsp?pageNum=<%=startPage+pageBlock %>">[다음]</a>
+			<a href="./shareList.sh?pageNum=<%=startPage+pageBlock %>&pageSize=<%=pageSize%>">[다음]</a>
 			<%
 		}
 	}

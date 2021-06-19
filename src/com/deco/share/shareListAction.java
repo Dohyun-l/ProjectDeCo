@@ -14,6 +14,8 @@ public class shareListAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		
+		System.out.println("M : shareListAction_execute() 호출");
+		
 		//한글처리
 		req.setCharacterEncoding("utf-8");
 		
@@ -24,29 +26,28 @@ public class shareListAction implements Action {
 		//객체 생성
 		shareDAO sDAO = new shareDAO();
 		//디비 메서드 생성
-	    int cnt = sDAO.getShareReadCount();
+		int cnt = sDAO.getShareReadCount();
 		
-	    String curruntPage = req.getParameter("pageSize");
-	    
-	    int pageSize = 0;
-	    
-	    if (curruntPage == null){
-	    	pageSize = 5;
-	    } else {
-	    	pageSize = Integer.parseInt(curruntPage);
-	    }
-	    
-	    String pageNum = req.getParameter("pageNum");
+		String str_pageSize = req.getParameter("pageSize");
 		
-	    if(pageNum == null){
-	 	   pageNum = "1";
-	 	   
-	    }
-	   int currentPage = Integer.parseInt(pageNum);
-	   int startRow = (currentPage-1)*pageSize+1;
-	   int endRow = currentPage*pageSize;
-	   
-	   List shareList = sDAO.getShareList(startRow,pageSize);
+		int pageSize = 0;
+		
+		if (str_pageSize == null){
+			pageSize = 5;
+		} else {
+			pageSize = Integer.parseInt(str_pageSize);
+		}
+		
+		String pageNum = req.getParameter("pageNum");
+		
+		if(pageNum == null){
+		   pageNum = "1";
+		}
+		int currentPage = Integer.parseInt(pageNum);
+		int startRow = (currentPage-1)*pageSize+1;
+		int endRow = currentPage*pageSize;
+		   
+		List shareList = sDAO.getShareList(startRow,pageSize);
 		
 		req.setAttribute("shareList", shareList);
 		req.setAttribute("pageNum", pageNum);

@@ -158,12 +158,11 @@ public class shareDAO {
 				sDTO.setContent(rs.getString("content"));
 				sDTO.setCreate_at(rs.getString("create_at"));
 				sDTO.setFile(rs.getString("file"));
-				sDTO.setTitle(rs.getString("title"));
 				sDTO.setIdx(rs.getInt("idx"));
 				sDTO.setLike(rs.getInt("like"));
 				sDTO.setRead_cnt(rs.getInt("read_cnt"));
 				sDTO.setTag(rs.getString("tag"));
-				sDTO.setTitle(rs.getString("tag"));
+				sDTO.setTitle(rs.getString("title"));
 				sDTO.setUser_num(rs.getInt("user_num"));
 				
 				
@@ -206,13 +205,12 @@ public class shareDAO {
 				sDTO.setCategory(rs.getString("category"));
 				sDTO.setContent(rs.getString("content"));
 				sDTO.setCreate_at(rs.getString("create_at"));
-				sDTO.setTitle(rs.getString("title"));
 				sDTO.setFile(rs.getString("file"));
 				sDTO.setIdx(rs.getInt("idx"));
 				sDTO.setLike(rs.getInt("like"));
 				sDTO.setRead_cnt(rs.getInt("read_cnt"));
 				sDTO.setTag(rs.getString("tag"));
-				sDTO.setTitle(rs.getString("tag"));
+				sDTO.setTitle(rs.getString("title"));
 				sDTO.setUser_num(rs.getInt("user_num"));
 				
 				
