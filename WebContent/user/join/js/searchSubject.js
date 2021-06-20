@@ -18,28 +18,22 @@ export const searchSubject = async(event) => {
     }).join('');
 }
 
-const searchMajor = async (event) => {
-    const resultLen = searchBox1.childNodes.length;
+const handleSearchBox = async(event) => {
+    const searchBox = event.target.parentElement.parentElement.querySelector(".searchBox");
+    const resultLen = searchBox.childNodes.length;
 
-    if (event.key === 'ArrowUp') {
-        searchBox1.childNodes[resultLen-1].firstChild.focus();
-    }else if (event.key === 'ArrowDown') {
-        searchBox1.childNodes[0].firstChild.focus();
-    }else{
-        searchBox1.innerHTML = await searchSubject(event);   
+    if (event.key === 'Escape' || event.target.value === ''){
+        searchBox.style.display = "none";
+        return;
     }
-}
-const searchInter = async (event) => {
-    const resultLen = searchBox2.childNodes.length;
-
-    if (event.key === 'ArrowUp') {
-        searchBox2.childNodes[resultLen - 1].firstChild.focus();
+    else if (event.key === 'ArrowUp') {
+        searchBox.childNodes[resultLen-1].firstChild.focus();
     }else if (event.key === 'ArrowDown') {
-        searchBox2.childNodes[0].firstChild.focus();
+        searchBox.childNodes[0].firstChild.focus();
     }else{
-        searchBox2.innerHTML = await searchSubject(event);
-
+        searchBox.innerHTML = await searchSubject(event);   
     }
+    searchBox.style.display = "flex";
 }
 
 const getKeyword = (event) => {
@@ -110,8 +104,8 @@ window.addEventListener("keydown", function(e) {
     }
 }, false);
 
-majorInput.addEventListener("keyup", searchMajor);
-interInput.addEventListener("keyup", searchInter);
+majorInput.addEventListener("keyup", handleSearchBox);
+interInput.addEventListener("keyup", handleSearchBox);
 
 searchBox1.addEventListener("keyup", moveWord);
 searchBox1.addEventListener("click", getKeyword);

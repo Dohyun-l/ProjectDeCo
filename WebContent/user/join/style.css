@@ -18,10 +18,10 @@
     display: grid;
     grid-template-rows: 100px 1fr;
 }
-#searchBox1{
-    display: flex;
-    flex-direction: column;
-}
 .cofirmContainer{
     display: flex;
+}
+.searchBox{
+    display: none;
+    flex-direction: column;
 }
