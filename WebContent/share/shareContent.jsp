@@ -18,9 +18,12 @@ shareDTO sDTO =(shareDTO) request.getAttribute("shareContent");
 
 String pageSize = request.getParameter("pageSize");
 String pageNum = request.getParameter("pageNum");
+String category = request.getParameter("category");
 
 
 %>
+
+
 <%if(new shareDAO().preContentNum(sDTO.getIdx()) != 0){ %>
 <input type="button" value="이전글" onclick="location.href='./shareContent.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=new shareDAO().preContentNum(sDTO.getIdx())%>'">
 <%} 
@@ -61,7 +64,7 @@ if(new shareDAO().postContentNum(sDTO.getIdx()) != 0){ %>
 	</tr>
 </table>
 
-<input type="button" value="목록으로" onclick="location.href='./shareList.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>';">
+<input type="button" value="목록으로" onclick="location.href='./shareList.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&category=<%=category%>';">
 <input type="button" value="수정하기" onclick="location.href='./shareContentModify.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()%>';">
 <input type="button" value="삭제하기" onclick="location.href='./shareContentDelete.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()%>';">
 </body>

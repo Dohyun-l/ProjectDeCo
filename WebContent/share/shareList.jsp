@@ -23,8 +23,19 @@
 	
 		int pageSize = (int)request.getAttribute("pageSize");
 		String pageNum = (String)request.getAttribute("pageNum");
+		String category = request.getParameter("category");
 		
 	%>
+	<ul>
+		<li><a href="./shareList.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>">전체보기</a></li>
+		<li><a href="./shareList.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&category=Tips">Tips</a></li>
+		<li><a href="./shareList.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&category=컨퍼런스">컨퍼런스</a></li>
+		<li><a href="./shareList.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&category=HowTo">How to</a></li>
+		<li><a href="./shareList.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&category=회사추천">회사추천</a></li>
+		<li><a href="./shareList.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&category=학원추천">학원추천</a></li>
+	</ul>
+	
+	<hr>
 	
 	<script type="text/javascript">
 	function changeBoardSize(){
@@ -51,17 +62,19 @@
 			<th>작성자</th>
 			<th>작성일</th>
 			<th>조회수</th>
+			<th>카테고리</th>
 		</tr>
 	<%for(int i=0; i<shareList.size(); i++){ 
 		shareDTO sdto = (shareDTO) shareList.get(i);
 	%>
 		<tr>
 			<td><%=sdto.getIdx() %></td>
-			<td><a href="./shareContent.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&contentNum=<%=sdto.getIdx() %>">
+			<td><a href="./shareContent.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&contentNum=<%=sdto.getIdx()%>&category=<%=category%>">
 			<%=sdto.getTitle() %></a></td>
 			<td><%=new userDAO().getUserNickNameByNum(sdto.getUser_num())%></td>
 			<td><%=sdto.getCreate_at() %></td>
 			<td><%=sdto.getRead_cnt() %></td>
+			<td><%=sdto.getCategory()%></td>
 		</tr>
 	<%} %>
 	</table>
