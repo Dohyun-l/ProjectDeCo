@@ -21,7 +21,7 @@ public class shareDeleteAction implements Action {
 		
 		sDAO.deleteShareContent(idx);
 		
-		ActionForward forward = new ActionForward("./shareList?pageNum="+pageNum+"&pageSize="+pageSize, true);
+		ActionForward forward = new ActionForward("./shareList.sh?pageNum="+pageNum+"&pageSize="+pageSize, true);
 		
 		return forward;
 	}

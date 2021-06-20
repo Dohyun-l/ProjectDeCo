@@ -259,7 +259,7 @@ public class shareDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-
+			closeDB();
 		}
 
 		return sDTO;

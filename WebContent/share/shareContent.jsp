@@ -55,7 +55,7 @@ String pageNum = request.getParameter("pageNum");
 	</tr>
 </table>
 
-<input type="button" value="목록으로" onclick="location.href='shareList.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>';">
-
+<input type="button" value="목록으로" onclick="location.href='./shareList.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>';">
+<input type="button" value="삭제하기" onclick="location.href='./shareContentDelete.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()%>';">
 </body>
 </html>
