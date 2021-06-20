@@ -360,5 +360,58 @@ public class shareDAO {
 
 	}
 	// modifyShareContentFile(sDTO)
+	
+	// preContentNum(idx)
+	public int preContentNum(int idx) {
+		int result = 0;
+		
+		try {
+			conn = getConnection();
+			sql = "select * from(select lag(idx, 1, 0) over(order by idx) pre_idx, idx from deco.share) preContentInfo where idx=?";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, idx);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				result = rs.getInt("pre_idx");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		return result;
+	}
+	// preContentNum(idx)
+	
+	
+	// postContentNum(idx)
+	public int postContentNum(int idx) {
+		int result = 0;
+		
+		try {
+			conn = getConnection();
+			sql = "select * from(select lead(idx, 1, 0) over(order by idx) pre_idx, idx from deco.share) preContentInfo where idx=?";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, idx);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				result = rs.getInt("pre_idx");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		return result;
+	}
+	// postContentNum(idx)
 
 }
