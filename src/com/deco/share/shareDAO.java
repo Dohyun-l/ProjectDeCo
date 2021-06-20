@@ -190,7 +190,7 @@ public class shareDAO {
 		shareDTO sDTO = null;
 		try {
 			conn = getConnection();
-			sql = "select * from share limit ?,?";
+			sql = "select * from share order by idx desc limit ?,?";
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setInt(1, startRow - 1);
@@ -287,6 +287,27 @@ public class shareDAO {
 		}
 	}
 	// deleteShareContent(idx)
+	
+	//shareUpdateReadcnt(idx)
+	public void shareUpdateReadcnt(int idx){
+		
+		try {
+		conn = getConnection();
+		
+		sql="update share set read_cnt=read_cnt+1 where idx=?";
+		
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			closeDB();
+		}
+	}
+	//shareUpdateReadcnt(idx)
+	
 	
 	
 }
