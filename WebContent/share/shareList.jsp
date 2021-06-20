@@ -69,7 +69,7 @@
 	<%
 	shareDAO sdao = new shareDAO();
 	
-	int cnt = sdao.getShareReadCount();
+	int cnt = sdao.numOfShare();
 	int currentpage = Integer.parseInt(pageNum);
 	
 	if(cnt != 0){

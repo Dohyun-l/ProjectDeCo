@@ -23,7 +23,7 @@ public class shareContentAction implements Action{
 		Cookie[] cookieFromRequest = req.getCookies();
 		String cookieValue = null;
 		for(int i = 0 ; i<cookieFromRequest.length; i++) {
-		// 요청정보로부터 쿠키를 가져온다.
+		// 요청정보로부터 쿠키를 가져오기
 		cookieValue = cookieFromRequest[0].getValue();		
 		}
 		
@@ -47,8 +47,7 @@ public class shareContentAction implements Action{
 	 	if (!session.getAttribute(idx+":cookie").equals(session.getAttribute(idx+":cookie ex"))) {
 	 		sDAO.shareUpdateReadcnt(idx);
 		 
-	 	}
-	 			
+	 	}	
 	 	//글번호에 해당하는 글 가져오기
 	 	req.setAttribute("shareContent", sDAO.getShare(idx));
 		

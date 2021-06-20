@@ -114,8 +114,8 @@ public class shareDAO {
 	}
 	// insertShare
 
-	// getShareReadCount() 글의 개수 계산
-	public int getShareReadCount() {
+	// numOfShare() 글의 개수 계산
+	public int numOfShare() {
 		int cnt = 0;
 
 		try {
@@ -137,7 +137,7 @@ public class shareDAO {
 
 		return cnt;
 	}
-	// getShareReadCount()
+	// numOfShare()
 
 	// getShareList()
 	public List getShareList() {
@@ -267,19 +267,19 @@ public class shareDAO {
 	// getShare(idx)
 
 	// deleteShareContent(idx)
-	public void deleteShareContent(String idx){
-		
+	public void deleteShareContent(String idx) {
+
 		try {
 			conn = getConnection();
 			sql = "delete from share where idx=?";
 			pstmt = conn.prepareStatement(sql);
-			
+
 			pstmt.setString(1, idx);
-			
+
 			pstmt.executeUpdate();
-			
+
 			System.out.println("글삭제 완료");
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -287,27 +287,78 @@ public class shareDAO {
 		}
 	}
 	// deleteShareContent(idx)
-	
-	//shareUpdateReadcnt(idx)
-	public void shareUpdateReadcnt(int idx){
-		
+
+	// shareUpdateReadcnt(idx)
+	public void shareUpdateReadcnt(int idx) {
+
 		try {
-		conn = getConnection();
-		
-		sql="update share set read_cnt=read_cnt+1 where idx=?";
-		
+			conn = getConnection();
+
+			sql = "update share set read_cnt=read_cnt+1 where idx=?";
+
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, idx);
 			pstmt.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			closeDB();
 		}
 	}
-	//shareUpdateReadcnt(idx)
+	// shareUpdateReadcnt(idx)
+
+	// modifyShareContent(sDTO)
+	public void modifyShareContent(shareDTO sDTO) {
+
+		try {
+			conn = getConnection();
+			sql = "update share set title=?,content=?,anony=?,category=?,tag=? where idx=?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, sDTO.getTitle());
+			pstmt.setString(2, sDTO.getContent());
+			pstmt.setInt(3, sDTO.getAnony());
+			pstmt.setString(4, sDTO.getCategory());
+			pstmt.setString(5, sDTO.getTag());
+			pstmt.setInt(6, sDTO.getIdx());
+
+			pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+
+	}
+	// modifyShareContent(sDTO)
 	
-	
-	
+	// modifyShareContentFile(sDTO)
+	public void modifyShareContentFile(shareDTO sDTO) {
+
+		try {
+			conn = getConnection();
+			sql = "update share set title=?,content=?,anony=?,category=?,tag=?,file=? where idx=?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, sDTO.getTitle());
+			pstmt.setString(2, sDTO.getContent());
+			pstmt.setInt(3, sDTO.getAnony());
+			pstmt.setString(4, sDTO.getCategory());
+			pstmt.setString(5, sDTO.getTag());
+			pstmt.setString(6, sDTO.getFile());
+			pstmt.setInt(7, sDTO.getIdx());
+
+			pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+
+	}
+	// modifyShareContentFile(sDTO)
+
 }
