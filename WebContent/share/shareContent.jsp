@@ -1,3 +1,4 @@
+<%@page import="com.deco.share.shareDAO"%>
 <%@page import="com.deco.user.userDAO"%>
 <%@page import="com.deco.share.shareDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -20,14 +21,17 @@ String pageNum = request.getParameter("pageNum");
 
 
 %>
-
-<input type="button" value="이전글" onclick="location.href='./shareContent.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()-1%>'">
-<input type="button" value="다음글" onclick="location.href='./shareContent.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()+1%>'">
+<%if(new shareDAO().preContentNum(sDTO.getIdx()) != 0){ %>
+<input type="button" value="이전글" onclick="location.href='./shareContent.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=new shareDAO().preContentNum(sDTO.getIdx())%>'">
+<%} 
+if(new shareDAO().postContentNum(sDTO.getIdx()) != 0){ %>
+<input type="button" value="다음글" onclick="location.href='./shareContent.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=new shareDAO().postContentNum(sDTO.getIdx())%>'">
+<%} %>
 <table border="1">
 	<tr>
 		<td>글번호</td>
 		<td><%=sDTO.getIdx()%></td>
-		<td>카테고리</td>	
+		<td>카테고리</td>
 		<td><%=sDTO.getCategory()%></td>
 		<td>조회수</td>	
 		<td><%=sDTO.getRead_cnt()%></td>
@@ -58,6 +62,7 @@ String pageNum = request.getParameter("pageNum");
 </table>
 
 <input type="button" value="목록으로" onclick="location.href='./shareList.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>';">
+<input type="button" value="수정하기" onclick="location.href='./shareContentModify.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()%>';">
 <input type="button" value="삭제하기" onclick="location.href='./shareContentDelete.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()%>';">
 </body>
 </html>
