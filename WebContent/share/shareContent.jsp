@@ -20,7 +20,8 @@ String pageNum = request.getParameter("pageNum");
 
 %>
 
-
+<input type="button" value="이전글" onclick="location.href='./shareContent.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()-1%>'">
+<input type="button" value="다음글" onclick="location.href='./shareContent.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()+1%>'">
 <table border="1">
 	<tr>
 		<td>글번호</td>
