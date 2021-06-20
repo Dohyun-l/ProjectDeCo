@@ -18,10 +18,9 @@
 		<input type="password" name="pw2" id="pw2" placeholder="비밀번호 확인">
 		<input type="text" name="name" id="name" placeholder="이름">
 		<input type="text" name="nickname" id="nickname" placeholder="닉네임">
-		<input type="text" name="phone" id="phone" placeholder="휴대전화">
+		<input type="text" name="phone" id="phone" placeholder="휴대전화(010-XXXX-XXXX)" maxlength="13">
 		<input type="text" name="addr" id="addr" placeholder="주소" readonly>
 		<button onclick="return callAddress()">주소찾기</button>
-		<button style="display: none;" value="Hi" name="Hi" onclick="return false">안녕</button>
 
 		<div id="majorContainer" class="subInputContainer">
 			<div class="cofirmContainer"></div>
@@ -47,6 +46,7 @@
 </main>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="./user/join/js/addrAPI.js"></script>
+<script type="module" src="./user/join/js/phoneHypen.js"></script>
 <script type="module" src="./user/join/js/searchData.js"></script>
 <script type="module" src="./user/join/js/searchSubject.js"></script>
 </body>
