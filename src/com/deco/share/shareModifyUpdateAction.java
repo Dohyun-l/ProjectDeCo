@@ -34,6 +34,7 @@ public class shareModifyUpdateAction implements Action{
 		int maxSize = 5 * 1024 * 1024;
 		    
 		
+		
 		MultipartRequest multi 
 		  = new MultipartRequest(
 				  req,
