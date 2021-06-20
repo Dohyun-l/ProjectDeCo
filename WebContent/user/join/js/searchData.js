@@ -1,21 +1,8 @@
+import { getPostRequest } from "./api.js";
+
 const emailInput = document.querySelector("#email");
 const nicknameInput = document.querySelector("#nickname");
 const joinForm = document.querySelector("#joinForm");
-
-export const getPostRequest = (reqData) => {
-    let data = {
-        reqData:reqData
-	}
-	
-	let fetchData = {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }
-    return fetchData;
-}
 
 const SearchData = async(event,url) => {
     const $target = event.target;

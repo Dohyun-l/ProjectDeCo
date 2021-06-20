@@ -1,4 +1,4 @@
-import {getPostRequest} from "./searchData.js"
+import { getPostRequest } from "./api.js";
 const majorInput = document.querySelector("#major");
 const interInput = document.querySelector("#inter");
 const searchBox1 = document.querySelector("#searchBox1");

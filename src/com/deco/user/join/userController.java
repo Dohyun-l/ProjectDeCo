@@ -27,6 +27,9 @@ public class userController extends Controller{
 			action = new EmailAuthAction();
 			forward = action.execute(req, res);
 		
+		}else if(command.equals("/changeEmailCode.us")){
+			action = new changeEmailAction();
+			forward = action.execute(req, res);
 		}
 		
 		render(forward,req,res);

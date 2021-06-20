@@ -11,6 +11,7 @@ public class sendMailAuthcode {
 		
 		String sender = "DeCo_Auth@gamil.com";
 		String receiver = uDTO.getEmail();
+		System.out.println(uDTO.getEmail());
 		String subject = "DeCo - 코드로 인증해 주세요.";
 		String content = "인증코드 : " + uDTO.getEmail_auth();
 

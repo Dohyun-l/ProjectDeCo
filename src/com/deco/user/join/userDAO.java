@@ -270,4 +270,28 @@ public class userDAO {
 		
 	}
 	//setUserAuth
+	
+	//changeEamilCode
+	public int changeEamilCode(userDTO uDTO){
+		int flag = -1;
+		
+		try {
+			conn = getConnection();
+			sql = "update user set email_auth=? where email=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, uDTO.getEmail_auth());
+			pstmt.setString(2, uDTO.getEmail());
+			
+			pstmt.executeUpdate();
+			System.out.println("이메일 인증코드 재발급!");
+			flag = 1;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+		
+		return flag; 
+	}
+	//changeEamilCode
 }
