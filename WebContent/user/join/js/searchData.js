@@ -10,7 +10,7 @@ const SearchData = async(event,url) => {
     const URL = url;
     const state = await (await fetch(URL,getPostRequest($term))).json();
     
-    if(state.exists){
+    if($term === '' || state.exists){
         $target.style.borderColor = 'red';
         $target.classList.remove("permit")
     } else {
@@ -43,5 +43,7 @@ const checkAuthHandler = async(event) => {
 }
 
 emailInput.addEventListener("keyup",emailSearchHandler);
-nicknameInput.addEventListener("keyup",nicknameSearchHandler);
+nicknameInput.addEventListener("keyup", nicknameSearchHandler);
+emailInput.addEventListener("click",emailSearchHandler);
+nicknameInput.addEventListener("click", nicknameSearchHandler);
 joinForm.addEventListener("submit", checkAuthHandler);
