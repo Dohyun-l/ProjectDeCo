@@ -36,6 +36,15 @@ const handleSearchBox = async(event) => {
     searchBox.style.display = "flex";
 }
 
+const findSubjectName = (name, list) => {
+    for (var i = 0; i < list.length; i++) {
+        if (list[i].childNodes[0].value === name) {
+            return true;
+        }
+    }
+    return false;
+}
+
 const getKeyword = (event) => {
     const CONTAINER = event.target.parentElement.parentElement.parentElement.parentElement;
     const comfirmContainer = CONTAINER.querySelector(".cofirmContainer");
@@ -44,6 +53,10 @@ const getKeyword = (event) => {
     
     if (comfirmContainer.childNodes.length > 4) {
         alert("과목은 최대 5개까지 선택해주세요!");
+        return event.preventDefault();
+    }
+
+    if(comfirmContainer.childNodes.length > 0 && findSubjectName(clickValue, comfirmContainer.childNodes)){
         return event.preventDefault();
     }
 
