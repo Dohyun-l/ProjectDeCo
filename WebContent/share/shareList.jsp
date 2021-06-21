@@ -44,6 +44,17 @@
 	}
 	</script>
 	
+	<form name="form" action="./shareList.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize %>" method="post">
+	<select name="opt">
+                <option value="0">제목</option>
+                <option value="1">내용</option>
+                <option value="2">제목+내용</option>
+                <option value="3">작성자</option>
+            </select>
+            <input type="text" size="20" name="condition"/>&nbsp;
+            <input type="submit" value="검색"/>
+	</form>
+	<br>
 	<input type="button" onclick="location.href='./shareWrite.sh'" value="글쓰기">
 	
 	<form name="fr">

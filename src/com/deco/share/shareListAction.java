@@ -16,16 +16,18 @@ public class shareListAction implements Action {
 		
 		System.out.println("M : shareListAction_execute() 호출");
 		
-		//한글처리
 		req.setCharacterEncoding("utf-8");
 		
 		// HttpSession session = req.getSession();
 		// int user_num = (int) session.getAttribute("user_num");
-		//ActionForward forward = new ActionForward();
 		
 		//객체 생성
 		shareDAO sDAO = new shareDAO();
-		//디비 메서드 생성
+		
+		// 검색조건과 검색내용 가져오기
+        String opt =req.getParameter("opt");
+        String condition = req.getParameter("condition");
+		
 		int cnt = sDAO.numOfShare();
 		
 		String str_pageSize = req.getParameter("pageSize");
@@ -53,9 +55,13 @@ public class shareListAction implements Action {
 			shareList = sDAO.getShareList(startRow,pageSize);
 		} else if (category.equals("null")){
 			shareList = sDAO.getShareList(startRow,pageSize);
+		} else if (opt != null){
+			shareList = sDAO.shareSearchList(opt,condition);
 		} else {
 			shareList = sDAO.getShareList(startRow,pageSize, category);
 		}
+		
+		
 		
 		req.setAttribute("shareList", shareList);
 		req.setAttribute("pageNum", pageNum);

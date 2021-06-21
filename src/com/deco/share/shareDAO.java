@@ -12,6 +12,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import com.sun.org.apache.bcel.internal.generic.CompoundInstruction;
+
 public class shareDAO {
 
 	private Connection conn = null;
@@ -459,4 +461,56 @@ public class shareDAO {
 	}
 	// postContentNum(idx)
 
+	//shareSearchList(opt,condition)
+	public List shareSearchList(String opt,String condition){
+		shareDTO sDTO = null;
+		List shareSearchList = new ArrayList();
+		
+		try{
+			conn = getConnection();
+			if(opt == "0"){
+				sql="select * from share where title like '%"+condition+"%'";
+			}else if(opt == "1"){
+				sql="select * from share where content like '%"+condition+"%'";	
+			}else if(opt == "2"){
+				sql="select * from share where concat(title,content) like '%"+condition+"%'";
+			}else if(opt == "3"){
+				sql="select * from share where user_num like '%"+condition+"%'";
+			}
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				
+				sDTO = new shareDTO();
+
+				sDTO.setAnony(rs.getInt("anony"));
+				sDTO.setCategory(rs.getString("category"));
+				sDTO.setContent(rs.getString("content"));
+				sDTO.setCreate_at(rs.getString("create_at"));
+				sDTO.setFile(rs.getString("file"));
+				sDTO.setIdx(rs.getInt("idx"));
+				sDTO.setLike(rs.getInt("like"));
+				sDTO.setRead_cnt(rs.getInt("read_cnt"));
+				sDTO.setTag(rs.getString("tag"));
+				sDTO.setTitle(rs.getString("title"));
+				sDTO.setUser_num(rs.getInt("user_num"));
+				
+				shareSearchList.add(sDTO);
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			closeDB();
+		}
+		
+			
+		return shareSearchList;
+	}
+	//shareSearchList(opt,condition)
+	
+	
 }

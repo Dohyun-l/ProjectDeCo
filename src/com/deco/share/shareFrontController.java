@@ -72,9 +72,10 @@ public class shareFrontController extends Controller {
 				forward = action.execute(req, resp);
 			} catch (Exception e) {
 				e.printStackTrace();
-			}
+			}	
 		}
-		
+		 
+			
 		
 		
 		
