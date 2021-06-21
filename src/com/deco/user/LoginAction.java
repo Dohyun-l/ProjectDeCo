@@ -52,8 +52,9 @@ public class LoginAction implements Action{
 		HttpSession session = req.getSession();
 		session.setAttribute("user_num", flag);
 		// ActionForward forward = new ActionForward(req.getContextPath()+"/main.us",true);
+		String exceptURL = "http://localhost:8088/ProjectDeCo/userlogout.us";
 		
-		if(referer.equals("null")){
+		if(referer.equals("null") || referer.equals(exceptURL)){
 			ActionForward forward = new ActionForward(req.getContextPath()+"/main.us",true);
 			return forward;
 		}else{
