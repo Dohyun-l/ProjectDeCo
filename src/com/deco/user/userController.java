@@ -35,28 +35,35 @@ public class userController extends Controller{
 			forward = new ActionForward("./user/login/login.jsp", false);
 		
 		}else if(command.equals("/LoginAction.us")){
-				action = new LoginAction();
-				forward = action.execute(req, res);
+			action = new LoginAction();
+			forward = action.execute(req, res);
 		
 		}else if(command.equals("/main.us")){
-				forward = new ActionForward("./main/main.jsp",false);
+			forward = new ActionForward("./main/main.jsp",false);
 		
 		}else if(command.equals("/info.us")){
-				System.out.println("info.us 호출");
-				action = new UserInfoAction();
-				forward = action.execute(req, res);
+			System.out.println("info.us 호출");
+			action = new UserInfoAction();
+			forward = action.execute(req, res);
 		
 		}else if(command.equals("/userlogout.us")){
 			action = new userLogoutAction();
-				forward = action.execute(req, res);
+			forward = action.execute(req, res);
 		
 		}else if(command.equals("/update.us")){
-				action = new listAction();
-				forward = action.execute(req, res);
+			action = new listAction();
+			forward = action.execute(req, res);
 		
 		}else if(command.equals("/UpdateAction.us")){
-				action = new UpdateAction();
-				forward = action.execute(req, res);
+			action = new UpdateAction();
+			forward = action.execute(req, res);
+		
+		}else if(command.equals("/githubStart.us")){
+			GitLogin git = new GitLogin();
+			forward = new ActionForward("https://github.com/login/oauth/authorize?client_id="+git.getCLIENT_CODE()+"&scope=read:user user:email", true);
+			
+		}else if(command.equals("/gitLoginFin.us")){
+			
 		}
 		
 		render(forward,req,res);
