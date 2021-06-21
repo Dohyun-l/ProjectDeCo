@@ -1,3 +1,4 @@
+<%@page import="com.deco.user.userDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -25,8 +26,11 @@
 
 <!--Example Start-->
 <div id="se2_sample" style="margin:10px 0;">
-
-	
+<%
+		request.setCharacterEncoding("UTF-8");
+		userDTO udto = (userDTO) request.getAttribute("udto");
+		
+ %>
 	<form action="./NoticeInsertAction.nt" method="post" enctype="multipart/form-data" name="fr">
 		제목 <input type="text" name="title">
 		<hr>
