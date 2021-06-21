@@ -32,9 +32,7 @@ public class shareModifyUpdateAction implements Action{
 		String realpath = ctx.getRealPath("/share/upload");
 		
 		int maxSize = 5 * 1024 * 1024;
-		    
-		
-		
+		    	
 		MultipartRequest multi 
 		  = new MultipartRequest(
 				  req,
@@ -82,7 +80,7 @@ public class shareModifyUpdateAction implements Action{
 	     ActionForward forward = new ActionForward("./shareContent.sh?pageNum="+pageNum+"&pageSize="+pageSize, true);
 		
 	     return forward;
-		
+		   
 		
 		
 		
