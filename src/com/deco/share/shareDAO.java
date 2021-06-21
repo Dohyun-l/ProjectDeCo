@@ -468,16 +468,21 @@ public class shareDAO {
 		
 		try{
 			conn = getConnection();
-			if(opt == "0"){
+			if(opt.equals("0")){
 				sql="select * from share where title like '%"+condition+"%'";
-			}else if(opt == "1"){
+			}else if(opt.equals("1")){
 				sql="select * from share where content like '%"+condition+"%'";	
-			}else if(opt == "2"){
+			}else if(opt.equals("2")){
 				sql="select * from share where concat(title,content) like '%"+condition+"%'";
-			}else if(opt == "3"){
-				sql="select * from share where user_num like '%"+condition+"%'";
+			}else if(opt.equals("3")){
+				sql="select * from share "
+						+ "where user_num = "
+						+ "(select user_num from deco.user "
+						+ "where nickname like '%"+condition+"%')";
 			}
-			
+			System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+			System.out.println(sql);
+			System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 			pstmt = conn.prepareStatement(sql);
 			
 			rs = pstmt.executeQuery();

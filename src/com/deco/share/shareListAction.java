@@ -51,12 +51,12 @@ public class shareListAction implements Action {
 		int endRow = currentPage*pageSize;
 		   
 		List shareList = null;
-		if (category == null) {			
+		if (condition != null){
+			shareList = sDAO.shareSearchList(opt,condition);
+		} else if (category == null) {			
 			shareList = sDAO.getShareList(startRow,pageSize);
 		} else if (category.equals("null")){
 			shareList = sDAO.getShareList(startRow,pageSize);
-		} else if (opt != null){
-			shareList = sDAO.shareSearchList(opt,condition);
 		} else {
 			shareList = sDAO.getShareList(startRow,pageSize, category);
 		}
