@@ -49,19 +49,16 @@ public class LoginAction implements Action{
 		}
 		
 		
-		
-		
-		
-		System.out.println(flag);
 		HttpSession session = req.getSession();
-		session.setAttribute("flag", flag);
+		session.setAttribute("user_num", flag);
 		// ActionForward forward = new ActionForward(req.getContextPath()+"/main.us",true);
+		
 		if(referer.equals("null")){
 			ActionForward forward = new ActionForward(req.getContextPath()+"/main.us",true);
 			return forward;
 		}else{
-		ActionForward forward = new ActionForward(referer, true);
-		return forward;
+			ActionForward forward = new ActionForward(referer, true);
+			return forward;
 		}
 	}
 

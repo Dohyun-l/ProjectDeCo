@@ -9,10 +9,7 @@
 </head>
 <body>
 <%
-	int user_num = (int) session.getAttribute("flag");
-	
-	
-
+	int user_num = (int) session.getAttribute("user_num");
 %>
 	<h2>환영합니다<%=user_num %>님</h2>
 	<a href="./info.us?user_num=<%=user_num %>">회원정보 조회</a>
