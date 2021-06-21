@@ -1,4 +1,4 @@
-package com.deco.user.join;
+package com.deco.user;
 import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;
 

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import com.deco.Action;
 import com.deco.ActionForward;
+import com.deco.user.userDTO;
 
 public class listAction implements Action{
 

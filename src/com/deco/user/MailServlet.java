@@ -1,4 +1,4 @@
-package com.deco.user.join;
+package com.deco.user;
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;

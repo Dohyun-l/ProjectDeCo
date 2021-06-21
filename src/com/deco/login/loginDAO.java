@@ -10,7 +10,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import org.mindrot.jbcrypt.BCrypt;
+import com.deco.user.userDTO;
 
 
 
@@ -97,8 +97,8 @@ public class loginDAO {
 					udto.setPhone(rs.getString("phone"));
 					udto.setMajor(rs.getString("major"));
 					udto.setInter(rs.getString("inter"));
-					udto.setCreate_at(rs.getDate("create_at"));
-					udto.setLast_login(rs.getDate("last_login"));
+					udto.setCreate_at(rs.getString("create_at"));
+					udto.setLast_login(rs.getString("last_login"));
 					udto.setPoint(rs.getInt("point"));
 				}
 		} catch (SQLException e) {
