@@ -10,9 +10,17 @@
 <body>
 <%
 	int user_num = (int) session.getAttribute("flag");
+	
+	
+
 %>
 	<h2>환영합니다<%=user_num %>님</h2>
 	<a href="./info.us?user_num=<%=user_num %>">회원정보 조회</a>
+	
+	<a href="./Main.nt">공지사항</a>
+	
+	<a href="./share/shareList.sh">정보공유</a>
+	
 	
 	<a href="./userlogout.us">로그아웃</a>
 	
