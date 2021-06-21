@@ -95,7 +95,7 @@ function check(){
 <%
 	String referer = (String) request.getHeader("REFERER");
 %>
- <form action="./LoginAction.use" name="fr" method="post" onsubmit="return check();">
+ <form action="./LoginAction.us" name="fr" method="post" onsubmit="return check();">
  <center>
  	<h2>로그인</h2>
  	<input type="hidden" name="referer" value="<%=referer %>">
@@ -103,7 +103,7 @@ function check(){
  	<br>
  	<input type="password" name="pw" size="20" style="text-align:center" placeholder="비밀번호를 입력하세요."><br>
  	<br>
- 	<input type="submit" value="로그인"> | <input type="button" value="회원가입" onclick="">
+ 	<input type="submit" value="로그인"> | <input type="button" value="회원가입" onclick="location.href='join.us'">
  	<br>
  	<br>
  	<a id="reauthenticate-popup-btn" href="javascript:loginFormWithKakao()">

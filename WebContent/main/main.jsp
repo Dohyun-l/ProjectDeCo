@@ -12,9 +12,9 @@
 	int user_num = (int) session.getAttribute("flag");
 %>
 	<h2>환영합니다<%=user_num %>님</h2>
-	<a href="./info.use?user_num=<%=user_num %>">회원정보 조회</a>
+	<a href="./info.us?user_num=<%=user_num %>">회원정보 조회</a>
 	
-	<a href="./userlogout.use">로그아웃</a>
+	<a href="./userlogout.us">로그아웃</a>
 	
 </body>
 </html>

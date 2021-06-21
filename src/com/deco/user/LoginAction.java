@@ -1,4 +1,4 @@
-package com.deco.login;
+package com.deco.user;
 
 import java.io.PrintWriter;
 
@@ -8,7 +8,6 @@ import javax.servlet.http.HttpSession;
 
 import com.deco.Action;
 import com.deco.ActionForward;
-import com.deco.user.userDAO;
 
 
 
@@ -22,7 +21,7 @@ public class LoginAction implements Action{
 		String email = req.getParameter("email");
 		String pw = req.getParameter("pw");
 		String referer = req.getParameter("referer");
-		loginDAO loDAO = new loginDAO();
+		userDAO loDAO = new userDAO();
 		int flag = loDAO.login(email, pw);
 		
 		System.out.println(referer);
@@ -56,9 +55,9 @@ public class LoginAction implements Action{
 		System.out.println(flag);
 		HttpSession session = req.getSession();
 		session.setAttribute("flag", flag);
-		// ActionForward forward = new ActionForward(req.getContextPath()+"/main.use",true);
+		// ActionForward forward = new ActionForward(req.getContextPath()+"/main.us",true);
 		if(referer.equals("null")){
-			ActionForward forward = new ActionForward(req.getContextPath()+"/main.use",true);
+			ActionForward forward = new ActionForward(req.getContextPath()+"/main.us",true);
 			return forward;
 		}else{
 		ActionForward forward = new ActionForward(referer, true);

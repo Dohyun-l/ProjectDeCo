@@ -1,4 +1,4 @@
-package com.deco.login;
+package com.deco.user;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,7 +15,7 @@ public class UpdateAction implements Action{
 		Integer user_num = Integer.parseInt(req.getParameter("user_num"));
 		ActionForward forward = new ActionForward();
 		
-		loginDAO lodao = new loginDAO();
+		userDAO lodao = new userDAO();
 		lodao.update(user_num);
 		
 		if(user_num == null){

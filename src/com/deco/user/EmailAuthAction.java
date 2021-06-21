@@ -34,7 +34,7 @@ public class EmailAuthAction implements Action{
 		//인증된 일반유저는 0으로 설정
 		uDAO.setUserAuth(0, email);
 		
-		return new ActionForward("../../login.us", true);
+		return new ActionForward("./login.us", true);
 	}
 	
 	public void ValueException(HttpServletResponse res, String msg) throws IOException{

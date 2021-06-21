@@ -296,4 +296,76 @@ public class userDAO {
 	//changeEamilCode
 	
 	//===========================================================================
+	
+	// HashPW로 돌린 DAO
+	public int login(String email, String pw){
+		//userDTO udto = null;
+		int flag = -2;
+		
+		try {
+				conn = getConnection();
+				sql="select user_num, pw from user where email=?";
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, email);
+				rs = pstmt.executeQuery();
+				if(rs.next()){
+					flag = -1;
+					if(BCrypt.checkpw(pw, rs.getString("pw"))){  //<-- 실적용
+					//if(pw.equals(rs.getString("pw"))){	// 테스트용 코드
+						sql="select user_num from user where email=?";
+						pstmt.setString(1, email);
+						rs = pstmt.executeQuery();
+							if(rs.next()){
+								flag = rs.getInt("user_num");
+							}
+						}
+				}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+		
+		return flag;
+	}
+	
+	public userDTO info(int user_num){
+		userDTO udto = null;
+		try {
+			conn = getConnection();
+			sql="select * from user where user_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, user_num);
+			rs = pstmt.executeQuery();
+				if(rs.next()){
+					udto = new userDTO();
+					udto.setUser_num(rs.getInt("user_num"));
+					udto.setEmail(rs.getString("email"));
+					udto.setName(rs.getString("name"));
+					udto.setNickname(rs.getString("nickname"));
+					udto.setAddr(rs.getString("addr"));
+					udto.setPhone(rs.getString("phone"));
+					udto.setMajor(rs.getString("major"));
+					udto.setInter(rs.getString("inter"));
+					udto.setCreate_at(rs.getString("create_at"));
+					udto.setLast_login(rs.getString("last_login"));
+					udto.setPoint(rs.getInt("point"));
+				}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+		return udto;
+	}
+	
+	public userDTO update(int user_num){
+		userDTO udto = null;
+		conn = getConnection();
+		sql="update ";
+		
+		
+		return udto;
+	}
 }

@@ -8,7 +8,7 @@
 </head>
 <body>
 <%
-	response.sendRedirect(request.getContextPath()+"/login.use");
+	response.sendRedirect(request.getContextPath()+"/login.us");
 
 %>
 
