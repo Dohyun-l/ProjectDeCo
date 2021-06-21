@@ -1,3 +1,5 @@
+<%@page import="com.deco.share.shareDTO"%>
+<%@page import="com.deco.share.shareDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -8,13 +10,7 @@
 </head>
 <body>
 
+내일..................하자................... 그마안...................
 
-	<%
-		//response.sendRedirect("./shareWrite.sh");
-		response.sendRedirect("./shareList.sh");
-	%>
-	
-
-       
 </body>
 </html>
