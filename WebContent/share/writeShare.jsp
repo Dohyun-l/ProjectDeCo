@@ -9,15 +9,15 @@
 <meta http-equiv="Content-Script-Type" content="text/javascript">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <title>정보 공유 - 글쓰기</title>
-<link href="../share/css/ko_KR/smart_editor2.css" rel="stylesheet" type="text/css">
+<link href="../css/ko_KR/smart_editor2.css" rel="stylesheet" type="text/css">
 <style type="text/css">
 	body { margin: 10px; }
 </style>
-<script type="text/javascript" src="../share/js/lib/jindo2.all.js" charset="utf-8"></script>
-<script type="text/javascript" src="../share/js/lib/jindo_component.js" charset="utf-8"></script>
-<script type="text/javascript" src="../share/js/service/SE2M_Configuration.js" charset="utf-8"></script>	<!-- 설정 파일 -->
-<script type="text/javascript" src="../share/js/service/SE2BasicCreator.js" charset="utf-8"></script>
-<script type="text/javascript" src="../share/js/smarteditor2.js" charset="utf-8"></script>
+<script type="text/javascript" src="../js/lib/jindo2.all.js" charset="utf-8"></script>
+<script type="text/javascript" src="../js/lib/jindo_component.js" charset="utf-8"></script>
+<script type="text/javascript" src="../js/service/SE2M_Configuration.js" charset="utf-8"></script>	<!-- 설정 파일 -->
+<script type="text/javascript" src="../js/service/SE2BasicCreator.js" charset="utf-8"></script>
+<script type="text/javascript" src="../js/smarteditor2.js" charset="utf-8"></script>
 
 <script src="../js/jquery-3.6.0.js"></script>
 
@@ -982,9 +982,9 @@ if(window.frameElement){
 		data-callback="recaptcha"></div>
 		<!-- https://dedeweb.tistory.com/34 -->
 		<br>
-		<input type="reset" value="취소"> 
 		<input type="submit" value="등록">
-		    
+		<input type="reset" value="취소"> 
+		<input type="button" value="메인으로" onclick="location.href='./shareList.sh'">
 		</form>
 	
 </body>

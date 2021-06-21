@@ -26,6 +26,9 @@
 		String category = request.getParameter("category");
 		
 	%>
+	
+	<a href="../main.us">메인으로 돌아가기</a>
+	
 	<ul>
 		<li><a href="./shareList.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>">전체보기</a></li>
 		<li><a href="./shareList.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&category=Tips">Tips</a></li>
