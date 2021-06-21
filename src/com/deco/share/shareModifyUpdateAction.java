@@ -10,11 +10,17 @@ import com.deco.ActionForward;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-public class shareWriteAction implements Action {
+public class shareModifyUpdateAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+	
+		System.out.println("M : shareModifyUpdateAction_execute() 호출");
 		
+		String idx = req.getParameter("contentNum");
+		String pageNum = req.getParameter("pageNum");
+		String pageSize = req.getParameter("pageSize");
+				
 		req.setCharacterEncoding("utf-8");
 		
 		//세션제어
@@ -27,6 +33,8 @@ public class shareWriteAction implements Action {
 		
 		int maxSize = 5 * 1024 * 1024;
 		    
+		
+		
 		MultipartRequest multi 
 		  = new MultipartRequest(
 				  req,
@@ -40,12 +48,10 @@ public class shareWriteAction implements Action {
 		
 		shareDTO sDTO = new shareDTO();
 		
-		 // sDTO.setUser_num(user_num);
-		 sDTO.setUser_num(1);
 		 //sDTO.setAnony(Integer.parseInt(multi.getParameter("anony")));
 	     sDTO.setTitle(multi.getParameter("title"));
 	   	 sDTO.setCategory(multi.getParameter("category"));
-	     sDTO. setFile(multi.getFilesystemName("file"));
+	     sDTO.setFile(multi.getFilesystemName("file"));
 	     		  
 	     //다중선택 배열로 받기
 	     String[] tags = multi.getParameterValues("tag");
@@ -63,12 +69,24 @@ public class shareWriteAction implements Action {
 	     
 	     //디비처리 
 	     shareDAO sDAO = new shareDAO();
-	     sDAO.insertShare(sDTO);
+	     //글수정 메서드
+	 	if(sDTO.getFile() != null){
+	 		sDAO.modifyShareContentFile(sDTO);
+		}
+		else
+		{
+			sDAO.modifyShareContent(sDTO);
+		}
 	     
-	     //페이지이동
-	     ActionForward forward = new ActionForward("./shareList.sh",true);
-	 
-		return forward;
+	     
+	     ActionForward forward = new ActionForward("./shareContent.sh?pageNum="+pageNum+"&pageSize="+pageSize, true);
+		
+	     return forward;
+		
+		
+		
+		
+		
 	}
 
 }

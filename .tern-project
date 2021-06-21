@@ -15,7 +15,10 @@
     }
   },
   "libs": [
+<<<<<<< HEAD
     "ecma5",
+=======
+>>>>>>> branch 'share' of https://github.com/Dohyun-l/ProjectDeCo.git
     "browser",
     "jquery"
   ]

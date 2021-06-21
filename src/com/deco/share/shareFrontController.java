@@ -24,10 +24,50 @@ public class shareFrontController extends Controller {
 		
 		if (command.equals("/share/shareWrite.sh")){
 			System.out.println("C : /share/shareWrite.sh 호출");
-			forward = new ActionForward("./writeShare.jsp", false);
+				forward = new ActionForward("./writeShare.jsp", false);
 		} else if(command.equals("/share/shareWriteAction.sh")){
-			System.out.println("C : /shareWriteAction.sh 호출");
+			System.out.println("C : /share/shareWriteAction.sh 호출");
 			action = new shareWriteAction();
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/share/shareList.sh")) {
+			System.out.println("C : /share/shareList.sh 호출");
+			action = new shareListAction();
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/share/shareContent.sh")){
+			System.out.println("C : /share/shareContent.sh 호출");
+			action = new shareContentAction();
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/share/shareContentDelete.sh")){
+			System.out.println("C : /shareContentDelete.sh 호출");
+			action = new shareDeleteAction();
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/share/shareContentModify.sh")){
+			System.out.println("C : /shareContentModify.sh 호출");
+			action = new shareModifyAction();
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/share/shareContentModifyUpdate.sh")){
+			System.out.println("C : /share/shareContentModifyUpdate.sh 호출");
+			action = new shareModifyUpdateAction();
 			try {
 				forward = action.execute(req, resp);
 			} catch (Exception e) {
