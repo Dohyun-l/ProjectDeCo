@@ -30,7 +30,7 @@
 		int adminCheck = usDAO.getAdminByNum(user_num);
 	%>
 	
-	<%
+ 	<%
 		// 디비에 저장된 글의 개수를 알기
 		
 		// BoardDAO 객체 생성
@@ -152,21 +152,21 @@
 			// 이전 (해당 페이지블럭의 첫번째 페이지 호출)
 			if(startPage > pageBlock){
 				%>
-				<a href="noticelist.nt?pageNum=<%= startPage-pageBlock %>">[이전]</a>
+				<a href="noticelist.nt?pageNum=<%= startPage-pageBlock %>&pageSize=<%=pageSize%>">[이전]</a>
 				<%
 			}
 			
 			// 숫자 1....5
 			for(int i=startPage; i<=endPage;i++){
 				%>
-				<a href="noticelist.nt?pageNum=<%=i %>">[<%= i %>]</a>
+				<a href="noticelist.nt?pageNum=<%=i %>&pageSize=<%=pageSize%>">[<%= i %>]</a>
 				<%
 			}
 			
 			// 다음 (기존의 페이지 블럭보다 페이지의 수가 많을때)
 			if(endPage < pageCount){
 				%>
-				<a href="noticelist.nt?pageNum=<%= startPage+pageBlock %>">[다음]</a>
+				<a href="noticelist.nt?pageNum=<%= startPage+pageBlock %>&pageSize=<%=pageSize%>">[다음]</a>
 				<%
 			}
 		}
