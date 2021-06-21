@@ -1,3 +1,4 @@
+<%@page import="com.deco.user.userDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -9,22 +10,30 @@
 <body>
 	<h1>WebContent/notice/main.jsp</h1>
 	
-<%-- 	<%
+	<%
 		// 사용자가 로그인을 했을때만 main페이지 확인
 		// 로그인 안한 경우 로그인 페이지로 이동
 		
 		// 세션객체의 정보를 가져와서 확인
-		String id = (String)session.getAttribute("id");
+		int user_num = (int) session.getAttribute("user_num");
 	
-		if(id == null){
+		userDAO usDAO = new userDAO();
+		String nickName = usDAO.getUserNickNameByNum(user_num);
+		
+		int adminCheck = usDAO.getAdminByNum(user_num);
+	
+		/* if(user_num == null){
 			// 로그인 x
 			System.out.println("[main.jsp] : 아이디가 없음 -> 로그인페이지 이동");
 			response.sendRedirect("./MemberLogin.me");
-		}
+		} */
 	%>
 	
-	<h2><%= id %>님 환영합니다~!</h2>
-	<h2>${sessionScope.id }</h2>
+	<h2><%= user_num %>님 환영합니다~!</h2>
+	<h2><%= nickName %>님 환영합니다~!</h2>
+	
+	
+	<%-- <h2>${sessionScope.id }</h2>
 	
 	<input type="button" value="로그아웃!" onclick="location.href='./MemberLogout.me';"> --%>
 	
@@ -44,8 +53,14 @@
 	</form>
 	<!-- Search Google -->
 	
-	<h3><a href="./noticeform.nt"> 게시판 폼 </a></h3>
+	<%if(adminCheck == -1){ %>
+		<h3><a href="./noticeform.nt"> 게시판 폼 </a></h3>
+	<%} %>
+	
+	
 	<h3><a href="./noticelist.nt"> 게시판 리스트 </a></h3>
+	
+	<h3><a href="./main.us"> 메인 </a></h3>
 	
 	
 	

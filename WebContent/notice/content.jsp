@@ -1,3 +1,4 @@
+<%@page import="com.deco.user.userDAO"%>
 <%@page import="com.deco.notice.db.noticeDAO"%>
 <%@page import="com.deco.notice.db.noticeDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -23,6 +24,9 @@
 		int cntMax = nDAO.getMaxContent();
 		int cntMin = nDAO.getMinContent();
 		
+		int idxExistPre = nDAO.getIdxExistPre(idx);
+		int idxExistNext = nDAO.getIdxExistNext(idx);
+		
 		// 글 조회수를 1증가 (DB 처리)
 		nDAO.updateReadcount(idx);
 		
@@ -31,6 +35,13 @@
 		
 		String fl = nDTO.getFile();
 	%>
+	<%
+		int user_num = (int) session.getAttribute("user_num");
+		userDAO usDAO = new userDAO();
+		String nickName = usDAO.getUserNickNameByNum(user_num);
+		
+		int adminCheck = usDAO.getAdminByNum(user_num);
+	%>
 	
 	<table border="1">
 		<tr>
@@ -38,6 +49,10 @@
 			<td><%=nDTO.getIdx()%></td>
 			<td>작성자</td>
 			<td><%=nDTO.getUser_num()%></td>
+		</tr>
+		<tr>
+			<td>닉네임</td>
+			<td colspan="3"><%=usDAO.getUserNickNameByNum(nDTO.getUser_num()) %></td>
 		</tr>
 		<tr>
 			<td>작성일</td>
@@ -92,22 +107,29 @@
 	</script>
 	
 	<hr>
+	<%if(adminCheck == -1){ %>
 	<input type="button" value="수정하기" 
 				onclick="location.href='./noticemodify.nt?idx=<%=nDTO.getIdx()%>&pageNum=<%=pageNum%>';">
 				
 	<input type="button" value="삭제하기" id="delete_btn" onclick="del();">
-
+	<%} %>
+	
 	<input type="button" value="목록으로" onclick="location.href='noticelist.nt?pageNum=<%=pageNum%>';">
 	
 	<hr>
-	<%if(nDTO.getIdx() != cntMin){ %>
-		<a href="noticecontent.nt?idx=<%=nDTO.getIdx()-1%>&pageNum=<%=pageNum%>">이전글</a>
-	|
-	<%} %>
-	<%if(nDTO.getIdx() != cntMax){ %>
-	<a href="noticecontent.nt?idx=<%=nDTO.getIdx()+1%>&pageNum=<%=pageNum%>">다음글</a>
-	<%} %>
-	<!-- 삭제된 글번호 건너뛰기 기능 추가하기! -->
+	<%if(nDTO.getIdx() != cntMin){
+		if(idxExistPre == -1){%>
+		<a href="noticecontent.nt?idx=<%=nDTO.getIdx()-1%>&pageNum=<%=pageNum%>">이전글</a> 
+	<%}else{%>
+		<a href="noticecontent.nt?idx=<%=idxExistPre%>&pageNum=<%=pageNum%>">이전글</a> 
+	<%}
+	}
+	if(nDTO.getIdx() != cntMax){
+		if(idxExistNext == -1){%>
+			<a href="noticecontent.nt?idx=<%=nDTO.getIdx()+1%>&pageNum=<%=pageNum%>">다음글</a> 
+	<%}else{%>
+			<a href="noticecontent.nt?idx=<%=idxExistNext%>&pageNum=<%=pageNum%>">다음글</a> 
+	<%}} %>
 
 </body>
 </html>

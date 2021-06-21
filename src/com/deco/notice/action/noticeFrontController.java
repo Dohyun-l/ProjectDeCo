@@ -41,7 +41,7 @@ public class noticeFrontController extends HttpServlet{
 		
 		else if(command.equals("/noticeform.nt")){
 			forward = new ActionForward();
-			forward.setPath("./notice/edit.html");
+			forward.setPath("./notice/edit.jsp");
 			forward.setRedirect(false);
 		}
 

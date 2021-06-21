@@ -26,8 +26,13 @@
 <!--Example Start-->
 <div id="se2_sample" style="margin:10px 0;">
 
+	<%
+		int user_num = (int) session.getAttribute("user_num");
+	%>
+
 	
 	<form action="./NoticeInsertAction.nt" method="post" enctype="multipart/form-data" name="fr">
+		<input type="hidden" name="user_num" id="user_num" value="<%=user_num%>">
 		제목 <input type="text" name="title">
 		<hr>
 		<input type="file" name="file">
