@@ -18,8 +18,8 @@ public class shareWriteAction implements Action {
 		req.setCharacterEncoding("utf-8");
 		
 		//세션제어
-		 HttpSession session = req.getSession();
-		 int user_num = (int) session.getAttribute("user_num");
+		HttpSession session = req.getSession();
+		// int user_num = (int) session.getAttribute("user_num");
 			
 		//파일 업로드
 		ServletContext ctx = req.getServletContext();
@@ -33,7 +33,7 @@ public class shareWriteAction implements Action {
 				  realpath,
 				  maxSize,
 				  "UTF-8",
-				  new DefaultFileRenamePolicy()				
+				  new DefaultFileRenamePolicy()		
 				);
 		
 		System.out.println("파일 업로드 완료");
@@ -42,10 +42,12 @@ public class shareWriteAction implements Action {
 		
 		 // sDTO.setUser_num(user_num);
 		 sDTO.setUser_num(1);
-		 //sDTO.setAnony(Integer.parseInt(multi.getParameter("anony")));
+		 sDTO.setAnony(Integer.parseInt(multi.getParameter("anony")));
 	     sDTO.setTitle(multi.getParameter("title"));
 	   	 sDTO.setCategory(multi.getParameter("category"));
-	     sDTO. setFile(multi.getFilesystemName("file"));
+	     sDTO.setFile(multi.getFilesystemName("file"));
+	     sDTO.setContent(multi.getParameter("content"));
+	     
 	     		  
 	     //다중선택 배열로 받기
 	     String[] tags = multi.getParameterValues("tag");
