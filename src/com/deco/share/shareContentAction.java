@@ -15,9 +15,8 @@ public class shareContentAction implements Action{
 		
 		System.out.println("M : shareContentAction_execute() 호출");
 		
-		//세션제어
+		//세션처리
 		HttpSession session = req.getSession();
-		String user_num = (String) session.getAttribute("user_num");
 		
 		// 저장된 쿠키 불러오기
 		Cookie[] cookieFromRequest = req.getCookies();
