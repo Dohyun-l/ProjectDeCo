@@ -1,9 +1,6 @@
 package com.deco.notice.action;
 
-import java.sql.Timestamp;
-
 import javax.servlet.ServletContext;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,11 +14,12 @@ public class NoticeInsertAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
+		
 		// 파일업로드
 		// upload 폴더 생성
 		//request.getRealPath("/upload");
 		ServletContext ctx = request.getServletContext();
-		String realpath = ctx.getRealPath("/upload");
+		String realpath = ctx.getRealPath("/notice/upload");
 		
 		int maxSize = 5 * 1024 * 1024;
 		
@@ -38,6 +36,8 @@ public class NoticeInsertAction implements Action {
 		
 		// 전달된 정보 (파라미터 저장)
 		noticeDTO nDTO = new noticeDTO();
+		int user_num = Integer.parseInt(multi.getParameter("user_num"));
+		nDTO.setUser_num(user_num);
 		nDTO.setTitle(multi.getParameter("title"));
 		nDTO.setContent(multi.getParameter("content"));
 		
