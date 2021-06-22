@@ -45,7 +45,7 @@ public class shareWriteAction implements Action {
 		 sDTO.setAnony(Integer.parseInt(multi.getParameter("anony")));
 	     sDTO.setTitle(multi.getParameter("title"));
 	   	 sDTO.setCategory(multi.getParameter("category"));
-	     sDTO.setFile(multi.getFilesystemName("file"));
+	     sDTO.setFile(multi.getFilesystemName("filename"));
 	     sDTO.setContent(multi.getParameter("content"));
 	     
 	     		  
