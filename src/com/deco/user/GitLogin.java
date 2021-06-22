@@ -22,29 +22,36 @@ public class GitLogin {
 		return CLIENT_CODE;
 	}
 
-	public void sendPost() throws Exception {
+	public String getSECRET_CODE() {
+		return SECRET_CODE;
+	}
 
-        String url = "http://localhost:8088/ProjectDeCo/join.us";
-        String urlParameters = "?Param1=aaaa"
-                +"&Param2=bbbb";
+	public String sendPost(String finURL) throws Exception {
+
+        String url = finURL;
+        //String urlParameters = "?Param1=aaaa"+"&Param2=bbbb";
+        
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-        //add reuqest header
+        
+        //set reuqest header
         con.setRequestMethod("POST");
-        con.setRequestProperty("User-Agent", "Mozilla/5.0");
-        con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+//      con.setRequestProperty("User-Agent", "Mozilla/5.0");
+//      con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+        con.setRequestProperty("Accept", "application/json");
         con.setConnectTimeout(10000);       //컨텍션타임아웃 10초
-        con.setReadTimeout(5000);           //컨텐츠조회 타임아웃 5총
+        con.setReadTimeout(5000);           //컨텐츠조회 타임아웃 5초
+        
         // Send post request
         con.setDoOutput(true);              //항상 갱신된내용을 가져옴.
         DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-        wr.writeBytes(urlParameters);
+        //wr.writeBytes(urlParameters);
         wr.flush();
         wr.close();
 
         int responseCode = con.getResponseCode();
         System.out.println("\nSending 'POST' request to URL : " + url);
-        System.out.println("Post parameters : " + urlParameters);
+        //System.out.println("Post parameters : " + urlParameters);
         System.out.println("Response Code : " + responseCode);
 
         Charset charset = Charset.forName("UTF-8");
@@ -56,7 +63,49 @@ public class GitLogin {
             response.append(inputLine);
         }
         in.close();
-        System.out.println(response.toString());
+        
+        System.out.println("반환"+response.toString());
+        return response.toString();
     }
+	
+	public String sendGet(String apiURL, String access_token) throws Exception {
 
+        String url = apiURL;
+        //String urlParameters = "?Param1=aaaa"+"&Param2=bbbb";
+        
+        URL obj = new URL(url);
+        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+        
+        //set reuqest header
+        con.setRequestMethod("GET");
+        con.setRequestProperty("method", "GET");
+        con.setRequestProperty("Authorization", "token"+" "+access_token);
+        con.setConnectTimeout(10000);       //컨텍션타임아웃 10초
+        con.setReadTimeout(5000);           //컨텐츠조회 타임아웃 5초
+        
+        // Send post request
+        con.setDoOutput(true);              //항상 갱신된내용을 가져옴.
+        DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+        //wr.writeBytes(urlParameters);
+        wr.flush();
+        wr.close();
+
+        int responseCode = con.getResponseCode();
+        System.out.println("\nSending 'GET' request to URL : " + url);
+        //System.out.println("Post parameters : " + urlParameters);
+        System.out.println("Response Code : " + responseCode);
+
+        Charset charset = Charset.forName("UTF-8");
+        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(),charset));
+        String inputLine;
+        StringBuffer response = new StringBuffer();
+
+        while ((inputLine = in.readLine()) != null) {
+            response.append(inputLine);
+        }
+        in.close();
+        
+        System.out.println("반환"+response.toString());
+        return response.toString();
+    }
 }

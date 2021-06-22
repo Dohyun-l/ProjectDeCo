@@ -63,7 +63,8 @@ public class userController extends Controller{
 			forward = new ActionForward("https://github.com/login/oauth/authorize?client_id="+git.getCLIENT_CODE()+"&scope=read:user user:email", true);
 			
 		}else if(command.equals("/gitLoginFin.us")){
-			
+			action = new GitLoginFin();
+			forward = action.execute(req, res);
 		}
 		
 		render(forward,req,res);
