@@ -1,8 +1,12 @@
 package com.deco.notice.action;
 
+import java.sql.Timestamp;
+
 import javax.servlet.ServletContext;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.deco.notice.db.noticeDAO;
 import com.deco.notice.db.noticeDTO;
@@ -19,7 +23,7 @@ public class NoticeInsertAction implements Action {
 		// upload 폴더 생성
 		//request.getRealPath("/upload");
 		ServletContext ctx = request.getServletContext();
-		String realpath = ctx.getRealPath("/notice/upload");
+		String realpath = ctx.getRealPath("/upload");
 		
 		int maxSize = 5 * 1024 * 1024;
 		
