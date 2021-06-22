@@ -83,12 +83,18 @@ $(document).ready(function(){
 	<hr>
 		
 	<%
-		int userNum = Integer.parseInt((String)session.getAttribute("user_num"));
+	
+		int userNum = 0;
+	
+		if(session.getAttribute("user_num") == null){
+			response.sendRedirect("./shareList.sh");
+		} else {
+			userNum = (int) session.getAttribute("user_num");
+		}
 	
 		userDAO udao = new userDAO();
 		String nickname = udao.getUserNickNameByNum(userNum);
 		// String nickname = "admin";
-		
 		
 	%>
 	
