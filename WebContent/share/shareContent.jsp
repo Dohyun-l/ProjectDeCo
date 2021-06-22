@@ -24,11 +24,11 @@ String category = request.getParameter("category");
 %>
 
 
-<%if(new shareDAO().preContentNum(sDTO.getIdx()) != 0){ %>
-<input type="button" value="이전글" onclick="location.href='./shareContent.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=new shareDAO().preContentNum(sDTO.getIdx())%>'">
+<%if(new shareDAO().preContentNum(sDTO.getIdx(), category) != 0){ %>
+<input type="button" value="이전글" onclick="location.href='./shareContent.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=new shareDAO().preContentNum(sDTO.getIdx(), category)%>&category=<%=category%>'">
 <%} 
-if(new shareDAO().postContentNum(sDTO.getIdx()) != 0){ %>
-<input type="button" value="다음글" onclick="location.href='./shareContent.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=new shareDAO().postContentNum(sDTO.getIdx())%>'">
+if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
+<input type="button" value="다음글" onclick="location.href='./shareContent.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=new shareDAO().postContentNum(sDTO.getIdx(), category)%>&category=<%=category%>'">
 <%} %>
 <table border="1">
 	<tr>

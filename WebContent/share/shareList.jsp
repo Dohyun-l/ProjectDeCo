@@ -45,9 +45,17 @@
 		pageSize = document.fr.boardSize.value;
 		location.href = "./shareList.sh?pageNum=<%=pageNum %>&pageSize="+pageSize;
 	}
+	
+	function searchCheck() {
+		if (document.form.condition.value == "")  {
+			alert("검색어를 입력해 주세요.");
+			return false;
+		}
+	}
+	
 	</script>
 	
-	<form name="form" action="./shareList.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize %>" method="post">
+	<form name="form" action="./shareList.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize %>" method="post" onsubmit="return searchCheck()">
 	<select name="opt">
                 <option value="0">제목</option>
                 <option value="1">내용</option>

@@ -62,6 +62,7 @@ public class shareWriteAction implements Action {
 	     }
 	     
 	     System.out.println(tag);
+	     sDTO.setTag(tag);
 	     
 	     //디비처리 
 	     shareDAO sDAO = new shareDAO();

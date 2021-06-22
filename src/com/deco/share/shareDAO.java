@@ -408,58 +408,80 @@ public class shareDAO {
 
 	}
 	// modifyShareContentFile(sDTO)
+	
+	// preContentNum(idx, category)
+		public int preContentNum(int idx, String category) {
+			int result = 0;
 
-	// preContentNum(idx)
-	public int preContentNum(int idx) {
-		int result = 0;
+			try {
+				conn = getConnection();
+				if (category.equals("null")){
+					sql = "select ifnull(max(idx), 0) from deco.share where idx<?";
+					pstmt = conn.prepareStatement(sql);
 
-		try {
-			conn = getConnection();
-			sql = "select * from(select lag(idx, 1, 0) over(order by idx) pre_idx, idx from deco.share) preContentInfo where idx=?";
-			pstmt = conn.prepareStatement(sql);
+					pstmt.setInt(1, idx);
 
-			pstmt.setInt(1, idx);
+				} else {
+					sql = "select ifnull(max(idx), 0) from deco.share where idx<? and category=?";		
 
-			rs = pstmt.executeQuery();
+					pstmt = conn.prepareStatement(sql);
 
-			if (rs.next()) {
-				result = rs.getInt("pre_idx");
+					pstmt.setInt(1, idx);
+					pstmt.setString(2, category);
+				}
+				
+				rs = pstmt.executeQuery();
+
+				if (rs.next()) {
+					result = rs.getInt(1);
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				closeDB();
 			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			closeDB();
+			return result;
 		}
-		return result;
-	}
-	// preContentNum(idx)
+		// preContentNum(idx, category)
 
-	// postContentNum(idx)
-	public int postContentNum(int idx) {
-		int result = 0;
+		// postContentNum(idx, category)
+		public int postContentNum(int idx, String category) {
+			int result = 0;
 
-		try {
-			conn = getConnection();
-			sql = "select * from(select lead(idx, 1, 0) over(order by idx) pre_idx, idx from deco.share) preContentInfo where idx=?";
-			pstmt = conn.prepareStatement(sql);
+			try {
+				conn = getConnection();
+				
+				if (category.equals("null")){
+					sql = "select ifnull(min(idx), 0) from deco.share where idx>?";
+					pstmt = conn.prepareStatement(sql);
 
-			pstmt.setInt(1, idx);
+					pstmt.setInt(1, idx);
 
-			rs = pstmt.executeQuery();
+				} else {
+					sql = "select ifnull(min(idx), 0) from deco.share where idx>? and category=?";	
 
-			if (rs.next()) {
-				result = rs.getInt("pre_idx");
+					pstmt = conn.prepareStatement(sql);
+
+					pstmt.setInt(1, idx);
+					pstmt.setString(2, category);
+				}
+
+
+				rs = pstmt.executeQuery();
+
+				if (rs.next()) {
+					result = rs.getInt(1);
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				closeDB();
 			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			closeDB();
+			return result;
 		}
-		return result;
-	}
-	// postContentNum(idx)
+		// postContentNum(idx, category)
 
 	//shareSearchList(opt,condition)
 	public List shareSearchList(String opt,String condition){
@@ -469,16 +491,16 @@ public class shareDAO {
 		try{
 			conn = getConnection();
 			if(opt.equals("0")){
-				sql="select * from share where title like '%"+condition+"%'";
+				sql="select * from share where title like '%"+condition+"%' order by idx desc";
 			}else if(opt.equals("1")){
-				sql="select * from share where content like '%"+condition+"%'";	
+				sql="select * from share where content like '%"+condition+"%' order by idx desc";	
 			}else if(opt.equals("2")){
-				sql="select * from share where concat(title,content) like '%"+condition+"%'";
+				sql="select * from share where concat(title,content) like '%"+condition+"%' order by idx desc";
 			}else if(opt.equals("3")){
 				sql="select * from share "
 						+ "where user_num = "
 						+ "(select user_num from deco.user "
-						+ "where nickname like '%"+condition+"%')";
+						+ "where nickname like '%"+condition+"%') order by idx desc";
 			}
 			System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 			System.out.println(sql);
