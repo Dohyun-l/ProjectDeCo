@@ -53,11 +53,13 @@ if(new shareDAO().postContentNum(sDTO.getIdx()) != 0){ %>
 	<tr>	
 		<td>제목</td>
 		<td colspan="5"><%=sDTO.getTitle()%></td>
-	</tr>	
+	</tr>
+  <%if(sDTO.getFile()!=null){%>	
 	<tr>	
 		<td>첨부파일</td>
 		<td colspan="5" ><img src="share/upload/<%=sDTO.getFile()%>" width="400" height="300" alt="<%=sDTO.getFile()%>"></td>
-	</tr>	
+	</tr>
+	<%} %>	
 	<tr>
 		<td>글내용</td>
 		<td colspan="5"><%=sDTO.getContent()%></td>
