@@ -51,10 +51,6 @@
 			<td><%=nDTO.getUser_num()%></td>
 		</tr>
 		<tr>
-			<td>닉네임</td>
-			<td colspan="3"><%=usDAO.getUserNickNameByNum(nDTO.getUser_num()) %></td>
-		</tr>
-		<tr>
 			<td>작성일</td>
 			<td><%=nDTO.getCreate_at()%></td>
 			<td>조회수</td>
@@ -62,11 +58,15 @@
 			</td>
 		</tr>
 		<tr>
+			<td>닉네임</td>
+			<td colspan="3"><%=usDAO.getUserNickNameByNum(nDTO.getUser_num()) %></td>
+		</tr>
+		<tr>
 			<td>제목</td>
 			<td colspan="3"><%=nDTO.getTitle()%></td>
 		</tr>
 		<tr>
-			<td colspan="4"><%=nDTO.getContent()%></td>
+			<td colspan="4" width="500" height="500"><%=nDTO.getContent()%></td>
 		</tr>
 		
 		<%if(fl != null){ %>

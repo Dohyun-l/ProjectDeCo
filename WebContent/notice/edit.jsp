@@ -44,13 +44,6 @@
 		<textarea name="ir1" id="ir1" rows="10" cols="100" style="width:766px; height:412px; display:none;"></textarea>
 	</form>
 	
-		<!-- <p>글 수정시 여기에 값을 넣어주면 됩니다.</p> -->
-	
-<!-- 	<input type="button" onclick="pasteHTML();" value="본문에 내용 넣기" />
-	<input type="button" onclick="showHTML();" value="본문 내용 가져오기" />
-	<input type="button" onclick="submitContents();" value="서버로 내용 전송" />
-	<input type="button" onclick="setDefaultFont();" value="기본 폰트 지정하기 (궁서_24)" /> -->
-	
 </div>
 
 <!-- SE2 Markup Start -->	
@@ -815,10 +808,10 @@
 	</div>
 </div>
 
-	<hr>
+<!-- 	<hr>
 	<input type="button" onclick="pasteHTML();" value="본문에 내용 넣기" />
 	<input type="button" onclick="showHTML();" value="본문 내용 가져오기" />
-	<input type="button" onclick="setDefaultFont();" value="기본 폰트 지정하기 (궁서_24)" />
+	<input type="button" onclick="setDefaultFont();" value="기본 폰트 지정하기 (궁서_24)" /> -->
 	
 	<hr>
 	<input type="button" onclick="readContent();submitContents();" value="글 작성"/>
