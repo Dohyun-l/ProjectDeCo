@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.deco.Action;
 import com.deco.ActionForward;
@@ -18,8 +19,16 @@ public class shareListAction implements Action {
 		
 		req.setCharacterEncoding("utf-8");
 		
-		// HttpSession session = req.getSession();
-		// int user_num = (int) session.getAttribute("user_num");
+		//세션처리
+		HttpSession session = req.getSession();
+				
+		int userNum = 0;
+				
+		if(session.getAttribute("user_num") == null){
+			resp.sendRedirect("./shareList.sh");
+		} else {
+			userNum = (int) session.getAttribute("user_num");
+		}
 		
 		//객체 생성
 		shareDAO sDAO = new shareDAO();
