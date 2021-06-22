@@ -73,9 +73,9 @@ public class shareFrontController extends Controller {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}	
-		}
-		 
-			
+		}else if(command.equals("/share/filedown.sh")){
+			forward = new ActionForward("./file_down.jsp",false);
+		}	
 		
 		
 		

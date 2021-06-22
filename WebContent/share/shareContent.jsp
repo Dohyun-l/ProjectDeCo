@@ -58,7 +58,7 @@ if(new shareDAO().postContentNum(sDTO.getIdx()) != 0){ %>
 	<tr>	
 		<td>첨부파일</td>
 		<%if(sDTO.getFile()!=null){%>	
-		<td colspan="5" ><img src="share/upload/<%=sDTO.getFile()%>" width="400" height="300" alt="<%=sDTO.getFile()%>"></td>
+		<td colspan="5" ><a href="filedown.sh?realPath=upload&file=<%=sDTO.getFile()%>"><%=sDTO.getFile() %></a></td>
 		<%} else {%>
 		<td colspan="5" >없음</td>
 		<%} %>
