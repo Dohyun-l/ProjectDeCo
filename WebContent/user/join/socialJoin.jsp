@@ -12,9 +12,9 @@
 
 <main>
 	<form id="joinForm" action="SocialJoinAction.us" method="post">
-		<h2>회원가입</h2>
-		<input type="text" name="email" id="email" placeholder="이메일">
-		<input type="text" name="name" id="name" placeholder="이름">
+		<h2>소셜 회원가입</h2>
+		<input type="text" name="email" id="email" placeholder="이메일" value="${uDTO.email}" readonly>
+		<input type="text" name="name" id="name" placeholder="이름" value="${uDTO.name}">
 		<input type="text" name="nickname" id="nickname" placeholder="닉네임">
 		<input type="text" name="phone" id="phone" placeholder="휴대전화(010-XXXX-XXXX)" maxlength="13">
 		<input type="text" name="addr" id="addr" placeholder="주소" readonly>
@@ -39,7 +39,7 @@
 				<div id="searchBox2" class="searchBox"></div>
 			</div>	
 		</div>
-		<button id="joinSubmit">회원가입</button>
+		<button id="joinSubmit">정보수정</button>
 	</form>
 </main>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

@@ -54,6 +54,30 @@ public class userDAO {
 		}
 	}
 	
+	//getUserInfo
+	public userDTO getUserInfo(int user_num){
+		userDTO uDTO = null;
+		
+		try {
+			conn = getConnection();
+			sql = "select * from user where user_num=?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, user_num);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				uDTO = new userDTO();
+				uDTO.setRs(rs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return uDTO;
+	}
+	//getUserInfo
+	
 	//getUserNickNameByNum
 	public String getUserNickNameByNum(int userNum){
 		String UserName = null;
@@ -79,6 +103,29 @@ public class userDAO {
 		return UserName;
 	}
 	//getUserNickNameByNum
+	
+	//getUserNumByEmail
+	public int getUserNumByEmail(String email){
+		int user_num = -5;
+		
+		try {
+			conn = getConnection();
+			sql = "select user_num from user where email=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				user_num = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return user_num;
+	}
+	//getUserNumByEmail
 
 	//getAdminByNum
 	public int getAdminByNum(int userNum){
@@ -113,9 +160,8 @@ public class userDAO {
 	}
 	//HashPW
 	
-	//setJoinPreState
-	private void setJoinPreState(userDTO uDTO) throws SQLException{
-		
+	//setJoinInitSet()
+	private void setJoinInitSet(userDTO uDTO) throws SQLException{
 		pstmt.setInt(1, uDTO.getUser_num());
 		pstmt.setString(2, uDTO.getEmail());
 		pstmt.setString(3, HashPW(uDTO.getPw()));
@@ -125,6 +171,13 @@ public class userDAO {
 		pstmt.setString(7, uDTO.getPhone());
 		pstmt.setString(8, uDTO.getMajor());
 		pstmt.setString(9, uDTO.getInter());
+	}
+	//setJoinInitSet()
+	
+	//setJoinPreState
+	private void setJoinPreState(userDTO uDTO) throws SQLException{
+		
+		setJoinInitSet(uDTO);
 		
 		//private user는 기본적으로 계정 공개로 0으로 설정(참고: 비공개는 1로 함)
 		pstmt.setInt(10, 0);
@@ -136,6 +189,20 @@ public class userDAO {
 		pstmt.setString(12, uDTO.getEmail_auth());
 	}
 	//setJoinPreState
+	
+	//setJoinGitPreState
+	private void setJoinGitPreState(userDTO uDTO) throws SQLException{
+		
+		setJoinInitSet(uDTO);
+		
+		//private user는 기본적으로 계정 공개로 0으로 설정(참고: 비공개는 1로 함)
+		pstmt.setInt(10, 0);
+		
+		//Git으로 회원가입한 유저는 이메일 인증을 한 유저이지만, 추가적인 정보가 필요하다.
+		// -10으로 설정  =>  추가 필수 정보 입력시 0으로 변경
+		pstmt.setInt(11, -10);
+	}
+	//setJoinGitPreState
 	
 	//insertUser
 	public int insertUser(userDTO uDTO){
@@ -174,6 +241,43 @@ public class userDAO {
 		return flag;
 	}
 	//insertUser
+	
+	//insertGitUser
+	public int insertGitUser(userDTO uDTO){
+		int flag = -5; 
+		
+		try {
+			conn = getConnection();
+			
+			//user_num 얻기
+			sql = "select max(user_num) from user";
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				uDTO.setUser_num(rs.getInt(1) + 1);
+			}
+			
+			//유저 DB에 넣기
+			//관리자면 1, 일반 유저 0, 이메일 인증전 유저 -1
+			sql = "insert into user (user_num, email, pw, name, nickname, addr, "
+					+ "phone, major, inter, create_at, last_login, private_user, admin_auth)"
+					+ "values(?,?,?,?,?,?,?,?,?,now(),now(),?,?)";
+
+			pstmt = conn.prepareStatement(sql);
+			setJoinGitPreState(uDTO);
+			pstmt.executeUpdate();
+			
+			flag = 1;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+		
+		return flag;
+	}
+	//insertGitUser
 	
 	//searchUserEmail
 	public boolean searchUserEmail(String nowEmail){

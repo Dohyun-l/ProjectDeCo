@@ -1,5 +1,8 @@
 package com.deco.user;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -14,7 +17,7 @@ import com.deco.ActionForward;
 public class GitLoginFin implements Action{
 
 	@Override
-	public ActionForward execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		String baseURL = "https://github.com/login/oauth/access_token";
 		
 		GitLogin gitConfig = new GitLogin();
@@ -66,11 +69,28 @@ public class GitLoginFin implements Action{
 					uDTO.setEmail((String)userEmail.get("email"));
 					uDTO.setName((String)userData.get("login"));
 					
-					uDAO.insertUser(uDTO);
+					//not null colums 더미값 셋팅
+					uDTO.setNickname("없음");
+					uDTO.setPw("@g");
+					uDTO.setAddr("없음");
+					uDTO.setPhone("없음");
+					uDTO.setMajor("없음");
+					uDTO.setInter("없음");
+					
+					int flag = uDAO.insertGitUser(uDTO);
+					
+					//에러 발생 시,
+					if(flag == -5){
+						ValueException(res,"무언가 잘못됐습니다!");
+						return null; // null 반환
+					}
+					
+					setSession(req, userEmail);
+					
+					return new ActionForward("./SocialJoinAction.us",true);
 				}
 				
-				HttpSession session = req.getSession();
-				
+				setSession(req, userEmail);
 				
 			}else{
 				return new ActionForward("./login.us", true);
@@ -79,7 +99,25 @@ public class GitLoginFin implements Action{
 			return new ActionForward("./login.us", true);
 		}
 		
-		return new ActionForward("/main.us",true);
+		return new ActionForward("./main.us",true);
 	}
 	
+	public void ValueException(HttpServletResponse res, String msg) throws IOException{
+		res.setContentType("text/html; charset=utf-8");
+		PrintWriter out = res.getWriter();
+		out.println("<script>");
+		out.println("alert('" + msg + "');");
+		out.println("history.back()");
+		out.println("</script>");
+		
+		out.close();
+	}
+	
+	public void setSession(HttpServletRequest req, JSONObject userEmail){
+		userDAO uDAO = new userDAO();
+		int userNum = uDAO.getUserNumByEmail((String)userEmail.get("email"));
+		
+		HttpSession session = req.getSession();
+		session.setAttribute("user_num", userNum);
+	}
 }
