@@ -6,13 +6,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="https://unpkg.com/mvp.css">
 <link rel="stylesheet" href="./user/join/style.css">
-<title>Join</title>
+<title>소설 회원가입</title>
 </head>
 <body>
 
 <main>
 	<form id="joinForm" action="SocialJoinAction.us" method="post">
-		<h2>소셜 회원가입</h2>
+		<h2>소셜 회원가입 추가정보</h2>
 		<input type="text" name="email" id="email" placeholder="이메일" value="${uDTO.email}" readonly>
 		<input type="text" name="name" id="name" placeholder="이름" value="${uDTO.name}">
 		<input type="text" name="nickname" id="nickname" placeholder="닉네임">
