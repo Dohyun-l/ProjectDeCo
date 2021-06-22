@@ -9,6 +9,9 @@
 <title>네이버 :: Smart Editor 2 &#8482;</title>
 
 <link href="../css/ko_KR/smart_editor2.css" rel="stylesheet" type="text/css">
+<link href="../css/ko_KR/smart_editor2_items.css" rel="stylesheet" type="text/css">
+<link href="../css/ko_KR/smart_editor2_out.css" rel="stylesheet" type="text/css">
+<link href="../css/ko_KR/smart_editor2_in.css" rel="stylesheet" type="text/css">
 <style type="text/css">
 	body { margin: 10px; }
 </style>
