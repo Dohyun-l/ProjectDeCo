@@ -77,13 +77,14 @@ public class noticeDAO {
 			
 			// 2. 글 등록
 			sql = "insert into notice (idx, user_num, title, content, file, create_at, count) "
-					   + "values(?,1,?,?,?,now(),0)";
+					   + "values(?,?,?,?,?,now(),0)";
 			   pstmt = conn.prepareStatement(sql);
 			   // ?
 			   pstmt.setInt(1, num);
-			   pstmt.setString(2, nDTO.getTitle());
-			   pstmt.setString(3, nDTO.getContent());
-			   pstmt.setString(4, nDTO.getFile());
+			   pstmt.setInt(2,nDTO.getUser_num());
+			   pstmt.setString(3, nDTO.getTitle());
+			   pstmt.setString(4, nDTO.getContent());
+			   pstmt.setString(5, nDTO.getFile());
 			   
 			   // 4 sql 실행
 			   pstmt.executeUpdate();
@@ -410,35 +411,37 @@ public class noticeDAO {
 	
 	
 	// getIdxExistPre()
+
 	public int getIdxExistPre(int idx){
+
 		int result = 0;
 		int cnt = 0;
 		int idxPre = idx-1;
-		
+
 		try {
+
 			conn = getConnection();
-			
+
 			sql = "select idx from notice where idx=?";
 			pstmt = conn.prepareStatement(sql);
-			
 			pstmt.setInt(1, idxPre);
 			rs = pstmt.executeQuery();
-			
+
 			if(rs.next()){
 				result = -1;
+
 			}else{
+
 				sql = "select max(idx) from notice where idx<?";
 				PreparedStatement pstmt2 = conn.prepareStatement(sql);
-				
 				pstmt2.setInt(1, idx);
 				ResultSet rs2 = pstmt2.executeQuery();
-				
+
 				if(rs2.next()){
 					cnt = rs2.getInt(1);
 					result = cnt;
 				}
 			}
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -446,32 +449,33 @@ public class noticeDAO {
 		}
 		return result;
 	}
+
 	// getIdxExistPre()
-		
+
+	
+
 	// getIdxExistNext()
+
 		public int getIdxExistNext(int idx){
+
 			int result = 0;
 			int cnt = 0;
 			int idxNext = idx+1;
-			
+
 			try {
 				conn = getConnection();
-				
 				sql = "select idx from notice where idx=?";
 				pstmt = conn.prepareStatement(sql);
-				
 				pstmt.setInt(1, idxNext);
 				rs = pstmt.executeQuery();
-				
+
 				if(rs.next()){
 					result = -1;
 				}else{
 					sql = "select min(idx) from notice where idx>?";
 					PreparedStatement pstmt2 = conn.prepareStatement(sql);
-					
 					pstmt2.setInt(1, idx);
 					ResultSet rs2 = pstmt2.executeQuery();
-					
 					if(rs2.next()){
 						cnt = rs2.getInt(1);
 						result = cnt;
@@ -484,6 +488,7 @@ public class noticeDAO {
 			}
 			return result;
 		}
+
 		// getIdxExistNext()
 	
 }

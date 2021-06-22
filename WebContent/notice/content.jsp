@@ -1,3 +1,4 @@
+<%@page import="com.deco.user.userDAO"%>
 <%@page import="com.deco.notice.db.noticeDAO"%>
 <%@page import="com.deco.notice.db.noticeDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -34,6 +35,13 @@
 		
 		String fl = nDTO.getFile();
 	%>
+	<%
+		int user_num = (int) session.getAttribute("flag");
+		userDAO usDAO = new userDAO();
+		String nickName = usDAO.getUserNickNameByNum(user_num);
+		
+		int adminCheck = usDAO.getAdminByNum(user_num);
+	%>
 	
 	<table border="1">
 		<tr>
@@ -41,6 +49,10 @@
 			<td><%=nDTO.getIdx()%></td>
 			<td>작성자</td>
 			<td><%=nDTO.getUser_num()%></td>
+		</tr>
+		<tr>
+			<td>닉네임</td>
+			<td colspan="3"><%=usDAO.getUserNickNameByNum(nDTO.getUser_num()) %></td>
 		</tr>
 		<tr>
 			<td>작성일</td>
@@ -67,17 +79,6 @@
 		</tr>
 		<%} %>
 		
-<%-- 		<tr>
-			<td colspan="4">
-			<input type="button" value="수정하기" 
-				onclick="location.href='updateForm.jsp?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>';">
-			<input type="button" value="삭제하기" 
-				onclick="location.href='deleteForm.jsp?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>';">
-			<input type="button" value="답글쓰기"
-				onclick="location.href='reWriteForm.jsp?num=<%=bb.getNum()%>&re_ref=<%=bb.getRe_ref()%>&re_lev=<%=bb.getRe_lev()%>&re_seq=<%=bb.getRe_seq()%>';">
-			<input type="button" value="목록으로" onclick="location.href='list.jsp?pageNum=<%=pageNum%>';">
-			</td>
-		</tr> --%>
 	</table>
 	
 	<script>
@@ -89,39 +90,33 @@
 	    else{
 	        return ;
 	    }
-		
 	}
-
 	</script>
 	
 	<hr>
-	<input type="button" value="수정하기" 
-				onclick="location.href='./noticemodify.nt?idx=<%=nDTO.getIdx()%>&pageNum=<%=pageNum%>';">
-				
-	<input type="button" value="삭제하기" id="delete_btn" onclick="del();">
-
+	<%if(adminCheck == -1){ %>
+		<input type="button" value="수정하기" 
+					onclick="location.href='./noticemodify.nt?idx=<%=nDTO.getIdx()%>&pageNum=<%=pageNum%>';">
+					
+		<input type="button" value="삭제하기" id="delete_btn" onclick="del();">
+	<%} %>
+	
 	<input type="button" value="목록으로" onclick="location.href='noticelist.nt?pageNum=<%=pageNum%>';">
 	
 	<hr>
 	<%if(nDTO.getIdx() != cntMin){
 		if(idxExistPre == -1){%>
-			<a href="noticecontent.nt?idx=<%=nDTO.getIdx()-1%>&pageNum=<%=pageNum%>">이전글</a> 
-		<%}else{%>
-			<a href="noticecontent.nt?idx=<%=idxExistPre%>&pageNum=<%=pageNum%>">이전글</a> 
+		<a href="noticecontent.nt?idx=<%=nDTO.getIdx()-1%>&pageNum=<%=pageNum%>">이전글</a> 
+	<%}else{%>
+		<a href="noticecontent.nt?idx=<%=idxExistPre%>&pageNum=<%=pageNum%>">이전글</a> 
 	<%}
-	}%>
-	|
-	<%if(nDTO.getIdx() != cntMax){
-		if(idxExistNext == -1){%>
-			<a href="noticecontent.nt?idx=<%=nDTO.getIdx()+1%>&pageNum=<%=pageNum%>">다음글</a>
-	<%
-		}else{
-	%>
-			<a href="noticecontent.nt?idx=<%=idxExistNext%>&pageNum=<%=pageNum%>">다음글</a> 
-	<%
-		}
 	}
-	%>
+	if(nDTO.getIdx() != cntMax){
+		if(idxExistNext == -1){%>
+			<a href="noticecontent.nt?idx=<%=nDTO.getIdx()+1%>&pageNum=<%=pageNum%>">다음글</a> 
+	<%}else{%>
+			<a href="noticecontent.nt?idx=<%=idxExistNext%>&pageNum=<%=pageNum%>">다음글</a> 
+	<%}} %>
 
 </body>
 </html>

@@ -48,10 +48,6 @@ public class LoginAction implements Action{
 			return null;
 		}
 		
-		
-		
-		
-		
 		System.out.println(flag);
 		HttpSession session = req.getSession();
 		session.setAttribute("flag", flag);

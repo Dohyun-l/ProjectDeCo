@@ -26,8 +26,13 @@
 <!--Example Start-->
 <div id="se2_sample" style="margin:10px 0;">
 
+	<%
+		int user_num = (int) session.getAttribute("flag");
+	%>
+
 	
 	<form action="./NoticeInsertAction.nt" method="post" enctype="multipart/form-data" name="fr">
+		<input type="hidden" name="user_num" id="user_num" value="<%=user_num%>">
 		제목 <input type="text" name="title">
 		<hr>
 		<input type="file" name="file">
@@ -36,7 +41,7 @@
 		<input type="hidden" name="content" id="content">
 		
 		<!-- 원래 이름 : name="ir1" -->
-		<textarea name="ir1" id="ir1" rows="10" cols="100" style="width:766px; height:412px; display:none;">내용을 입력해주세요</textarea>
+		<textarea name="ir1" id="ir1" rows="10" cols="100" style="width:766px; height:412px; display:none;"></textarea>
 	</form>
 	
 		<!-- <p>글 수정시 여기에 값을 넣어주면 됩니다.</p> -->
@@ -859,7 +864,7 @@ if(window.frameElement){
 			return;
 		}
 		oEditor.exec("UPDATE_CONTENTS_FIELD");	// 에디터의 내용이 textarea에 적용됩니다.
-    	if(document.fr.ir1.value == ""){
+    	if(document.fr.ir1.value == "" || document.fr.ir1.value == "<p><br></p>"){
 			alert("내용을 입력하세요");
 			document.getElementById("ir1").focus();
 			return;

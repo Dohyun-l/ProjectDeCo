@@ -33,6 +33,8 @@
 		noticeDTO nDTO = (noticeDTO)request.getAttribute("nDTO");
 	
 		int idx = Integer.parseInt(request.getParameter("idx"));
+		
+		int user_num = (int) session.getAttribute("flag");
 	%>
 	
 	<form action="./NoticeModifyAction.nt" method="post" name="fr">
