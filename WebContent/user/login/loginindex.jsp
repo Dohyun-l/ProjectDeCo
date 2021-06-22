@@ -10,6 +10,7 @@
 <%
 	response.sendRedirect(request.getContextPath()+"/login.use");
 
+	// 마스터 머지전 업로드할 파일 loginDAO last_login 메서드 추가 and LoginAction파일에 loDAO.last_login(email); 구문 추가 <-- 마지막 로그인 날짜 수정
 %>
 
 

@@ -67,6 +67,15 @@ protected void doProcess(HttpServletRequest req, HttpServletResponse res) throws
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if(command.equals("/delete.use")){
+			forward = new ActionForward("./user/login/delete.jsp", false);
+		}else if(command.equals("/DeleteAction.use")){
+				action = new DeleteAction();
+				try {
+					forward = action.execute(req, res);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 		}
 		
 		// -------------------------------------------------------------------------------

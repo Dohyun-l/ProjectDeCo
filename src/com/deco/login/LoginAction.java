@@ -24,6 +24,9 @@ public class LoginAction implements Action{
 		String referer = req.getParameter("referer");
 		loginDAO loDAO = new loginDAO();
 		int flag = loDAO.login(email, pw);
+		loDAO.last_login(email);
+		HttpSession session = req.getSession();
+		session.setAttribute("flag", flag);
 		
 		System.out.println(referer);
 		
@@ -49,13 +52,8 @@ public class LoginAction implements Action{
 			return null;
 		}
 		
-		
-		
-		
-		
 		System.out.println(flag);
-		HttpSession session = req.getSession();
-		session.setAttribute("flag", flag);
+		
 		// ActionForward forward = new ActionForward(req.getContextPath()+"/main.use",true);
 		if(referer.equals("null")){
 			ActionForward forward = new ActionForward(req.getContextPath()+"/main.use",true);

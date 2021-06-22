@@ -11,7 +11,9 @@ public class listAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		
 		HttpSession session = req.getSession();
+		// int user_num = (int) session.getAttribute("user_num");
 		Integer user_num = Integer.parseInt(req.getParameter("user_num"));
 		ActionForward forward = new ActionForward();
 		
@@ -21,9 +23,6 @@ public class listAction implements Action{
 		req.setAttribute("udto", udto);
 		
 		forward = new ActionForward("./user/login/update.jsp", false);
-		
-		// 현재 updateAction 페이지 리스트 페이지로 수정후 updateAction페이지 생성하여 정보 수정하게하는 객체 생성하여 정보수정
-		
 		
 		return forward;
 	}

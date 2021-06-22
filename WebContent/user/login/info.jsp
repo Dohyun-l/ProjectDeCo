@@ -11,6 +11,7 @@
 <body>
 	<%
 		request.setCharacterEncoding("UTF-8");
+		// int user_num = (int) session.getAttribute("user_num");
 		userDTO udto = (userDTO) request.getAttribute("udto");
 		
 	%>
@@ -59,7 +60,7 @@
 				<td><%=udto.getPoint() %></td>
 			</tr>
 		</table>
-	<a href="./main.use">메인 페이지</a> | <a href="./update.use?user_num=<%=udto.getUser_num() %>">정보수정</a>
+	<a href="./main.use">메인 페이지</a> | <a href="./update.use?user_num=<%=udto.getUser_num() %>">정보수정</a> | <a href="./delete.use?user_num=<%=udto.getUser_num() %>">회원탈퇴</a>
 	</center>
 
 

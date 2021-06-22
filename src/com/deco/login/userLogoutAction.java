@@ -15,8 +15,9 @@ public class userLogoutAction implements Action{
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		
 			HttpSession session = req.getSession();
-			session.invalidate();
 			
+			session.invalidate();
+		
 			res.setContentType("text/html; charset=utf-8");
 			PrintWriter out = res.getWriter();
 			
