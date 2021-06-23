@@ -25,7 +25,7 @@ public class NoticeInsertAction implements Action {
 		// upload 폴더 생성
 		//request.getRealPath("/upload");
 		ServletContext ctx = request.getServletContext();
-		String realpath = ctx.getRealPath("/upload");
+		String realpath = ctx.getRealPath("/notice/upload");
 		
 		int maxSize = 5 * 1024 * 1024;
 		

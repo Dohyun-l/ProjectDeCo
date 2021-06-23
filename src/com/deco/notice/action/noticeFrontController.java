@@ -32,27 +32,21 @@ public class noticeFrontController extends Controller{
 		}
 		
 		else if(command.equals("/noticeform.nt")){
-			forward = new ActionForward();
-			forward.setURL("./notice/edit.jsp");
-			forward.setRedirect(false);
+			forward = new ActionForward("./notice/edit.jsp", false);
+	
 		}
 
 		else if(command.equals("/noticelist.nt")){
-			forward = new ActionForward();
-			forward.setURL("./notice/list.jsp");
-			forward.setRedirect(false);
+			forward = new ActionForward("./notice/list.jsp", false);
+	
 		}
-
 
 		else if(command.equals("/noticecontent.nt")){
-			forward = new ActionForward();
-			forward.setURL("./notice/content.jsp");
-			forward.setRedirect(false);
+			forward = new ActionForward("./notice/content.jsp", false);
 		}
 		else if(command.equals("/filedown.nt")){
-			forward = new ActionForward();
-			forward.setURL("./notice/file_down.jsp");
-			forward.setRedirect(false);
+			forward = new ActionForward("./notice/file_down.jsp", false);
+
 		}
 		//////////////////////////////////////////////////////
 		
