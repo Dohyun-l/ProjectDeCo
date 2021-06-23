@@ -3,6 +3,8 @@ package com.deco.notice.action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.deco.Action;
+import com.deco.ActionForward;
 import com.deco.notice.db.noticeDAO;
 import com.deco.notice.db.noticeDTO;
 
@@ -22,9 +24,7 @@ public class NoticeModifyFormAction implements Action {
 		request.setAttribute("nDTO", nDTO);
 		
 		// 페이지 이동(admin_goods_modify.jsp)
-		ActionForward forward = new ActionForward();
-		forward.setPath("./notice/editModify.jsp");
-		forward.setRedirect(false);
+		ActionForward forward = new ActionForward("./notice/editModify.jsp", false);
 		
 		return forward;
 	}

@@ -3,6 +3,8 @@ package com.deco.notice.action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.deco.Action;
+import com.deco.ActionForward;
 import com.deco.notice.db.noticeDAO;
 import com.deco.notice.db.noticeDTO;
 
@@ -30,9 +32,7 @@ public class NoticeModifyAction implements Action {
 		nDAO.modifyContent(nDTO, idx);
 		
 		// 페이지 이동(./AdminGoodsList.ag)
-		ActionForward forward = new ActionForward();
-		forward.setPath("./noticelist.nt");
-		forward.setRedirect(true);
+		ActionForward forward = new ActionForward("./noticelist.nt", true);
 		
 		return forward;
 	}
