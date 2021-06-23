@@ -12,12 +12,3 @@ export const getPostRequest = (reqData) => {
     }
     return fetchData;
 }
-
-export const kakaoRequest = (params) => {
-	
-    let fetchData = {
-        method: 'POST',
-        body: JSON.stringify(params),
-    }
-    return fetchData;
-}

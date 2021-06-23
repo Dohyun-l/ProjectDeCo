@@ -37,7 +37,7 @@ function check(){
  	<input type="submit" value="로그인"> | <input type="button" value="회원가입" onclick="location.href='join.us'">
  	<br>
  	<br>
- 	<a id="kakaoLogin">
+ 	<a id="kakaoLogin" href="./kakaoLoginStart.us">
       <img
       src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg"
       width="222" />
@@ -49,8 +49,6 @@ function check(){
  </center>
  </form>
  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<!-- 	6b804dbdaf7fff8b3aaf8447df5e7295 -->
-<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
- <script type="module" src="./user/login/kakaoLogin.js"></script>
+ <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 </body>
 </html>
