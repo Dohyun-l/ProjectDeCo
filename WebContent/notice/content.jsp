@@ -1,3 +1,5 @@
+<%@page import="com.deco.basket.db.BasketDTO"%>
+<%@page import="com.deco.basket.db.BasketDAO"%>
 <%@page import="com.deco.user.userDAO"%>
 <%@page import="com.deco.notice.db.noticeDAO"%>
 <%@page import="com.deco.notice.db.noticeDTO"%>
@@ -80,6 +82,45 @@
 		<%} %>
 		
 	</table>
+	
+	<hr>
+	<script type="text/javascript">
+	/* 우리는 이동안하고 좋아요 수만 올리고, 다시 콘텐츠페이지를 불러오는 걸로 */
+		function isBasket(){
+			var result = confirm("즐겨찾기에 저장하시겠습니까?");
+			
+			if(result){
+				document.gfr.action = "./BasketAdd.ba";
+				document.gfr.submit();
+			}
+		}
+	</script>
+	
+	<%
+		/* check되는지 확인 => check는 문제없음*/
+		BasketDAO bkDAO = new BasketDAO();
+		BasketDTO bkDTO = new BasketDTO();
+		
+		bkDTO.setN_user_num(user_num);
+		bkDTO.setN_c_num(nDTO.getIdx());
+		
+		int result = bkDAO.checkBookmark(bkDTO);
+	%>
+	<%if(result == 0){ %>
+		0입니다
+	<%}else if(result ==1){ %>
+		1입니다
+	<%} %>
+	
+	<form action="" method="post" name="gfr">
+		<!-- 아이디, 글번호 가져가기 -->
+		<%-- <input type="hidden" name="num" value="<%=dto.getNum()%>"> --%>
+		<!-- n_user_num, n_c_num -->
+		<input type="hidden" name="n_user_num" value="<%=user_num%>">
+		<input type="hidden" name="n_c_num" value="<%=nDTO.getIdx()%>">
+	
+		<a href="javascript:isBasket();">[담기]</a>
+	</form>
 	
 	<script>
 	function del(){

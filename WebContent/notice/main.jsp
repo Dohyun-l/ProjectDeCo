@@ -52,5 +52,7 @@
 	
 	<h3><a href="./main.us"> 메인 </a></h3>
 	
+	<h3><a href="./main.us"> 마이페이지 </a></h3>
+	
 </body>
 </html>
