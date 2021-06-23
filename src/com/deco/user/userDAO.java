@@ -370,6 +370,8 @@ public class userDAO {
 			System.out.println(email + " 유저 권한 부여 => " + authCode);
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally{
+			closeDB();
 		}
 		
 	}
@@ -398,6 +400,39 @@ public class userDAO {
 		return flag; 
 	}
 	//changeEamilCode
+	
+	//updateSocialUser
+	public int updateSocialUser(userDTO uDTO){
+		int flag = -5;
+		
+		try {
+			conn = getConnection();
+			sql = "update user set name=?,nickname=?,phone=?,addr=?,major=?,inter=?,admin_auth=? "
+					+ "where user_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, uDTO.getName());
+			pstmt.setString(2, uDTO.getNickname());
+			pstmt.setString(3, uDTO.getPhone());
+			pstmt.setString(4, uDTO.getAddr());
+			pstmt.setString(5, uDTO.getMajor());
+			pstmt.setString(6, uDTO.getInter());
+			
+			//추가 입력 성공시, 일반 유저로 조정
+			pstmt.setInt(7, 0);
+			pstmt.setInt(8, uDTO.getUser_num());
+			
+			pstmt.executeUpdate();
+			flag = 1;
+			System.out.println("소셜 로그인 유저 정보추가 완료!=!");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+		
+		return flag; 
+	}
+	//updateSocialUser
 	
 	//===========================================================================
 	

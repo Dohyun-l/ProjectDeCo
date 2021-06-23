@@ -66,6 +66,10 @@ public class userController extends Controller{
 			action = new GitLoginFin();
 			forward = action.execute(req, res);
 		
+		}else if(command.equals("/SocialJoin.us")){
+			action = new SocialJoin();
+			forward = action.execute(req, res);
+		
 		}else if(command.equals("/SocialJoinAction.us")){
 			action = new SocialJoinAction();
 			forward = action.execute(req, res);

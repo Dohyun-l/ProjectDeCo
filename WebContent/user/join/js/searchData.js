@@ -32,6 +32,9 @@ const nicknameSearchHandler = async(event) => {
 }
 
 const checkAuthHandler = async(event) => {
+    if (emailInput.readOnly)
+        emailInput.classList.add("permit");
+	
     if(!emailInput.classList.contains("permit") || !nicknameInput.classList.contains("permit")){
         return event.preventDefault();
     }

@@ -87,7 +87,7 @@ public class GitLoginFin implements Action{
 					
 					setSession(req, userEmail);
 					
-					return new ActionForward("./SocialJoinAction.us",true);
+					return new ActionForward("./SocialJoin.us",true);
 				}
 				
 				setSession(req, userEmail);
