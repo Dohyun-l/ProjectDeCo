@@ -88,26 +88,53 @@ $(document).ready(function(){
 		
 		userDAO udao = new userDAO();
 		String nickname = udao.getUserNickNameByNum(sdto.getUser_num());
+		
+		String pageSize = request.getParameter("pageSize");
+		String pageNum = request.getParameter("pageNum");
+		String category = request.getParameter("category");
 	%>
 	
 		
-		<form action="./shareWriteAction.sh" method="post" onsubmit="return shareWriteCheck()" name="fr" enctype="multipart/form-data">
+		<form action="shareContentModifyUpdate.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sdto.getIdx()%>&category=<%=category%>" method="post" onsubmit="return shareWriteCheck()" name="fr" enctype="multipart/form-data">
 		<!-- 닉네임 -->
+		<input type="hidden" name="contentNum" value="<%=sdto.getIdx()%>">
 		닉네임 : <input type="text" id="nickname" name="nickname" value="<%=nickname%>"readonly>
-		<input type="radio" name="anony" value="0" checked="checked">공개
-		<input type="radio" name="anony" value="1">비공개
+		
+		<input type="radio" name="anony" value="0"
+		<%if(sdto.getAnony() == 0){ %>		
+		 checked="checked"
+	 	<%} %>>공개
+		<input type="radio" name="anony" value="1"
+		<%if(sdto.getAnony() == 0){ %>		
+		 checked="checked"
+	 	<%} %>>비공개
 		<hr>
 		<!-- 게시판 분류 -->
 		
 		<!-- 제목 -->	  		
-		<input type="text" name="title" placeholder="제목을 입력해주세요" value="<%=sdto.getTitle()%>">
+		<input type="text" name="title" value="<%=sdto.getTitle()%>">
 		<select name='category'>
-  			<option value='' selected>게시판을 선택해주세요</option>
-  			<option value='Tips'>Tips</option>
- 			<option value='컨퍼런스'>컨퍼런스</option>
-  			<option value='회사추천'>회사추천</option>
-  			<option value='학원추천'>학원추천</option>
-  			<option value='How to'>How to</option>  			
+  			<option value=''>게시판을 선택해주세요</option>
+  			<option value='Tips'
+  			<%if(sdto.getCategory().equals("Tips")){ %>		
+		 	selected
+	 		<%} %>>Tips</option>
+ 			<option value='컨퍼런스'
+ 			<%if(sdto.getCategory().equals("컨퍼런스")){ %>		
+		 	selected
+	 		<%} %>>컨퍼런스</option>
+  			<option value='회사추천'
+  			<%if(sdto.getCategory().equals("회사추천")){ %>		
+		 	selected
+	 		<%} %>>회사추천</option>
+  			<option value='학원추천'
+  			<%if(sdto.getCategory().equals("학원추천")){ %>		
+		 	selected
+	 		<%} %>>학원추천</option>
+  			<option value='Howto'
+  			<%if(sdto.getCategory().equals("Howto")){ %>		
+		 	selected
+	 		<%} %>>How to</option>  			
 		</select><hr>
 		
 		
@@ -169,7 +196,12 @@ $(document).ready(function(){
     	<input type="checkbox" name="tag" class="tag" value="알고리즘">알고리즘
     	<input type="checkbox" name="tag" class="tag" value="음성인식 ">음성인식
 		
-<input type="hidden" name="content">
+		<script type="text/javascript">
+    		document.fr.ir1.value = <%=sdto.getContent()%>
+    	
+    	</script>
+		
+		<input type="hidden" name="content">
 		<jsp:include page="edit.jsp"></jsp:include>
 <!--Example End-->
 	<!-- 파일첨부 -->

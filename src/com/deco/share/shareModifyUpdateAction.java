@@ -17,9 +17,10 @@ public class shareModifyUpdateAction implements Action{
 	
 		System.out.println("M : shareModifyUpdateAction_execute() 호출");
 	
-		String idx = req.getParameter("contentNum");
+		
 		String pageNum = req.getParameter("pageNum");
 		String pageSize = req.getParameter("pageSize");
+		String category = req.getParameter("category");
 				
 		req.setCharacterEncoding("utf-8");
 		
@@ -33,7 +34,8 @@ public class shareModifyUpdateAction implements Action{
 		} else {
 			userNum = (int) session.getAttribute("user_num");
 		}
-			
+	
+		
 		//파일 업로드
 		ServletContext ctx = req.getServletContext();
 		String realpath = ctx.getRealPath("/share/upload");
@@ -51,12 +53,15 @@ public class shareModifyUpdateAction implements Action{
 		
 		System.out.println("파일 업로드 완료");
 		
+		String idx = multi.getParameter("contentNum");
+		
 		shareDTO sDTO = new shareDTO();
 		
-		 //sDTO.setAnony(Integer.parseInt(multi.getParameter("anony")));
+		 sDTO.setAnony(Integer.parseInt(multi.getParameter("anony")));
 	     sDTO.setTitle(multi.getParameter("title"));
 	   	 sDTO.setCategory(multi.getParameter("category"));
-	     sDTO.setFile(multi.getFilesystemName("file"));
+	     sDTO.setFile(multi.getFilesystemName("filename"));
+	     sDTO.setContent(multi.getParameter("content"));
 	     		  
 	     //다중선택 배열로 받기
 	     String[] tags = multi.getParameterValues("tag");
@@ -72,6 +77,9 @@ public class shareModifyUpdateAction implements Action{
 	     
 	     System.out.println(tag);
 	     
+	     sDTO.setTag(tag);
+	     sDTO.setIdx(Integer.parseInt(idx));
+	     
 	     //디비처리 
 	     shareDAO sDAO = new shareDAO();
 	     //글수정 메서드
@@ -80,11 +88,12 @@ public class shareModifyUpdateAction implements Action{
 		}
 		else
 		{
+			System.out.println("====================================");
 			sDAO.modifyShareContent(sDTO);
 		}
 	     
 	     
-	     ActionForward forward = new ActionForward("./shareContent.sh?pageNum="+pageNum+"&pageSize="+pageSize, true);
+	     ActionForward forward = new ActionForward("./shareContent.sh?pageNum="+pageNum+"&pageSize="+pageSize+"&categoty="+category, true);
 		
 	     return forward;
 		   

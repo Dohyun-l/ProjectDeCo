@@ -399,7 +399,7 @@ public class shareDAO {
 			pstmt.setInt(7, sDTO.getIdx());
 
 			pstmt.executeUpdate();
-
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
