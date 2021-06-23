@@ -27,7 +27,7 @@
 		
 	%>
 	
-	<a href="../main.us">메인으로 돌아가기</a>
+	<a href="./main.us">메인으로 돌아가기</a>
 	
 	<ul>
 		<li><a href="./shareList.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>">전체보기</a></li>

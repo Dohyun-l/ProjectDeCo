@@ -17,12 +17,12 @@ public class shareModifyUpdateAction implements Action{
 	
 		System.out.println("M : shareModifyUpdateAction_execute() 호출");
 	
+		req.setCharacterEncoding("utf-8");
 		
 		String pageNum = req.getParameter("pageNum");
 		String pageSize = req.getParameter("pageSize");
 		String category = req.getParameter("category");
 				
-		req.setCharacterEncoding("utf-8");
 		
 		//세션처리
 		HttpSession session = req.getSession();
