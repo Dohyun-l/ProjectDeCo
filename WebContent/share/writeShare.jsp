@@ -9,11 +9,24 @@
 
 <title>정보 공유 - 글쓰기</title>
 
-
-<script src="../js/jquery-3.6.0.js"></script>
-
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
+<script src="js/jquery-3.6.0.js"></script>
 
 <script type="text/javascript">
+
+$(document).ready(function() {
+	/* $('.tag').on("click",function(){
+		if ($(".tag:checked").length > 5) {
+			alert("관련 태그는 5개 까지 체크 가능합니다.");
+			return false;
+		}
+	}); */
+	
+	$(document).on('click', '.tag', function(){
+		alert("안녕");
+	});
+});
+
 
 function shareWriteCheck() {
 	document.fr.content.value = oEditor.getIR();
@@ -25,7 +38,6 @@ function shareWriteCheck() {
 			cnt++;
 		}
 	}
-	
 	
 	if(document.fr.title.value == ""){
 		alert("제목을 작성해주세요.");
@@ -56,16 +68,6 @@ function shareWriteCheck() {
     }
 	
 }
-
-$(document).ready(function(){
-	$('.tag').on('click', function(){
-		if ($(".tag:checked").length > 5) {
-			alert("관련 태그는 5개 까지 체크 가능합니다.");
-			return false;
-		}
-	});
-});
-
 </script>
 
 </head>
@@ -85,8 +87,6 @@ $(document).ready(function(){
 	
 		userDAO udao = new userDAO();
 		String nickname = udao.getUserNickNameByNum(userNum);
-		// String nickname = "admin";
-		
 	%>
 	
 		
@@ -168,12 +168,12 @@ $(document).ready(function(){
     	<input type="checkbox" name="tag" class="tag" value="알고리즘">알고리즘
     	<input type="checkbox" name="tag" class="tag" value="음성인식 ">음성인식
 		
-<input type="hidden" name="content">
+		<input type="hidden" name="content">
 		<jsp:include page="edit.jsp"></jsp:include>
-<!--Example End-->
-	<!-- 파일첨부 -->
-	<input type="file" name="filename">
-<!-- 네이버 에디터  -->
+		
+		<!-- 파일첨부 -->
+		<input type="file" name="filename">
+		
 		<br><br>
 		<!-- 로봇이 아닙니다 체크하기 -->
 		<div class="g-recaptcha" id="g-recaptcha" data-sitekey="6LdQ1zEbAAAAAOzJAHtwDc8LTdr2vNQffqV-K15l" 	
