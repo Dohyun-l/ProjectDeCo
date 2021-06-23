@@ -70,43 +70,6 @@ public class GitLogin {
 	
 	public String sendGet(String apiURL, String access_token) throws Exception {
 
-//        String url = apiURL;
-//        //String urlParameters = "?Param1=aaaa"+"&Param2=bbbb";
-//        
-//        URL obj = new URL(url);
-//        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-//        
-//        //set reuqest header
-//        con.setRequestProperty("method","GET");
-//        con.setRequestProperty("User-Agent", "Mozilla/5.0");
-//        con.addRequestProperty("Authorization", "token"+" "+access_token);
-//        con.setConnectTimeout(10000);       //컨텍션타임아웃 10초
-//        con.setReadTimeout(5000);           //컨텐츠조회 타임아웃 5초
-//        
-//        System.out.println(con);
-//        // Send post request
-//        con.setDoOutput(true);              //항상 갱신된내용을 가져옴.
-//        DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-//        //wr.writeBytes(urlParameters);
-//        wr.flush();
-//        wr.close();
-//
-//        int responseCode = con.getResponseCode();
-//        System.out.println("\nSending 'GET' request to URL : " + url);
-//        //System.out.println("Post parameters : " + urlParameters);
-//        System.out.println("Response Code : " + responseCode);
-//
-//        Charset charset = Charset.forName("UTF-8");
-//        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(),charset));
-//        String inputLine;
-//        StringBuffer response = new StringBuffer();
-//        while ((inputLine = in.readLine()) != null) {
-//            response.append(inputLine);
-//        }
-//        in.close();
-//        
-//        System.out.println("반환"+response.toString());
-//        return response.toString();
 		StringBuilder sb = null;
 		
 		try {

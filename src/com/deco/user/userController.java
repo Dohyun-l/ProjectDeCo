@@ -73,6 +73,10 @@ public class userController extends Controller{
 		}else if(command.equals("/SocialJoinAction.us")){
 			action = new SocialJoinAction();
 			forward = action.execute(req, res);
+		
+		}else if(command.equals("/kakaoLoginAction.us")){
+			action = new KakaoLoginAction();
+			forward = action.execute(req, res);
 		}
 		
 		render(forward,req,res);
