@@ -131,8 +131,8 @@ $(document).ready(function(){
   			<%if(sdto.getCategory().equals("학원추천")){ %>		
 		 	selected
 	 		<%} %>>학원추천</option>
-  			<option value='Howto'
-  			<%if(sdto.getCategory().equals("Howto")){ %>		
+  			<option value='HowTo'
+  			<%if(sdto.getCategory().equals("HowTo")){ %>		
 		 	selected
 	 		<%} %>>How to</option>  			
 		</select><hr>

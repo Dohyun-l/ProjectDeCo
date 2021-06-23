@@ -106,7 +106,7 @@ $(document).ready(function(){
  			<option value='컨퍼런스'>컨퍼런스</option>
   			<option value='회사추천'>회사추천</option>
   			<option value='학원추천'>학원추천</option>
-  			<option value='Howto'>How to</option>  			
+  			<option value='HowTo'>How to</option>  			
 		</select><hr>
 		
 		
