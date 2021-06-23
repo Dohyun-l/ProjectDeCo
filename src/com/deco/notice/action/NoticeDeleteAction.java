@@ -17,7 +17,7 @@ System.out.println("M :NoticeDeleteAction_execute() 호출");
 		
 		noticeDAO nDAO = new noticeDAO();
 		
-		nDAO.deleteNotice(idx);;
+		nDAO.deleteNotice(idx);
 		
 		// 페이지 이동(./AdminGoodsList.ag)
 		ActionForward forward = new ActionForward("./noticelist.nt", true);
