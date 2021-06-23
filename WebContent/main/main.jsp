@@ -16,7 +16,7 @@
 	
 	<a href="./Main.nt">공지사항</a>
 	
-	<a href="./share/shareList.sh">정보공유</a>
+	<a href="./shareList.sh">정보공유</a>
 	
 	
 	<a href="./userlogout.us">로그아웃</a>

@@ -92,7 +92,7 @@ public class shareModifyUpdateAction implements Action{
 		}
 	     
 	     
-	     ActionForward forward = new ActionForward("./shareContent.sh?pageNum="+pageNum+"&pageSize="+pageSize+"&categoty="+category, true);
+	     ActionForward forward = new ActionForward("./shareContent.sh?pageNum="+pageNum+"&pageSize="+pageSize+"&contentNum="+idx+"&category="+category, true);
 		
 	     return forward;
 		   

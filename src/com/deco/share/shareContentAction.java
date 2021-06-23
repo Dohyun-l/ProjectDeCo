@@ -50,7 +50,7 @@ public class shareContentAction implements Action{
 	 	//글번호에 해당하는 글 가져오기
 	 	req.setAttribute("shareContent", sDAO.getShare(idx));
 		
-		ActionForward forward = new ActionForward("./shareContent.jsp",false);
+		ActionForward forward = new ActionForward("./share/shareContent.jsp",false);
 			
 		return forward;
 	}

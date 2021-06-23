@@ -45,7 +45,11 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 	</tr>
 	<tr>	
 		<td>작성자</td>
+		<%if(sDTO.getAnony()==1){%>
+		<td>*****</td>
+		<%} else {%>
 		<td><%=new userDAO().getUserNickNameByNum(sDTO.getUser_num())%></td>
+		<%} %>
 		<td>작성일</td>
 		<td colspan="3"><%=sDTO.getCreate_at()%></td>
 		

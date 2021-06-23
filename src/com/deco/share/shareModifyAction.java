@@ -32,7 +32,7 @@ public class shareModifyAction implements Action{
 		//글번호에 해당하는 글 가져오기
 	 	req.setAttribute("shareContent", new shareDAO().getShare(Integer.parseInt(idx)));
 		
-	 	ActionForward forward = new ActionForward("./shareModify.jsp",false);
+	 	ActionForward forward = new ActionForward("./share/shareModify.jsp",false);
 
 		return forward;
 	}

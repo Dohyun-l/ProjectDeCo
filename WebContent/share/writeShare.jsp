@@ -9,21 +9,17 @@
 
 <title>정보 공유 - 글쓰기</title>
 
-<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
-<script src="js/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<!-- <script src="share/js/jquery-3.6.0.js"></script> -->
 
 <script type="text/javascript">
 
-$(document).ready(function() {
-	/* $('.tag').on("click",function(){
-		if ($(".tag:checked").length > 5) {
+$(document).ready(function($) {
+	$('.tag').on('click',function(){
+		if ($('.tag:checked').length > 5) {
 			alert("관련 태그는 5개 까지 체크 가능합니다.");
 			return false;
 		}
-	}); */
-	
-	$(document).on('click', '.tag', function(){
-		alert("안녕");
 	});
 });
 

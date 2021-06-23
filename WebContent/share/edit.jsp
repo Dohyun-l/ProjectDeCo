@@ -8,18 +8,18 @@
 <meta http-equiv="Content-Style-Type" content="text/css">
 <title>네이버 :: Smart Editor 2 &#8482;</title>
 
-<link href="../css/ko_KR/smart_editor2.css" rel="stylesheet" type="text/css">
-<link href="../css/ko_KR/smart_editor2_items.css" rel="stylesheet" type="text/css">
-<link href="../css/ko_KR/smart_editor2_out.css" rel="stylesheet" type="text/css">
-<link href="../css/ko_KR/smart_editor2_in.css" rel="stylesheet" type="text/css">
+<link href="css/ko_KR/smart_editor2.css" rel="stylesheet" type="text/css">
+<link href="css/ko_KR/smart_editor2_items.css" rel="stylesheet" type="text/css">
+<link href="css/ko_KR/smart_editor2_out.css" rel="stylesheet" type="text/css">
+<link href="css/ko_KR/smart_editor2_in.css" rel="stylesheet" type="text/css">
 <style type="text/css">
 	body { margin: 10px; }
 </style>
-<script type="text/javascript" src="../js/lib/jindo2.all.js" charset="utf-8"></script>
-<script type="text/javascript" src="../js/lib/jindo_component.js" charset="utf-8"></script>
-<script type="text/javascript" src="../js/service/SE2M_Configuration.js" charset="utf-8"></script>	<!-- 설정 파일 -->
-<script type="text/javascript" src="../js/service/SE2BasicCreator.js" charset="utf-8"></script>
-<script type="text/javascript" src="../js/smarteditor2.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/lib/jindo2.all.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/lib/jindo_component.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/service/SE2M_Configuration.js" charset="utf-8"></script>	<!-- 설정 파일 -->
+<script type="text/javascript" src="js/service/SE2BasicCreator.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/smarteditor2.js" charset="utf-8"></script>
 
 
 

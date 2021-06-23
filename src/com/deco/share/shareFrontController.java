@@ -22,34 +22,34 @@ public class shareFrontController extends Controller {
 		
 		/////////////////////////////////////////////////////////
 		
-		if (command.equals("/share/shareWrite.sh")){
+		if (command.equals("/shareWrite.sh")){
 			System.out.println("C : /share/shareWrite.sh 호출");
-				forward = new ActionForward("./writeShare.jsp", false);
-		} else if(command.equals("/share/shareWriteAction.sh")){
-			System.out.println("C : /share/shareWriteAction.sh 호출");
+				forward = new ActionForward("./share/writeShare.jsp", false);
+		} else if(command.equals("/shareWriteAction.sh")){
+			System.out.println("C : /shareWriteAction.sh 호출");
 			action = new shareWriteAction();
 			try {
 				forward = action.execute(req, resp);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/share/shareList.sh")) {
-			System.out.println("C : /share/shareList.sh 호출");
+		} else if(command.equals("/shareList.sh")) {
+			System.out.println("C : /shareList.sh 호출");
 			action = new shareListAction();
 			try {
 				forward = action.execute(req, resp);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/share/shareContent.sh")){
-			System.out.println("C : /share/shareContent.sh 호출");
+		} else if(command.equals("/shareContent.sh")){
+			System.out.println("C : /shareContent.sh 호출");
 			action = new shareContentAction();
 			try {
 				forward = action.execute(req, resp);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/share/shareContentDelete.sh")){
+		} else if(command.equals("/shareContentDelete.sh")){
 			System.out.println("C : /shareContentDelete.sh 호출");
 			action = new shareDeleteAction();
 			try {
@@ -57,7 +57,7 @@ public class shareFrontController extends Controller {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/share/shareContentModify.sh")){
+		} else if(command.equals("/shareContentModify.sh")){
 			System.out.println("C : /shareContentModify.sh 호출");
 			action = new shareModifyAction();
 			try {
@@ -65,16 +65,16 @@ public class shareFrontController extends Controller {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/share/shareContentModifyUpdate.sh")){
-			System.out.println("C : /share/shareContentModifyUpdate.sh 호출");
+		} else if(command.equals("/shareContentModifyUpdate.sh")){
+			System.out.println("C : /shareContentModifyUpdate.sh 호출");
 			action = new shareModifyUpdateAction();
 			try {
 				forward = action.execute(req, resp);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}	
-		}else if(command.equals("/share/filedown.sh")){
-			forward = new ActionForward("./file_down.jsp",false);
+		}else if(command.equals("/filedown.sh")){
+			forward = new ActionForward("./share/file_down.jsp",false);
 			
 		}
 		
