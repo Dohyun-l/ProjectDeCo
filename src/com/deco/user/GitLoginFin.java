@@ -77,7 +77,7 @@ public class GitLoginFin implements Action{
 					uDTO.setMajor("없음");
 					uDTO.setInter("없음");
 					
-					int flag = uDAO.insertGitUser(uDTO);
+					int flag = uDAO.insertSocialUser(uDTO);
 					
 					//에러 발생 시,
 					if(flag == -5){

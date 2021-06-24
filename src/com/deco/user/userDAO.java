@@ -243,7 +243,7 @@ public class userDAO {
 	//insertUser
 	
 	//insertGitUser
-	public int insertGitUser(userDTO uDTO){
+	public int insertSocialUser(userDTO uDTO){
 		int flag = -5; 
 		
 		try {
