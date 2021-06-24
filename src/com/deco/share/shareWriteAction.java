@@ -15,6 +15,7 @@ public class shareWriteAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		
+		//한글처리
 		req.setCharacterEncoding("utf-8");
 		
 		//세션제어

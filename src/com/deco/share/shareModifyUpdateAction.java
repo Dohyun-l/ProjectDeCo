@@ -17,6 +17,7 @@ public class shareModifyUpdateAction implements Action{
 	
 		System.out.println("M : shareModifyUpdateAction_execute() 호출");
 	
+		//한글처리
 		req.setCharacterEncoding("utf-8");
 		
 		String pageNum = req.getParameter("pageNum");

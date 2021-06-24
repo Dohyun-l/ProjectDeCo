@@ -119,16 +119,16 @@ $(document).ready(function($) {
   			<%if(sdto.getCategory().equals("Tips")){ %>		
 		 	selected
 	 		<%} %>>Tips</option>
- 			<option value='컨퍼런스'
- 			<%if(sdto.getCategory().equals("컨퍼런스")){ %>		
+ 			<option value='Conference'
+ 			<%if(sdto.getCategory().equals("Conference")){ %>		
 		 	selected
 	 		<%} %>>컨퍼런스</option>
-  			<option value='회사추천'
-  			<%if(sdto.getCategory().equals("회사추천")){ %>		
+  			<option value='Company'
+  			<%if(sdto.getCategory().equals("Company")){ %>		
 		 	selected
 	 		<%} %>>회사추천</option>
-  			<option value='학원추천'
-  			<%if(sdto.getCategory().equals("학원추천")){ %>		
+  			<option value='Academy'
+  			<%if(sdto.getCategory().equals("Academy")){ %>		
 		 	selected
 	 		<%} %>>학원추천</option>
   			<option value='HowTo'

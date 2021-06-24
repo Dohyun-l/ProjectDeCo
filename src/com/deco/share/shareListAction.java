@@ -17,6 +17,7 @@ public class shareListAction implements Action {
 		
 		System.out.println("M : shareListAction_execute() 호출");
 		
+		//한글처리
 		req.setCharacterEncoding("utf-8");
 		
 		//세션처리

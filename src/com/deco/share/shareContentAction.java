@@ -15,8 +15,8 @@ public class shareContentAction implements Action{
 		
 		System.out.println("M : shareContentAction_execute() 호출");
 		
+		//한글처리
 		req.setCharacterEncoding("utf-8");
-		resp.setCharacterEncoding("utf-8");
 		
 		System.out.println(req.getParameter("category"));
 		

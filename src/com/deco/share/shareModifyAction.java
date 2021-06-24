@@ -14,6 +14,7 @@ public class shareModifyAction implements Action{
 		
 		System.out.println("M : shareModifyAction_execute() 호출");
 		
+		//한글처리
 		req.setCharacterEncoding("utf-8");
 		
 		//세션처리

@@ -99,9 +99,9 @@ function shareWriteCheck() {
 		<select name='category'>
   			<option value='' selected>게시판을 선택해주세요</option>
   			<option value='Tips'>Tips</option>
- 			<option value='컨퍼런스'>컨퍼런스</option>
-  			<option value='회사추천'>회사추천</option>
-  			<option value='학원추천'>학원추천</option>
+ 			<option value='Conference'>컨퍼런스</option>
+  			<option value='Company'>회사추천</option>
+  			<option value='Academy'>학원추천</option>
   			<option value='HowTo'>How to</option>  			
 		</select><hr>
 		
