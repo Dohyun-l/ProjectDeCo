@@ -22,7 +22,8 @@ public class shareModifyUpdateAction implements Action{
 		String pageNum = req.getParameter("pageNum");
 		String pageSize = req.getParameter("pageSize");
 		String category = req.getParameter("category");
-				
+		
+		System.out.println("################ " + category);
 		
 		//세션처리
 		HttpSession session = req.getSession();
@@ -90,11 +91,12 @@ public class shareModifyUpdateAction implements Action{
 			System.out.println("====================================");
 			sDAO.modifyShareContent(sDTO);
 		}
+	 	
+	 	System.out.println("@@@@@@@@@@@@@@@@@@@################ " + category);
 	     
-	     
-	     ActionForward forward = new ActionForward("./shareContent.sh?pageNum="+pageNum+"&pageSize="+pageSize+"&contentNum="+idx+"&category="+category, true);
+	    ActionForward forward = new ActionForward("./shareContent.sh?pageNum="+pageNum+"&pageSize="+pageSize+"&contentNum="+idx+"&category="+category, true);
 		
-	     return forward;
+	    return forward;
 		   
 		
 		

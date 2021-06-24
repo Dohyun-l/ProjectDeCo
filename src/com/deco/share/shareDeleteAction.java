@@ -14,6 +14,8 @@ public class shareDeleteAction implements Action {
 		
 		System.out.println("M : shareDeleteAction_execute() 호출");
 		
+		req.setCharacterEncoding("utf-8");
+		
 		//세션처리
 		HttpSession session = req.getSession();
 		
@@ -28,12 +30,17 @@ public class shareDeleteAction implements Action {
 		String idx = req.getParameter("contentNum");
 		String pageNum = req.getParameter("pageNum");
 		String pageSize = req.getParameter("pageSize");
+		String category = req.getParameter("category");
 		
 		shareDAO sDAO = new shareDAO();
 		
 		sDAO.deleteShareContent(idx);
 		
-		ActionForward forward = new ActionForward("./shareList.sh?pageNum="+pageNum+"&pageSize="+pageSize, true);
+		String uri = "./shareList.sh?pageNum="+pageNum+"&pageSize="+pageSize+"&category="+category;
+		
+		System.out.println(uri);
+		
+		ActionForward forward = new ActionForward(uri, true);
 		
 		return forward;
 	}

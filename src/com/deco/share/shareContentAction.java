@@ -16,6 +16,9 @@ public class shareContentAction implements Action{
 		System.out.println("M : shareContentAction_execute() 호출");
 		
 		req.setCharacterEncoding("utf-8");
+		resp.setCharacterEncoding("utf-8");
+		
+		System.out.println(req.getParameter("category"));
 		
 		//세션처리
 		HttpSession session = req.getSession();

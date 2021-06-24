@@ -20,6 +20,11 @@ String pageSize = request.getParameter("pageSize");
 String pageNum = request.getParameter("pageNum");
 String category = request.getParameter("category");
 
+System.out.println();
+System.out.println();
+System.out.println(category);
+System.out.println();
+System.out.println();
 
 %>
 

@@ -14,6 +14,8 @@ public class shareModifyAction implements Action{
 		
 		System.out.println("M : shareModifyAction_execute() 호출");
 		
+		req.setCharacterEncoding("utf-8");
+		
 		//세션처리
 		HttpSession session = req.getSession();
 				
@@ -28,6 +30,7 @@ public class shareModifyAction implements Action{
 		String idx = req.getParameter("contentNum");
 		String pageNum = req.getParameter("pageNum");
 		String pageSize = req.getParameter("pageSize");
+		String category = req.getParameter("category");
 		
 		//글번호에 해당하는 글 가져오기
 	 	req.setAttribute("shareContent", new shareDAO().getShare(Integer.parseInt(idx)));
