@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import com.deco.Action;
 import com.deco.ActionForward;
+import com.deco.share_comment.commentDAO;
 
 public class shareContentAction implements Action{
 
@@ -46,6 +47,7 @@ public class shareContentAction implements Action{
 		
 		//DAO객체 생성
 		shareDAO sDAO = new shareDAO();
+		commentDAO cDAO = new commentDAO();
 		
 		// 조회수 증가 카운트
 	 	if (!session.getAttribute(idx+":cookie").equals(session.getAttribute(idx+":cookie ex"))) {
@@ -54,6 +56,7 @@ public class shareContentAction implements Action{
 	 	}	
 	 	//글번호에 해당하는 글 가져오기
 	 	req.setAttribute("shareContent", sDAO.getShare(idx));
+	 	req.setAttribute("commentList", cDAO.getCommentList(idx));
 		
 		ActionForward forward = new ActionForward("./share/shareContent.jsp",false);
 			

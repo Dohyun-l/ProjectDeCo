@@ -94,7 +94,7 @@
 			<td><a href="./shareContent.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&contentNum=<%=sdto.getIdx()%>&category=<%=category%>">
 			<%=sdto.getTitle() %></a></td>
 			<%if(sdto.getAnony()==1){%>
-			<td>*****</td>
+			<td>익명</td>
 			<%} else {%>
 			<td><%=new userDAO().getUserNickNameByNum(sdto.getUser_num())%></td>
 			<%} %>
@@ -137,6 +137,9 @@
 		}
 	}
 %>
+
+
+
 
 </body>
 </html>

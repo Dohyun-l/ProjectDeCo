@@ -1,9 +1,12 @@
+<%@page import="com.deco.share_comment.commentDTO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@page import="com.deco.share.shareDAO"%>
 <%@page import="com.deco.user.userDAO"%>
 <%@page import="com.deco.share.shareDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -15,6 +18,7 @@
 request.setCharacterEncoding("utf-8");
 
 shareDTO sDTO =(shareDTO) request.getAttribute("shareContent");
+
 
 String pageSize = request.getParameter("pageSize");
 String pageNum = request.getParameter("pageNum");
@@ -82,5 +86,39 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 <input type="button" value="목록으로" onclick="location.href='./shareList.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&category=<%=category%>';">
 <input type="button" value="수정하기" onclick="location.href='./shareContentModify.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()%>&category=<%=category%>';">
 <input type="button" value="삭제하기" onclick="location.href='./shareContentDelete.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()%>&category=<%=category%>';">
+<br><br>
+
+
+<!-- 댓글 -->
+
+<table border="1">
+	<tr>
+		<td>글번호</td>
+		<td>작성자</td>
+		<td>내용</td>
+		<td>작성날짜</td>
+	</tr>
+<%
+	List commentList = (ArrayList) request.getAttribute("commentList");
+
+	
+	for(int i=0; i<commentList.size(); i++){
+		commentDTO cDTO = (commentDTO) commentList.get(i);
+		%>
+	<tr>
+		<td><%=commentList.size()-i %></td>
+		<td><%=new userDAO().getUserNickNameByNum(cDTO.getUser_num())%></td>
+		<td><%=cDTO.getContent() %></td>
+		<td><%=cDTO.getCreate_at() %></td>
+	</tr>
+<%}%>
+</table>
+
+
+<form action="./shareCommentAction.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()%>&category=<%=category%>" method="post">
+ <textarea placeholder="Leave a comment here" id="comment" name="comment" rows="5" cols="40"></textarea>		
+ <input type="submit" value="등록하기">
+</form>
+
 </body>
 </html>

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.deco.ActionForward;
 import com.deco.Controller;
+import com.deco.share_comment.shareCommentAction;
 
 @WebServlet("*.sh")
 public class shareFrontController extends Controller {
@@ -76,6 +77,14 @@ public class shareFrontController extends Controller {
 		}else if(command.equals("/filedown.sh")){
 			forward = new ActionForward("./share/file_down.jsp",false);
 			
+		}else if(command.equals("/shareCommentAction.sh")){
+			System.out.println("C : /shareCommentAction.sh 호출");
+			action = new shareCommentAction();
+			try {
+			forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		
