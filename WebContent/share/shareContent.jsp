@@ -116,7 +116,7 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 
 
 <form action="./shareCommentAction.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()%>&category=<%=category%>" method="post">
- <textarea placeholder="Leave a comment here" id="comment" name="comment" rows="5" cols="40"></textarea>		
+ <textarea placeholder="Leave a comment here" id="comment" name="comment" rows="5" cols="60" style="resize: none;"></textarea>		
  <input type="submit" value="등록하기">
 </form>
 
