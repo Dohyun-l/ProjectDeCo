@@ -7,7 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="./user/login/js/addrAPI.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="./user/join/js/addrAPI.js"></script>
 <script type="text/javascript">
 $(function(){
 	$(".jj").on("keyup", function(){
@@ -99,9 +100,8 @@ function check(){
 		<div id="tt"></div>
 		<input type="hidden" name="idDumplication" value="0" class="ttx">
 		<br>
-		주소 : <input type="text" name="addr" value="<%=udto.getAddr() %>" style="text-align:center" size="70">
-		&nbsp<input type="button" onclick="callAddress()" value="주소수정">
-		<button onclick="return callAddress()">주소찾기</button>
+		주소 : <input type="text" name="addr" id="addr" value="<%=udto.getAddr() %>" style="text-align:center" size="70">
+		&nbsp<button onclick="return callAddress()">주소찾기</button>
 		
 		
 		<br>
