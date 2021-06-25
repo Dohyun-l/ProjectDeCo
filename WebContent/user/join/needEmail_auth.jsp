@@ -1,3 +1,4 @@
+<%@page import="com.deco.user.userDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -9,6 +10,19 @@
 <link rel="stylesheet" href="https://unpkg.com/mvp.css">
 </head>
 <body>
+<%
+if(session.getAttribute("user_num") == null){
+	response.sendRedirect("./login.us");
+	return ;
+}
+userDAO uDAO = new userDAO();
+int user_num = (Integer)session.getAttribute("user_num");
+int admin_auth = uDAO.getAdminByNum(user_num);
+
+if(admin_auth != -1){
+	response.sendRedirect("./main.us");	
+}
+%>
 	<main>
 		<form action="./emailAuthAction.us" method="post">
 			<h2>이메일 인증을 해주세요!</h2>

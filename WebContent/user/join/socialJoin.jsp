@@ -1,3 +1,4 @@
+<%@page import="com.deco.user.userDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -9,6 +10,20 @@
 <title>소설 회원가입</title>
 </head>
 <body>
+
+<%
+if(session.getAttribute("user_num") == null){
+	response.sendRedirect("./login.us");
+	return ;
+}
+userDAO uDAO = new userDAO();
+int user_num = (Integer)session.getAttribute("user_num");
+int admin_auth = uDAO.getAdminByNum(user_num);
+
+if(admin_auth != -10){
+	response.sendRedirect("./main.us");	
+}
+%>
 
 <main>
 	<form id="joinForm" action="SocialJoinAction.us" method="post">
