@@ -24,8 +24,6 @@ public class shareModifyUpdateAction implements Action{
 		String pageSize = req.getParameter("pageSize");
 		String category = req.getParameter("category");
 		
-		System.out.println("################ " + category);
-		
 		//세션처리
 		HttpSession session = req.getSession();
 				

@@ -25,9 +25,7 @@ public class shareListAction implements Action {
 				
 		int userNum = 0;
 				
-		if(session.getAttribute("user_num") == null){
-			resp.sendRedirect("./shareList.sh");
-		} else {
+		if(session.getAttribute("user_num") != null){
 			userNum = (int) session.getAttribute("user_num");
 		}
 		
@@ -49,6 +47,7 @@ public class shareListAction implements Action {
 			pageSize = 5;
 		} else {
 			pageSize = Integer.parseInt(str_pageSize);
+			
 		}
 		
 		String pageNum = req.getParameter("pageNum");
@@ -70,8 +69,6 @@ public class shareListAction implements Action {
 		} else {
 			shareList = sDAO.getShareList(startRow,pageSize, category);
 		}
-		
-		
 		
 		req.setAttribute("shareList", shareList);
 		req.setAttribute("pageNum", pageNum);
