@@ -21,5 +21,10 @@
 	
 	<a href="./userlogout.us">로그아웃</a>
 	
+	<a href="./cancel.us">회원탈퇴 취소</a>
+	<!-- 회원탈퇴취소 admin_auth 값이 2인 사람만 보이게 수정 -->
+	
+	
+	
 </body>
 </html>

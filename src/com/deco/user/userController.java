@@ -47,7 +47,7 @@ public class userController extends Controller{
 				forward = action.execute(req, res);
 		
 		}else if(command.equals("/userlogout.us")){
-			action = new userLogoutAction();
+				action = new userLogoutAction();
 				forward = action.execute(req, res);
 		
 		}else if(command.equals("/update.us")){
@@ -57,7 +57,21 @@ public class userController extends Controller{
 		}else if(command.equals("/UpdateAction.us")){
 				action = new UpdateAction();
 				forward = action.execute(req, res);
+		}else if(command.equals("/NickcheckAction.us")){
+				action = new NickcheckAction();
+				forward = action.execute(req, res);
+		}else if(command.equals("/delete.us")){
+				forward = new ActionForward("./user/login/delete.jsp", false);
+		}else if(command.equals("/DeleteAction.us")){
+				action = new DeleteAction();
+				forward = action.execute(req, res);
+		}else if(command.equals("/cancel.us")){
+				forward = new ActionForward("./user/login/cancel.jsp", false);
+		}else if(command.equals("/CancelAction.us")){
+				action = new CancelAction();
+				forward = action.execute(req, res);
 		}
+		
 		
 		render(forward,req,res);
 	}
