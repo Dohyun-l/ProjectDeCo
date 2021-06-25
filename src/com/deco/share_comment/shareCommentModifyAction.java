@@ -28,11 +28,17 @@ public class shareCommentModifyAction implements Action{
 			userNum = (int) session.getAttribute("user_num");
 		}
 		
+		commentDTO cDTO = new commentDTO();
+		
 		String idx = req.getParameter("contentNum");
 		String pageNum = req.getParameter("pageNum");
 		String pageSize = req.getParameter("pageSize");
 		String category = req.getParameter("category");
 		int comment_idx = Integer.parseInt(req.getParameter("comment_idx"));
+		
+		cDTO.setComment_idx(comment_idx);
+		
+		
 		
 		commentDAO cDAO = new commentDAO();
 		cDAO.modifyShareComment(cDTO);
