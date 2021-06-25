@@ -21,13 +21,13 @@ public class shareModifyAction implements Action{
 		HttpSession session = req.getSession();
 				
 		int userNum = 0;
-				
+		
 		if(session.getAttribute("user_num") == null){
 			resp.sendRedirect("./shareList.sh");
 		} else {
 			userNum = (int) session.getAttribute("user_num");
 		}
-				
+		
 		String idx = req.getParameter("contentNum");
 		String pageNum = req.getParameter("pageNum");
 		String pageSize = req.getParameter("pageSize");

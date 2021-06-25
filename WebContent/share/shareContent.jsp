@@ -24,6 +24,11 @@ shareDTO sDTO =(shareDTO) request.getAttribute("shareContent");
 String pageSize = request.getParameter("pageSize");
 String pageNum = request.getParameter("pageNum");
 String category = request.getParameter("category");
+int user_num = 0;
+
+if (session.getAttribute("user_num") != null) {
+	user_num = (int)session.getAttribute("user_num");
+}
 
 
 %>
@@ -51,7 +56,10 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 	<tr>	
 		<td>작성자</td>
 		<%if(sDTO.getAnony()==1){%>
-		<td>익명</td>
+		<td><%if(user_num == sDTO.getUser_num()){ %>
+		<%=new userDAO().getUserNickNameByNum(sDTO.getUser_num())%>-
+		<%} %>
+		익명</td>
 		<%} else {%>
 		<td><%=new userDAO().getUserNickNameByNum(sDTO.getUser_num())%></td>
 		<%} %>
@@ -80,8 +88,10 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 </table>
 
 <input type="button" value="목록으로" onclick="location.href='./shareList.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&category=<%=category%>';">
+<%if(user_num == sDTO.getUser_num()){ %>
 <input type="button" value="수정하기" onclick="location.href='./shareContentModify.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()%>&category=<%=category%>';">
 <input type="button" value="삭제하기" onclick="location.href='./shareContentDelete.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()%>&category=<%=category%>';">
+<%} %>
 <br><br>
 
 
@@ -108,7 +118,7 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 		<td><%=cDTO.getContent() %></td>
 		<td><%=cDTO.getCreate_at() %></td>
 		<%
-		if((int)session.getAttribute("user_num") == cDTO.getUser_num()){ %>
+		if(user_num == cDTO.getUser_num()){ %>
 		<td><input type="button" value="수정하기">/
 		<input type="button" value="삭제하기" onclick="location.href='./shareCommentDeleteAction.sh?comment_idx=<%=cDTO.getComment_idx()%>&pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()%>&category=<%=category %>'"></td>
 		
@@ -117,8 +127,28 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 <%}%>
 </table>
 
+<script type="text/javascript">
+	function insertCommentCheck() {
+		var user_num = <%=user_num%>;
+		if(user_num == 0){
+			if(confirm("로그인이 필요합니다. 로그인페이지로 가시겠습니까?")) {
+				location.href = "./login.us";
+				return false;
+			} else {
+				return false;				
+			}
+		}
+		if(document.commentfr.comment.value == ""){
+			alert("댓글을 작성해 주세요.");
+			document.commentfr.comment.focus();
+			return false;
+		}
+	}
 
-<form action="./shareCommentAction.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()%>&category=<%=category %>" method="post">
+</script>
+
+<form action="./shareCommentAction.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()%>&category=<%=category %>"
+		 method="post" onsubmit="return insertCommentCheck()" name="commentfr">
  <textarea placeholder="Leave a comment here" id="comment" name="comment" rows="5" cols="60" style="resize: none;"></textarea>		
  <input type="submit" value="등록하기">
  <input type="reset" value="취소">
