@@ -25,6 +25,11 @@
 		String pageNum = (String)request.getAttribute("pageNum");
 		String category = request.getParameter("category");
 		
+		int user_num = 0;
+		
+		if(session.getAttribute("user_num") != null) {
+			user_num = (int) session.getAttribute("user_num");
+		}
 	%>
 	
 	<a href="./main.us">메인으로 돌아가기</a>
@@ -66,7 +71,21 @@
             <input type="submit" value="검색"/>
 	</form>
 	<br>
-	<input type="button" onclick="location.href='./shareWrite.sh'" value="글쓰기">
+	<script type="text/javascript">
+		function share_write_userCheck() {
+
+			var user_num = <%=user_num%>;
+			
+			if (user_num == 0){
+				if(confirm("로그인이 필요합니다. 로그인 하시겠습니까?")){
+					location.href = "./login.us";
+				}
+			} else {
+				location.href = './shareWrite.sh';
+			}
+		}
+	</script>
+	<input type="button" onclick="share_write_userCheck()" value="글쓰기">
 	
 	<form name="fr">
 		<select id="boardSize" onchange="changeBoardSize()" name="changePageSize">
