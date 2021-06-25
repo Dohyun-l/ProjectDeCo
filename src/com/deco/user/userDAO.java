@@ -484,7 +484,7 @@ public class userDAO {
 				if(rs.next()){
 					flag = -1;
 					if(BCrypt.checkpw(pw, rs.getString("pw"))){  //<-- 실적용
-					//if(pw.equals(rs.getString("pw"))){	// 테스트용 코드
+					// if(pw.equals(rs.getString("pw"))){	// 테스트용 코드
 						sql="select user_num from user where email=?";
 						pstmt.setString(1, email);
 						rs = pstmt.executeQuery();
@@ -532,12 +532,164 @@ public class userDAO {
 		return udto;
 	}
 	
-	public userDTO update(int user_num){
-		userDTO udto = null;
-		conn = getConnection();
-		sql="update ";
-		
-		
-		return udto;
+	public int update(userDTO udto, int user_num){
+		int check = -1;
+		try {
+			conn = getConnection();
+			sql="select pw from user where user_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, user_num);
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				if(BCrypt.checkpw(udto.getPw(), rs.getString("pw"))){
+					sql="update user set name=?, nickname=?, addr=?, phone=?, major=? where user_num=?";
+					
+					pstmt = conn.prepareStatement(sql);
+					
+					pstmt.setString(1, udto.getName());
+					pstmt.setString(2, udto.getNickname());
+					pstmt.setString(3, udto.getAddr());
+					pstmt.setString(4, udto.getPhone());
+					pstmt.setString(5, udto.getMajor());
+					
+					pstmt.setInt(6, user_num);
+					
+					check = pstmt.executeUpdate();
+				}else{
+					// 비밀번호 오류
+					check = 0;
+				}
+			}else{
+				// user_num 비어있다
+				check = -1;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+		return check;
 	}
+	
+	public int nickcheck(String nickname){
+		int data = 0;
+		try {
+				conn = getConnection();
+				sql ="select * from user where nickname=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, nickname);
+				rs = pstmt.executeQuery();
+			if(rs.next()){
+				data = 1;
+			}else{
+				data = 0;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+		return data;
+	}
+	/*
+	public int delete(String email, String pw){
+		int check = -1;
+		try {
+			conn = getConnection();
+			sql = "select pw from user where email=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				if(pw.equals(rs.getString("pw"))){
+					sql="delete from user where email=?";
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, email);
+					check = pstmt.executeUpdate();
+				}else{
+					// 비밀번호 오류!!
+					check = 0;
+				}
+			}else{
+				// 존재하지 않는 회원
+				check = -1;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+		
+		
+		return check;
+	}
+	*/
+	
+	public int delete(String email, String pw){
+		int check = -1;
+		try {
+			conn = getConnection();
+			sql="select pw,user_num from user where email=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				sql="update user set admin_auth=2 where email=?";
+				pstmt =conn.prepareStatement(sql);
+				pstmt.setString(1, email);
+				pstmt.executeUpdate();
+				if(BCrypt.checkpw(pw, rs.getString("pw"))){
+					sql="create event if not exists de_"+rs.getInt("user_num")+" on schedule at current_timestamp+interval 5 minute "
+					  + "do delete from user where email=?";
+					// 현재 10분 적용(시간 바꿀때마다 여기 적어주세요) ex) 1 month, 1 year, 1 minute, 30 seconds
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, email);
+					check = pstmt.executeUpdate();
+				}else{
+					// 비밀번호 오류
+					check = 1;
+				}
+			}else{
+				// 없는회원
+				check = -1;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+		return check;
+	}
+	
+	public int re(String email, String pw){
+		int check = -1;
+		try {
+			conn = getConnection();
+			sql="select pw,user_num from user where email=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				if(BCrypt.checkpw(pw, rs.getString("pw"))){
+					sql ="drop event de_"+rs.getInt("user_num");
+					pstmt = conn.prepareStatement(sql);
+					check = pstmt.executeUpdate();
+				}else{
+					// 비밀번호 오류
+					check = 1;
+				}
+			}else{
+				// 없는 회원
+				check = -1;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+		
+		return check;
+	}
+	
 }

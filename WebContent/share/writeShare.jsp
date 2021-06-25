@@ -48,7 +48,7 @@ function shareWriteCheck() {
 		return false;
 	}
 	
-	if(document.fr.content.value == ""){
+	if(document.fr.content.value == "" || document.fr.content.value == "<p><br></p>"){
 		alert("내용을 작성해 주세요.");
 		return false;
 	}
@@ -60,7 +60,7 @@ function shareWriteCheck() {
 	
 	var chk = grecaptcha.getResponse(); 
     if(chk.length == 0) {
-       alert("로봇이 아닙니다 인증을 진행해주세요!")         
+       alert("로봇이 아닙니다 인증을 진행해주세요!");
        return false; 
     }
 	
