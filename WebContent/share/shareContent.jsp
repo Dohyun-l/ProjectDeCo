@@ -1,3 +1,4 @@
+<%@page import="com.deco.user.userDTO"%>
 <%@page import="com.deco.share_comment.commentDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
@@ -24,11 +25,6 @@ String pageSize = request.getParameter("pageSize");
 String pageNum = request.getParameter("pageNum");
 String category = request.getParameter("category");
 
-System.out.println();
-System.out.println();
-System.out.println(category);
-System.out.println();
-System.out.println();
 
 %>
 
@@ -55,7 +51,7 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 	<tr>	
 		<td>작성자</td>
 		<%if(sDTO.getAnony()==1){%>
-		<td>*****</td>
+		<td>익명</td>
 		<%} else {%>
 		<td><%=new userDAO().getUserNickNameByNum(sDTO.getUser_num())%></td>
 		<%} %>
@@ -97,6 +93,7 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 		<td>작성자</td>
 		<td>내용</td>
 		<td>작성날짜</td>
+		<td>수정/삭제</td>
 	</tr>
 <%
 	List commentList = (ArrayList) request.getAttribute("commentList");
@@ -110,14 +107,21 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 		<td><%=new userDAO().getUserNickNameByNum(cDTO.getUser_num())%></td>
 		<td><%=cDTO.getContent() %></td>
 		<td><%=cDTO.getCreate_at() %></td>
+		<%
+		if((int)session.getAttribute("user_num") == cDTO.getUser_num()){ %>
+		<td><input type="button" value="수정하기">/
+		<input type="button" value="삭제하기" onclick="location.href='./shareCommentDeleteAction.sh?comment_idx=<%=cDTO.getComment_idx()%>&pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()%>&category=<%=category %>'"></td>
+		
+		<%} %>
 	</tr>
 <%}%>
 </table>
 
 
-<form action="./shareCommentAction.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()%>&category=<%=category%>" method="post">
+<form action="./shareCommentAction.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()%>&category=<%=category %>" method="post">
  <textarea placeholder="Leave a comment here" id="comment" name="comment" rows="5" cols="60" style="resize: none;"></textarea>		
  <input type="submit" value="등록하기">
+ <input type="reset" value="취소">
 </form>
 
 </body>
