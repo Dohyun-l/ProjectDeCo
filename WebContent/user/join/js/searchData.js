@@ -20,6 +20,8 @@ const SearchData = async(event,url) => {
 }
 
 const emailSearchHandler = async(event) => {
+	if(event.target.readOnly)
+		return;
     const URL = './SearchUserEmail.json';
     await SearchData(event, URL);
 }
@@ -30,6 +32,9 @@ const nicknameSearchHandler = async(event) => {
 }
 
 const checkAuthHandler = async(event) => {
+    if (emailInput.readOnly)
+        emailInput.classList.add("permit");
+	
     if(!emailInput.classList.contains("permit") || !nicknameInput.classList.contains("permit")){
         return event.preventDefault();
     }

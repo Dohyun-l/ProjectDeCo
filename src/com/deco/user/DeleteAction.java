@@ -9,63 +9,45 @@ import javax.servlet.http.HttpSession;
 import com.deco.Action;
 import com.deco.ActionForward;
 
-public class UpdateAction implements Action{
+public class DeleteAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		
-		req.setCharacterEncoding("UTF-8");
 		HttpSession session = req.getSession();
-		int user_num = Integer.parseInt(req.getParameter("user_num"));		
-		ActionForward forward = new ActionForward();
 		
+		String email = (String) req.getParameter("email");
+		String pw = (String) req.getParameter("pw");
 		userDAO udao = new userDAO();
-		userDTO udto = new userDTO();
-		
-		
-		udto.setPw(req.getParameter("pw"));
-		udto.setName(req.getParameter("name"));
-		udto.setNickname(req.getParameter("nickname"));
-		udto.setAddr(req.getParameter("addr"));
-		udto.setPhone(req.getParameter("phone"));
-		udto.setMajor(req.getParameter("major"));
-		 
-		userDAO lodao = new userDAO();
-		int check = lodao.update(udto, user_num);
-		
-		System.out.println(check);
-		
+		int check = udao.delete(email, pw);
 		
 		res.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = res.getWriter();
-		
-		if(check == 0){
-			
+
+		if(check == 1){
 			out.print("<script>");
-			out.print("alert('비밀번호 오류!');");
+			out.print("alert('비밀번호가 일치하지 않습니다.');");
 			out.print("history.back();");
 			out.print("</script>");
 			out.close();
-			
 			return null;
-			
-		}else if(check == -1){
+		}
+		else if(check == -1){
 			out.print("<script>");
-			out.print("alert('잘못된 접근입니다.');");
+			out.print("alert('존재하지 않는 회원입니다.');");
 			out.print("location.href='/ProjectDeCo/login.us';");
 			out.print("</script>");
 			out.close();
-			
 			return null;
 		}
+		
 		out.print("<script>");
-		out.print("alert('수정완료!');");
-		out.print("location.href='/ProjectDeCo/main.us';");
+		out.print("alert('한달뒤에 뵙겠습니다.');");
+		out.print("location.href='/ProjectDeCo/login.us';");
 		out.print("</script>");
 		out.close();
-		
 		return null;
 	}
-
+	
 	
 }

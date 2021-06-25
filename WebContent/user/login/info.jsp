@@ -58,8 +58,9 @@
 				<td><%=udto.getPoint() %></td>
 			</tr>
 		</table>
-	<a href="./main.us">메인 페이지</a> | <a href="./update.us?user_num=<%=udto.getUser_num() %>">정보수정</a>
+	<a href="./main.us">메인 페이지</a> | <a href="./update.us?user_num=<%=udto.getUser_num() %>">정보수정</a> | <a href="./delete.us?user_num=<%=udto.getUser_num() %>">회원탈퇴</a>
 	</center>
+	<!-- admin_auth 2인 회원 회원탈퇴버튼 숨김 -->
 
 
 </body>

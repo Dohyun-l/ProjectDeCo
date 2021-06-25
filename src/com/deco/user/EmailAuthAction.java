@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.deco.Action;
 import com.deco.ActionForward;
@@ -13,14 +14,17 @@ public class EmailAuthAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
+
 		String code = req.getParameter("code");
-		String email = req.getParameter("email");
 		
-		System.out.println(email);
-		System.out.println(code);
+		HttpSession session = req.getSession();
+		
+		int user_num = (Integer)session.getAttribute("user_num");
 		
 		userDAO uDAO = new userDAO();
-		int flag = uDAO.getAuthEmail(code, email);
+		
+		userDTO uDTO = uDAO.getUserInfo(user_num);
+		int flag = uDAO.getAuthEmail(code, uDTO.getEmail());
 		
 		if(flag == -1){
 			ValueException(res, "무언가 잘못됐습니다!");
@@ -32,9 +36,9 @@ public class EmailAuthAction implements Action{
 		}
 		
 		//인증된 일반유저는 0으로 설정
-		uDAO.setUserAuth(0, email);
+		uDAO.setUserAuth(0, uDTO.getEmail());
 		
-		return new ActionForward("./login.us", true);
+		return new ActionForward("./main.us", true);
 	}
 	
 	public void ValueException(HttpServletResponse res, String msg) throws IOException{
