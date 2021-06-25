@@ -18,7 +18,7 @@
 	(2. show variables like '%event%';) 2번구문 실행시켜 event_scheduler = on 확인후 진행<br>
 
 <%
-	response.sendRedirect(request.getContextPath()+"/login.us");
+	response.sendRedirect(request.getContextPath()+"/main.us");
  %>
 </body>
 </html>
