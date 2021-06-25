@@ -47,6 +47,7 @@ public class shareListAction implements Action {
 			pageSize = 5;
 		} else {
 			pageSize = Integer.parseInt(str_pageSize);
+			
 		}
 		
 		String pageNum = req.getParameter("pageNum");
