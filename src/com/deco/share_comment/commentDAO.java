@@ -197,17 +197,17 @@ public class commentDAO {
 
 		try {
 			conn = getConnection();
-			sql = "update share_comment set share_idx=?,user_num=?,content=?,re_lev=?,re_seq=?, where comment_idx=?";
+			sql = "update share_comment set share_idx=?,user_num=?,content=?,re_lev=?,re_seq=? where comment_idx=?";
 
 			pstmt = conn.prepareStatement(sql);
+			
 			
 			pstmt.setInt(1, cDTO.getShare_idx());
 			pstmt.setInt(2, cDTO.getUser_num());
 			pstmt.setString(3, cDTO.getContent());
 			pstmt.setInt(4, cDTO.getRe_lev());
 			pstmt.setInt(5, cDTO.getRe_seq());
-			pstmt.setString(6, x);
-			pstmt.setInt(7, cDTO.getComment_idx());
+			pstmt.setInt(6, cDTO.getComment_idx());
 
 			pstmt.executeUpdate();
 
