@@ -94,7 +94,15 @@ public class shareFrontController extends Controller {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+		}else if(command.equals("/shareCommentModify.sh")){
+			System.out.println("C : /shareCommentModify.sh 호출");
+			action = new shareModifyAction();
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} 
 		
 		
 		
