@@ -41,6 +41,7 @@
 		</div>
 		<button id="joinSubmit">정보수정</button>
 	</form>
+	<a href="./userlogout.us"><button>로그아웃</button></a>
 </main>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="./user/join/js/addrAPI.js"></script>

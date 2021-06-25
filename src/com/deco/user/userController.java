@@ -86,6 +86,10 @@ public class userController extends Controller{
 		}else if(command.equals("/kakaoLoginFin.us")){
 			action = new KakaoLoginAction();
 			forward = action.execute(req, res);
+		
+		}else if(command.equals("/emailAuth.us")){
+			forward = new ActionForward("./user/join/needEmail_auth.jsp", false);
+			
 		}
 		
 		render(forward,req,res);

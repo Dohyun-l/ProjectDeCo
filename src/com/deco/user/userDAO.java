@@ -72,6 +72,8 @@ public class userDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally{
+			closeDB();
 		}
 		
 		return uDTO;
@@ -121,6 +123,8 @@ public class userDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally{
+			closeDB();
 		}
 		
 		return user_num;
@@ -130,7 +134,7 @@ public class userDAO {
 	//getAdminByNum
 	public int getAdminByNum(int userNum){
 		
-		//0 -> 일반  |  1 -> 관리자  | -1 -> 에러
+		//0 -> 일반  |  1 -> 관리자  | -1 -> 이메일 인증 X		|  -10		소셜로그인했으나, 추가정보 입력안한 유저
 		int flag = -1;
 
 		try {
@@ -153,6 +157,33 @@ public class userDAO {
 		return flag;
 	}
 	//getAdminByNum
+	
+	//getAdminByEmail
+	public int getAdminByEmail(String email){
+		//0 -> 일반  |  1 -> 관리자  | -1 -> 이메일 인증 X		|  -10		소셜로그인했으나, 추가정보 입력안한 유저
+		//2 -> 탈퇴 유예중
+		int flag = -1;
+
+		try {
+			conn = getConnection();
+			sql = "select admin_auth from user where email=?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				flag = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+		
+		return flag;
+	}
+	//getAdminByEmail
 	
 	//HashPW
 	private String HashPW(String pw){
@@ -344,6 +375,8 @@ public class userDAO {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()){
+				System.out.println(rs.getString(1));
+				System.out.println(code);
 				flag = rs.getString(1).equals(code) ? 1 : 0;
 			}
 		} catch (SQLException e) {
