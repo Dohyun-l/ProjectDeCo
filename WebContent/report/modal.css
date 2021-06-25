@@ -1,0 +1,32 @@
+.ReportModal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.ReportModal .title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ReportModal .title,
+.ReportModal .description {
+  padding: 5px;
+}
+
+.ReportModal .content-wrapper {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 5px;
+}
+
+.ReportModal .content-wrapper img {
+  width: 100%;
+}
