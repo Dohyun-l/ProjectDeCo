@@ -60,46 +60,45 @@ public class commentDAO {
 		}
 	}
 
-	
-	//insertShareComment(cDTO)
-	public void insertShareComment(commentDTO cDTO){
-		
-		 int comment_num=0;
-		 try {
-			 conn = getConnection();
-			 
-			 sql = "select max(comment_idx) from share_comment";
-			 pstmt = conn.prepareStatement(sql);
+	// insertShareComment(cDTO)
+	public void insertShareComment(commentDTO cDTO) {
 
-			 rs = pstmt.executeQuery();
-			 
-			 if(rs.next()){
-				 comment_num = rs.getInt(1)+1;
-			 }
-			 
-			 sql = "insert into share_comment values(?, ?, ?, ?, ?, ?, now())";
-			 
-			 pstmt = conn.prepareStatement(sql);
+		int comment_num = 0;
+		try {
+			conn = getConnection();
 
-			 pstmt.setInt(1, comment_num);
-			 pstmt.setInt(2, cDTO.getShare_idx());
-			 pstmt.setInt(3, cDTO.getUser_num());
-			 pstmt.setString(4, cDTO.getContent());
-			 pstmt.setInt(5, cDTO.getRe_lev());
-			 pstmt.setInt(6, cDTO.getRe_seq());
-			 
-			 pstmt.executeUpdate();
-			 
+			sql = "select max(comment_idx) from share_comment";
+			pstmt = conn.prepareStatement(sql);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				comment_num = rs.getInt(1) + 1;
+			}
+
+			sql = "insert into share_comment values(?, ?, ?, ?, ?, ?, now())";
+
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, comment_num);
+			pstmt.setInt(2, cDTO.getShare_idx());
+			pstmt.setInt(3, cDTO.getUser_num());
+			pstmt.setString(4, cDTO.getContent());
+			pstmt.setInt(5, cDTO.getRe_lev());
+			pstmt.setInt(6, cDTO.getRe_seq());
+
+			pstmt.executeUpdate();
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			closeDB();
 		}
 	}
-	//insertShareComment(cDTO)
-	
+	// insertShareComment(cDTO)
+
 	// getCommentList()
-	public List getCommentList(){
+	public List getCommentList() {
 		List commentList = new ArrayList();
 
 		commentDTO cDTO = null;
@@ -132,43 +131,65 @@ public class commentDAO {
 		return commentList;
 	}
 	// getCommentList()
-	
+
 	// getCommentList()
-		public List getCommentList(int share_idx){
-			List commentList = new ArrayList();
+	public List getCommentList(int share_idx) {
+		List commentList = new ArrayList();
 
-			commentDTO cDTO = null;
-			try {
-				conn = getConnection();
-				sql = "select * from share_comment where share_idx=? order by create_at desc";
-				pstmt = conn.prepareStatement(sql);
-				
-				pstmt.setInt(1, share_idx);
+		commentDTO cDTO = null;
+		try {
+			conn = getConnection();
+			sql = "select * from share_comment where share_idx=? order by create_at desc";
+			pstmt = conn.prepareStatement(sql);
 
-				rs = pstmt.executeQuery();
+			pstmt.setInt(1, share_idx);
 
-				while (rs.next()) {
+			rs = pstmt.executeQuery();
 
-					cDTO = new commentDTO();
+			while (rs.next()) {
 
-					cDTO.setComment_idx(rs.getInt("comment_idx"));
-					cDTO.setContent(rs.getString("content"));
-					cDTO.setCreate_at(rs.getString("create_at"));
-					cDTO.setRe_lev(rs.getInt("re_lev"));
-					cDTO.setRe_seq(rs.getInt("re_seq"));
-					cDTO.setShare_idx(rs.getInt("share_idx"));
-					cDTO.setUser_num(rs.getInt("user_num"));
+				cDTO = new commentDTO();
 
-					commentList.add(cDTO);
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				closeDB();
+				cDTO.setComment_idx(rs.getInt("comment_idx"));
+				cDTO.setContent(rs.getString("content"));
+				cDTO.setCreate_at(rs.getString("create_at"));
+				cDTO.setRe_lev(rs.getInt("re_lev"));
+				cDTO.setRe_seq(rs.getInt("re_seq"));
+				cDTO.setShare_idx(rs.getInt("share_idx"));
+				cDTO.setUser_num(rs.getInt("user_num"));
+
+				commentList.add(cDTO);
 			}
-			return commentList;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
 		}
-		// getCommentList()
-	
-	
+		return commentList;
+	}
+	// getCommentList()
+
+	// deleteShareComment(comment_idx)
+	public void deleteShareComment(int comment_idx) {
+
+		try {
+			conn = getConnection();
+			sql = "delete from share_comment where comment_idx=?";
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, comment_idx);
+
+			pstmt.executeUpdate();
+
+			System.out.println("댓글삭제 완료");
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+	}
+
+	// deleteShareComment(comment_idx)
+
 }

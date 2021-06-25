@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.deco.ActionForward;
 import com.deco.Controller;
 import com.deco.share_comment.shareCommentAction;
+import com.deco.share_comment.shareCommentDeleteAction;
 
 @WebServlet("*.sh")
 public class shareFrontController extends Controller {
@@ -80,6 +81,14 @@ public class shareFrontController extends Controller {
 		}else if(command.equals("/shareCommentAction.sh")){
 			System.out.println("C : /shareCommentAction.sh 호출");
 			action = new shareCommentAction();
+			try {
+			forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/shareCommentDeleteAction.sh")){
+			System.out.println("C : /shareCommentDeleteAction.sh 호출");
+			action = new shareCommentDeleteAction();
 			try {
 			forward = action.execute(req, resp);
 			} catch (Exception e) {
