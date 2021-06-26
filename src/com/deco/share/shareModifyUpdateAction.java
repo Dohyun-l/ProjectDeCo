@@ -31,6 +31,7 @@ public class shareModifyUpdateAction implements Action{
 				
 		if(session.getAttribute("user_num") == null){
 			resp.sendRedirect("./shareList.sh");
+			return null;
 		} else {
 			userNum = (int) session.getAttribute("user_num");
 		}

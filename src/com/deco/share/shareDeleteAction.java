@@ -24,6 +24,7 @@ public class shareDeleteAction implements Action {
 		
 		if(session.getAttribute("user_num") == null){
 			resp.sendRedirect("./shareList.sh");
+			return null;
 		} else {
 			userNum = (int) session.getAttribute("user_num");
 		}
@@ -34,6 +35,8 @@ public class shareDeleteAction implements Action {
 		String category = req.getParameter("category");
 		
 		shareDAO sDAO = new shareDAO();
+		
+		
 		
 		sDAO.deleteShareContent(idx);
 		
