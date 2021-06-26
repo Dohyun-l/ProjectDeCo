@@ -12,6 +12,7 @@ import com.deco.ActionForward;
 import com.deco.Controller;
 import com.deco.share_comment.shareCommentAction;
 import com.deco.share_comment.shareCommentDeleteAction;
+import com.deco.share_comment.shareCommentModifyUpdateAction;
 
 @WebServlet("*.sh")
 public class shareFrontController extends Controller {
@@ -94,15 +95,15 @@ public class shareFrontController extends Controller {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/shareCommentModify.sh")){
-			System.out.println("C : /shareCommentModify.sh 호출");
-			action = new shareModifyAction();
+		}else if(command.equals("/shareCommentModifyUpdateAction.sh")){
+			System.out.println("C : /shareCommentModifyUpdateAction.sh 호출");
+			action = new shareCommentModifyUpdateAction();
 			try {
 				forward = action.execute(req, resp);
 			} catch (Exception e) {
 				e.printStackTrace();
-			}
-		} 
+			}	
+		}
 		
 		
 		

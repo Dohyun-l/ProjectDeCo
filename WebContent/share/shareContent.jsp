@@ -12,6 +12,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+ <!-- jquery 준비 시작 -->
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<!-- jquery 준비 끝 -->
+
+
+
 </head>
 <body>
 
@@ -32,7 +38,6 @@ if (session.getAttribute("user_num") != null) {
 
 
 %>
-
 
 <%if(new shareDAO().preContentNum(sDTO.getIdx(), category) != 0){ %>
 <input type="button" value="이전글" onclick="location.href='./shareContent.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=new shareDAO().preContentNum(sDTO.getIdx(), category)%>&category=<%=category%>'">
@@ -96,7 +101,7 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 
 
 <!-- 댓글 -->
-
+<form action="" name="commentListfr">
 <table border="1">
 	<tr>
 		<td>글번호</td>
@@ -112,22 +117,48 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 	for(int i=0; i<commentList.size(); i++){
 		commentDTO cDTO = (commentDTO) commentList.get(i);
 		%>
+		
+		<script type="text/javascript">
+
+		//jquery 시작
+		$(function() {
+		    // 댓글 수정
+		     $("#cm<%=i%>").on("click",function() {
+		    	 if(document.getElementById("cc<%=i%>").readOnly){
+		    			document.getElementById("cc<%=i%>").readOnly=false;
+		    			document.getElementById("cc<%=i%>").focus();
+		    		}else{
+		    			document.getElementById("cc<%=i%>").readOnly=true;	
+					    $.ajax({
+					    	url:"./shareCommentModifyUpdateAction.sh",
+					        type:"post",
+					        data:{"content":$("#cc<%=i%>").val(), "comment_idx":$("#ci<%=i%>").val()},
+					        success:function(data){
+					          	location.reload();
+					         } 
+					   });
+		    		}
+		   });
+		});
+		</script>
 	<tr>
 		<td><%=commentList.size()-i %></td>
 		<td><%=new userDAO().getUserNickNameByNum(cDTO.getUser_num())%></td>
-		<td><%=cDTO.getContent() %></td>
+		<td><input type="text" value="<%=cDTO.getContent() %>" readonly id="cc<%=i%>"></td>
 		<td><%=cDTO.getCreate_at() %></td>
 		<%
 		if(user_num == cDTO.getUser_num()){ %>
-		<td><input type="button" value="수정하기" onclick="location.href='./shareCommentModifyAction.sh?comment_idx=<%=cDTO.getComment_idx()%>&pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()%>&category=<%=category %>">/
-		<input type="button" value="삭제하기" onclick="location.href='./shareCommentDeleteAction.sh?comment_idx=<%=cDTO.getComment_idx()%>&pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()%>&category=<%=category %>'"></td>
+		<td><input type="button" value="수정하기" id="cm<%=i%>">/
+		<input type="button" value="삭제하기" onclick="location.href='./shareCommentDeleteAction.sh?comment_idx=<%=cDTO.getComment_idx()%>&pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()%>&category=<%=category %>'">
+		<input type="hidden" value="<%=cDTO.getComment_idx() %>" id="ci<%=i%>"/>
+		</td>
 		
 		<%} %>
-	</tr>
-<%}%>
+<% } %>
 </table>
-
+</form>
 <script type="text/javascript">
+
 	function insertCommentCheck() {
 		var user_num = <%=user_num%>;
 		if(user_num == 0){
@@ -153,6 +184,7 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
  <input type="submit" value="등록하기">
  <input type="reset" value="취소">
 </form>
+
 
 </body>
 </html>

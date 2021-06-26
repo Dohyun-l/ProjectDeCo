@@ -193,21 +193,17 @@ public class commentDAO {
 	// deleteShareComment(comment_idx)
 
 	//modifyShareComment(cDTO)
-	public void modifyShareComment(commentDTO cDTO) {
+	public void modifyShareComment(String content, int comment_idx) {
 
 		try {
 			conn = getConnection();
-			sql = "update share_comment set share_idx=?,user_num=?,content=?,re_lev=?,re_seq=? where comment_idx=?";
+			sql = "update share_comment set content=? where comment_idx=?";
 
 			pstmt = conn.prepareStatement(sql);
 			
 			
-			pstmt.setInt(1, cDTO.getShare_idx());
-			pstmt.setInt(2, cDTO.getUser_num());
-			pstmt.setString(3, cDTO.getContent());
-			pstmt.setInt(4, cDTO.getRe_lev());
-			pstmt.setInt(5, cDTO.getRe_seq());
-			pstmt.setInt(6, cDTO.getComment_idx());
+			pstmt.setString(1, content);
+			pstmt.setInt(2, comment_idx);
 
 			pstmt.executeUpdate();
 
