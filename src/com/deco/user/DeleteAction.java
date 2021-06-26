@@ -41,6 +41,7 @@ public class DeleteAction implements Action{
 			return null;
 		}
 		
+		udao.ad2(email);
 		out.print("<script>");
 		out.print("alert('한달뒤에 뵙겠습니다.');");
 		out.print("location.href='/ProjectDeCo/login.us';");

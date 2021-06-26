@@ -23,7 +23,7 @@ public class LoginAction implements Action{
 		String referer = req.getParameter("referer");
 		userDAO loDAO = new userDAO();
 		int flag = loDAO.login(email, pw);
-		
+		loDAO.last(email);
 		System.out.println(referer);
 		
 		if(flag == -2){

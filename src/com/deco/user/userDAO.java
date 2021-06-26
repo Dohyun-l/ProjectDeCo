@@ -463,12 +463,12 @@ public class userDAO {
 			pstmt.setString(1, email);
 			rs = pstmt.executeQuery();
 			if(rs.next()){
-				sql="update user set admin_auth=2 where email=?";
+				/*sql="update user set admin_auth=2 where email=?";
 				pstmt =conn.prepareStatement(sql);
 				pstmt.setString(1, email);
-				pstmt.executeUpdate();
+				pstmt.executeUpdate();*/
 				if(BCrypt.checkpw(pw, rs.getString("pw"))){
-					sql="create event if not exists de_"+rs.getInt("user_num")+" on schedule at current_timestamp+interval 5 minute "
+					sql="create event if not exists de_"+rs.getInt("user_num")+" on schedule at current_timestamp+interval 10 minute "
 					  + "do delete from user where email=?";
 					// 현재 10분 적용(시간 바꿀때마다 여기 적어주세요) ex) 1 month, 1 year, 1 minute, 30 seconds
 					pstmt = conn.prepareStatement(sql);
@@ -499,6 +499,7 @@ public class userDAO {
 			pstmt.setString(1, email);
 			rs = pstmt.executeQuery();
 			if(rs.next()){
+				
 				if(BCrypt.checkpw(pw, rs.getString("pw"))){
 					sql ="drop event de_"+rs.getInt("user_num");
 					pstmt = conn.prepareStatement(sql);
@@ -518,6 +519,48 @@ public class userDAO {
 		}
 		
 		return check;
+	}
+	
+	public void last(String email){
+		try {
+			conn = getConnection();
+			sql="update user set last_login=now() where email=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+		
+	}
+	
+	public void ad1(String email){
+		try {
+			conn=getConnection();
+			sql="update user set admin_auth=1 where email=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+	}
+	public void ad2(String email){
+		try {
+			conn=getConnection();
+			sql="update user set admin_auth=2 where email=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
 	}
 	
 }

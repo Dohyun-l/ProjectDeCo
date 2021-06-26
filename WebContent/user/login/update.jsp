@@ -100,7 +100,7 @@ function check(){
 		<input type="hidden" name="idDumplication" value="0" class="ttx">
 		<br>
 		주소 : <input type="text" name="addr" value="<%=udto.getAddr() %>" style="text-align:center" size="70">
-		&nbsp<input type="button" onclick="callAddress()" value="주소수정">
+		&nbsp
 		<button onclick="return callAddress()">주소찾기</button>
 		
 		
