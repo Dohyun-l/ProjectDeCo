@@ -36,15 +36,11 @@ public class shareDeleteAction implements Action {
 		
 		shareDAO sDAO = new shareDAO();
 		
+		if(userNum == sDAO.getWriteUserNum(Integer.parseInt(idx))) {
+			sDAO.deleteShareContent(idx);
+		}
 		
-		
-		sDAO.deleteShareContent(idx);
-		
-		String uri = "./shareList.sh?pageNum="+pageNum+"&pageSize="+pageSize+"&category="+category;
-		
-		System.out.println(uri);
-		
-		ActionForward forward = new ActionForward(uri, true);
+		ActionForward forward = new ActionForward("./shareList.sh?pageNum="+pageNum+"&pageSize="+pageSize+"&category="+category, true);
 		
 		return forward;
 	}

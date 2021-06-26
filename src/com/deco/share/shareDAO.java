@@ -399,7 +399,7 @@ public class shareDAO {
 			pstmt.setInt(7, sDTO.getIdx());
 
 			pstmt.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -408,109 +408,106 @@ public class shareDAO {
 
 	}
 	// modifyShareContentFile(sDTO)
-	
+
 	// preContentNum(idx, category)
-		public int preContentNum(int idx, String category) {
-			int result = 0;
+	public int preContentNum(int idx, String category) {
+		int result = 0;
 
-			try {
-				conn = getConnection();
-				if (category.equals("null")){
-					sql = "select ifnull(max(idx), 0) from deco.share where idx<?";
-					pstmt = conn.prepareStatement(sql);
+		try {
+			conn = getConnection();
+			if (category.equals("null")) {
+				sql = "select ifnull(max(idx), 0) from deco.share where idx<?";
+				pstmt = conn.prepareStatement(sql);
 
-					pstmt.setInt(1, idx);
+				pstmt.setInt(1, idx);
 
-				} else {
-					sql = "select ifnull(max(idx), 0) from deco.share where idx<? and category=?";		
+			} else {
+				sql = "select ifnull(max(idx), 0) from deco.share where idx<? and category=?";
 
-					pstmt = conn.prepareStatement(sql);
+				pstmt = conn.prepareStatement(sql);
 
-					pstmt.setInt(1, idx);
-					pstmt.setString(2, category);
-				}
-				
-				rs = pstmt.executeQuery();
-
-				if (rs.next()) {
-					result = rs.getInt(1);
-				}
-
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				closeDB();
+				pstmt.setInt(1, idx);
+				pstmt.setString(2, category);
 			}
-			return result;
-		}
-		// preContentNum(idx, category)
 
-		// postContentNum(idx, category)
-		public int postContentNum(int idx, String category) {
-			int result = 0;
+			rs = pstmt.executeQuery();
 
-			try {
-				conn = getConnection();
-				
-				if (category.equals("null")){
-					sql = "select ifnull(min(idx), 0) from deco.share where idx>?";
-					pstmt = conn.prepareStatement(sql);
-
-					pstmt.setInt(1, idx);
-
-				} else {
-					sql = "select ifnull(min(idx), 0) from deco.share where idx>? and category=?";	
-
-					pstmt = conn.prepareStatement(sql);
-
-					pstmt.setInt(1, idx);
-					pstmt.setString(2, category);
-				}
-
-
-				rs = pstmt.executeQuery();
-
-				if (rs.next()) {
-					result = rs.getInt(1);
-				}
-
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				closeDB();
+			if (rs.next()) {
+				result = rs.getInt(1);
 			}
-			return result;
-		}
-		// postContentNum(idx, category)
 
-	//shareSearchList(opt,condition)
-	public List shareSearchList(String opt,String condition){
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		return result;
+	}
+	// preContentNum(idx, category)
+
+	// postContentNum(idx, category)
+	public int postContentNum(int idx, String category) {
+		int result = 0;
+
+		try {
+			conn = getConnection();
+
+			if (category.equals("null")) {
+				sql = "select ifnull(min(idx), 0) from deco.share where idx>?";
+				pstmt = conn.prepareStatement(sql);
+
+				pstmt.setInt(1, idx);
+
+			} else {
+				sql = "select ifnull(min(idx), 0) from deco.share where idx>? and category=?";
+
+				pstmt = conn.prepareStatement(sql);
+
+				pstmt.setInt(1, idx);
+				pstmt.setString(2, category);
+			}
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				result = rs.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		return result;
+	}
+	// postContentNum(idx, category)
+
+	// shareSearchList(opt,condition)
+	public List shareSearchList(String opt, String condition) {
 		shareDTO sDTO = null;
 		List shareSearchList = new ArrayList();
-		
-		try{
+
+		try {
 			conn = getConnection();
-			if(opt.equals("0")){
-				sql="select * from share where title like '%"+condition+"%' order by idx desc";
-			}else if(opt.equals("1")){
-				sql="select * from share where content like '%"+condition+"%' order by idx desc";	
-			}else if(opt.equals("2")){
-				sql="select * from share where concat(title,content) like '%"+condition+"%' order by idx desc";
-			}else if(opt.equals("3")){
-				sql="select * from share "
-						+ "where user_num = "
-						+ "(select user_num from deco.user "
-						+ "where nickname like '%"+condition+"%') order by idx desc";
+			if (opt.equals("0")) {
+				sql = "select * from share where title like '%" + condition + "%' order by idx desc";
+			} else if (opt.equals("1")) {
+				sql = "select * from share where content like '%" + condition + "%' order by idx desc";
+			} else if (opt.equals("2")) {
+				sql = "select * from share where concat(title,content) like '%" + condition + "%' order by idx desc";
+			} else if (opt.equals("3")) {
+				sql = "select * from share " + "where user_num = " + "(select user_num from deco.user "
+						+ "where nickname like '%" + condition + "%') order by idx desc";
 			}
 			System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 			System.out.println(sql);
 			System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 			pstmt = conn.prepareStatement(sql);
-			
+
 			rs = pstmt.executeQuery();
-			
-			while(rs.next()){
-				
+
+			while (rs.next()) {
+
 				sDTO = new shareDTO();
 
 				sDTO.setAnony(rs.getInt("anony"));
@@ -524,20 +521,45 @@ public class shareDAO {
 				sDTO.setTag(rs.getString("tag"));
 				sDTO.setTitle(rs.getString("title"));
 				sDTO.setUser_num(rs.getInt("user_num"));
-				
+
 				shareSearchList.add(sDTO);
 			}
-			
-		}catch (Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
+			closeDB();
+		}
+
+		return shareSearchList;
+	}
+	// shareSearchList(opt,condition)
+
+	// getWriteUserNum(int idx)
+	public int getWriteUserNum(int idx) {
+		int user_num = 0;
+		
+		try {
+			conn = getConnection();
+			sql = "select user_num from share where idx=?";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, idx);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				user_num = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
 			closeDB();
 		}
 		
-			
-		return shareSearchList;
+		return user_num;
 	}
-	//shareSearchList(opt,condition)
 	
+	// getWriteUserNum(int idx)
 	
 }
