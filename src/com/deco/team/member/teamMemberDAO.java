@@ -93,8 +93,8 @@ public class teamMemberDAO {
 	}
 	// joinTeam(teamMemberDTO tmDTO)
 
-	// memberSubmit(teamMemberDTO tmDTO)
-	public void memberSubmit(teamMemberDTO tmDTO) {
+	// onMemberSubmit(teamMemberDTO tmDTO)
+	public void onMemberSubmit(teamMemberDTO tmDTO) {
 		try {
 			conn = getConnection();
 			sql = "update team_member set submit=1 where team_idx=? and member=?";
@@ -111,7 +111,7 @@ public class teamMemberDAO {
 			closeDB();
 		}
 	}
-	// memberSubmit(teamMemberDTO tmDTO)
+	// onMemberSubmit(teamMemberDTO tmDTO)
 
 	// memberSubmit(teamMemberDTO tmDTO)
 	public int checkMemberSubmit(teamMemberDTO tmDTO) {
@@ -181,5 +181,33 @@ public class teamMemberDAO {
 		}
 	}
 	// deleteMemberOfTeamNum(int team_idx)
+	
+	// checkSubmitMember(int team_idx)
+	public int checkSubmitMember(int team_idx){
+		int result = 0;
+		
+		try {
+			conn = getConnection();
+			sql = "select count(*) from deco.team_member where team_idx=? and submit=1";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, team_idx);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				result = rs.getInt(1);
+			}
+			
+			System.out.println("DAO : 현재 승인완료된 참여 인원 "+result);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		return result;
+	}
+	// checkSubmitMember(int team_idx)
 
 }

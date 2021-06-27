@@ -32,6 +32,11 @@ public class joinTeamMemberAction implements Action {
 		tmDTO.setMember(user_num);
 		
 		teamMemberDAO tmDAO = new teamMemberDAO();
+		
+		int result = tmDAO.checkSubmitMember(Integer.parseInt(req.getParameter("team_idx")));
+		
+		
+		
 		tmDAO.joinTeam(tmDTO);
 		
 		forward = new ActionForward("./teamMain.te", true);
