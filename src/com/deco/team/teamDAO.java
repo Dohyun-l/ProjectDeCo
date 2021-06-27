@@ -58,39 +58,37 @@ public class teamDAO {
 		}
 	}
 	// 자원해제코드 - finally 구문에서 사용
-	
-	
-	
-	public void create_team(teamDTO tdto){
-					int idx = 0;
-			try {
-					conn = getConnection();
-					sql="select count(*) from team";
-					pstmt = conn.prepareStatement(sql);
-					rs = pstmt.executeQuery();
-					if(rs.next()){
-						idx = rs.getInt(1)+1;
-					}
-					
-					sql = "insert into team (idx, title, content, location, master, limit_p, create_at, deadline) "
-						+ "values(?,?,?,?,?,?,now(),?)";
-					pstmt = conn.prepareStatement(sql);
-					pstmt.setInt(1, idx);
-					pstmt.setString(2, tdto.getTitle());
-					pstmt.setString(3, tdto.getContent());
-					pstmt.setString(4,tdto.getLocation());
-					pstmt.setInt(5, tdto.getMaster());
-					pstmt.setString(6, tdto.getLimit_p());
-					pstmt.setString(7, tdto.getDeadline());
-					pstmt.executeUpdate();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}finally{
-					closeDB();
-				}
+
+	public void create_team(teamDTO tdto) {
+		int idx = 0;
+		try {
+			conn = getConnection();
+			sql = "select count(*) from team";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				idx = rs.getInt(1) + 1;
+			}
+
+			sql = "insert into team (idx, title, content, location, master, limit_p, create_at, deadline) "
+					+ "values(?,?,?,?,?,?,now(),?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			pstmt.setString(2, tdto.getTitle());
+			pstmt.setString(3, tdto.getContent());
+			pstmt.setString(4, tdto.getLocation());
+			pstmt.setInt(5, tdto.getMaster());
+			pstmt.setString(6, tdto.getLimit_p());
+			pstmt.setString(7, tdto.getDeadline());
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
 	}
-	
-	//teamList()
+
+	// teamList()
 	public List teamList() {
 
 		List teamList = new ArrayList();
@@ -127,11 +125,10 @@ public class teamDAO {
 
 		return teamList;
 	}
-	//teamList()
-	
-	
-	//teamList(startRow,pageSize)
-	public List teamList(int startRow,int pageSize) {
+	// teamList()
+
+	// teamList(startRow,pageSize)
+	public List teamList(int startRow, int pageSize) {
 
 		List teamList = new ArrayList();
 
@@ -170,36 +167,60 @@ public class teamDAO {
 
 		return teamList;
 	}
-	//teamList(startRow,pageSize)
-		
+	// teamList(startRow,pageSize)
+
 	// numOfTeam() 팀생성 글 개수 보기
-		public int numOfTeam() {
-			int cnt = 0;
+	public int numOfTeam() {
+		int cnt = 0;
 
-			try {
-				conn = getConnection();
-				sql = "select count(*) from team";
-				pstmt = conn.prepareStatement(sql);
+		try {
+			conn = getConnection();
+			sql = "select count(*) from team";
+			pstmt = conn.prepareStatement(sql);
 
-				rs = pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 
-				if (rs.next()) {
-					cnt = rs.getInt(1);
-				}
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				closeDB();
+			if (rs.next()) {
+				cnt = rs.getInt(1);
 			}
 
-			return cnt;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
 		}
+
+		return cnt;
+	}
+
 	// numOfTeam()
 
+	// getLimitPersonOfTeamIdx(int idx)
+	public int getLimitPersonOfTeamIdx(int idx) {
+		int result = 0;
 		
-	
-	
-	
-	
+		try {
+			conn = getConnection();
+			sql = "select limit_p from team where idx=?";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, idx);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				result = rs.getInt(1);
+			}
+			
+			System.out.println("DAO : 팀 제한 인원수 " + result);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		return result;
+	}
+	// getLimitPersonOfTeamIdx(int idx)
+
 }
