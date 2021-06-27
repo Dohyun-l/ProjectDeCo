@@ -60,19 +60,26 @@ public class teamDAO {
 	
 	
 	public void create_team(teamDTO tdto){
+					int idx = 0;
 			try {
 					conn = getConnection();
+					sql="select count(*) from team";
+					pstmt = conn.prepareStatement(sql);
+					rs = pstmt.executeQuery();
+					if(rs.next()){
+						idx = rs.getInt(1)+1;
+					}
+					
 					sql = "insert into team (idx, title, content, location, master, limit_p, create_at, deadline) "
 						+ "values(?,?,?,?,?,?,now(),?)";
 					pstmt = conn.prepareStatement(sql);
-					pstmt.setInt(1, tdto.getIdx());
+					pstmt.setInt(1, idx);
 					pstmt.setString(2, tdto.getTitle());
 					pstmt.setString(3, tdto.getContent());
 					pstmt.setString(4,tdto.getLocation());
 					pstmt.setInt(5, tdto.getMaster());
 					pstmt.setString(6, tdto.getLimit_p());
 					pstmt.setString(7, tdto.getDeadline());
-					
 					pstmt.executeUpdate();
 				} catch (SQLException e) {
 					e.printStackTrace();
