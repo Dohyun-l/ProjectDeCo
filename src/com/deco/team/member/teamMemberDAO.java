@@ -139,4 +139,26 @@ public class teamMemberDAO {
 	}
 	// memberSubmit(teamMemberDTO tmDTO)
 
+	// deleteMember(teamMemberDTO tmDTO)
+	public void deleteMember(teamMemberDTO tmDTO){
+		try {
+			conn = getConnection();
+			sql = "delete from team_team_member where team_idx=? and member=?";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, tmDTO.getTeam_idx());
+			pstmt.setInt(2, tmDTO.getMember());
+			
+			pstmt.executeUpdate();
+
+			System.out.println("DAO : 멤버 삭제 완료");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+	}
+	// deleteMember(teamMemberDTO tmDTO)
+	
 }
