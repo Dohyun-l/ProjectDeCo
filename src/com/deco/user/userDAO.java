@@ -644,8 +644,9 @@ public class userDAO {
 			pstmt.setString(1, email);
 			rs = pstmt.executeQuery();
 			if(rs.next()){
+
 				if(BCrypt.checkpw(pw, rs.getString("pw"))){
-					sql="create event if not exists de_"+rs.getInt("user_num")+" on schedule at current_timestamp+interval 5 minute "
+					sql="create event if not exists de_"+rs.getInt("user_num")+" on schedule at current_timestamp+interval 10 minute "
 					  + "do delete from user where email=?";
 					// 현재 10분 적용(시간 바꿀때마다 여기 적어주세요) ex) 1 month, 1 year, 1 minute, 30 seconds
 					pstmt = conn.prepareStatement(sql);
@@ -676,6 +677,7 @@ public class userDAO {
 			pstmt.setString(1, email);
 			rs = pstmt.executeQuery();
 			if(rs.next()){
+				
 				if(BCrypt.checkpw(pw, rs.getString("pw"))){
 					sql ="drop event de_"+rs.getInt("user_num");
 					pstmt = conn.prepareStatement(sql);
@@ -739,6 +741,6 @@ public class userDAO {
 			closeDB();
 		}
 	}
-	
+
 	
 }

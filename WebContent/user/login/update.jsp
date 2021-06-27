@@ -98,6 +98,7 @@ function check(){
 		닉네임 : <input type="text" name="nickname" value="<%=udto.getNickname() %>" style="text-align:center" size="15" class="jj">
 		<input type="hidden" name="idDumplication" value="1" class="ttx">
 		<br>
+
 		주소 : <input type="text" name="addr" id="addr" value="<%=udto.getAddr() %>" style="text-align:center" size="70">
 		&nbsp<button onclick="return callAddress()">주소찾기</button>
 		

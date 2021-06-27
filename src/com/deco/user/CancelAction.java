@@ -39,6 +39,7 @@ public class CancelAction implements Action{
 			
 			return null;
 		}
+		udao.ad1(email);
 		
 		udao.ad1(email);
 		
