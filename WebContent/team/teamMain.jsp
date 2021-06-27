@@ -8,6 +8,7 @@
 </head>
 <body>
 	<h1>WebContent/team/teamMain.jsp</h1>
+	
 <a href="./crateTeam.te">방만들기</a>
 
 </body>
