@@ -77,6 +77,7 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 		<td colspan="5"><%=sDTO.getTitle()%></td>
 	</tr>
   
+  
 	<tr>	
 		<td>첨부파일</td>
 		<%if(sDTO.getFile()!=null){%>	
