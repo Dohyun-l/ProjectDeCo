@@ -55,7 +55,7 @@ function createTeamCheck() {
 </script>
 </head>
 <body>
-	<h1>WebContent/team/teamWrite.jsp</h1>
+	<h1>WebContent/team/createTeam.jsp</h1>
 	<hr>
 		
 	<%

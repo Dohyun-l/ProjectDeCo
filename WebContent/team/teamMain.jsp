@@ -10,6 +10,7 @@
 	<h1>WebContent/team/teamMain.jsp</h1>
 	
 <a href="./createTeam.te">방만들기</a>
+<a href="./teamList.te">팀리스트 확인</a>
 
 
 </body>

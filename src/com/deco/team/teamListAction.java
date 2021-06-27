@@ -36,7 +36,7 @@ public class teamListAction implements Action{
 		String str_pageSize = req.getParameter("pageSize");
 		
 		int pageSize = 0;
-		
+		System.out.println("ㅇㅇ");
 		if (str_pageSize == null){
 			pageSize = 5;
 		} else {
@@ -60,6 +60,8 @@ public class teamListAction implements Action{
 		req.setAttribute("teamList", teamList);
 		req.setAttribute("pageNum", pageNum);
 		req.setAttribute("pageSize", pageSize);
+		
+		System.out.println(pageSize);
 		
 		ActionForward forward = new ActionForward("./teamList.jsp",false);
 		
