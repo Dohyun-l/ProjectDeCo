@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -87,4 +89,117 @@ public class teamDAO {
 					closeDB();
 				}
 	}
+	
+	//teamList()
+	public List teamList() {
+
+		List teamList = new ArrayList();
+
+		teamDTO tdto = null;
+		try {
+			conn = getConnection();
+			sql = "select * from team";
+			pstmt = conn.prepareStatement(sql);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				tdto = new teamDTO();
+
+				tdto.setContent(rs.getString("content"));
+				tdto.setCreate_at(rs.getString("create_at"));
+				tdto.setDeadline(rs.getString("deadline"));
+				tdto.setIdx(rs.getInt("idx"));
+				tdto.setLimit_p(rs.getString("limit_p"));
+				tdto.setLocation(rs.getString("location"));
+				tdto.setMaster(rs.getInt("master"));
+				tdto.setTitle(rs.getString("title"));
+
+				teamList.add(tdto);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+
+		return teamList;
+	}
+	//teamList()
+	
+	
+	//teamList(startRow,pageSize)
+	public List teamList(int startRow,int pageSize) {
+
+		List teamList = new ArrayList();
+
+		teamDTO tdto = null;
+		try {
+			conn = getConnection();
+			sql = "select * from team order by idx desc limit ?,?";
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, startRow - 1);
+			pstmt.setInt(2, pageSize);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				tdto = new teamDTO();
+
+				tdto.setContent(rs.getString("content"));
+				tdto.setCreate_at(rs.getString("create_at"));
+				tdto.setDeadline(rs.getString("deadline"));
+				tdto.setIdx(rs.getInt("idx"));
+				tdto.setLimit_p(rs.getString("limit_p"));
+				tdto.setLocation(rs.getString("location"));
+				tdto.setMaster(rs.getInt("master"));
+				tdto.setTitle(rs.getString("title"));
+
+				teamList.add(tdto);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+
+		return teamList;
+	}
+	//teamList(startRow,pageSize)
+		
+	// numOfTeam() 팀생성 글 개수 보기
+		public int numOfTeam() {
+			int cnt = 0;
+
+			try {
+				conn = getConnection();
+				sql = "select count(*) from team";
+				pstmt = conn.prepareStatement(sql);
+
+				rs = pstmt.executeQuery();
+
+				if (rs.next()) {
+					cnt = rs.getInt(1);
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				closeDB();
+			}
+
+			return cnt;
+		}
+	// numOfTeam()
+
+		
+	
+	
+	
+	
 }
