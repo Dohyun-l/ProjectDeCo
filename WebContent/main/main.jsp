@@ -37,6 +37,7 @@
 	
 	<a href="./share/shareList.sh">정보공유</a>
 	
+	<a href="./teamMain.te">팀만들기</a>
 	
 	<!-- 회원탈퇴취소 admin_auth 값이 2인 사람만 보이게 수정 -->
 	
