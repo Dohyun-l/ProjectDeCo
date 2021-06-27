@@ -28,6 +28,7 @@
 		String nickname = udao.getUserNickNameByNum(userNum);
 	%>
 	
+	
 		
 		<form action="./teamWriteAction.sh" method="post" name="fr">
 		<!-- 닉네임 -->
