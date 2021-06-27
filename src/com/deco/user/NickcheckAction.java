@@ -18,9 +18,10 @@ public class NickcheckAction implements Action{
 		
 		HttpSession session = req.getSession();
 		String nickname = req.getParameter("nickname");
-		
+		int user_num = Integer.parseInt(req.getParameter("user_num"));
+		System.out.println(user_num);
 		userDAO udao = new userDAO();
-		int data = udao.nickcheck(nickname);
+		int data = udao.nickcheck(nickname, user_num);
 		
 		res.setContentType("text/html; charset=utf-8");
 		PrintWriter out = res.getWriter();

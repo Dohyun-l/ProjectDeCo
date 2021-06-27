@@ -49,6 +49,7 @@ public class LoginAction implements Action{
 			return null;
 		}
 		
+		loDAO.last(email);
 		
 		HttpSession session = req.getSession();
 		session.setAttribute("user_num", flag);

@@ -522,6 +522,7 @@ public class userDAO {
 					udto.setInter(rs.getString("inter"));
 					udto.setCreate_at(rs.getString("create_at"));
 					udto.setLast_login(rs.getString("last_login"));
+					udto.setAdmin_auth(rs.getInt("admin_auth"));
 					udto.setPoint(rs.getInt("point"));
 				}
 		} catch (SQLException e) {
@@ -572,16 +573,23 @@ public class userDAO {
 		return check;
 	}
 	
-	public int nickcheck(String nickname){
-		int data = 0;
+	public int nickcheck(String nickname, int user_num){
+		int data = -1;
 		try {
-				conn = getConnection();
-				sql ="select * from user where nickname=?";
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, nickname);
-				rs = pstmt.executeQuery();
+			conn = getConnection();
+			sql="select * from user where nickname=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, nickname);
+			rs = pstmt.executeQuery();
+			// System.out.println(rs.getInt("user_num"));
+			System.out.println(user_num);
 			if(rs.next()){
-				data = 1;
+				
+				if(user_num == rs.getInt("user_num")){
+					data= 2;
+				} else {
+					data = 1;
+				}
 			}else{
 				data = 0;
 			}
@@ -592,6 +600,7 @@ public class userDAO {
 		}
 		return data;
 	}
+	
 	/*
 	public int delete(String email, String pw){
 		int check = -1;
@@ -635,10 +644,6 @@ public class userDAO {
 			pstmt.setString(1, email);
 			rs = pstmt.executeQuery();
 			if(rs.next()){
-				sql="update user set admin_auth=2 where email=?";
-				pstmt =conn.prepareStatement(sql);
-				pstmt.setString(1, email);
-				pstmt.executeUpdate();
 				if(BCrypt.checkpw(pw, rs.getString("pw"))){
 					sql="create event if not exists de_"+rs.getInt("user_num")+" on schedule at current_timestamp+interval 5 minute "
 					  + "do delete from user where email=?";
@@ -691,5 +696,49 @@ public class userDAO {
 		
 		return check;
 	}
+	
+	public void last(String email){
+		try {
+			conn = getConnection();
+			sql="update user set last_login=now() where email=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+		
+	}
+	
+	public void ad1(String email){
+		try {
+			conn=getConnection();
+			sql="update user set admin_auth=1 where email=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+	}
+	
+	public void ad2(String email){
+		try {
+			conn=getConnection();
+			sql="update user set admin_auth=2 where email=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+	}
+	
 	
 }

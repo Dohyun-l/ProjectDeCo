@@ -40,6 +40,8 @@ public class CancelAction implements Action{
 			return null;
 		}
 		
+		udao.ad1(email);
+		
 		out.print("<script>");
 		out.print("alert('Welcome back!!!');");
 		out.print("location.href='/ProjectDeCo/main.us';");

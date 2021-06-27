@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Deco - cancel</title>
+<title>Deco - 회원탈퇴취소</title>
 <script type="text/javascript">
 function check(){
 	if(document.fr.email.value == ""){
@@ -26,7 +26,7 @@ function check(){
 <form action="./CancelAction.us" method="post" name="fr" onsubmit="return check();">
 		<input type="email" name="email" placeholder="이메일을 입력하세요." style="text-align:center" size="40"><br>
 		<br>
-		<input type="pw" name="pw" placeholder="비밀번호를 입력하세요." style="text-align:center" size="40"><br>
+		<input type="password" name="pw" placeholder="비밀번호를 입력하세요." style="text-align:center" size="40"><br>
 		<br>
 		<input type="submit" value="취소하기"> | <input type="button" value="취소" onclick="return cancel();">
 	</form>

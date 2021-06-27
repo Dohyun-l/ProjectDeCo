@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="./user/login/login.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Deco</title>
+<title>Deco - 로그인</title>
 <script type="text/javascript">
 function check(){
 	if(document.fr.email.value == ""){
