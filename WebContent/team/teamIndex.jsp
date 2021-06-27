@@ -8,7 +8,8 @@
 </head>
 <body>
 <%
-	response.sendRedirect("../teamMain.te");
+	//response.sendRedirect("../teamMain.te");
+ 	response.sendRedirect("../crateTeam.te");
 %>
 </body>
 </html>
