@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import com.deco.Action;
 import com.deco.ActionForward;
+import com.deco.share_comment.commentDAO;
 
 public class shareDeleteAction implements Action {
 
@@ -37,6 +38,10 @@ public class shareDeleteAction implements Action {
 		shareDAO sDAO = new shareDAO();
 		
 		if(userNum == sDAO.getWriteUserNum(Integer.parseInt(idx))) {
+			
+			commentDAO cDAO = new commentDAO();
+			cDAO.deleteCommentAll(Integer.parseInt(idx));
+			
 			sDAO.deleteShareContent(idx);
 		}
 		

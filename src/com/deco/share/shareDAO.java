@@ -319,6 +319,7 @@ public class shareDAO {
 
 		try {
 			conn = getConnection();
+			
 			sql = "delete from share where idx=?";
 			pstmt = conn.prepareStatement(sql);
 

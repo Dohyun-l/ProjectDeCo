@@ -216,6 +216,29 @@ public class commentDAO {
 	}
 	
 	//modifyShareComment(cDTO)
+
+	// deleteCommentAll(idx)
+	public void deleteCommentAll(int idx) {
+
+		try {
+			conn = getConnection();
+			sql = "delete from share_comment where share_idx=?";
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, idx);
+
+			pstmt.executeUpdate();
+
+			System.out.println("댓글삭제 완료");
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+	}
+	// deleteCommentAll(idx)
+	
 	
 
 	
