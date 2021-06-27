@@ -30,6 +30,14 @@ public class teamMemberFrontController extends Controller {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if(command.equals("/deleteTeamMember.tm")){
+			System.out.println("C : /deleteTeamMember.tm 호출");
+			action = new deleteTeamMemberAction();
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		/////////////////////////////////////////////////////////

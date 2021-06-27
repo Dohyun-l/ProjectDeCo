@@ -125,8 +125,8 @@ public class teamMemberDAO {
 			pstmt.setInt(2, tmDTO.getMember());
 
 			rs = pstmt.executeQuery();
-			
-			if(rs.next()){
+
+			if (rs.next()) {
 				result = rs.getInt(1);
 			}
 
@@ -140,19 +140,19 @@ public class teamMemberDAO {
 	// memberSubmit(teamMemberDTO tmDTO)
 
 	// deleteMember(teamMemberDTO tmDTO)
-	public void deleteMember(teamMemberDTO tmDTO){
+	public void deleteMember(teamMemberDTO tmDTO) {
 		try {
 			conn = getConnection();
 			sql = "delete from team_team_member where team_idx=? and member=?";
 			pstmt = conn.prepareStatement(sql);
-			
+
 			pstmt.setInt(1, tmDTO.getTeam_idx());
 			pstmt.setInt(2, tmDTO.getMember());
-			
+
 			pstmt.executeUpdate();
 
 			System.out.println("DAO : 멤버 삭제 완료");
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -160,5 +160,26 @@ public class teamMemberDAO {
 		}
 	}
 	// deleteMember(teamMemberDTO tmDTO)
-	
+
+	// deleteMemberOfTeamNum(int team_idx)
+	public void deleteMemberOfTeamIdx(int team_idx) {
+		try {
+			conn = getConnection();
+			sql = "delete from team_team_member where team_idx=?";
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, team_idx);
+
+			pstmt.executeUpdate();
+
+			System.out.println("DAO : " + team_idx + " 멤버 전원 삭제 완료");
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+	}
+	// deleteMemberOfTeamNum(int team_idx)
+
 }
