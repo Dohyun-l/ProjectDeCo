@@ -56,7 +56,87 @@ public class teamMemberDAO {
 		}
 	}
 	// 자원해제코드 - finally 구문에서 사용
-	
-	
+
+	// joinTeam(teamMemberDTO tmDTO)
+	public void joinTeam(teamMemberDTO tmDTO) {
+
+		int idx = 0;
+
+		try {
+			conn = getConnection();
+			sql = "select count(*) from team_member";
+			pstmt = conn.prepareStatement(sql);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				idx = rs.getInt(1) + 1;
+			}
+
+			sql = "insert into team_member values(?,?,?,?,now())";
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, idx);
+			pstmt.setInt(2, tmDTO.getTeam_idx());
+			pstmt.setInt(3, tmDTO.getMember());
+			pstmt.setInt(4, 0);
+
+			pstmt.executeUpdate();
+
+			System.out.println("DAO : 회원참가완료!!");
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+	}
+	// joinTeam(teamMemberDTO tmDTO)
+
+	// memberSubmit(teamMemberDTO tmDTO)
+	public void memberSubmit(teamMemberDTO tmDTO) {
+		try {
+			conn = getConnection();
+			sql = "update team_member set submit=1 where team_idx=? and member=?";
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, tmDTO.getTeam_idx());
+			pstmt.setInt(2, tmDTO.getMember());
+
+			pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+	}
+	// memberSubmit(teamMemberDTO tmDTO)
+
+	// memberSubmit(teamMemberDTO tmDTO)
+	public int checkMemberSubmit(teamMemberDTO tmDTO) {
+		int result = 0;
+		try {
+			conn = getConnection();
+			sql = "select submit form team_member where team_idx=? and member=?";
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, tmDTO.getTeam_idx());
+			pstmt.setInt(2, tmDTO.getMember());
+
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				result = rs.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		return result;
+	}
+	// memberSubmit(teamMemberDTO tmDTO)
 
 }

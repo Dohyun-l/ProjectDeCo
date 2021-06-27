@@ -22,7 +22,15 @@ public class teamMemberFrontController extends Controller {
 		
 		/////////////////////////////////////////////////////////
 		
-		
+		if(command.equals("/joinTeamMember.tm")){
+			System.out.println("C : /joinTeamMember.tm 호출");
+			action = new joinTeamMemberAction();
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
 		/////////////////////////////////////////////////////////
 		
