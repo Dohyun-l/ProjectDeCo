@@ -12,6 +12,7 @@ public class teamDTO {
 	private String deadline;
 	
 	
+	
 	public int getIdx() {
 		return idx;
 	}
