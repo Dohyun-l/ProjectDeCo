@@ -8,7 +8,51 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
 <title>팀 - 스터디</title>
+<script type="text/javascript">
 
+
+
+function createTeamCheck() {
+    document.fr.content.value= oEditor.getIR();
+   
+  /*  var tags = document.querySelectorAll(".tag");
+   var cnt = 0;
+   for(var i = 0; i < tags.length;i++){
+      if(tags[i].checked){
+         cnt++;
+      }
+   }
+   
+   if(document.fr.title.value == ""){
+      alert("제목을 작성해주세요.");
+      document.fr.title.focus();
+      return false;
+   }
+   
+   if(document.fr.category.value == ""){
+      alert("글을 작성하실 게시판을 선택해주세요.");
+      document.fr.category.focus();
+      return false;
+   }
+   
+   if(document.fr.content.value == "" || document.fr.content.value == "<p><br></p>"){
+      alert("내용을 작성해 주세요.");
+      return false;
+   }
+   
+   if (cnt == 0) {
+      alert("관련 태그는 1개 이상 체크 해주셔야 합니다.");
+      return false;
+   }
+   
+   var chk = grecaptcha.getResponse(); 
+    if(chk.length == 0) {
+       alert("로봇이 아닙니다 인증을 진행해주세요!");
+       return false; 
+    } */
+   
+}
+</script>
 </head>
 <body>
 	<h1>WebContent/team/teamWrite.jsp</h1>
@@ -30,7 +74,7 @@
 	
 	
 		
-		<form action="./teamWriteAction.sh" method="post" name="fr">
+		<form action="./createTeamAction.te" method="post" name="fr" onsubmit="return createTeamCheck();">
 		<!-- 닉네임 -->
 		닉네임 : <input type="text" id="nickname" name="nickname" value="<%=nickname%>"readonly>
 			
