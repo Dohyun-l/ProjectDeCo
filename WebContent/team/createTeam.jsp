@@ -32,13 +32,23 @@
 		<form action="./teamWriteAction.sh" method="post" name="fr">
 		<!-- 닉네임 -->
 		닉네임 : <input type="text" id="nickname" name="nickname" value="<%=nickname%>"readonly>
-		<input type="radio" name="anony" value="0" checked="checked">공개
-		<input type="radio" name="anony" value="1">비공개
-		<hr>
-		<!-- 게시판 분류 -->
-		
+			
 		<!-- 제목 -->	  		
 		<input type="text" name="title" placeholder="제목을 입력해주세요">
+		
+		<select name='location'>
+  			<option value='' selected>지역을 선택해주세요</option>
+  			<option value="seoul">서울</option>
+ 			<option value="busan">부산</option>
+  			<option value="Incheon">인천</option>
+  			<option value="daegu">대구</option>
+  			<option value="gwangju">광주</option>  
+  			<option value="ulsan">울산</option>
+  			<option value="daejeon">대전</option>		
+  			<option value="changwon">창원</option>
+  			<option value="jeju">제주도</option>					
+		</select><hr>
+		
 		<select name='limit_p'>
   			<option value='' selected>인원을 선택해주세요</option>
   			<option value=4>4명</option>
@@ -50,11 +60,13 @@
   			<option value=10>10명</option>			
 		</select><hr>
 				
+		모집 기한 : <input type="date" name="deadline">	<br>
+				
 		<input type="hidden" name="content">
 		<jsp:include page="edit.jsp"></jsp:include>
 		
 		<br>
-		<input type="submit" value="등록">
+		<input type="submit" value="팀만들기">
 		<input type="reset" value="취소"> 
 		<input type="button" value="메인으로" onclick="location.href='./teamMain.te'">
 		</form>
