@@ -9,6 +9,7 @@
 <body>
 <%
 	response.sendRedirect("../teamMain.te");
+ 	
 %>
 </body>
 </html>

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.deco.ActionForward;
 import com.deco.Controller;
+import com.deco.share.shareWriteAction;
 
 @WebServlet("*.te")
 public class teamFrontController extends Controller {
@@ -25,6 +26,14 @@ public class teamFrontController extends Controller {
 		if(command.equals("/teamMain.te")){
 			System.out.println("./teamMain.te");
 			forward = new ActionForward("./team/teamMain.jsp", false);
+		}else if(command.equals("/team/createTeamAction.sh")){
+			System.out.println("C : /team/createTeamAction.sh 호출");
+			action = new createTeamAction();
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		
