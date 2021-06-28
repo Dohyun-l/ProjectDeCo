@@ -11,6 +11,7 @@
 	
 <a href="./createTeam.te">방만들기</a>
 <a href="./teamList.te">팀리스트 확인</a>
+<a href="./teamPage.tm">팀페이지 가기</a>
 
 
 </body>
