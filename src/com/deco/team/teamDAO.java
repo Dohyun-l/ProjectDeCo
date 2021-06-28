@@ -222,6 +222,7 @@ public class teamDAO {
 		return result;
 	}
 	// getLimitPersonOfTeamIdx(int idx)
+	
 	// getteamView
 	public teamDTO getteamView(int idx){
 		teamDTO tdto = null;
@@ -253,42 +254,5 @@ public class teamDAO {
 	}
 	
 	// getteamView
-
-	// getTeam(idx) 
-	public teamDTO getTeam(int idx){
-		teamDTO tdto = null;
-		
-		try {
-		conn = getConnection();
-		sql="select * from team where idx=?";
-		
-		pstmt =	conn.prepareStatement(sql);
-		pstmt.setInt(1, idx);
-		rs = pstmt.executeQuery();
-		
-		if(rs.next()){
-			 tdto = new teamDTO();
-			
-			 tdto.setContent(rs.getString("content"));
-			 tdto.setCreate_at(rs.getString("create_at"));
-			 tdto.setDeadline(rs.getString("deadline"));
-			 tdto.setIdx(rs.getInt("idx"));
-			 tdto.setLimit_p(rs.getString("limit_p"));
-			 tdto.setLocation(rs.getString("location"));
-			 tdto.setMaster(rs.getInt("master"));
-			 tdto.setTitle(rs.getString("title"));
-			
-		}
-				
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			closeDB();
-		}
-		
-		return tdto;
-	}
-	
-	// getTeam(idx)
 	
 }
