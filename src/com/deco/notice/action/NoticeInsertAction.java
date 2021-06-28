@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.deco.Action;
+import com.deco.ActionForward;
 import com.deco.notice.db.noticeDAO;
 import com.deco.notice.db.noticeDTO;
 import com.oreilly.servlet.MultipartRequest;
@@ -23,7 +25,7 @@ public class NoticeInsertAction implements Action {
 		// upload 폴더 생성
 		//request.getRealPath("/upload");
 		ServletContext ctx = request.getServletContext();
-		String realpath = ctx.getRealPath("/upload");
+		String realpath = ctx.getRealPath("/notice/upload");
 		
 		int maxSize = 5 * 1024 * 1024;
 		
@@ -52,10 +54,8 @@ public class NoticeInsertAction implements Action {
 		nDAO.insertNotice(nDTO);
 		
 		// 페이지 이동
-		ActionForward forward = new ActionForward();
-		forward.setPath("./noticelist.nt");
-		forward.setRedirect(true);
-		
+		ActionForward forward = new ActionForward("./noticelist.nt", true);
+
 		return forward;
 	}
 

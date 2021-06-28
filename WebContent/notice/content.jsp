@@ -1,3 +1,5 @@
+<%@page import="com.deco.bookmark.db.BookmarkDAO"%>
+<%@page import="com.deco.bookmark.db.BookmarkDTO"%>
 <%@page import="com.deco.user.userDAO"%>
 <%@page import="com.deco.notice.db.noticeDAO"%>
 <%@page import="com.deco.notice.db.noticeDTO"%>
@@ -36,7 +38,7 @@
 		String fl = nDTO.getFile();
 	%>
 	<%
-		int user_num = (int) session.getAttribute("user_num");
+		int user_num = (int) session.getAttribute("flag");
 		userDAO usDAO = new userDAO();
 		String nickName = usDAO.getUserNickNameByNum(user_num);
 		
@@ -51,10 +53,6 @@
 			<td><%=nDTO.getUser_num()%></td>
 		</tr>
 		<tr>
-			<td>닉네임</td>
-			<td colspan="3"><%=usDAO.getUserNickNameByNum(nDTO.getUser_num()) %></td>
-		</tr>
-		<tr>
 			<td>작성일</td>
 			<td><%=nDTO.getCreate_at()%></td>
 			<td>조회수</td>
@@ -62,11 +60,15 @@
 			</td>
 		</tr>
 		<tr>
+			<td>닉네임</td>
+			<td colspan="3"><%=usDAO.getUserNickNameByNum(nDTO.getUser_num()) %></td>
+		</tr>
+		<tr>
 			<td>제목</td>
 			<td colspan="3"><%=nDTO.getTitle()%></td>
 		</tr>
 		<tr>
-			<td colspan="4"><%=nDTO.getContent()%></td>
+			<td colspan="4" width="500" height="500"><%=nDTO.getContent()%></td>
 		</tr>
 		
 		<%if(fl != null){ %>
@@ -79,19 +81,39 @@
 		</tr>
 		<%} %>
 		
-<%-- 		<tr>
-			<td colspan="4">
-			<input type="button" value="수정하기" 
-				onclick="location.href='updateForm.jsp?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>';">
-			<input type="button" value="삭제하기" 
-				onclick="location.href='deleteForm.jsp?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>';">
-			<input type="button" value="답글쓰기"
-				onclick="location.href='reWriteForm.jsp?num=<%=bb.getNum()%>&re_ref=<%=bb.getRe_ref()%>&re_lev=<%=bb.getRe_lev()%>&re_seq=<%=bb.getRe_seq()%>';">
-			<input type="button" value="목록으로" onclick="location.href='list.jsp?pageNum=<%=pageNum%>';">
-			</td>
-		</tr> --%>
 	</table>
 	
+	<%
+		BookmarkDTO bmDTO = new BookmarkDTO();
+		bmDTO.setUser_num(user_num);
+		bmDTO.setContent_num(nDTO.getIdx());
+		BookmarkDAO bmDAO = new BookmarkDAO();
+		int result = bmDAO.checkBookmark(bmDTO);
+	%>
+	
+	
+	<hr>
+	<%if(result != 1){ %>
+	<form action="./bkAddAction.bm" method="post" name="gfr">
+		<!-- 아이디, 글번호 가져가기 -->
+		<%-- <input type="hidden" name="num" value="<%=dto.getNum()%>"> --%>
+		<input type="hidden" name="user_num" value="<%=user_num%>">
+		<input type="hidden" name="content_num" value="<%=nDTO.getIdx()%>">
+	
+		<input type="submit" name="bookmark" value="즐겨찾기">
+	</form>
+	<%}else{ %>
+	<form action="./bkDeleteAction.bm" method="post" name="gfr">
+		<!-- 아이디, 글번호 가져가기 -->
+		<%-- <input type="hidden" name="num" value="<%=dto.getNum()%>"> --%>
+		<input type="hidden" name="user_num" value="<%=user_num%>">
+		<input type="hidden" name="content_num" value="<%=nDTO.getIdx()%>">
+	
+		<input type="submit" name="bookmark" value="즐겨찾기없애기">
+	</form>
+	
+	
+	<%} %>
 	<script>
 	function del(){
 		if(confirm("정말 삭제하시겠습니까 ?") == true){
@@ -101,17 +123,15 @@
 	    else{
 	        return ;
 	    }
-		
 	}
-
 	</script>
 	
 	<hr>
 	<%if(adminCheck == -1){ %>
-	<input type="button" value="수정하기" 
-				onclick="location.href='./noticemodify.nt?idx=<%=nDTO.getIdx()%>&pageNum=<%=pageNum%>';">
-				
-	<input type="button" value="삭제하기" id="delete_btn" onclick="del();">
+		<input type="button" value="수정하기" 
+					onclick="location.href='./noticemodify.nt?idx=<%=nDTO.getIdx()%>&pageNum=<%=pageNum%>';">
+					
+		<input type="button" value="삭제하기" id="delete_btn" onclick="del();">
 	<%} %>
 	
 	<input type="button" value="목록으로" onclick="location.href='noticelist.nt?pageNum=<%=pageNum%>';">

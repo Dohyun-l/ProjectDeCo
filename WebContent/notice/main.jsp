@@ -11,11 +11,8 @@
 	<h1>WebContent/notice/main.jsp</h1>
 	
 	<%
-		// 사용자가 로그인을 했을때만 main페이지 확인
-		// 로그인 안한 경우 로그인 페이지로 이동
-		
 		// 세션객체의 정보를 가져와서 확인
-		int user_num = (int) session.getAttribute("user_num");
+		int user_num = (int) session.getAttribute("flag");
 	
 		userDAO usDAO = new userDAO();
 		String nickName = usDAO.getUserNickNameByNum(user_num);
@@ -31,12 +28,6 @@
 	
 	<h2><%= user_num %>님 환영합니다~!</h2>
 	<h2><%= nickName %>님 환영합니다~!</h2>
-	
-	
-	<%-- <h2>${sessionScope.id }</h2>
-	
-	<input type="button" value="로그아웃!" onclick="location.href='./MemberLogout.me';"> --%>
-	
 	
 	<!-- Search Google -->
 	<form method=get action="http://www.google.co.kr/search" target="_blank" >
@@ -57,28 +48,11 @@
 		<h3><a href="./noticeform.nt"> 게시판 폼 </a></h3>
 	<%} %>
 	
-	
 	<h3><a href="./noticelist.nt"> 게시판 리스트 </a></h3>
 	
 	<h3><a href="./main.us"> 메인 </a></h3>
 	
+	<h3><a href="./main.us"> 마이페이지 </a></h3>
 	
-	
-	<!-- 관리자만 사용가능한 메뉴 생성 -->
-<%-- 	<% 
-	if(id != null){	// 아이디가 있을때
-		if(id.equals("admin")){ 
-		// 참조형데이터 값 비교시 항상 null값을 먼저 비교후 데이터 비교
-		//if(id != null && id.equals("admin"))	(o)
-		//if(id.equals("admin") && id != null)	(x)
-	%>
-		
-	<h3><a href="./MemberList.me">회원 목록보기</a></h3>
-	
-	<% 
-		} 
-	}%> --%>
-
-
 </body>
 </html>
