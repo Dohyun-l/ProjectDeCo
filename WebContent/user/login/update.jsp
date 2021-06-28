@@ -14,23 +14,23 @@ $(function(){
 	$(".jj").on("keyup", function(){
 		var t = $(".jj").val();
 		if(t.length<1){
-			$("#tt").text("닉네임을 입력하세요");
-			$("#tt").css("color","red");
+			$(".jj").css("color","red");
 		}else{
 			$.ajax({
 				url:"./NickcheckAction.us",
 				type:"post",
-				data:{"nickname":$(".jj").val()},
+				data:{"nickname":$(".jj").val(),"user_num":$(".us").val()},
 				success:function(data){
 					console.log(data);
-					if(data == 1){
+					if(data == 2){
+						$(".ttx").val("1");
+						$(".jj").css("color","green");
+					}else if(data == 1){
 						$(".ttx").val("0");
-						$("#tt").text("중복된 닉네임 입니다.");
-						$("#tt").css("color","red");
+						$(".jj").css("color","red");
 					}else{
 						$(".ttx").val("1");
-						$("#tt").text("사용가능한 닉네임입니다.");
-						$("#tt").css("color","green");
+						$(".jj").css("color","green");
 					}
 				}
 			});
@@ -97,8 +97,8 @@ function check(){
 		이름 : <input type="text" name="name" value="<%=udto.getName() %>" style="text-align:center" size="40"><br>
 		닉네임 : <input type="text" name="nickname" value="<%=udto.getNickname() %>" style="text-align:center" size="40" class="jj">
 		<br>
-		<div id="tt"></div>
-		<input type="hidden" name="idDumplication" value="0" class="ttx">
+		
+		<input type="hidden" name="idDumplication" value="1" class="ttx">
 		<br>
 		주소 : <input type="text" name="addr" id="addr" value="<%=udto.getAddr() %>" style="text-align:center" size="70">
 		&nbsp<button onclick="return callAddress()">주소찾기</button>
