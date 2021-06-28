@@ -62,8 +62,8 @@ public class teamListAction implements Action{
 		req.setAttribute("pageSize", pageSize);
 		
 		System.out.println(pageSize);
-		
-		ActionForward forward = new ActionForward("./teamList.jsp",false);
+		ActionForward forward = new ActionForward();
+		forward = new ActionForward("./team/teamList.jsp", false);
 		
 		return forward;
 	}

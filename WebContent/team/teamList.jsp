@@ -15,6 +15,7 @@
 		userDAO udao = new userDAO();
 		teamDAO tdao = new teamDAO();
 		List teamList = tdao.teamList();
+		
 	
 	  int pageSize = (int)request.getAttribute("pageSize");
       String pageNum = (String)request.getAttribute("pageNum");
@@ -47,7 +48,7 @@
 			<td style="text-align:center"><%=masternick %></td>
 			<td style="text-align:center"><a href="./teamView.te?idx=<%=tdto.getIdx() %>";><%=tdto.getTitle() %></a></td>
 			<td style="text-align:center"><%=tdto.getLocation() %></td>
-			<td style="text-align:center"><%=tdto.getCreate_at() %></td>
+			<td style="text-align:center"><%=tdto.getCreate_at().substring(0,10)%></td>
 			<td style="text-align:center"><%=tdto.getDeadline() %></td>
 		</tr>
 		<%} %>

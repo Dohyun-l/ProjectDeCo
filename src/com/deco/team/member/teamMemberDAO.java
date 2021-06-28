@@ -58,9 +58,11 @@ public class teamMemberDAO {
 	// 자원해제코드 - finally 구문에서 사용
 
 	// joinTeam(teamMemberDTO tmDTO)
-	public void joinTeam(teamMemberDTO tmDTO) {
+	public int joinTeam(teamMemberDTO tmDTO) {
 
 		int idx = 0;
+		
+		int result = -1;
 
 		try {
 			conn = getConnection();
@@ -81,7 +83,7 @@ public class teamMemberDAO {
 			pstmt.setInt(3, tmDTO.getMember());
 			pstmt.setInt(4, 0);
 
-			pstmt.executeUpdate();
+			result = pstmt.executeUpdate();
 
 			System.out.println("DAO : 회원참가완료!!");
 
@@ -90,6 +92,7 @@ public class teamMemberDAO {
 		} finally {
 			closeDB();
 		}
+		return result;
 	}
 	// joinTeam(teamMemberDTO tmDTO)
 
