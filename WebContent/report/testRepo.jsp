@@ -8,6 +8,6 @@
 <script type="module" src="./report/js/reportApp.js"></script>
 </head>
 <body>
-<button id="reportBtn">신고</button>
+<div id="reportBtn"></div>
 </body>
 </html>
