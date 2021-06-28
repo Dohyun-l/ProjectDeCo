@@ -72,6 +72,7 @@ public class teamFrontController extends Controller {
 			try {
 			forward = action.execute(req, resp);
 			} catch (Exception e) {
+				
 				e.printStackTrace();
 			}
 		}
