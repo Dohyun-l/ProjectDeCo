@@ -254,5 +254,41 @@ public class teamDAO {
 	}
 	
 	// getteamView
+	
+	// deleteTeam
+	public int deleteTeam(int idx, int master){
+		int check = -1;
+		try {
+			conn = getConnection();
+			sql="select * from team where idx=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				if(master == rs.getInt("master")){
+					sql="delete from team where idx=?";
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setInt(1, idx);
+					pstmt.executeUpdate();
+					
+					check = 1;
+				}else{
+					// 팀번호는 있지만 마스터가 아님
+					check = 0;
+				}
+			}else{
+				// 없는팀
+				check = -1;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+		return check;
+	}
+	
+	// deleteTeam
+	
 
 }
