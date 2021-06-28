@@ -15,11 +15,18 @@ public class shareWriteAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		
+		//한글처리
 		req.setCharacterEncoding("utf-8");
 		
 		//세션제어
 		HttpSession session = req.getSession();
-		// int user_num = (int) session.getAttribute("user_num");
+		int user_num = 0;
+		
+		if(session.getAttribute("user_num") == null){
+			resp.sendRedirect("./shareList.sh");
+		} else {
+			user_num = (int) session.getAttribute("user_num");
+		}
 			
 		//파일 업로드
 		ServletContext ctx = req.getServletContext();
@@ -41,11 +48,11 @@ public class shareWriteAction implements Action {
 		shareDTO sDTO = new shareDTO();
 		
 		 // sDTO.setUser_num(user_num);
-		 sDTO.setUser_num(1);
+		 sDTO.setUser_num(user_num);
 		 sDTO.setAnony(Integer.parseInt(multi.getParameter("anony")));
 	     sDTO.setTitle(multi.getParameter("title"));
 	   	 sDTO.setCategory(multi.getParameter("category"));
-	     sDTO.setFile(multi.getFilesystemName("file"));
+	     sDTO.setFile(multi.getFilesystemName("filename"));
 	     sDTO.setContent(multi.getParameter("content"));
 	     
 	     		  
@@ -62,6 +69,7 @@ public class shareWriteAction implements Action {
 	     }
 	     
 	     System.out.println(tag);
+	     sDTO.setTag(tag);
 	     
 	     //디비처리 
 	     shareDAO sDAO = new shareDAO();
