@@ -45,7 +45,7 @@
 		%>
 		<tr>
 			<td style="text-align:center"><%=masternick %></td>
-			<td style="text-align:center"><a href="./teamView.te";><%=tdto.getTitle() %></a></td>
+			<td style="text-align:center"><a href="./teamView.te?idx=<%=tdto.getIdx() %>";><%=tdto.getTitle() %></a></td>
 			<td style="text-align:center"><%=tdto.getLocation() %></td>
 			<td style="text-align:center"><%=tdto.getCreate_at() %></td>
 			<td style="text-align:center"><%=tdto.getDeadline() %></td>

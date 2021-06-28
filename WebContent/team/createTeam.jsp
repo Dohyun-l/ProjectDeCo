@@ -63,7 +63,7 @@ function createTeamCheck() {
 		int userNum = 0;
 	
 		if(session.getAttribute("user_num") == null){
-			response.sendRedirect("./shareList.sh");
+			response.sendRedirect("./teamMain.te");
 		} else {
 			userNum = (int) session.getAttribute("user_num");
 		}
