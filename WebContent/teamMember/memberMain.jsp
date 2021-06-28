@@ -8,6 +8,8 @@
 </head>
 <body>
 	<h1>WebContent/teamMember/memberMain.jsp</h1>
+	
+	
 
 </body>
 </html>

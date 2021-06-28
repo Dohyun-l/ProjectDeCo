@@ -38,7 +38,7 @@
 	</textarea><br>
 
 	<input type="button" value="참여하기" onclick="location.href='./joinTeamMember.tm?idx=<%=idx%>'"><input type="button" value="목록으로"> <input type="button" value="관리자페이지"><br>
-	<input type="button" value="팀페이지 가기"> <input type="button" value="탈퇴하기">
+	<input type="button" value="팀페이지 가기"> <input type="button" value="탈퇴하기" onclick="location.href='./deleteTeamMember.tm?idx=<%=idx%>'">
 	
 	<input type="button" value="팀삭제" onclick="location.href='./deleteTeamAction.te?idx=<%=tdto.getIdx() %>';">
 
