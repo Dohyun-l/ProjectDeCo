@@ -42,7 +42,7 @@ public class deleteTeamAction implements Action{
 		
 		out.print("<script>");
 		out.print("alert('정상적으로 해체되었습니다.');");
-		out.print("location.href='Project/teamList.te';");
+		out.print("location.href='./teamList.te';");
 		out.print("</script>");
 		out.close();
 		

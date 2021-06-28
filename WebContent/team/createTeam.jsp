@@ -83,15 +83,15 @@ function createTeamCheck() {
 		
 		<select name='location'>
   			<option value='' selected>지역을 선택해주세요</option>
-  			<option value="seoul">서울</option>
- 			<option value="busan">부산</option>
-  			<option value="Incheon">인천</option>
-  			<option value="daegu">대구</option>
-  			<option value="gwangju">광주</option>  
-  			<option value="ulsan">울산</option>
-  			<option value="daejeon">대전</option>		
-  			<option value="changwon">창원</option>
-  			<option value="jeju">제주도</option>					
+  			<option value="서울">서울</option>
+ 			<option value="부산">부산</option>
+  			<option value="인천">인천</option>
+  			<option value="대구">대구</option>
+  			<option value="광주">광주</option>  
+  			<option value="울산">울산</option>
+  			<option value="대전">대전</option>		
+  			<option value="창원">창원</option>
+  			<option value="제주도">제주도</option>					
 		</select><hr>
 		
 		<select name='limit_p'>
