@@ -232,6 +232,7 @@ public class teamDAO {
 			pstmt.setInt(1, idx);
 			rs = pstmt.executeQuery();
 			if(rs.next()){
+				tdto = new teamDTO();
 				tdto.setContent(rs.getString("content"));
 				tdto.setCreate_at(rs.getString("create_at"));
 				tdto.setDeadline(rs.getString("deadline"));
