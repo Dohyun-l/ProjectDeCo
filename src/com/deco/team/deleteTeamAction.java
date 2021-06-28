@@ -16,6 +16,7 @@ public class deleteTeamAction implements Action{
 		HttpSession session = req.getSession();
 		int idx = Integer.parseInt(req.getParameter("idx"));
 		int master = (int) session.getAttribute("user_num");
+		
 		teamDAO tdao = new teamDAO();
 		int check = tdao.deleteTeam(idx, master);
 		
