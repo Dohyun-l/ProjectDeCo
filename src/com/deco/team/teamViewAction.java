@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import com.deco.Action;
 import com.deco.ActionForward;
+import com.deco.team.member.teamMemberDAO;
 
 public class teamViewAction implements Action{
 
@@ -18,9 +19,9 @@ public class teamViewAction implements Action{
 		}
 		teamDAO tdao = new teamDAO();
 		teamDTO tdto = tdao.getteamView(idx);
+		teamMemberDAO tmdao = new teamMemberDAO();
 		
 		req.setAttribute("tdto", tdto);
-		
 		ActionForward forward = new ActionForward();
 		forward = new ActionForward("./team/teamView.jsp", false);
 		return forward;

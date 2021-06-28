@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import com.deco.Action;
 import com.deco.ActionForward;
+import com.deco.team.member.teamMemberDAO;
 
 public class deleteTeamAction implements Action{
 
@@ -40,6 +41,8 @@ public class deleteTeamAction implements Action{
 			return null;
 		}
 		
+		teamMemberDAO tmdao = new teamMemberDAO();
+		tmdao.deleteMemberOfTeamIdx(idx);
 		
 		out.print("<script>");
 		out.print("alert('정상적으로 해체되었습니다.');");

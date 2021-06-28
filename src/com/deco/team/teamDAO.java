@@ -288,8 +288,42 @@ public class teamDAO {
 		}
 		return check;
 	}
-	
 	// deleteTeam
+	// teamUpdate
+	public int teamUpdate(teamDTO tdto){
+		int check = -1;
+		try {
+			conn = getConnection();
+			sql="select * from team where idx=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, tdto.getIdx());
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				if(tdto.getMaster() == rs.getInt("master")){
+					sql="update team set title=?, content=?, location=?, master=?, limit_p, deadline=?";
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, tdto.getTitle());
+					pstmt.setString(2, tdto.getContent());
+					pstmt.setString(3, tdto.getLocation());
+					pstmt.setInt(4, tdto.getMaster());
+					pstmt.setString(5, tdto.getLimit_p());
+					pstmt.setString(6, tdto.getDeadline());
+					pstmt.executeUpdate();
+					check = 1;
+				}else{
+					// 마스터가 아닙니다.
+					check = 0;
+				}
+			}else{
+				check = -1;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return check;
+	}
 	
+	// teamUpdate
 
 }

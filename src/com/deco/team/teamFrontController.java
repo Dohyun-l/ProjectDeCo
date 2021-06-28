@@ -63,6 +63,17 @@ public class teamFrontController extends Controller {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if(command.equals("/teamModify.te")){
+			System.out.println("C : teamModify.te 호출");
+			forward = new ActionForward("./team/teamModify.jsp",false);
+		}else if(command.equals("/teamModifyAction.te")){
+			System.out.println("C : teamModifyAction.te 호출");
+			// action = new teamUpdateAction();
+			try {
+			forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		

@@ -1,3 +1,4 @@
+<%@page import="com.deco.team.member.teamMemberDAO"%>
 <%@page import="com.deco.user.userDAO"%>
 <%@page import="com.deco.team.teamDAO"%>
 <%@page import="com.deco.team.teamDTO"%>
@@ -30,18 +31,21 @@
 %>
 
 
-	<h2>프로젝트 현황</h2>
- 	<b><%=tdto.getTitle() %></b> | <b><%=masternick %></b> | <b><%=tdto.getLocation() %></b><br>
- 	<b>참여인원수</b> | <b><%=tdto.getDeadline() %></b><br>
- 	<textarea rows="30" cols="50">
-	<%=tdto.getContent() %>
-	</textarea><br>
-
-	<input type="button" value="참여하기" onclick="location.href='./joinTeamMember.tm?idx=<%=idx%>'"><input type="button" value="목록으로"> <input type="button" value="관리자페이지"><br>
-	<input type="button" value="팀페이지 가기"> <input type="button" value="탈퇴하기" onclick="location.href='./deleteTeamMember.tm?idx=<%=idx%>'">
 	
-	<input type="button" value="팀삭제" onclick="location.href='./deleteTeamAction.te?idx=<%=tdto.getIdx() %>';">
+ 	<h2>Project <br>
+ 	<%=tdto.getTitle() %></h2><br>
+ 	<h3><%=masternick %> 팀장님</h3>
+ 	<b>지역 : <%=tdto.getLocation() %></b><br>
+ 	<b><%=new teamMemberDAO().checkSubmitMember(Integer.parseInt(idx)) %> / <%=tdto.getLimit_p() %></b><br>
+ 	<b>모집 마감일 : <%=tdto.getDeadline() %></b><br>
+ 	<div id="DecotextContentView">
+	<h4>프로젝트 상세 내용 : <%=tdto.getContent() %></h4>
+ 	</div>
+	
+	
 
+	<a href="./joinTeamMember.tm?idx=<%=idx%>">참여하기</a> | <a href="./teamList.te"> 목록으로</a> | <a href="">마스터</a> | <a href="">팀페이지</a> | <a href="./deleteTeamMember.tm?idx=<%=idx%>">팀 탈퇴하기</a>
+	 | <a href="./deleteTeamAction.te?idx=<%=tdto.getIdx() %>">팀삭제</a>
 </center>
 </body>
 </html>
