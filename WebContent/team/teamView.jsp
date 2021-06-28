@@ -11,7 +11,11 @@
 </head>
 <body>
 <center>
+
+
 <%
+	String idx = request.getParameter("idx");
+
 	
 	userDAO udao = new userDAO();
 	teamDTO tdto = (teamDTO) request.getAttribute("tdto");
@@ -32,10 +36,12 @@
  	<textarea rows="30" cols="50">
 	<%=tdto.getContent() %>
 	</textarea><br>
-	<input type="button" value="참여하기"> | <input type="button" value="목록으로" onclick="location.href='./teamList.te';"> | <input type="button" value="관리자페이지"><br>
-	<input type="button" value="팀페이지 가기"> | <input type="button" value="탈퇴하기"> | 
+
+	<input type="button" value="참여하기" onclick="location.href='./joinTeamMember.tm?idx=<%=idx%>'"><input type="button" value="목록으로"> <input type="button" value="관리자페이지"><br>
+	<input type="button" value="팀페이지 가기"> <input type="button" value="탈퇴하기">
 	
 	<input type="button" value="팀삭제" onclick="location.href='./deleteTeamAction.te?idx=<%=tdto.getIdx() %>';">
+
 </center>
 </body>
 </html>
