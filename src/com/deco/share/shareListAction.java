@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.deco.Action;
 import com.deco.ActionForward;
@@ -16,10 +17,17 @@ public class shareListAction implements Action {
 		
 		System.out.println("M : shareListAction_execute() 호출");
 		
+		//한글처리
 		req.setCharacterEncoding("utf-8");
 		
-		// HttpSession session = req.getSession();
-		// int user_num = (int) session.getAttribute("user_num");
+		//세션처리
+		HttpSession session = req.getSession();
+				
+		int userNum = 0;
+				
+		if(session.getAttribute("user_num") != null){
+			userNum = (int) session.getAttribute("user_num");
+		}
 		
 		//객체 생성
 		shareDAO sDAO = new shareDAO();
@@ -39,6 +47,7 @@ public class shareListAction implements Action {
 			pageSize = 5;
 		} else {
 			pageSize = Integer.parseInt(str_pageSize);
+			
 		}
 		
 		String pageNum = req.getParameter("pageNum");
@@ -51,23 +60,21 @@ public class shareListAction implements Action {
 		int endRow = currentPage*pageSize;
 		   
 		List shareList = null;
-		if (category == null) {			
+		if (condition != null){
+			shareList = sDAO.shareSearchList(opt,condition);
+		} else if (category == null) {			
 			shareList = sDAO.getShareList(startRow,pageSize);
 		} else if (category.equals("null")){
 			shareList = sDAO.getShareList(startRow,pageSize);
-		} else if (opt != null){
-			shareList = sDAO.shareSearchList(opt,condition);
 		} else {
 			shareList = sDAO.getShareList(startRow,pageSize, category);
 		}
-		
-		
 		
 		req.setAttribute("shareList", shareList);
 		req.setAttribute("pageNum", pageNum);
 		req.setAttribute("pageSize", pageSize);
 		
-		ActionForward forward = new ActionForward("./shareList.jsp",false);
+		ActionForward forward = new ActionForward("./share/shareList.jsp",false);
 		
 		return forward;
 	}

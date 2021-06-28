@@ -35,7 +35,7 @@
 	
 	<a href="./Main.nt">공지사항</a>
 	
-	<a href="./share/shareList.sh">정보공유</a>
+	<a href="./shareList.sh">정보공유</a>
 	
 	
 	<!-- 회원탈퇴취소 admin_auth 값이 2인 사람만 보이게 수정 -->
