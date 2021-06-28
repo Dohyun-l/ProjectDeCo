@@ -6,6 +6,8 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
+
 import com.deco.Action;
 import com.deco.ActionForward;
 
@@ -44,8 +46,10 @@ public class joinPostAction implements Action{
 		}
 		
 		//인증할 유저 email req영역에 속성으로 저장
-		req.setAttribute("email", uDTO.getEmail());
-		forward = new ActionForward("./user/join/needEmail_auth.jsp", false);
+		//req.setAttribute("email", uDTO.getEmail());
+		System.out.println("WEFWEFQF?WEQF?QWEF???EWF?QWEF?WQEF?WQEF?WQEF?WQEF");
+		setSession(req, uDTO.getEmail());
+		forward = new ActionForward("./emailAuth.us", true);
 		return forward;
 	}
 	
@@ -76,5 +80,13 @@ public class joinPostAction implements Action{
 		out.println("</script>");
 		
 		out.close();
+	}
+	
+	public void setSession(HttpServletRequest req, String userEmail){
+		userDAO uDAO = new userDAO();
+		int userNum = uDAO.getUserNumByEmail(userEmail);
+		
+		HttpSession session = req.getSession();
+		session.setAttribute("user_num", userNum);
 	}
 }

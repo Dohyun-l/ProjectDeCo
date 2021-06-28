@@ -22,6 +22,7 @@ public class LoginAction implements Action{
 		String pw = req.getParameter("pw");
 		String referer = req.getParameter("referer");
 		userDAO loDAO = new userDAO();
+		
 		int flag = loDAO.login(email, pw);
 		
 		System.out.println(referer);
@@ -50,9 +51,25 @@ public class LoginAction implements Action{
 		
 		System.out.println(flag);
 		HttpSession session = req.getSession();
-		session.setAttribute("flag", flag);
-		// ActionForward forward = new ActionForward(req.getContextPath()+"/main.us",true);
-		if(referer.equals("null")){
+
+		session.setAttribute("user_num", flag);
+		
+		int auth = loDAO.getAdminByEmail(email);
+		
+		if(auth == -1){
+			ActionForward forward = new ActionForward("./emailAuth.us",true);
+			return forward;
+			
+		}else if(auth == -10){
+			ActionForward forward = new ActionForward("./SocialJoin.us", true);
+			return forward;
+		}
+
+
+		String exceptURL = "http://localhost:8088/ProjectDeCo/userlogout.us";
+		String exceptURL2 = "http://localhost:8088/ProjectDeCo/DeleteAction.us";
+		
+		if(referer.equals("null") || referer.equals(exceptURL) || referer.equals(exceptURL2)){
 			ActionForward forward = new ActionForward(req.getContextPath()+"/main.us",true);
 			return forward;
 		}else{

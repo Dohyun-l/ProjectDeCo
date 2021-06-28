@@ -9,7 +9,11 @@
 <title>Join</title>
 </head>
 <body>
-
+<%
+if(session.getAttribute("user_num") != null){
+	response.sendRedirect("./main.us");	
+}
+%>
 <main>
 	<form id="joinForm" action="joinAction.us" method="post">
 		<h2>회원가입</h2>
