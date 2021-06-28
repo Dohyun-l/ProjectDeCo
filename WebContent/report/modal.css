@@ -10,6 +10,7 @@
 .ReportModal .title {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 .ReportModal .title,
@@ -17,7 +18,7 @@
   padding: 5px;
 }
 
-.ReportModal .content-wrapper {
+.ReportModal .content {
   position: absolute;
   left: 50%;
   top: 50%;
