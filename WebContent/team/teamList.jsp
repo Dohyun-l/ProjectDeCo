@@ -15,6 +15,7 @@
 		userDAO udao = new userDAO();
 		teamDAO tdao = new teamDAO();
 		List teamList = tdao.teamList();
+		
 	
 	  int pageSize = (int)request.getAttribute("pageSize");
       String pageNum = (String)request.getAttribute("pageNum");

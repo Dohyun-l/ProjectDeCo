@@ -36,7 +36,15 @@ public class deleteTeamAction implements Action{
 			out.print("history.back();");
 			out.print("</script>");
 			out.close();
+			return null;
 		}
+		
+		out.print("<script>");
+		out.print("alert('정상적으로 해체되었습니다.');");
+		out.print("location.href='Project/teamList.te';");
+		out.print("</script>");
+		out.close();
+		
 		
 		return null;
 	}

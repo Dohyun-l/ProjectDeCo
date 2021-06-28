@@ -55,6 +55,14 @@ public class teamFrontController extends Controller {
 				e.printStackTrace();
 			}
 			forward = new ActionForward("./team/teamView.jsp", false);
+		}else if(command.equals("/deleteTeamAction.te")){
+			System.out.println("C : deleteTeamAction.te 호출");
+			action = new deleteTeamAction();
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		

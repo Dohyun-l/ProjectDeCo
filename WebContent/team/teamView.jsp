@@ -16,7 +16,12 @@
 	userDAO udao = new userDAO();
 	teamDTO tdto = (teamDTO) request.getAttribute("tdto");
 	String masternick = udao.getUserNickNameByNum(tdto.getMaster());
+	/* HttpSession Session = request.getSession();
+	int user_num = (int) Session.getAttribute("user_num"); */
 	
+	if(session.getAttribute("user_num") != null) {
+        int user_num = (int) session.getAttribute("user_num");
+     }
 	
 %>
 
@@ -28,7 +33,9 @@
 	<%=tdto.getContent() %>
 	</textarea><br>
 	<input type="button" value="참여하기"> | <input type="button" value="목록으로" onclick="location.href='./teamList.te';"> | <input type="button" value="관리자페이지"><br>
-	<input type="button" value="팀페이지 가기"> | <input type="button" value="탈퇴하기">
+	<input type="button" value="팀페이지 가기"> | <input type="button" value="탈퇴하기"> | 
+	
+	<input type="button" value="팀삭제" onclick="location.href='./deleteTeamAction.te?idx=<%=tdto.getIdx() %>';">
 </center>
 </body>
 </html>
