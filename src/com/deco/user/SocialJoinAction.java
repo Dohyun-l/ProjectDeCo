@@ -7,45 +7,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONObject;
-
 import com.deco.Action;
 import com.deco.ActionForward;
 
-public class joinPostAction implements Action{
+public class SocialJoinAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		ActionForward forward = null;
 		
 		req.setCharacterEncoding("utf-8");
-
-		HttpSession session = req.getSession();
-		
-		if(session.getAttribute("user_num") != null){
-			forward = new ActionForward("./main.us", true);
-			return forward;
-		}
 		
 		userDTO uDTO = new userDTO();
 		uDTO.setReq(req);
-		uDTO.setEmail_auth(new RandomCode().getCode(6));
 		
 		if(!isValid(req,uDTO)){
 			ValueException(res,"정보입력이 잘못됐습니다! (서로 다른 비밀번호, 정보 입력 등..)");
 			return forward; // null 반환
 		}
 		
-		new Thread(){
-
-			@Override
-			public void run() {
-				sendMailAuthcode.sendCode(uDTO);
-			}
-		}.start();
-
 		userDAO uDAO = new userDAO();
-		int flag = uDAO.insertUser(uDTO);
+		uDTO.setUser_num(uDAO.getUserNumByEmail(uDTO.getEmail()));
+		
+		int flag = uDAO.updateSocialUser(uDTO);
 		
 		//에러 발생 시,
 		if(flag == -5){
@@ -53,28 +37,18 @@ public class joinPostAction implements Action{
 			return forward; // null 반환
 		}
 		
-		//인증할 유저 email req영역에 속성으로 저장
-		//req.setAttribute("email", uDTO.getEmail());
-		System.out.println("WEFWEFQF?WEQF?QWEF???EWF?QWEF?WQEF?WQEF?WQEF?WQEF");
-		setSession(req, uDTO.getEmail());
-		forward = new ActionForward("./emailAuth.us", true);
+		//이미 로그인 되어있기에 main으로 보낸다.
+		forward = new ActionForward("./main.us", true);
 		return forward;
 	}
 	
-	private boolean isValid(HttpServletRequest req, userDTO uDTO){
+	boolean isValid(HttpServletRequest req, userDTO uDTO){
 		int majorLen = uDTO.getMajor().split(",").length;
-		System.out.println(majorLen);
-		if(!req.getParameter("pw").equals(req.getParameter("pw2"))){
-			return false;
-		}
-		if(5 < majorLen || majorLen < 1){
-			return false;
-		}
 		
-		//패스워드 공백
-		if(uDTO.getPw().indexOf(32) != -1){
+		if(uDTO.getEmail().length() < 2)
 			return false;
-		}
+		if(5 < majorLen || majorLen < 1)
+			return false;
 		
 		return true;
 	}
@@ -88,13 +62,5 @@ public class joinPostAction implements Action{
 		out.println("</script>");
 		
 		out.close();
-	}
-	
-	public void setSession(HttpServletRequest req, String userEmail){
-		userDAO uDAO = new userDAO();
-		int userNum = uDAO.getUserNumByEmail(userEmail);
-		
-		HttpSession session = req.getSession();
-		session.setAttribute("user_num", userNum);
 	}
 }

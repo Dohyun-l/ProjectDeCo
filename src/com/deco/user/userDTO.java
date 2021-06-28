@@ -1,5 +1,8 @@
 package com.deco.user;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import javax.servlet.http.HttpServletRequest;
 
 public class userDTO {
@@ -182,6 +185,26 @@ public class userDTO {
 				inter += getInter[i]+(i != getInter.length-1 ? "," : "");
 			}
 		}
+	}
+	
+	public void setRs(ResultSet rs) throws SQLException{
+		user_num = rs.getInt(1);	
+		email = rs.getString(2);
+		pw = rs.getString(3);
+		pre_pw=rs.getString(4);
+		name= rs.getString(5);
+		nickname= rs.getString(6);
+		addr= rs.getString(7);
+		phone= rs.getString(8);
+		major= rs.getString(9);
+		inter= rs.getString(10);
+		create_at= rs.getString(11);
+		last_login= rs.getString(12);
+		change_pw= rs.getString(13);
+		private_user= rs.getInt(14);
+		point= rs.getInt(15);
+		admin_auth= rs.getInt(16);
+		email_auth= rs.getString(17);
 	}
 
 	@Override

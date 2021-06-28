@@ -1,3 +1,4 @@
+<%@page import="com.deco.user.userDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -6,21 +7,29 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="https://unpkg.com/mvp.css">
 <link rel="stylesheet" href="./user/join/style.css">
-<title>Join</title>
+<title>소설 회원가입</title>
 </head>
 <body>
+
 <%
-if(session.getAttribute("user_num") != null){
+if(session.getAttribute("user_num") == null){
+	response.sendRedirect("./login.us");
+	return ;
+}
+userDAO uDAO = new userDAO();
+int user_num = (Integer)session.getAttribute("user_num");
+int admin_auth = uDAO.getAdminByNum(user_num);
+
+if(admin_auth != -10){
 	response.sendRedirect("./main.us");	
 }
 %>
+
 <main>
-	<form id="joinForm" action="joinAction.us" method="post">
-		<h2>회원가입</h2>
-		<input type="text" name="email" id="email" placeholder="이메일">
-		<input type="password" name="pw" id="pw" placeholder="비밀번호">
-		<input type="password" name="pw2" id="pw2" placeholder="비밀번호 확인">
-		<input type="text" name="name" id="name" placeholder="이름">
+	<form id="joinForm" action="SocialJoinAction.us" method="post">
+		<h2>소셜 회원가입 추가정보</h2>
+		<input type="text" name="email" id="email" placeholder="이메일" value="${uDTO.email}" readonly>
+		<input type="text" name="name" id="name" placeholder="이름" value="${uDTO.name}">
 		<input type="text" name="nickname" id="nickname" placeholder="닉네임">
 		<input type="text" name="phone" id="phone" placeholder="휴대전화(010-XXXX-XXXX)" maxlength="13">
 		<input type="text" name="addr" id="addr" placeholder="주소" readonly>
@@ -45,8 +54,9 @@ if(session.getAttribute("user_num") != null){
 				<div id="searchBox2" class="searchBox"></div>
 			</div>	
 		</div>
-		<button id="joinSubmit">회원가입</button>
+		<button id="joinSubmit">정보수정</button>
 	</form>
+	<a href="./userlogout.us"><button>로그아웃</button></a>
 </main>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="./user/join/js/addrAPI.js"></script>
