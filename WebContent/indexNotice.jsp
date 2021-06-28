@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
 	<!-- model2 실행페이지 -->
 	<%
 
@@ -17,6 +16,5 @@
 	
 	
 	%>
-
 </body>
 </html>
