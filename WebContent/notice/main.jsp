@@ -12,7 +12,7 @@
 	
 	<%
 		// 세션객체의 정보를 가져와서 확인
-		int user_num = (int) session.getAttribute("flag");
+		int user_num = (int) session.getAttribute("user_num");
 	
 		userDAO usDAO = new userDAO();
 		String nickName = usDAO.getUserNickNameByNum(user_num);

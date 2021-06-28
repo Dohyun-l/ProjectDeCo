@@ -27,7 +27,10 @@
 <div id="se2_sample" style="margin:10px 0;">
 
 	<%
-		int user_num = (int) session.getAttribute("flag");
+		int user_num = 0;
+		if(session.getAttribute("user_num") != null) {
+			user_num = (int) session.getAttribute("user_num");
+		}
 	%>
 
 	

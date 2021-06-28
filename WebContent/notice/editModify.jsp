@@ -34,7 +34,10 @@
 	
 		int idx = Integer.parseInt(request.getParameter("idx"));
 		
-		int user_num = (int) session.getAttribute("flag");
+		int user_num = 0;
+		if(session.getAttribute("user_num") != null) {
+			user_num = (int) session.getAttribute("user_num");
+		}
 	%>
 	
 	<form action="./NoticeModifyAction.nt" method="post" name="fr">

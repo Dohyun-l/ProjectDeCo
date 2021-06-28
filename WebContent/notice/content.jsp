@@ -15,11 +15,18 @@
 	<h1>WebContent/board/content.jsp</h1>
 	
 	<%
+		request.setCharacterEncoding("utf-8");
 		// 페이지 이동시 전달정보(파라미터)가 있으면 항상 가장 먼저 저당
 		// num, pageNum
 		int idx = Integer.parseInt(request.getParameter("idx"));
 		String pageNum = request.getParameter("pageNum");
 		
+		noticeDTO nDTO = (noticeDTO)request.getAttribute("noticeContent");
+
+		int user_num = 0;
+		if(session.getAttribute("user_num") != null) {
+			user_num = (int) session.getAttribute("user_num");
+		}
 		
 		// BoardDAO 객체 생성
 		noticeDAO nDAO = new noticeDAO();
@@ -30,15 +37,14 @@
 		int idxExistNext = nDAO.getIdxExistNext(idx);
 		
 		// 글 조회수를 1증가 (DB 처리)
-		nDAO.updateReadcount(idx);
+		/* nDAO.updateReadcount(idx); */
 		
 		// DB에서 글번호(num)에 해당하는 글정보를 모두 가져와서 출력
-		noticeDTO nDTO = nDAO.getBoard(idx);
+		/* noticeDTO nDTO = nDAO.getBoard(idx); */
 		
 		String fl = nDTO.getFile();
-	%>
-	<%
-		int user_num = (int) session.getAttribute("flag");
+		
+
 		userDAO usDAO = new userDAO();
 		String nickName = usDAO.getUserNickNameByNum(user_num);
 		
@@ -91,29 +97,51 @@
 		int result = bmDAO.checkBookmark(bmDTO);
 	%>
 	
-	
 	<hr>
 	<%if(result != 1){ %>
-	<form action="./bkAddAction.bm" method="post" name="gfr">
-		<!-- 아이디, 글번호 가져가기 -->
-		<%-- <input type="hidden" name="num" value="<%=dto.getNum()%>"> --%>
-		<input type="hidden" name="user_num" value="<%=user_num%>">
-		<input type="hidden" name="content_num" value="<%=nDTO.getIdx()%>">
-	
-		<input type="submit" name="bookmark" value="즐겨찾기">
-	</form>
+		<form action="./bkAddAction.bm" method="post" name="gfr" id="btnBK">
+			<!-- 아이디, 글번호 가져가기 -->
+			<%-- <input type="hidden" name="num" value="<%=dto.getNum()%>"> --%>
+			<input type="hidden" name="user_num" value="<%=user_num%>">
+			<input type="hidden" name="content_num" value="<%=nDTO.getIdx()%>">
+		
+			<input type="submit" name="bookmark" value="즐겨찾기">
+		</form>
 	<%}else{ %>
-	<form action="./bkDeleteAction.bm" method="post" name="gfr">
-		<!-- 아이디, 글번호 가져가기 -->
-		<%-- <input type="hidden" name="num" value="<%=dto.getNum()%>"> --%>
-		<input type="hidden" name="user_num" value="<%=user_num%>">
-		<input type="hidden" name="content_num" value="<%=nDTO.getIdx()%>">
-	
-		<input type="submit" name="bookmark" value="즐겨찾기없애기">
-	</form>
-	
-	
+		<form action="./bkDeleteAction.bm" method="post" name="gfr">
+			<!-- 아이디, 글번호 가져가기 -->
+			<%-- <input type="hidden" name="num" value="<%=dto.getNum()%>"> --%>
+			<input type="hidden" name="user_num" value="<%=user_num%>">
+			<input type="hidden" name="content_num" value="<%=nDTO.getIdx()%>">
+		
+			<input type="submit" name="bookmark" value="즐겨찾기없애기">
+		</form>
 	<%} %>
+	
+    <input type="button" value="★" onclick="goodCheck()"/>
+	
+	<!--  -->
+	<script type="text/javascript">
+		function goodCheck() {
+	        //var ans = confirm("별점을 주시겠습니가?");
+	        //if(!ans) {
+	        //    return false;
+	        //}
+	        var query = {idx : ${vo.idx}}
+	        
+	        $.ajax({
+	            url : "${contextPath}/bGood.bo",
+	            type: "get",
+	            data: query,
+	            success:function(data) {
+	                //alert("별점이 추가 되었습니다.");
+	                location.reload();
+	            }
+	        });
+	    }
+	</script>
+	<!--  -->
+	
 	<script>
 	function del(){
 		if(confirm("정말 삭제하시겠습니까 ?") == true){
