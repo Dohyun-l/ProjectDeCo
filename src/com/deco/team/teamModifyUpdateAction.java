@@ -43,6 +43,8 @@ public class teamModifyUpdateAction implements Action {
 		teamDAO tdao = new teamDAO();
 		tdao.teamUpdate(tdto);
 		
+		
+		
 		ActionForward forward = new ActionForward(req.getContextPath()+"/teamView.te?idx="+idx,true);
 		
 		return forward;
