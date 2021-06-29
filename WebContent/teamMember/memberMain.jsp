@@ -1,3 +1,5 @@
+<%@page import="com.deco.team.teamDTO"%>
+<%@page import="com.deco.team.teamDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -9,7 +11,25 @@
 <body>
 	<h1>WebContent/teamMember/memberMain.jsp</h1>
 	
+	<%
+		String idx = request.getParameter("idx");
 	
-
+		int user_num = 0;
+	
+		if(session.getAttribute("user_num") == null) {
+			response.sendRedirect("./teamView.te?idx="+idx);
+		} else {
+			user_num = (int) session.getAttribute("user_num");
+		}
+		
+		teamDAO tdao = new teamDAO();
+		teamDTO tdto = tdao.getteamView(Integer.parseInt(idx));
+	%>
+	
+	<a href="#">일정 공유</a>
+	
+	<%if(user_num == tdto.getMaster()) { %>
+	<a href="./MemberList.tm?idx=<%=idx%>">멤버 관리</a>
+	<%} %>
 </body>
 </html>

@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -245,5 +247,37 @@ public class teamMemberDAO {
 	}
 	// checkRepuestTeamJoin(teamMemberDTO tmdto)
 
+	// getTeamMemberList(int idx)
+	public List<teamMemberDTO> getTeamMemberList(int team_idx){
+		List<teamMemberDTO> memberList = new ArrayList<teamMemberDTO>();
+		
+		try {
+			conn = getConnection();
+			sql = "select * from team_member where team_idx=? order by idx desc";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, team_idx);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				teamMemberDTO tmdto = new teamMemberDTO();
+				tmdto.setCreate_at(rs.getString("create_at"));
+				tmdto.setIdx(rs.getInt("idx"));
+				tmdto.setMember(rs.getInt("member"));
+				tmdto.setSubmit(rs.getInt("submit"));
+				tmdto.setTeam_idx(rs.getInt("team_idx"));
+				
+				memberList.add(tmdto);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		return memberList;
+	}
 	
+	// getTeamMemberList(int idx)
 }

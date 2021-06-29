@@ -49,7 +49,19 @@ public class teamMemberFrontController extends Controller {
 		} else if (command.equals("/teamPage.tm")) {
 			System.out.println("C : /teamPage.tm 호출");
 			forward = new ActionForward("./teamMember/memberMain.jsp", false);
+		} else if (command.equals("/MemberList.tm")) {
+			System.out.println("C : /MemberList.tm 호출");
+			action = new MemberListAction();
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
+		
+		
+		
+		
 
 		/////////////////////////////////////////////////////////
 
