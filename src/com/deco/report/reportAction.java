@@ -1,5 +1,8 @@
 package com.deco.report;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -23,9 +26,21 @@ public class reportAction implements Action {
 		int user_num = Integer.parseInt(session.getAttribute("user_num").toString());
 		System.out.println(user_num);
 		
-		reportDAO rDAO = new reportDAO();
+		reportDTO rDTO = new reportDTO();
+		rDTO.setUser_num(user_num);
+		rDTO.setBody(reqObj);
 		
+		reportDAO rDAO = new reportDAO();
+		int flag = rDAO.insertReport(rDTO);
+		
+		if(flag == -1){
+			
+			res.setStatus(400);
+			return null;
+		}
+		
+		res.setStatus(204);
 		return null;
 	}
-
+	
 }

@@ -53,6 +53,47 @@ public class reportDAO {
 	}
 	
 	
-	//
+	//insertReport
+	/**
+	 * @return 정상 1, 비정상 -1
+	*/
+	public int insertReport(reportDTO rDTO){
+		int flag = -1;
+	
+		try {
+			conn = getConnection();
+			
+			int idx = 0;
+			
+			sql = "select max(idx) from report";
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				idx = rs.getInt(1);
+			}
+			
+			sql = "insert into report (idx, user_num, content_num, re_type"
+					+ ", content_type, re_comment, re_date) "
+					+ "values(?,?,?,?,?,?,now())";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			pstmt.setInt(2, rDTO.getUser_num());
+			pstmt.setInt(3, rDTO.getContent_num());
+			pstmt.setInt(4, rDTO.getRe_type());
+			pstmt.setInt(5, rDTO.getContent_type());
+			pstmt.setString(6, rDTO.getRe_comment());
+			
+			pstmt.executeUpdate();
+			flag = 1;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return flag;
+	}
+	//insertReport
 	
 }

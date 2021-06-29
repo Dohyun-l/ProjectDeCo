@@ -62,6 +62,9 @@ public class reportDTO {
     }
     
     public void setBody(JSONObject jsonObj) {
-    	
+        content_num = (Integer) jsonObj.get("contentNum");
+        content_type = (Integer) jsonObj.get("contentType");        
+        re_type = (Integer) jsonObj.get("type");
+        re_comment = (String) jsonObj.get("content");
     }
 }
