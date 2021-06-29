@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -61,7 +63,7 @@ public class teamMemberDAO {
 	public int joinTeam(teamMemberDTO tmDTO) {
 
 		int idx = 0;
-		
+
 		int result = -1;
 
 		try {
@@ -116,6 +118,27 @@ public class teamMemberDAO {
 	}
 	// onMemberSubmit(teamMemberDTO tmDTO)
 
+	// joinMember(int idx)
+	public void joinMember(int idx) {
+		try {
+			conn = getConnection();
+			sql = "update team_member set submit=1 where idx=?";
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, idx);
+
+			pstmt.executeUpdate();
+			
+			System.out.println("DAO : 업데이트 완료");
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+	}
+	// joinMember(int idx)
+
 	// memberSubmit(teamMemberDTO tmDTO)
 	public int checkMemberSubmit(teamMemberDTO tmDTO) {
 		int result = 0;
@@ -145,7 +168,7 @@ public class teamMemberDAO {
 	// deleteMember(teamMemberDTO tmDTO)
 	public int deleteMember(teamMemberDTO tmDTO) {
 		int result = -1;
-		
+
 		try {
 			conn = getConnection();
 			sql = "delete from team_member where team_idx=? and member=?";
@@ -167,6 +190,30 @@ public class teamMemberDAO {
 	}
 	// deleteMember(teamMemberDTO tmDTO)
 
+	// deleteMemberOfIdx(int idx)
+	public int deleteMemberOfIdx(int idx) {
+		int result = -1;
+
+		try {
+			conn = getConnection();
+			sql = "delete from team_member where idx=?";
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, idx);
+
+			result = pstmt.executeUpdate();
+
+			System.out.println("DAO : 멤버 삭제 완료");
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		return result;
+	}
+	// deleteMemberOfIdx(int idx)
+
 	// deleteMemberOfTeamNum(int team_idx)
 	public void deleteMemberOfTeamIdx(int team_idx) {
 		try {
@@ -187,26 +234,26 @@ public class teamMemberDAO {
 		}
 	}
 	// deleteMemberOfTeamNum(int team_idx)
-	
+
 	// checkSubmitMember(int team_idx)
-	public int checkSubmitMember(int team_idx){
+	public int checkSubmitMember(int team_idx) {
 		int result = 0;
-		
+
 		try {
 			conn = getConnection();
 			sql = "select count(*) from deco.team_member where team_idx=? and submit=1";
 			pstmt = conn.prepareStatement(sql);
-			
+
 			pstmt.setInt(1, team_idx);
-			
+
 			rs = pstmt.executeQuery();
-			
-			if(rs.next()){
+
+			if (rs.next()) {
 				result = rs.getInt(1);
 			}
-			
-			System.out.println("DAO : 현재 승인완료된 참여 인원 "+result);
-			
+
+			System.out.println("DAO : 현재 승인완료된 참여 인원 " + result);
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -215,27 +262,27 @@ public class teamMemberDAO {
 		return result;
 	}
 	// checkSubmitMember(int team_idx)
-	
+
 	// checkRepuestTeamJoin(teamMemberDTO tmdto)
-	public int checkRepuestTeamJoin(teamMemberDTO tmDTO){
+	public int checkRepuestTeamJoin(teamMemberDTO tmDTO) {
 		int check = -1;
-		
+
 		try {
 			conn = getConnection();
 			sql = "select * from team_member where team_idx=? and member=?";
 			pstmt = conn.prepareStatement(sql);
-			
+
 			pstmt.setInt(1, tmDTO.getTeam_idx());
 			pstmt.setInt(2, tmDTO.getMember());
-			
+
 			rs = pstmt.executeQuery();
-			
-			if(rs.next()){
+
+			if (rs.next()) {
 				check = 0;
 			} else {
 				check = 1;
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -245,5 +292,103 @@ public class teamMemberDAO {
 	}
 	// checkRepuestTeamJoin(teamMemberDTO tmdto)
 
-	
+	// getSubmitmemberList(int team_idx)
+	public List<teamMemberDTO> getSubmitmemberList(int team_idx) {
+		List<teamMemberDTO> teamList = new ArrayList<teamMemberDTO>();
+
+		try {
+			conn = getConnection();
+			sql = "select * from team_member where team_idx=? and submit=1";
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, team_idx);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				teamMemberDTO tmdto = new teamMemberDTO();
+
+				tmdto.setCreate_at(rs.getString("create_at"));
+				tmdto.setIdx(rs.getInt("idx"));
+				tmdto.setMember(rs.getInt("member"));
+				tmdto.setSubmit(rs.getInt("submit"));
+				tmdto.setTeam_idx(rs.getInt("team_idx"));
+
+				teamList.add(tmdto);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		return teamList;
+	}
+	// getSubmitmemberList(int team_idx)
+
+	// getNoneSubmitmemberList(int team_idx)
+	public List<teamMemberDTO> getNoneSubmitmemberList(int team_idx) {
+		List<teamMemberDTO> teamList = new ArrayList<teamMemberDTO>();
+
+		try {
+			conn = getConnection();
+			sql = "select * from team_member where team_idx=? and submit=0";
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, team_idx);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				teamMemberDTO tmdto = new teamMemberDTO();
+
+				tmdto.setCreate_at(rs.getString("create_at"));
+				tmdto.setIdx(rs.getInt("idx"));
+				tmdto.setMember(rs.getInt("member"));
+				tmdto.setSubmit(rs.getInt("submit"));
+				tmdto.setTeam_idx(rs.getInt("team_idx"));
+
+				teamList.add(tmdto);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		return teamList;
+	}
+	// getNoneSubmitmemberList(int team_idx)
+
+	// getMemberInfo(int idx)
+	public teamMemberDTO getMemberInfo(int idx) {
+		teamMemberDTO tmdto = null;
+
+		try {
+			conn = getConnection();
+			sql = "select * from team_member where idx=?";
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, idx);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				tmdto = new teamMemberDTO();
+
+				tmdto.setCreate_at(rs.getString("create_at"));
+				tmdto.setIdx(rs.getInt("idx"));
+				tmdto.setMember(rs.getInt("member"));
+				tmdto.setSubmit(rs.getInt("submit"));
+				tmdto.setTeam_idx(rs.getInt("team_idx"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		return tmdto;
+	}
+	// getMemberInfo(int idx)
+
 }

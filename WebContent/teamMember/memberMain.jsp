@@ -7,9 +7,17 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<%
+		String idx = request.getParameter("idx");
+	
+	%>
+
+
 	<h1>WebContent/teamMember/memberMain.jsp</h1>
 	
+	<a href="./teamView.te?idx=<%=idx %>">팀 뷰가기</a>
 	
+	<a href="./memberList.tm?idx=<%=idx%>">멤버 관리</a>
 
 </body>
 </html>
