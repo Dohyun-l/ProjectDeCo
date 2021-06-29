@@ -1,5 +1,6 @@
 export default class reportInfo{
     data = null
+    page = 1
 
     constructor({$target, contentNum, data, ClickSubmit}) {
         this.repoTypeContainer = document.createElement("div");
@@ -33,7 +34,16 @@ export default class reportInfo{
         this.data = data
         this.render();
     }
-    
+
+    setSuccess() {
+        this.repoTypeContainer.querySelector(".repo__content-body").innerHTML =
+            `
+            <h1>신고 완료</h1>
+            <button class="repo__success">완료</button>
+            `
+        this.repoTypeContainer.querySelector(".repo__success").addEventListener("click",(event) => this.repoTypeContainer.style.display = 'none')
+    }
+
     handleSubmitRepo(contentData){
         const repoTypes = contentData.querySelectorAll(".report__type");
         let isChecked = false;
@@ -77,7 +87,7 @@ export default class reportInfo{
     }
 
     render(){
-        if(this.data.visible){
+        if(this.data.visible && this.page === 1){
             
             this.repoTypeContainer.innerHTML = 
             `
@@ -117,7 +127,9 @@ export default class reportInfo{
             })
             this.repoTypeContainer.querySelector("#repo__submit").addEventListener("click", (event) => this.handleSubmitRepo(this.repoTypeContainer.querySelector(".repo__content-body")))
             
-        }else {
+        } else if (this.page === 2) {
+        
+        } else {
             this.repoTypeContainer.style.display = "none";
         }
     }

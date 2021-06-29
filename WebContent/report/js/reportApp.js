@@ -6,6 +6,8 @@ export default class reportApp{
         this.reportBtn = new reportBtn({
             $target,
             OnClick: () => {
+                //if ==> 신고한 사람이면 다시 중복X
+
                 this.reportInfo.setState({
                     visible: true
                 })
@@ -19,8 +21,23 @@ export default class reportApp{
                 visible: false
             },
             ClickSubmit: async(reqData) => {
+                const url = "./reportAction.repo";
+                const option = {
+                    method: 'POST',
+                    body: JSON.stringify(reqData),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }
 
-                const response = await (await fetch("",))
+                const response = await (await fetch(url, option).catch(handleError));
+                
+                console.log(response);
+
+                if (response.status === 200) {
+                    
+                    this.reportInfo.setSuccess();
+                }
             }
         });
     }
@@ -57,4 +74,8 @@ export default class reportApp{
         }
         return true;
     }
+}
+
+const handleError = () => {
+    console.warn("데이터 전송 에러");
 }
