@@ -85,7 +85,9 @@
       }
    }
 %>
-	
+	<br>
+	<br>
+	<a href="./main.us">메인페이지로</a>
 </center>
 
 

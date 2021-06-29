@@ -68,7 +68,7 @@ public class teamFrontController extends Controller {
 			forward = new ActionForward("./team/teamModify.jsp",false);
 		}else if(command.equals("/teamModifyAction.te")){
 			System.out.println("C : teamModifyAction.te 호출");
-			// action = new teamUpdateAction();
+			// action = new teamModifyAction();
 			try {
 			forward = action.execute(req, resp);
 			} catch (Exception e) {
