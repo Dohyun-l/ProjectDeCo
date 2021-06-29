@@ -67,6 +67,7 @@ public class teamListAction implements Action{
 		forward = new ActionForward("./team/teamList.jsp", false);
 		
 		return forward;
+		
 	}
 
 	
