@@ -311,6 +311,8 @@ public class teamDAO {
 					pstmt.setInt(7, tdto.getIdx());
 					pstmt.executeUpdate();
 					check = 1;
+					
+					System.out.println("DAO : 팀 내용 수정완료"); 
 				}else{
 					// 마스터가 아닙니다.
 					check = 0;

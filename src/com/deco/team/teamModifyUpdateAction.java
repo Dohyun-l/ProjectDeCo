@@ -41,11 +41,11 @@ public class teamModifyUpdateAction implements Action {
 		tdto.setMaster(Integer.parseInt(req.getParameter("master")));
 		tdto.setDeadline(req.getParameter("deadline"));
 		tdto.setIdx(idx);
-		tdto.setDeadline(req.getParameter("deadline"));
 		
 		teamDAO tdao = new teamDAO();
 		int check = tdao.teamUpdate(tdto);
 		
+		System.out.println("M : 팀내용 수정완료");
 
 		resp.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = resp.getWriter();
@@ -70,7 +70,7 @@ public class teamModifyUpdateAction implements Action {
 		}
 		out.print("<script>");
 		out.print("alert('정상적으로 수정이 완료되었습니다.');");
-		out.print("location.href=./teamView.te?idx="+idx+"&pageNum="+pageNum+"&pageSize="+pageSize);
+		out.print("location.href='./teamView.te?idx="+idx+"&pageNum="+pageNum+"&pageSize="+pageSize+"'");
 		out.print("</script>");
 		out.close();
 		
