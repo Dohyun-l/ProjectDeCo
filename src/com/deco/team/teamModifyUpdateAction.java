@@ -1,5 +1,7 @@
 package com.deco.team;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -39,15 +41,46 @@ public class teamModifyUpdateAction implements Action {
 		tdto.setMaster(Integer.parseInt(req.getParameter("master")));
 		tdto.setDeadline(req.getParameter("deadline"));
 		tdto.setIdx(idx);
+		tdto.setDeadline(req.getParameter("deadline"));
 		
 		teamDAO tdao = new teamDAO();
-		tdao.teamUpdate(tdto);
+		int check = tdao.teamUpdate(tdto);
 		
+
 		
 		
 		ActionForward forward = new ActionForward(req.getContextPath()+"/teamView.te?idx="+idx,true);
+
+
+		resp.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = resp.getWriter();
+
+		if(check == 0){
+		out.print("<script>");
+		out.print("alert('권한이 없습니다.');");
+		out.print("history.back();");
+		out.print("</script>");
+		out.close();
+
 		
-		return forward;
+		return null;
+		
+		}else if(check == -1){
+			out.print("<script>");
+			out.print("alert('잘못된 접근입니다.');");
+			out.print("history.back();");
+			out.print("</script>");
+			out.close();
+			
+		 return null;	
+		}
+		out.print("<script>");
+		out.print("alert('정상적으로 수정이 완료되었습니다.');");
+		out.print("location.href=./teamView.te?idx="+idx+"&pageNum="+pageNum+"&pageSize="+pageSize);
+		out.print("</script>");
+		out.close();
+		
+		return null;
 	}
 
 }
