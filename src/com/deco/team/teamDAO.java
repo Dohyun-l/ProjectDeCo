@@ -318,8 +318,9 @@ public class teamDAO {
 				check = -1;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			closeDB();
 		}
 		return check;
 	}
