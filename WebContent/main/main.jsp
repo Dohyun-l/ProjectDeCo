@@ -21,6 +21,10 @@
 		uDAO = new userDAO();
 		name = uDAO.getUserNickNameByNum(user_num);
 		admin_auth = uDAO.getAdminByNum(user_num);
+		
+		if(admin_auth == -10){
+			response.sendRedirect("./SocialJoin.us");
+		}
 	}
 %>
 	<%if(name == null && user_num == -1) {%>
