@@ -21,7 +21,7 @@ export default class reportApp{
                 visible: false
             },
             ClickSubmit: async(reqData) => {
-                const url = "./reportAction.repo";
+                const url = "./reportAction.repo"; // "./reportAction.repo";
                 const option = {
                     method: 'POST',
                     body: JSON.stringify(reqData),
@@ -29,6 +29,8 @@ export default class reportApp{
                         'Content-Type': 'application/json'
                     }
                 }
+
+                console.log(reqData);
 
                 const response = await (await fetch(url, option).catch(handleError));
                 

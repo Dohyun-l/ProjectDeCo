@@ -46,6 +46,9 @@ export default class reportInfo{
 
     handleSubmitRepo(contentData){
         const repoTypes = contentData.querySelectorAll(".report__type");
+        const contentNum = document.getElementById("contentNum").value;
+        const contentType = document.getElementById("contentType").value;
+
         let isChecked = false;
         let checkedType;
 
@@ -65,12 +68,15 @@ export default class reportInfo{
 
         let reqData = {
             type:checkedType,
-            content:""
+            content: "",
+            contentNum,
+            contentType
         };
 
         //기타는 신고 내용을 받는다.
-        if(checkedType === 4){
+        if (checkedType === 4) {
             reqData.content = contentData.querySelector(".etcInput").value;
+            console.log("타입 4 : 내용 -> ", reqData.content);
         }
 
         this.ClickSubmit(reqData)
@@ -98,8 +104,8 @@ export default class reportInfo{
                         <div class="close"><i class="fas fa-times"></i></div>
                     </div>
                     <div class="repo__content-body">
-                        <input type="hidden" name="contentNum" value="${this.contentNum}">
-                        <input type="hidden" name="contentType" value="1">
+                        <input type="hidden" id="contentNum" name="contentNum" value="${this.contentNum}">
+                        <input type="hidden" id="contentType" name="contentType" value="1">
                         <div class="content_input">
                             <input type="radio" id="report__type1" data-type="1" class="report__type" name="report-type__btn"><label for="report__type1">욕설, 비방</label>
                         </div>

@@ -16,6 +16,8 @@ public class reportController extends Controller {
 	protected void doProcess(HttpServletRequest req, HttpServletResponse res) throws Exception{
 		setInit(req, res);
 		
+		System.out.println(command);
+		
 		if(command.equals("/reportAction.repo")){
 			action = new reportAction();
 			forward = action.execute(req, res);

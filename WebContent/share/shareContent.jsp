@@ -16,7 +16,8 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- jquery 준비 끝 -->
 
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link rel="stylesheet" href="./report/modal.css">
 
 </head>
 <body>
@@ -98,6 +99,7 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 <input type="button" value="수정하기" onclick="location.href='./shareContentModify.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()%>&category=<%=category%>';">
 <input type="button" value="삭제하기" onclick="location.href='./shareContentDelete.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()%>&category=<%=category%>';">
 <%} %>
+<div id="reportBtnContainer"></div>
 <br><br>
 
 
@@ -186,6 +188,6 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
  <input type="reset" value="취소">
 </form>
 
-
+<script type="module" src="./report/js/reportMain.js"></script>
 </body>
 </html>
