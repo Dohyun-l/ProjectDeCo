@@ -301,6 +301,7 @@ public class teamDAO {
 			if(rs.next()){
 				if(tdto.getMaster() == rs.getInt("master")){
 					sql="update team set title=?, content=?, location=?, master=?, limit_p=?, deadline=? where idx=?";
+
 					pstmt = conn.prepareStatement(sql);
 					pstmt.setString(1, tdto.getTitle());
 					pstmt.setString(2, tdto.getContent());
