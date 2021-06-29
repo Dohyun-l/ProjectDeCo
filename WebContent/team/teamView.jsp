@@ -44,7 +44,8 @@
 	
 	
 
-	<a href="./joinTeamMember.tm?idx=<%=idx%>">참여하기</a> | <a href="./teamList.te"> 목록으로</a> | <a href="">마스터</a> | <a href="">팀페이지</a> | <a href="./deleteTeamMember.tm?idx=<%=idx%>">팀 탈퇴하기</a>
+	<a href="./joinTeamMember.tm?idx=<%=idx%>">참여하기</a> | <a href="./teamList.te"> 목록으로</a> | <a href="">마스터</a> | <a href="">팀페이지</a> | 
+	<a href="./teamModify.te?idx=<%=idx%>">수정하기</a> | <a href="./deleteTeamMember.tm?idx=<%=idx%>">팀 탈퇴하기</a>
 	 | <a href="./deleteTeamAction.te?idx=<%=tdto.getIdx() %>">팀삭제</a>
 </center>
 </body>
