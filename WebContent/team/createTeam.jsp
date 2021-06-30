@@ -77,7 +77,8 @@ function createTeamCheck() {
 		<center>
 		<form action="./createTeamAction.te" method="post" name="fr" onsubmit="return createTeamCheck();">
 		<!-- 닉네임 -->
-		닉네임 : <input type="text" id="nickname" name="nickname" value="<%=nickname%>"readonly style="text-align:center"><br>
+		팀리더 : <br>
+		<input type="text" id="nickname" name="nickname" value="<%=nickname%>"readonly style="text-align:center"><br>
 			<hr>
 		<!-- 제목 -->	  		
 		<input type="text" name="title" placeholder="제목을 입력해주세요" size="30" style="text-align:center">

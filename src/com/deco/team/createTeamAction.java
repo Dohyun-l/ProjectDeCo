@@ -43,7 +43,7 @@ public class createTeamAction implements Action{
 		// 프로젝트 생성시 submit 자동 1변환
 		tmDAO.onMemberSubmit(tmDTO);
 		//
-		
+		System.out.println(master+"님이 "+idx+"번째 팀을 만드셨습니다, 또한 team_member테이블 자동으로 마스터 등록");
 		ActionForward forward = new ActionForward("./main.us", true);
 		return forward;
 	}

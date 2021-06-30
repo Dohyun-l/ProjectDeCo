@@ -41,19 +41,31 @@
  	<div id="DecotextContentView">
 	<h4>프로젝트 상세 내용 : <%=tdto.getContent() %></h4>
  	</div>
+	<%
 	
+	if(session.getAttribute("user_num")==null){
+		
+	}else{
+	%>
 	
 
-	<a href="./joinTeamMember.tm?idx=<%=idx%>">참여하기</a> | <a href="./deleteTeamMember.tm?idx=<%=idx%>">팀 탈퇴하기</a> | <a href="./teamPage.tm?idx=<%=idx%>">팀페이지</a>
-	 | <a href="./teamList.te"> 목록으로</a>
+	<a href="./joinTeamMember.tm?idx=<%=idx%>">참여하기</a> | <a href="./deleteTeamMember.tm?idx=<%=idx%>">팀 탈퇴하기</a> | <a href="./teamPage.tm?idx=<%=idx%>">팀페이지</a> | 
+	<%
+	}
+	%>
+	<a href="./teamList.te"> 목록으로</a>
 	 <%
-	 	if(session.getAttribute("user_num").equals(tdto.getMaster())){
+	 	
+	 		if(session.getAttribute("user_num")==null){
+	 			
+	 		}else if(tdto.getMaster() == (int)session.getAttribute("user_num")){
 	 %>
 	 | <a href="">마스터</a> | 
 	<a href="./teamModify.te?idx=<%=idx%>">수정하기</a>
 	 | <a href="./deleteTeamAction.te?idx=<%=tdto.getIdx() %>">팀삭제</a>
 	 <%
-	 	}
+	 	
+	 }
 	 %>
 </center>
 </body>
