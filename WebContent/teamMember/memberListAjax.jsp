@@ -51,6 +51,7 @@ $(function(){
 			data: {idx:$(this).attr("id").substr(8)},
 			success: function(data){
 				alert("승인완료");
+				$("#userInfo").html("");
 				userReload();
 			}
 		});
@@ -63,6 +64,7 @@ $(function(){
 			data: {idx:$(this).attr("id").substr(9)},
 			success: function(data){
 				alert("퇴출완료");
+				$("#userInfo").html("");
 				userReload();
 			}
 		});
