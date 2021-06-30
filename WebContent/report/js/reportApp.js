@@ -5,8 +5,7 @@ export default class reportApp{
     constructor($target) {
         this.reportBtn = new reportBtn({
             $target,
-            OnClick: () => {
-                OnClick: () => {
+            OnClick: async() => {
                     const url = "./haveUserReport.repo"; // "./reportAction.repo";
                     const option = {
                         method: 'POST',
@@ -17,6 +16,7 @@ export default class reportApp{
                     }
 
                     const haveResponse = await(await fetch(url, option))
+                    console.log(haveResponse)
                     //if ==> 신고한 사람이면 다시 중복X
                     if (haveResponse.status !== 204) {
                         alert("이미 신고한 게시물입니다.");
@@ -27,7 +27,6 @@ export default class reportApp{
                         visible: true
                     })
                 }
-            }
         });
         this.getParam();
         this.reportInfo = new reportInfo({
