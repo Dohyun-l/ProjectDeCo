@@ -6,6 +6,17 @@ export default class reportApp{
         this.reportBtn = new reportBtn({
             $target,
             OnClick: () => {
+                OnClick: () => {
+                const url = "./haveUserReport.repo"; // "./reportAction.repo";
+                const option = {
+                    method: 'POST',
+                    body: JSON.stringify({contentNum: this.params["contentNum"]}),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }
+
+                const haveResponse = await (await fetch(url, option))
                 //if ==> 신고한 사람이면 다시 중복X
 
                 this.reportInfo.setState({
