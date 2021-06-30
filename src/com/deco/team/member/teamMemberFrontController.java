@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.deco.ActionForward;
 import com.deco.Controller;
+import com.deco.team.talk.printTalkAction;
+import com.deco.team.talk.updateTalkAction;
 
 @WebServlet("*.tm")
 public class teamMemberFrontController extends Controller {
@@ -72,7 +74,7 @@ public class teamMemberFrontController extends Controller {
 			}
 		} else if (command.equals("/memberList.tm")) {
 			System.out.println("C : /memberList.tm 호출");
-			forward = new ActionForward("./teamMember/memberListAjax.jsp",false);
+			forward = new ActionForward("./teamMember/memberListAjax.jsp", false);
 		} else if (command.equals("/memberInfo.tm")) {
 			System.out.println("C : /memberInfo.tm 호출");
 			action = new memberInfoAction();
@@ -89,7 +91,7 @@ public class teamMemberFrontController extends Controller {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("/outMember.tm")){
+		} else if (command.equals("/outMember.tm")) {
 			System.out.println("C : /outMember.tm 호출");
 			action = new outMemberAction();
 			try {
@@ -99,10 +101,24 @@ public class teamMemberFrontController extends Controller {
 			}
 		} else if (command.equals("/teamMemberTalk.tm")) {
 			System.out.println("C : /teamMemberTalk.tm 호출");
+			forward = new ActionForward("./team/talkView.jsp", false);
+		} else if (command.equals("/updateTalk.tm")) {
+			System.out.println("C : /updateTalk.tm 호출");
+			action = new updateTalkAction();
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/printTalk.tm")) {
+			System.out.println("C : /printTalkAction.tm 호출");
+			action = new printTalkAction();
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-		
-		
-
 
 		/////////////////////////////////////////////////////////
 
