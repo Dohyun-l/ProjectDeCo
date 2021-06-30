@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.naming.Context;
@@ -12,7 +13,6 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import com.deco.share.shareDTO;
-import com.sun.org.apache.xpath.internal.axes.ContextNodeList;
 
 public class reportDAO {
 	
@@ -137,12 +137,14 @@ public class reportDAO {
 								   		 + "select content_num, count(*) as cnt "
 								   		 + "from report "
 								   		 + "group by content_num "
-								   		 + "having cnt > ?"
-								   		 + ")"
+								   		 + "having cnt >= ?"
+								   		 + ") A"
 								   + ")";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, countNum);
 			rs = pstmt.executeQuery();
+			
+			contentList = new ArrayList<shareDTO>();
 			
 			while(rs.next()){
 				
