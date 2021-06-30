@@ -18,6 +18,9 @@ export default class reportApp{
 
                 const haveResponse = await (await fetch(url, option))
                 //if ==> 신고한 사람이면 다시 중복X
+                if(haveResponse.status !== 204){
+                	
+                }
 
                 this.reportInfo.setState({
                     visible: true
