@@ -50,7 +50,7 @@ public class bookmarkFrontController extends Controller{
 			}
 		}
 		
-		if(command.equals("/bkDeleteAction.bm")){
+		else if(command.equals("/bkDeleteAction.bm")){
 			action = new bkDeleteAction();
 			try {
 				forward = action.execute(request, response);
@@ -59,6 +59,27 @@ public class bookmarkFrontController extends Controller{
 			}
 		}
 		
+		/*else if(command.equals("/addBookmark.bm")){
+			int idx = Integer.parseInt(request.getParameter("idx"));
+			response.getWriter().write();
+			return;
+		}*/
+		else if(command.equals("/addBookmark.bm")){
+			action = new bkAddAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/bmCheck.bm")){
+			action = new bmCheckAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
 		
 		System.out.println("C : 2. 페이지 주소 매핑 완료");

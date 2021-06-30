@@ -12,6 +12,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js" charset="UTF-8"></script>
+
 	<h1>WebContent/board/content.jsp</h1>
 	
 	<%
@@ -98,50 +100,45 @@
 	%>
 	
 	<hr>
-	<%if(result != 1){ %>
-		<form action="./bkAddAction.bm" method="post" name="gfr" id="btnBK">
-			<!-- 아이디, 글번호 가져가기 -->
-			<%-- <input type="hidden" name="num" value="<%=dto.getNum()%>"> --%>
-			<input type="hidden" name="user_num" value="<%=user_num%>">
-			<input type="hidden" name="content_num" value="<%=nDTO.getIdx()%>">
-		
-			<input type="submit" name="bookmark" value="즐겨찾기">
-		</form>
-	<%}else{ %>
-		<form action="./bkDeleteAction.bm" method="post" name="gfr">
-			<!-- 아이디, 글번호 가져가기 -->
-			<%-- <input type="hidden" name="num" value="<%=dto.getNum()%>"> --%>
-			<input type="hidden" name="user_num" value="<%=user_num%>">
-			<input type="hidden" name="content_num" value="<%=nDTO.getIdx()%>">
-		
-			<input type="submit" name="bookmark" value="즐겨찾기없애기">
-		</form>
-	<%} %>
-	
-    <input type="button" value="★" onclick="goodCheck()"/>
-	
-	<!--  -->
-	<script type="text/javascript">
-		function goodCheck() {
-	        //var ans = confirm("별점을 주시겠습니가?");
-	        //if(!ans) {
-	        //    return false;
-	        //}
-	        var query = {idx : ${vo.idx}}
-	        
-	        $.ajax({
-	            url : "${contextPath}/bGood.bo",
-	            type: "get",
-	            data: query,
-	            success:function(data) {
-	                //alert("별점이 추가 되었습니다.");
-	                location.reload();
-	            }
-	        });
-	    }
+	<script>
+	function bookmark(){
+		$.ajax({
+			url: "./addBookmark.bm",
+			type: "GET",
+			async: false,
+			data: {user_num: ${user_num},content_num: ${param.idx}},
+			contentType : "charset=UTF-8",
+			success: function(data){
+				if($('#bmox').val() == "☆"){
+					$('#bmox').val("★");
+				}else if($('#bmox').val() == "★"){
+					$('#bmox').val("☆");
+				}
+				
+				if($("#bm_img").attr("src") == "./imgbm/bookmarko.png"){
+					$("#bm_img").attr("src", "./imgbm/bookmarkx.png");
+				}else if($("#bm_img").attr("src") == "./imgbm/bookmarkx.png"){
+					$("#bm_img").attr("src", "./imgbm/bookmarko.png");
+				}
+				
+			},
+			error: function(){
+				alert('통신실패!!');
+			}
+			
+		})
+	}
 	</script>
 	<!--  -->
-	
+	<%if(result != 1){%>
+    	<input type="button" value="☆" id="bmox" onclick="return bookmark()">
+	    <img onclick="return bookmark()" src="./imgbm/bookmarkx.png" id="bm_img" height="50px" width="50px">
+    <%}else{ %>
+    	<input type="button" value="★" id="bmox" onclick="return bookmark()">
+	    <img onclick="return bookmark()" src="./imgbm/bookmarko.png" id="bm_img"
+	    	 height="50px" width="50px">
+    <%} %>
+    	
 	<script>
 	function del(){
 		if(confirm("정말 삭제하시겠습니까 ?") == true){
@@ -155,7 +152,7 @@
 	</script>
 	
 	<hr>
-	<%if(adminCheck == -1){ %>
+	<%if(adminCheck == -1){%>
 		<input type="button" value="수정하기" 
 					onclick="location.href='./noticemodify.nt?idx=<%=nDTO.getIdx()%>&pageNum=<%=pageNum%>';">
 					
