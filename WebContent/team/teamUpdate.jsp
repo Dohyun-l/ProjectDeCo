@@ -172,8 +172,8 @@ function teamUpdateCheck() {
 		<div class="g-recaptcha" id="g-recaptcha" data-sitekey="6LdQ1zEbAAAAAOzJAHtwDc8LTdr2vNQffqV-K15l" 	
 		data-callback="recaptcha"></div>
 		<br>
-		<input type="submit" value="수정하기">
-		<input type="reset" value="취소"> 
+		<input type="submit" value="수정하기">/
+		<input type="reset" value="취소"> /
 		<input type="button" value="수정취소" onclick="history.back()">
 		</form>
 
