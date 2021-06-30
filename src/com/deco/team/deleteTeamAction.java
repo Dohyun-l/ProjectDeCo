@@ -40,9 +40,9 @@ public class deleteTeamAction implements Action{
 			out.close();
 			return null;
 		}
-		
+		int team_idx = idx;
 		teamMemberDAO tmdao = new teamMemberDAO();
-		tmdao.deleteMemberOfTeamIdx(idx);
+		tmdao.deleteMemberOfTeamIdx(team_idx);
 		
 		out.print("<script>");
 		out.print("alert('정상적으로 해체되었습니다.');");

@@ -1,3 +1,4 @@
+<%@page import="java.io.Console"%>
 <%@page import="com.deco.team.member.teamMemberDAO"%>
 <%@page import="com.deco.user.userDAO"%>
 <%@page import="com.deco.team.teamDAO"%>
@@ -8,7 +9,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <title>Deco - 팀뷰</title>
+
 </head>
 <body>
 <center>
@@ -16,8 +19,6 @@
 
 <%
 	String idx = request.getParameter("idx");
-
-	
 	userDAO udao = new userDAO();
 	teamDTO tdto = (teamDTO) request.getAttribute("tdto");
 	String masternick = udao.getUserNickNameByNum(tdto.getMaster());
@@ -29,7 +30,16 @@
      }
 	
 %>
+<script type="text/javascript">
+function dropteam(){
+	if(confirm("정말 프로젝트를 취소하시겠습니까?")){
+		
+	}else{
+		return false;
+	}
+}
 
+</script>
 
 	
  	<h2>Project <br>
@@ -41,20 +51,33 @@
  	<div id="DecotextContentView">
 	<h4>프로젝트 상세 내용 : <%=tdto.getContent() %></h4>
  	</div>
+	<%
 	
+	if(session.getAttribute("user_num")==null){
+		
+	
+	}else{
+	
+	%>
 	
 
-	<a href="./joinTeamMember.tm?idx=<%=idx%>">참여하기</a> | <a href="./deleteTeamMember.tm?idx=<%=idx%>">팀 탈퇴하기</a> | <a href="./teamPage.tm?idx=<%=idx%>">팀페이지</a>
-	 | <a href="./teamList.te"> 목록으로</a>
+	<a href="./joinTeamMember.tm?idx=<%=idx%>">참여하기</a> | <a href="./teamPage.tm?idx=<%=idx%>">팀페이지</a> | 
+		<a href="./deleteTeamMember.tm?idx=<%=idx %>">팀 탈퇴하기</a> | 
+	<%
+	}
+	%>
+	<a href="./teamList.te"> 목록으로</a>
 	 <%
-	 	if(session.getAttribute("user_num").equals(tdto.getMaster())){
+	 	
+	 		if(session.getAttribute("user_num")==null){
+	 			
+	 		}else if(tdto.getMaster() == (int)session.getAttribute("user_num")){
 	 %>
 	 | <a href="">마스터</a> | 
 	<a href="./teamModify.te?idx=<%=idx%>">수정하기</a>
-	 | <a href="./deleteTeamAction.te?idx=<%=tdto.getIdx() %>">팀삭제</a>
-	 <%
-	 	}
-	 %>
+	 | <a href="./deleteTeamAction.te?idx=<%=tdto.getIdx() %>" onclick="return dropteam();">팀삭제</a>
+	 <%} %>
+	 
 </center>
 </body>
 </html>
