@@ -31,8 +31,8 @@ function createTeamCheck() {
    }
    
    if(document.fr.location.value == ""){
-      alert("글을 작성하실 게시판을 선택해주세요.");
-      document.fr.category.focus();
+      alert("지역을 선택해주세요.");
+      document.fr.location.focus();
       return false;
    }
    
@@ -106,6 +106,7 @@ function createTeamCheck() {
   			<option value=9>9명</option>
   			<option value=10>10명</option>			
 		</select><hr>
+				
 				
 		모집 기한 : <input type="date" name="deadline" id="deadline"><br>
 				

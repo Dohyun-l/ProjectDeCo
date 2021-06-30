@@ -26,7 +26,7 @@ function teamUpdateCheck() {
 	   
 	   if(document.fr.location.value == ""){
 	      alert("지역을 선택해주세요.");
-	      document.fr.category.focus();
+	      document.fr.location.focus();
 	      return false;
 	   }
 	   
@@ -34,26 +34,25 @@ function teamUpdateCheck() {
 	      alert("내용을 작성해 주세요.");
 	      return false;
 	   }
+	   
+	   if(document.fr.limit_p.value == ""){
+	    	alert("인원을 설정해주세요.");
+	    	document.fr.limit_p.focus();
+	    	return false;
+	    }
+	   
+	   if(document.fr.deadline.value == ""){
+	    	alert("모집기간을 설정해주세요.");
+	    	return false;
+	    }	
+	   
 	   var chk = grecaptcha.getResponse(); 
 	    if(chk.length == 0) {
 	       alert("로봇이 아닙니다 인증을 진행해주세요!");
 	       return false; 
-	    }
-	   
-	    if(document.fr.deadline.value == ""){
-	    	alert("모집기간을 설정해주세요.");
-	    	return false;
-	    }	
-		
-	    if(document.fr.limit_p.value == " "){
-	    	alert("인원을 설정해주세요.");
-	    	return false;
-	    }
+	    } 
 }
 	
-
-
-
 </script>
 
 </head>
@@ -88,7 +87,7 @@ function teamUpdateCheck() {
 		프로젝트 명 : <input type="text" name="title" value="<%=tdto.getTitle()%>" style="text-align:center" style="text-align:center">
 		
 		<select name='location'>
-  			<option value='' selected>지역을 선택해주세요</option>
+  			<option value="" selected>지역을 선택해주세요</option>
   			<option value="Seoul"
   			<%if(tdto.getLocation().equals("Seoul")){ %>	
   			selected
@@ -128,7 +127,7 @@ function teamUpdateCheck() {
 		</select><hr>
 		
 		<select name='limit_p'>
-  			<option value='' selected>인원을 선택해주세요</option>
+  			<option value="" selected>인원을 선택해주세요</option>
   			<option value=4
   			<%if(tdto.getLimit_p().equals("4")){%>
   			selected
@@ -173,8 +172,8 @@ function teamUpdateCheck() {
 		<div class="g-recaptcha" id="g-recaptcha" data-sitekey="6LdQ1zEbAAAAAOzJAHtwDc8LTdr2vNQffqV-K15l" 	
 		data-callback="recaptcha"></div>
 		<br>
-		<input type="submit" value="수정하기">
-		<input type="reset" value="취소"> 
+		<input type="submit" value="수정하기">/
+		<input type="reset" value="취소"> /
 		<input type="button" value="수정취소" onclick="history.back()">
 		</form>
 
