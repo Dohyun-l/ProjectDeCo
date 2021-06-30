@@ -36,6 +36,12 @@ function searchCheck() {
 		return false;
 	}
 }
+
+function changeBoardSize(){
+	pageSize = document.fr.boardSize.value;
+	location.href = "./teamList.te?pageNum=<%=pageNum %>&pageSize="+pageSize;
+}
+
 </script>
 
 <center>
@@ -48,6 +54,15 @@ function searchCheck() {
             </select>
             <input type="text" size="20" name="condition"/>&nbsp;
             <input type="submit" value="검색"/>
+	</form><br>
+	<form name="fr" >
+		<select id="boardSize" onchange="changeBoardSize()" name="changePageSize">
+			<option>n개씩 보기</option>
+			<option value="5">5개씩 보기</option>
+			<option value="10">10개씩 보기</option>
+			<option value="15">15개씩 보기</option>
+			<option value="20">20개씩 보기</option>
+		</select>
 	</form>
 	<br>
 	<table border="1">

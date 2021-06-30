@@ -76,16 +76,16 @@ function teamUpdateCheck() {
 		String pageNum = request.getParameter("pageNum");
 		
 	%>
-		
+		<center>
 		<form action="./teamModifyUpdate.te?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&idx=<%=tdto.getIdx()%>"
 		 method="post" name="fr" onsubmit="return teamUpdateCheck();">
 		<!-- 닉네임 -->
 		방장 닉네임 : <input type="text" id="nickname" name="nickname" value="<%=nickname%>"readonly style="text-align:center">
-		<br>
+		<hr>
 		<input type="hidden" value="<%=tdto.getMaster()%>" name="master">
 		<!-- 제목 -->	  		
 		프로젝트 명 : <input type="text" name="title" value="<%=tdto.getTitle()%>" style="text-align:center" style="text-align:center">
-		
+		<hr>
 		<select name='location'>
   			<option value="" selected>지역을 선택해주세요</option>
   			<option value="Seoul"
@@ -165,7 +165,7 @@ function teamUpdateCheck() {
 	    		$('#ir1').html('<%=tdto.getContent()%>');
 	    	});
     	</script>
-		
+		<br>
 		<input type="hidden" name="content">
 		<jsp:include page="edit.jsp"></jsp:include>
 		
@@ -176,7 +176,7 @@ function teamUpdateCheck() {
 		<input type="reset" value="취소"> /
 		<input type="button" value="수정취소" onclick="history.back()">
 		</form>
-
+		</center>
 
 
 
