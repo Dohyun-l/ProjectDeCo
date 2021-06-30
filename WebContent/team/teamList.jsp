@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="com.deco.user.userDAO"%>
 <%@page import="com.deco.team.teamDTO"%>
@@ -14,13 +15,12 @@
 <%
 		userDAO udao = new userDAO();
 		teamDAO tdao = new teamDAO();
-		List teamList = tdao.teamList();
+		List teamList = (ArrayList)request.getAttribute("teamList");
 		
 	
 	  int pageSize = (int)request.getAttribute("pageSize");
       String pageNum = (String)request.getAttribute("pageNum");
-      // String category = request.getParameter("category");
-      
+       
       int user_num = 0;
       
       if(session.getAttribute("user_num") != null) {
@@ -29,8 +29,28 @@
 
 	
 %>
+<script type="text/javascript">
+
+function searchCheck() {
+	if (document.form.condition.value == "")  {
+		alert("검색어를 입력해 주세요.");
+		return false;
+	}
+}
+</script>
+
 <center>
 <h2>프로젝트 리스트</h2>
+<form name="form" action="./teamList.te?pageNum=<%=pageNum %>&pageSize=<%=pageSize %>" method="post" onsubmit="return searchCheck()">
+	<select name="opt">
+                <option value="0">프로젝트 제목</option>
+                <option value="1">프로젝트 내용</option>
+                <option value="2">프로젝트 지역</option>
+            </select>
+            <input type="text" size="20" name="condition"/>&nbsp;
+            <input type="submit" value="검색"/>
+	</form>
+	<br>
 	<table border="1">
 		<tr>
 			<td width="130" style="text-align:center">프로젝트 리더</td>

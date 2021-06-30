@@ -12,6 +12,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import com.deco.share.shareDTO;
+
 public class teamDAO {
 
 	private Connection conn = null;
@@ -63,7 +65,7 @@ public class teamDAO {
 		int idx = 0;
 		try {
 			conn = getConnection();
-			sql = "select count(*) from team";
+			sql = "select max(idx) from team";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
@@ -98,7 +100,7 @@ public class teamDAO {
 		teamDTO tdto = null;
 		try {
 			conn = getConnection();
-			sql = "select * from team";
+			sql = "select * from team order by idx desc";
 			pstmt = conn.prepareStatement(sql);
 
 			rs = pstmt.executeQuery();
@@ -332,5 +334,51 @@ public class teamDAO {
 	}
 	
 	// teamUpdate
+	
+	// teamSearchList(opt,condition)
+	public List teamSearchList(String opt, String condition) {
+		teamDTO tdto = null;
+		List teamSearchList = new ArrayList();
+
+		try {
+			conn = getConnection();
+			if (opt.equals("0")) {
+				sql = "select * from team where title like '%" + condition + "%' order by idx desc";
+			} else if (opt.equals("1")) {
+				sql = "select * from team where content like '%" + condition + "%' order by idx desc";
+			} else if (opt.equals("2")) {
+				sql = "select * from team where location like '%" + condition + "%' order by idx desc";
+			}
+			System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+			System.out.println(sql);
+			pstmt = conn.prepareStatement(sql);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				tdto = new teamDTO();
+				
+				tdto.setContent(rs.getString("content"));
+				tdto.setCreate_at(rs.getString("create_at"));
+				tdto.setDeadline(rs.getString("deadline"));
+				tdto.setIdx(rs.getInt("idx"));
+				tdto.setLimit_p(rs.getString("limit_p"));
+				tdto.setLocation(rs.getString("location"));
+				tdto.setMaster(rs.getInt("master"));
+				tdto.setTitle(rs.getString("title"));
+				
+				teamSearchList.add(tdto);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+
+		return teamSearchList;
+	}
+	// teamSearchList(opt,condition)
 
 }

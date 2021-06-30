@@ -48,10 +48,6 @@ public class teamModifyUpdateAction implements Action {
 		
 		System.out.println("M : 팀내용 수정완료");
 
-		
-		
-		ActionForward forward = new ActionForward(req.getContextPath()+"/teamView.te?idx="+idx,true);
-
 
 		resp.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = resp.getWriter();
@@ -77,7 +73,7 @@ public class teamModifyUpdateAction implements Action {
 		}
 		out.print("<script>");
 		out.print("alert('정상적으로 수정이 완료되었습니다.');");
-		out.print("location.href='./teamView.te?idx="+idx+"&pageNum="+pageNum+"&pageSize="+pageSize);
+		out.print("location.href='./teamView.te?idx="+idx+"&pageNum="+pageNum+"&pageSize="+pageSize+"'");
 		out.print("</script>");
 		out.close();
 		

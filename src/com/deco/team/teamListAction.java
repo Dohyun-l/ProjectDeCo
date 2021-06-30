@@ -31,6 +31,10 @@ public class teamListAction implements Action{
 		
 		teamDAO tdao = new teamDAO();
 		
+		// 검색조건과 검색내용 가져오기
+        String opt =req.getParameter("opt");
+        String condition = req.getParameter("condition");
+		
 		//팀생성 글 개수 보기 
 		int cnt =  tdao.numOfTeam();
 		
@@ -54,14 +58,20 @@ public class teamListAction implements Action{
 		int endRow = currentPage*pageSize;
 		
 		//팀 리스트 보기
-		List teamList = tdao.teamList(startRow,pageSize);
+		List teamList = null;
 		
+		if (condition != null){
+			teamList = tdao.teamSearchList(opt,condition);
+		}else{
+			teamList = tdao.teamList(startRow,pageSize);
+		}
 		
 		req.setAttribute("teamList", teamList);
 		req.setAttribute("pageNum", pageNum);
 		req.setAttribute("pageSize", pageSize);
 		
 		System.out.println(pageSize);
+		
 		ActionForward forward = new ActionForward();
 		forward = new ActionForward("./team/teamList.jsp", false);
 		
