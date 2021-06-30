@@ -75,7 +75,7 @@ function createTeamCheck() {
 	
 	
 		<center>
-		<form action="" method="post" name="fr" onsubmit="return createTeamCheck();">
+		<form action="./createTeamAction.te" method="post" name="fr" onsubmit="return createTeamCheck();">
 		<!-- 닉네임 -->
 		닉네임 : <input type="text" id="nickname" name="nickname" value="<%=nickname%>"readonly style="text-align:center"><br>
 			<hr>
