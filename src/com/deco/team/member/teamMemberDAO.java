@@ -68,7 +68,7 @@ public class teamMemberDAO {
 
 		try {
 			conn = getConnection();
-			sql = "select count(*) from team_member";
+			sql = "select max(idx) from team_member";
 			pstmt = conn.prepareStatement(sql);
 
 			rs = pstmt.executeQuery();
