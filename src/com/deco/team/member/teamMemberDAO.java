@@ -128,7 +128,7 @@ public class teamMemberDAO {
 			pstmt.setInt(1, idx);
 
 			pstmt.executeUpdate();
-			
+
 			System.out.println("DAO : 업데이트 완료");
 
 		} catch (SQLException e) {
@@ -144,7 +144,7 @@ public class teamMemberDAO {
 		int result = 0;
 		try {
 			conn = getConnection();
-			sql = "select submit form team_member where team_idx=? and member=?";
+			sql = "select submit from team_member where team_idx=? and member=?";
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setInt(1, tmDTO.getTeam_idx());
@@ -292,31 +292,30 @@ public class teamMemberDAO {
 	}
 	// checkRepuestTeamJoin(teamMemberDTO tmdto)
 
-
 	// getTeamMemberList(int idx)
-	public List<teamMemberDTO> getTeamMemberList(int team_idx){
+	public List<teamMemberDTO> getTeamMemberList(int team_idx) {
 		List<teamMemberDTO> memberList = new ArrayList<teamMemberDTO>();
-		
+
 		try {
 			conn = getConnection();
 			sql = "select * from team_member where team_idx=? order by idx desc";
 			pstmt = conn.prepareStatement(sql);
-			
+
 			pstmt.setInt(1, team_idx);
-			
+
 			rs = pstmt.executeQuery();
-			
-			while(rs.next()){
+
+			while (rs.next()) {
 				teamMemberDTO tmdto = new teamMemberDTO();
 				tmdto.setCreate_at(rs.getString("create_at"));
 				tmdto.setIdx(rs.getInt("idx"));
 				tmdto.setMember(rs.getInt("member"));
 				tmdto.setSubmit(rs.getInt("submit"));
 				tmdto.setTeam_idx(rs.getInt("team_idx"));
-				
+
 				memberList.add(tmdto);
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -324,7 +323,7 @@ public class teamMemberDAO {
 		}
 		return memberList;
 	}
-	
+
 	// getTeamMemberList(int idx)
 
 	// getSubmitmemberList(int team_idx)
@@ -425,6 +424,5 @@ public class teamMemberDAO {
 		return tmdto;
 	}
 	// getMemberInfo(int idx)
-
 
 }
