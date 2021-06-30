@@ -107,6 +107,7 @@ function createTeamCheck() {
   			<option value=10>10명</option>			
 		</select><hr>
 				
+				
 		모집 기한 : <input type="date" name="deadline" id="deadline"><br>
 				
 		<input type="hidden" name="content">
