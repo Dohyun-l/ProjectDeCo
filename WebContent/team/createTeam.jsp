@@ -31,8 +31,8 @@ function createTeamCheck() {
    }
    
    if(document.fr.location.value == ""){
-      alert("글을 작성하실 게시판을 선택해주세요.");
-      document.fr.category.focus();
+      alert("지역을 선택해주세요.");
+      document.fr.location.focus();
       return false;
    }
    

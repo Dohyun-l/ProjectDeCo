@@ -59,7 +59,7 @@ public class teamDAO {
 	}
 	// 자원해제코드 - finally 구문에서 사용
 
-	public void create_team(teamDTO tdto) {
+	public int create_team(teamDTO tdto) {
 		int idx = 0;
 		try {
 			conn = getConnection();
@@ -72,6 +72,7 @@ public class teamDAO {
 
 			sql = "insert into team (idx, title, content, location, master, limit_p, create_at, deadline) "
 					+ "values(?,?,?,?,?,?,now(),?)";
+			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, idx);
 			pstmt.setString(2, tdto.getTitle());
@@ -86,6 +87,7 @@ public class teamDAO {
 		} finally {
 			closeDB();
 		}
+		return idx;
 	}
 
 	// teamList()
