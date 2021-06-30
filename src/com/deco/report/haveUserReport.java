@@ -11,7 +11,8 @@ public class haveUserReport implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		
-		
+		reportDAO rDAO = new reportDAO();
+		boolean isSended = rDAO.is
 		
 		return null;
 	}
