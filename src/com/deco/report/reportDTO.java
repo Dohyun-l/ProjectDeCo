@@ -62,9 +62,14 @@ public class reportDTO {
     }
     
     public void setBody(JSONObject jsonObj) {
-        content_num = Integer.parseInt(jsonObj.get("contentNum").toString());
-        content_type = Integer.parseInt(jsonObj.get("contentType").toString());        
-        re_type = Integer.parseInt((String) jsonObj.get("type").toString());
-        re_comment = (String) jsonObj.get("content");
+    	try{
+    		content_num = Integer.parseInt(jsonObj.get("contentNum").toString());
+    		content_type = Integer.parseInt(jsonObj.get("contentType").toString());        
+    		re_type = Integer.parseInt((String) jsonObj.get("type").toString());
+    		re_comment = (String) jsonObj.get("content");
+    	}catch(Exception e){
+    		System.out.println("reportDTO 셋팅 중 이상 발생!");
+    		e.printStackTrace();
+    	}
     }
 }

@@ -9,14 +9,21 @@ export default class reportApp{
                     const url = "./haveUserReport.repo"; // "./reportAction.repo";
                     const option = {
                         method: 'POST',
-                        body: JSON.stringify({ contentNum: this.params["contentNum"] }),
+                        body: JSON.stringify({ 
+                            contentNum: this.params["contentNum"],
+                            contentType: 1 // => 후에 다른 타입 여부
+                        }),
                         headers: {
                             'Content-Type': 'application/json'
                         }
                     }
-
                     const haveResponse = await(await fetch(url, option))
-                    console.log(haveResponse)
+                    
+                    if(haveResponse.status === 404){
+                    	alert("잘못된 경로입니다.");
+                        return;
+                    }
+                    
                     //if ==> 신고한 사람이면 다시 중복X
                     if (haveResponse.status !== 204) {
                         alert("이미 신고한 게시물입니다.");
