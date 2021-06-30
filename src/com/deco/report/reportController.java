@@ -21,6 +21,10 @@ public class reportController extends Controller {
 		if(command.equals("/reportAction.repo")){
 			action = new reportAction();
 			forward = action.execute(req, res);
+		
+		}else if(command.equals("/haveUserReport.repo")){
+			action = new haveUserReport();
+			forward = action.execute(req, res);
 		}
 		
 		render(forward,req,res);
