@@ -218,7 +218,7 @@ public class teamMemberDAO {
 	public void deleteMemberOfTeamIdx(int team_idx) {
 		try {
 			conn = getConnection();
-			sql = "delete from team_team_member where team_idx=?";
+			sql = "delete from team_member where team_idx=?";
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setInt(1, team_idx);
