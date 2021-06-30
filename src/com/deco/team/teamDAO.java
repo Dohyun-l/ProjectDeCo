@@ -261,19 +261,19 @@ public class teamDAO {
 	// getteamView
 
 	// deleteTeam
-	public int deleteTeam(int idx, int master){
+	public int deleteTeam(int team_idx, int master){
 		int check = -1;
 		try {
 			conn = getConnection();
 			sql="select * from team where idx=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, idx);
+			pstmt.setInt(1, team_idx);
 			rs = pstmt.executeQuery();
 			if(rs.next()){
 				if(master == rs.getInt("master")){
 					sql="delete from team where idx=?";
 					pstmt = conn.prepareStatement(sql);
-					pstmt.setInt(1, idx);
+					pstmt.setInt(1, team_idx);
 					pstmt.executeUpdate();
 					
 					check = 1;

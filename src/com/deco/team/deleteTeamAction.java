@@ -15,11 +15,11 @@ public class deleteTeamAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		HttpSession session = req.getSession();
-		int idx = Integer.parseInt(req.getParameter("idx"));
+		int team_idx = Integer.parseInt(req.getParameter("idx"));
 		int master = (int) session.getAttribute("user_num");
 		
 		teamDAO tdao = new teamDAO();
-		int check = tdao.deleteTeam(idx, master);
+		int check = tdao.deleteTeam(team_idx, master);
 		
 		
 		resp.setContentType("text/html; charset=UTF-8");
@@ -40,7 +40,7 @@ public class deleteTeamAction implements Action{
 			out.close();
 			return null;
 		}
-		int team_idx = idx;
+		
 		teamMemberDAO tmdao = new teamMemberDAO();
 		tmdao.deleteMemberOfTeamIdx(team_idx);
 		
@@ -49,7 +49,6 @@ public class deleteTeamAction implements Action{
 		out.print("location.href='./teamList.te';");
 		out.print("</script>");
 		out.close();
-		
 		
 		return null;
 	}
