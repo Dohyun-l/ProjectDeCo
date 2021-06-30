@@ -93,7 +93,6 @@ $(function(){
 			async: false
 		});
 	}
-	
 });
 </script>
 </head>
