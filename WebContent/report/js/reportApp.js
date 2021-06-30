@@ -7,24 +7,26 @@ export default class reportApp{
             $target,
             OnClick: () => {
                 OnClick: () => {
-                const url = "./haveUserReport.repo"; // "./reportAction.repo";
-                const option = {
-                    method: 'POST',
-                    body: JSON.stringify({contentNum: this.params["contentNum"]}),
-                    headers: {
-                        'Content-Type': 'application/json'
+                    const url = "./haveUserReport.repo"; // "./reportAction.repo";
+                    const option = {
+                        method: 'POST',
+                        body: JSON.stringify({ contentNum: this.params["contentNum"] }),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
                     }
-                }
 
-                const haveResponse = await (await fetch(url, option))
-                //if ==> 신고한 사람이면 다시 중복X
-                if(haveResponse.status !== 204){
-                	
-                }
+                    const haveResponse = await(await fetch(url, option))
+                    //if ==> 신고한 사람이면 다시 중복X
+                    if (haveResponse.status !== 204) {
+                        alert("이미 신고한 게시물입니다.");
+                        return;
+                    }
 
-                this.reportInfo.setState({
-                    visible: true
-                })
+                    this.reportInfo.setState({
+                        visible: true
+                    })
+                }
             }
         });
         this.getParam();
