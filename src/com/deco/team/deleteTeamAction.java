@@ -50,7 +50,6 @@ public class deleteTeamAction implements Action{
 		out.print("</script>");
 		out.close();
 		
-		
 		return null;
 	}
 
