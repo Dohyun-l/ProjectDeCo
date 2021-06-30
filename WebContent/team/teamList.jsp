@@ -27,7 +27,6 @@
          user_num = (int) session.getAttribute("user_num");
       }
 
-
 %>
 <script type="text/javascript">
 
