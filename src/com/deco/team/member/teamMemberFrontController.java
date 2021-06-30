@@ -48,8 +48,12 @@ public class teamMemberFrontController extends Controller {
 			}
 		} else if (command.equals("/teamPage.tm")) {
 			System.out.println("C : /teamPage.tm 호출");
-			forward = new ActionForward("./teamMember/memberMain.jsp", false);
-
+			action = new teamMemberMainAction();
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		} else if (command.equals("/printSubmitMemberList.tm")) {
 			System.out.println("C : /printSubmitMemberList.tm 호출");
 			action = new printSubmitMemberListAction();
@@ -93,6 +97,8 @@ public class teamMemberFrontController extends Controller {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if (command.equals("/teamMemberTalk.tm")) {
+			System.out.println("C : /teamMemberTalk.tm 호출");
 		}
 		
 		

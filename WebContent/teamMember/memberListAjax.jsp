@@ -1,3 +1,4 @@
+<%@page import="com.deco.team.teamDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -8,6 +9,23 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <%
 	String team_idx = request.getParameter("idx");
+
+	int user_num = 0;
+
+	if(session.getAttribute("user_num") == null) {
+		response.sendRedirect("./teamList.te");
+	} else {
+		user_num = (int) session.getAttribute("user_num");
+	}
+	
+	if(new teamDAO().getteamView(Integer.parseInt(team_idx)).getMaster() != user_num) {
+		%>
+		<script type="text/javascript">
+		alert("입장권한이 없습니다.");
+		location.href="./teamList.te";
+		</script>
+		<%
+	}
 
 %>
 <script type="text/javascript">
@@ -51,6 +69,7 @@ $(function(){
 			data: {idx:$(this).attr("id").substr(8)},
 			success: function(data){
 				alert("승인완료");
+				$("#userInfo").html("");
 				userReload();
 			}
 		});
@@ -63,6 +82,7 @@ $(function(){
 			data: {idx:$(this).attr("id").substr(9)},
 			success: function(data){
 				alert("퇴출완료");
+				$("#userInfo").html("");
 				userReload();
 			}
 		});
@@ -91,7 +111,6 @@ $(function(){
 			async: false
 		});
 	}
-	
 });
 </script>
 </head>

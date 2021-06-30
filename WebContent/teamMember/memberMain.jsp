@@ -18,7 +18,7 @@
 		int user_num = 0;
 	
 		if(session.getAttribute("user_num") == null) {
-			response.sendRedirect("./teamView.te?idx="+idx);
+			response.sendRedirect("./teamList.te");
 		} else {
 			user_num = (int) session.getAttribute("user_num");
 		}
@@ -27,6 +27,8 @@
 		teamDTO tdto = tdao.getteamView(Integer.parseInt(idx));
 	%>
 	<a href="./teamView.te?idx=<%=idx %>">팀 뷰가기</a>
+	
+	<a href="/teamMemberTalk.tm">팀 채팅방</a>
 	
 	<a href="#">일정 공유</a>
 	
