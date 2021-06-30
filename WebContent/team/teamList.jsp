@@ -13,6 +13,7 @@
 </head>
 <body>
 <%
+
 		userDAO udao = new userDAO();
 		teamDAO tdao = new teamDAO();
 		List teamList = (ArrayList)request.getAttribute("teamList");
