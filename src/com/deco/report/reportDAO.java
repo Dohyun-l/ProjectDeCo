@@ -221,4 +221,29 @@ public class reportDAO {
 	}
 	//insertReport
 	
+	//isSendReport
+	public boolean isSendReport(reportDTO rDTO){
+		boolean result = false;
+		
+		try {
+			conn = getConnection();
+			sql = "select idx from report where user_num=? and content_num=? and content_type=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, rDTO.getUser_num());
+			pstmt.setInt(2, rDTO.getContent_num());
+			pstmt.setInt(3, rDTO.getContent_type());
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				result = true;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	//isSendReport
+	
 }
