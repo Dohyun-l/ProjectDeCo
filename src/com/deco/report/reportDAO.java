@@ -4,11 +4,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+
+import com.deco.share.shareDTO;
+import com.sun.org.apache.xpath.internal.axes.ContextNodeList;
 
 public class reportDAO {
 	
@@ -52,6 +56,122 @@ public class reportDAO {
 		}
 	}
 	
+	//getReportCount
+	/**
+	 * @param reportDTO
+	 * @return 해당 reportDTO의 게시물타입(content_type)과 게시물번호(content_num)의 게시물 신고 개수를 구한다.
+	 */
+	public int getReportCount(reportDTO rDTO){
+		
+		int cnt = 0;
+		try {
+			conn = getConnection();
+			sql = "select count(*) "
+					+ "from report "
+					+ "where content_num=? and content_type=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, rDTO.getContent_num());
+			pstmt.setInt(2, rDTO.getContent_type());
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				cnt = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+		
+		return cnt;
+	}
+	//getReportCount
+	
+	//getReportCount
+	/**
+	 * @param reportDTO
+	 * @return 해당 게시물타입(content_type)과 게시물번호(content_num)의 게시물 신고 개수를 구한다.
+	 */
+	public int getReportCount(int contentType, int contentNum){
+		
+		int cnt = 0;
+		try {
+			conn = getConnection();
+			sql = "select count(*) "
+					+ "from report "
+					+ "where content_num=? and content_type=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, contentNum);
+			pstmt.setInt(2, contentType);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				cnt = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+		
+		return cnt;
+	}
+	//getReportCount
+	
+	//getOverReport
+	/**
+	 * @param 신고당한 개수
+	 * @return 신고당한 개수 이상의 게시물(shareDTO)들을 반환한다.
+	 */
+	public List<shareDTO> getOverReportShare(int countNum){
+		List<shareDTO> contentList = null;
+
+		try {
+			
+			conn = getConnection();
+			sql = "select * "
+					+ "from share "
+					+ "where idx in ("
+								   + "select content_num "
+								   + "from ("
+								   		 + "select content_num, count(*) as cnt "
+								   		 + "from report "
+								   		 + "group by content_num "
+								   		 + "having cnt > ?"
+								   		 + ")"
+								   + ")";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, countNum);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				
+				shareDTO sDTO = new shareDTO();
+				
+				sDTO.setAnony(rs.getInt("anony"));
+				sDTO.setCategory(rs.getString("category"));
+				sDTO.setContent(rs.getString("content"));
+				sDTO.setCreate_at(rs.getString("create_at"));
+				sDTO.setFile(rs.getString("file"));
+				sDTO.setIdx(rs.getInt("idx"));
+				sDTO.setLike(rs.getInt("like"));
+				sDTO.setRead_cnt(rs.getInt("read_cnt"));
+				sDTO.setTag(rs.getString("tag"));
+				sDTO.setTitle(rs.getString("title"));
+				sDTO.setUser_num(rs.getInt("user_num"));
+				
+				contentList.add(sDTO);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+		
+		return contentList;
+	}
+	//getOverReport
 	
 	//insertReport
 	/**
@@ -91,6 +211,8 @@ public class reportDAO {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally{
+			closeDB();
 		}
 		
 		return flag;
