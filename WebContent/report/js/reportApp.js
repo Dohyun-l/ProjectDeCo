@@ -36,7 +36,7 @@ export default class reportApp{
                 
                 console.log(response);
 
-                if (response.status === 200) {
+                if (response.status === 204) {
                     
                     this.reportInfo.setSuccess();
                 }

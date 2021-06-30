@@ -70,7 +70,8 @@ public class reportDAO {
 			
 			rs = pstmt.executeQuery();
 			if(rs.next()){
-				idx = rs.getInt(1);
+				System.out.println(rs.getInt(1));
+				idx = rs.getInt(1)+1;
 			}
 			
 			sql = "insert into report (idx, user_num, content_num, re_type"
