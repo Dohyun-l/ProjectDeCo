@@ -15,8 +15,7 @@
 	<%
 		String idx = request.getParameter("idx");
 
-		int user_num = 0;
-	
+		int user_num = 0;	
 		if(session.getAttribute("user_num") == null) {
 			response.sendRedirect("./teamList.te");
 		} else {
