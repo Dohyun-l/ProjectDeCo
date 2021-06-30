@@ -425,6 +425,5 @@ public class teamMemberDAO {
 		return tmdto;
 	}
 	// getMemberInfo(int idx)
-
-
+	
 }
