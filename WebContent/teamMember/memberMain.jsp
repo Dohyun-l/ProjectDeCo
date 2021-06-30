@@ -9,11 +9,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 	<h1>WebContent/teamMember/memberMain.jsp</h1>
 	
 	<%
 		String idx = request.getParameter("idx");
-	
+
 		int user_num = 0;
 	
 		if(session.getAttribute("user_num") == null) {
@@ -25,11 +26,15 @@
 		teamDAO tdao = new teamDAO();
 		teamDTO tdto = tdao.getteamView(Integer.parseInt(idx));
 	%>
+	<a href="./teamView.te?idx=<%=idx %>">팀 뷰가기</a>
 	
 	<a href="#">일정 공유</a>
 	
 	<%if(user_num == tdto.getMaster()) { %>
-	<a href="./MemberList.tm?idx=<%=idx%>">멤버 관리</a>
+	<a href="./memberList.tm?idx=<%=idx%>">멤버 관리</a>	
 	<%} %>
+
+
+
 </body>
 </html>

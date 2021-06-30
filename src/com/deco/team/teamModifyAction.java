@@ -16,6 +16,9 @@ public class teamModifyAction implements Action{
 		HttpSession session = req.getSession();
 		
 		int idx = Integer.parseInt(req.getParameter("idx"));
+		String pageSize = req.getParameter("pageSize");
+		String pageNum = req.getParameter("pageNum");
+		
 		
 		if(session.getAttribute("user_num") != null){
 			int userNum = (int) session.getAttribute("user_num");

@@ -49,9 +49,45 @@ public class teamMemberFrontController extends Controller {
 		} else if (command.equals("/teamPage.tm")) {
 			System.out.println("C : /teamPage.tm 호출");
 			forward = new ActionForward("./teamMember/memberMain.jsp", false);
-		} else if (command.equals("/MemberList.tm")) {
-			System.out.println("C : /MemberList.tm 호출");
-			action = new MemberListAction();
+
+		} else if (command.equals("/printSubmitMemberList.tm")) {
+			System.out.println("C : /printSubmitMemberList.tm 호출");
+			action = new printSubmitMemberListAction();
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/printNoneSubmitMemberList.tm")) {
+			System.out.println("C : /printNoneSubmitMemberList.tm 호출");
+			action = new printNoneSubmitMemberListAction();
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/memberList.tm")) {
+			System.out.println("C : /memberList.tm 호출");
+			forward = new ActionForward("./teamMember/memberListAjax.jsp",false);
+		} else if (command.equals("/memberInfo.tm")) {
+			System.out.println("C : /memberInfo.tm 호출");
+			action = new memberInfoAction();
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/joinTeam.tm")) {
+			System.out.println("C : /joinTeam.tm 호출");
+			action = new joinMemberAction();
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/outMember.tm")){
+			System.out.println("C : /outMember.tm 호출");
+			action = new outMemberAction();
 			try {
 				forward = action.execute(req, resp);
 			} catch (Exception e) {
@@ -60,8 +96,7 @@ public class teamMemberFrontController extends Controller {
 		}
 		
 		
-		
-		
+
 
 		/////////////////////////////////////////////////////////
 

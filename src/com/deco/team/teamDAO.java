@@ -300,7 +300,8 @@ public class teamDAO {
 			rs = pstmt.executeQuery();
 			if(rs.next()){
 				if(tdto.getMaster() == rs.getInt("master")){
-					sql="update team set title=?, content=?, location=?, master=?, limit_p=?, deadline=?";
+					sql="update team set title=?, content=?, location=?, master=?, limit_p=?, deadline=? where idx=?";
+
 					pstmt = conn.prepareStatement(sql);
 					pstmt.setString(1, tdto.getTitle());
 					pstmt.setString(2, tdto.getContent());
@@ -308,8 +309,11 @@ public class teamDAO {
 					pstmt.setInt(4, tdto.getMaster());
 					pstmt.setString(5, tdto.getLimit_p());
 					pstmt.setString(6, tdto.getDeadline());
+					pstmt.setInt(7, tdto.getIdx());
 					pstmt.executeUpdate();
 					check = 1;
+					
+					System.out.println("DAO : 팀 내용 수정완료"); 
 				}else{
 					// 마스터가 아닙니다.
 					check = 0;

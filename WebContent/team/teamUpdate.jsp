@@ -5,6 +5,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -16,8 +17,43 @@
 
 function teamUpdateCheck() {
 	document.fr.content.value= oEditor.getIR();
-}
+	
+	 if(document.fr.title.value == ""){
+	      alert("제목을 작성해주세요.");
+	      document.fr.title.focus();
+	      return false;
+	   }
+	   
+	   if(document.fr.location.value == ""){
+	      alert("지역을 선택해주세요.");
+	      document.fr.category.focus();
+	      return false;
+	   }
+	   
+	   if(document.fr.content.value == "" || document.fr.content.value == "<p><br></p>"){
+	      alert("내용을 작성해 주세요.");
+	      return false;
+	   }
+	   var chk = grecaptcha.getResponse(); 
+	    if(chk.length == 0) {
+	       alert("로봇이 아닙니다 인증을 진행해주세요!");
+	       return false; 
+	    }
+	   
+	    if(document.fr.deadline.value == ""){
+	    	alert("모집기간을 설정해주세요.");
+	    	return false;
+	    }	
 		
+	    if(document.fr.limit_p.value == " "){
+	    	alert("인원을 설정해주세요.");
+	    	return false;
+	    }
+}
+	
+
+
+
 </script>
 
 </head>
@@ -134,6 +170,8 @@ function teamUpdateCheck() {
 		<input type="hidden" name="content">
 		<jsp:include page="edit.jsp"></jsp:include>
 		
+		<div class="g-recaptcha" id="g-recaptcha" data-sitekey="6LdQ1zEbAAAAAOzJAHtwDc8LTdr2vNQffqV-K15l" 	
+		data-callback="recaptcha"></div>
 		<br>
 		<input type="submit" value="수정하기">
 		<input type="reset" value="취소"> 
