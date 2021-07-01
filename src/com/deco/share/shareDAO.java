@@ -83,7 +83,7 @@ public class shareDAO {
 			}
 
 			// 3 sql 작성 (insert) & pstmt 객체 생성
-			sql = "insert into share " + "values(?,?,?,?,?,?,?,?,now(),?,?)";
+			sql = "insert into share " + "values(?,?,?,?,?,?,?,?,now(),?,?,?)";
 
 			pstmt = conn.prepareStatement(sql);
 
@@ -98,6 +98,7 @@ public class shareDAO {
 			pstmt.setInt(8, sDTO.getLike());
 			pstmt.setString(9, sDTO.getTag());
 			pstmt.setInt(10, sDTO.getAnony());
+			pstmt.setInt(11, 0);
 
 			// 4 sql 실행
 
@@ -562,5 +563,30 @@ public class shareDAO {
 	}
 	
 	// getWriteUserNum(int idx)
+	
+	// reportCount
+	public boolean reportCount(int idx){
+		boolean flag = false;
+		
+		try {
+			conn = getConnection();
+			sql = "update share set repo_cnt = repo_cnt + 1 where idx=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			
+			if(pstmt.executeUpdate() < 1){
+				return flag;
+			}
+			
+			flag = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+		
+		return flag;
+	}
+	// reportCount
 	
 }
