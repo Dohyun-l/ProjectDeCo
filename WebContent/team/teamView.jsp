@@ -61,7 +61,7 @@ function dropteam(){
 	
 	%>
 	
-	<%if(check != 1){ %>
+	<%if(check == 1){ %>
 	<a href="./joinTeamMember.tm?idx=<%=idx%>">참여하기</a> | 
 	<a href="./deleteTeamMember.tm?idx=<%=idx %>">팀 탈퇴하기</a> | 
 	<%} %>

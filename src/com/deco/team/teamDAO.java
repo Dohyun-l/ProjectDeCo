@@ -388,8 +388,13 @@ public class teamDAO {
 			sql="select * from team where date(deadline) > date(now())";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
+			
 			while(rs.next()){
-				check = 1;
+				if(idx == rs.getInt("idx")){
+					check = 1;
+				}else{
+					check = 0;
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
