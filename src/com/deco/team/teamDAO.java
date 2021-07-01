@@ -381,4 +381,32 @@ public class teamDAO {
 	}
 	// teamSearchList(opt,condition)
 
+	public int teamDeadlineCheck(String deadline, int idx){
+		int check = 0;
+		try {
+			conn = getConnection();
+			sql="select * from team where date(deadline) > date(now())";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				if(idx == rs.getInt("idx")){
+					check = 1;
+				}else{
+					check = 0;
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+		return check;
+	}
+	
+	
+	
 }
+
+
+
