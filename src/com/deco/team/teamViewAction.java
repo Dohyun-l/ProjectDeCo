@@ -20,10 +20,12 @@ public class teamViewAction implements Action{
 		}
 		teamDAO tdao = new teamDAO();
 		teamDTO tdto = tdao.getteamView(idx);
-	
+		String deadline = (String) tdto.getDeadline();
+		int check = tdao.teamDeadlineCheck(deadline, idx);
 		
 		
 		req.setAttribute("tdto", tdto);
+		req.setAttribute("check", check);
 		
 		ActionForward forward = new ActionForward();
 		forward = new ActionForward("./team/teamView.jsp", false);

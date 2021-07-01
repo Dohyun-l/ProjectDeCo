@@ -22,6 +22,7 @@
 	userDAO udao = new userDAO();
 	teamDTO tdto = (teamDTO) request.getAttribute("tdto");
 	String masternick = udao.getUserNickNameByNum(tdto.getMaster());
+	int check = (int) request.getAttribute("check");
 	/* HttpSession Session = request.getSession();
 	int user_num = (int) Session.getAttribute("user_num"); */
 	
@@ -60,10 +61,13 @@ function dropteam(){
 	
 	%>
 	
-
-	<a href="./joinTeamMember.tm?idx=<%=idx%>">참여하기</a> | <a href="./teamPage.tm?idx=<%=idx%>">팀페이지</a> | 
-		<a href="./deleteTeamMember.tm?idx=<%=idx %>">팀 탈퇴하기</a> | 
-	<%
+	<%if(check != 1){ %>
+	<a href="./joinTeamMember.tm?idx=<%=idx%>">참여하기</a> | 
+	<a href="./deleteTeamMember.tm?idx=<%=idx %>">팀 탈퇴하기</a> | 
+	<%} %>
+	 <a href="./teamPage.tm?idx=<%=idx%>">팀페이지</a> | 
+<%-- 		<a href="./deleteTeamMember.tm?idx=<%=idx %>">팀 탈퇴하기</a> | 
+ --%>	<%
 	}
 	%>
 	<a href="./teamList.te"> 목록으로</a>
