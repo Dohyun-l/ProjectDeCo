@@ -133,7 +133,6 @@ hr {
 	<hr>
 	<div id="talkContent"></div>
 
-	
 	<!-- Search Google -->
 	<form method=get action="http://www.google.co.kr/search" target="_blank" id="googleSearch">
 		<table bgcolor="#FFFFFF">
