@@ -381,7 +381,7 @@ public class teamDAO {
 	}
 	// teamSearchList(opt,condition)
 
-	public int teamDeadlineCheck(String deadline, int idx){
+	public int teamDeadlineCheck(String deadline, int getidx){
 		int check = 0;
 		try {
 			conn = getConnection();
@@ -390,7 +390,7 @@ public class teamDAO {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()){
-				if(idx == rs.getInt("idx")){
+				if(getidx == rs.getInt("idx")){
 					check = 1;
 				}else{
 					check = 0;
