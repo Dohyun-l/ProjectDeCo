@@ -70,7 +70,7 @@ function changeBoardSize(){
 			<td width="130" style="text-align:center">프로젝트 리더</td>
 			<td width="300" style="text-align:center">프로젝트 제목</td>
 			<td width="100" style="text-align:center">지역</td>
-			<td width="200" style="text-align:center">프로젝트 시작일</td>
+			<td width="200" style="text-align:center">모집 시작일</td>
 			<td width="200" style="text-align:center">모집 마감일</td>
 		</tr>
 		<%

@@ -21,7 +21,8 @@ public class teamViewAction implements Action{
 		teamDAO tdao = new teamDAO();
 		teamDTO tdto = tdao.getteamView(idx);
 		String deadline = (String) tdto.getDeadline();
-		int check = tdao.teamDeadlineCheck(deadline, idx);
+		int getidx = tdto.getIdx();
+		int check = tdao.teamDeadlineCheck(deadline, getidx);
 		
 		
 		req.setAttribute("tdto", tdto);
