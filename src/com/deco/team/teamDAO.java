@@ -382,19 +382,20 @@ public class teamDAO {
 	// teamSearchList(opt,condition)
 
 	public int teamDeadlineCheck(String deadline, int getidx){
-		int check = 0;
+		int check = -1;
 		try {
 			conn = getConnection();
-			sql="select * from team where date(deadline) > date(now())";
+			sql="select * from team where date(deadline) >= date(now()) and idx=?";
 			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, getidx);
+			
 			rs = pstmt.executeQuery();
 			
-			while(rs.next()){
-				if(getidx == rs.getInt("idx")){
-					check = 1;
-				}else{
-					check = 0;
-				}
+			if(rs.next()){
+				check = 1;
+			} else {
+				check = 0;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -14,9 +14,9 @@ public class teamViewAction implements Action{
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		HttpSession session = req.getSession();
 		int idx = Integer.parseInt(req.getParameter("idx"));
-		int user_num = (int) session.getAttribute("user_num");
+		int user_num = 0;
 		if(session.getAttribute("user_num") != null){
-			int userNum = (int) session.getAttribute("user_num");
+			user_num = (int) session.getAttribute("user_num");
 		}
 		teamDAO tdao = new teamDAO();
 		teamDTO tdto = tdao.getteamView(idx);

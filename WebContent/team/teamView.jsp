@@ -25,10 +25,7 @@
 	int check = (int) request.getAttribute("check");
 	/* HttpSession Session = request.getSession();
 	int user_num = (int) Session.getAttribute("user_num"); */
-	
-	if(session.getAttribute("user_num") != null) {
-        int user_num = (int) session.getAttribute("user_num");
-     }
+
 	
 %>
 <script type="text/javascript">
@@ -54,10 +51,7 @@ function dropteam(){
  	</div>
 	<%
 	
-	if(session.getAttribute("user_num")==null){
-		
-	
-	}else{
+	if(session.getAttribute("user_num")!=null){
 	
 	%>
 	
