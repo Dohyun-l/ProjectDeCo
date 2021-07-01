@@ -61,7 +61,7 @@ public class createTeamAction implements Action{
 		req.setCharacterEncoding("UTF-8");
 
 		talkDTO tadto = new talkDTO(); 
-		tadto.setMaster(master);
+		tadto.setTeam_idx(idx);
 		
 		SimpleDateFormat format1 = new SimpleDateFormat ( "_yyyyMMdd_HHmmss");
 		Date time = new Date();
@@ -72,7 +72,7 @@ public class createTeamAction implements Action{
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
-		PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("D://talk/team/"+filename+".txt")));
+		PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("C://talk/team/"+filename+".txt")));
 		
 		br.close();
 		pw.close();

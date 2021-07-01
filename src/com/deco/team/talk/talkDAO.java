@@ -78,7 +78,7 @@ public class talkDAO {
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setInt(1, idx);
-			pstmt.setInt(2, tdto.getMaster());
+			pstmt.setInt(2, tdto.getTeam_idx());
 			pstmt.setString(3, tdto.getFilename());
 			
 			pstmt.executeUpdate();
@@ -104,7 +104,7 @@ public class talkDAO {
 				talkDTO tdto = new talkDTO();
 				
 				tdto.setIdx(rs.getInt("idx"));
-				tdto.setMaster(rs.getInt("master"));
+				tdto.setTeam_idx(rs.getInt("team_idx"));
 				tdto.setFilename(rs.getString("filename"));
 				
 				talkList.add(tdto);
@@ -118,15 +118,15 @@ public class talkDAO {
 		return talkList;
 	}
 	
-	public talkDTO getTalkInfo(int idx) {
+	public talkDTO getTalkInfo(int team_idx) {
 		talkDTO tdto = null;
 		
 		try {
 			conn = getConnection();
-			sql = "select * from talk where idx=?";
+			sql = "select * from talk where team_idx=?";
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setInt(1, idx);
+			pstmt.setInt(1, team_idx);
 			
 			rs = pstmt.executeQuery();
 			
@@ -134,7 +134,7 @@ public class talkDAO {
 				tdto = new talkDTO();
 				
 				tdto.setIdx(rs.getInt("idx"));
-				tdto.setMaster(rs.getInt("master"));
+				tdto.setTeam_idx(rs.getInt("team_idx"));
 				tdto.setFilename(rs.getString("filename"));
 			}
 			

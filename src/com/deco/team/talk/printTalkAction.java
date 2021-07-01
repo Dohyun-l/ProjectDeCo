@@ -17,10 +17,10 @@ public class printTalkAction implements Action {
 
 		System.out.println("M : printTalkAction_execute() 호출");
 
-		String idx = req.getParameter("idx");
+		String team_idx = req.getParameter("team_idx");
 		talkDAO tdao = new talkDAO();
-		talkDTO tdto = tdao.getTalkInfo(Integer.parseInt(idx));
-		FileReader fReader = new FileReader("D://talk/team/" + tdto.getFilename() + ".txt");
+		talkDTO tdto = tdao.getTalkInfo(Integer.parseInt(team_idx));
+		FileReader fReader = new FileReader("C://talk/team/" + tdto.getFilename() + ".txt");
 		BufferedReader br = new BufferedReader(fReader);
 		String s = new String("");
 		String write_nickname = "";

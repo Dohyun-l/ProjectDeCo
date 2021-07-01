@@ -22,20 +22,23 @@
 
 	String nickname = new userDAO().getUserNickNameByNum(user_num);
 
-	String idx = request.getParameter("idx");
+	String team_idx = request.getParameter("idx");
 
 	talkDAO tdao = new talkDAO();
-	talkDTO tdto = tdao.getTalkInfo(Integer.parseInt(idx));
+	talkDTO tdto = tdao.getTalkInfo(Integer.parseInt(team_idx));
 %>
 
 <style type="text/css">
 #talkContent {
-	margin: 0 auto;
+	border: 1px solid red;
+	margin: 0;
 	padding: 0 3%;
-	width: 70%;
+	width: 40%;
 	height: 700px;
 	background: linear-gradient(to bottom left, skyblue, pink);
 	overflow: scroll;
+	overflow-x: hidden;
+	float: left;
 }
 
 [id=nick<%=nickname%>] {
@@ -53,6 +56,14 @@
 	display: inline-block;
 }
 
+hr {
+	clear: both;
+}
+
+#googleSearch {
+	
+}
+
 </style>
 </head>
 <body>
@@ -66,8 +77,8 @@
 		$("#content").focus();
 		
 		$.ajax({
-		    url: "/updateTalk.tm",
-		    data: { idx: <%=idx%>},
+		    url: "./printTalk.tm",
+		    data: { team_idx: <%=team_idx%>},
 		    success: function(data){
 		    	$("#talkContent").html(data);
 		    	$("#talkContent").scrollTop(100000);
@@ -75,8 +86,8 @@
 		});
 		setInterval(function () {
 			$.ajax({
-			    url: "printTalk.tm",
-			    data: { idx: <%=idx%>},
+			    url: "./printTalk.tm",
+			    data: { team_idx: <%=team_idx%>},
 			    success: function(data){
 			    	$("#talkContent").html(data);
 			    	$("#talkContent").scrollTop(100000);
@@ -93,7 +104,7 @@
 		if(content != ""){
 			$(function(){
 				$.ajax({
-				    url: "updateTalk.jsp?idx=<%=idx%>",
+				    url: "./updateTalk.tm?team_idx=<%=team_idx%>",
 				    data: {nickname: nickname, content:content},
 				    method: "POST",
 				    success: function(data){
@@ -113,16 +124,38 @@
 
 	</script>
 
-	<h1><%=idx%> 채팅방</h1>
-	<a href="talkList.jsp">채팅방 리스트 보기</a>
+	<h1><%=team_idx%> 채팅방</h1>
+	<a href="./teamPage.tm?idx=<%=team_idx%>">메인으로</a>
 	닉네임 : <input type="text" id="nickname" value="<%=nickname%>" readonly>
 	내용 : <input type="text" id="content" onkeyup="enterKey()">
 	<input type="button" value="전송" onclick="writeContent()">
 
 	<hr>
 	<div id="talkContent"></div>
-	<hr>
+
 	
+	<!-- Search Google -->
+	<form method=get action="http://www.google.co.kr/search" target="_blank" id="googleSearch">
+		<table bgcolor="#FFFFFF">
+			<tr>
+				<td>
+				<input type=text name=q size=25 maxlength=255 value="" />
+				<!-- 구글 검색 입력 창 -->
+				<input type=submit name=btnG value="Google 검색" />
+				<!-- 검색 버튼 -->
+				</td>
+			</tr>
+		</table>
+	</form>
+	<!-- Search Google -->
+
+	<input type="button" value="일정관리" onclick=""><input type="button" value="지도" onclick="">
+	<div id="boardArea">
+	<iframe src="https://map.naver.com/" width="50%" height="50%"></iframe>
+		
+	</div>
+
+	<hr>
 
 </body>
 </html>

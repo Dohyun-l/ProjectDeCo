@@ -27,7 +27,7 @@
 	%>
 	<a href="./teamView.te?idx=<%=idx %>">팀 뷰가기</a>
 	
-	<a href="/teamMemberTalk.tm">팀 채팅방</a>
+	<a href="./teamMemberTalk.tm?idx=<%=idx%>">팀 채팅방</a>
 	
 	<a href="#">일정 공유</a>
 	

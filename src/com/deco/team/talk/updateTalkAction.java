@@ -31,13 +31,13 @@ public class updateTalkAction implements Action {
 			user_num = (int)session.getAttribute("user_num");
 		}
 		
-		String idx = req.getParameter("idx");
+		String team_idx = req.getParameter("team_idx");
 		String content = req.getParameter("content");
 		
 		String nickname = new userDAO().getUserNickNameByNum(user_num);
 		
 		talkDAO tdao = new talkDAO();
-		talkDTO tdto = tdao.getTalkInfo(Integer.parseInt(idx));
+		talkDTO tdto = tdao.getTalkInfo(Integer.parseInt(team_idx));
 
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -45,7 +45,7 @@ public class updateTalkAction implements Action {
 
 		String time1 = format1.format(time);
 
-		FileReader fReader = new FileReader("D://talk/team/" + tdto.getFilename() + ".txt");
+		FileReader fReader = new FileReader("C://talk/team/" + tdto.getFilename() + ".txt");
 		BufferedReader br = new BufferedReader(fReader);
 		String s;
 		String str = "";
@@ -61,9 +61,9 @@ public class updateTalkAction implements Action {
 
 		FileWriter fw = null;
 		BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
-		fw = new FileWriter("D://talk/team/" + tdto.getFilename() + ".txt");
+		fw = new FileWriter("C://talk/team/" + tdto.getFilename() + ".txt");
 
-		str += "[" + nickname + ":::" + content + ":::" + time1 + "]";
+		str += "[" + nickname + "::" + content + "::" + time1 + "]";
 		fw.write(str);
 
 		fw.close();

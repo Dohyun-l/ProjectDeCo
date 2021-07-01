@@ -101,7 +101,12 @@ public class teamMemberFrontController extends Controller {
 			}
 		} else if (command.equals("/teamMemberTalk.tm")) {
 			System.out.println("C : /teamMemberTalk.tm 호출");
-			forward = new ActionForward("./team/talkView.jsp", false);
+			action = new teamMemberTalk();
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		} else if (command.equals("/updateTalk.tm")) {
 			System.out.println("C : /updateTalk.tm 호출");
 			action = new updateTalkAction();
