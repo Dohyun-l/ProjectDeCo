@@ -170,6 +170,7 @@ public class shareDAO {
 				sDTO.setTag(rs.getString("tag"));
 				sDTO.setTitle(rs.getString("title"));
 				sDTO.setUser_num(rs.getInt("user_num"));
+				sDTO.setRepo_cnt(rs.getInt("repo_cnt"));
 
 				shareList.add(sDTO);
 			}
@@ -216,6 +217,7 @@ public class shareDAO {
 				sDTO.setTag(rs.getString("tag"));
 				sDTO.setTitle(rs.getString("title"));
 				sDTO.setUser_num(rs.getInt("user_num"));
+				sDTO.setRepo_cnt(rs.getInt("repo_cnt"));
 
 				shareList.add(sDTO);
 			}
@@ -262,6 +264,7 @@ public class shareDAO {
 				sDTO.setTag(rs.getString("tag"));
 				sDTO.setTitle(rs.getString("title"));
 				sDTO.setUser_num(rs.getInt("user_num"));
+				sDTO.setRepo_cnt(rs.getInt("repo_cnt"));
 
 				shareList.add(sDTO);
 			}
@@ -302,6 +305,7 @@ public class shareDAO {
 				sDTO.setTag(rs.getString("tag"));
 				sDTO.setTitle(rs.getString("title"));
 				sDTO.setUser_num(rs.getInt("user_num"));
+				sDTO.setRepo_cnt(rs.getInt("repo_cnt"));
 
 			}
 

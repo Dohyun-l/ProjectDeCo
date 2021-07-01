@@ -12,7 +12,7 @@
 <title>정보공유</title>
 
 
-
+<link rel="stylesheet" href="./share/report.css">
 </head>
 <body>
 
@@ -107,8 +107,10 @@
 		</tr>
 	<%for(int i=0; i<shareList.size(); i++){ 
 		shareDTO sdto = (shareDTO) shareList.get(i);
+//		if(sdto.getRepo_cnt() > 5)
+//			continue;
 	%>
-		<tr>
+		<tr class="<%if(sdto.getRepo_cnt() > 5) {%>danger<%} %>">
 			<td><%=sdto.getIdx() %></td>
 			<td><a href="./shareContent.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&contentNum=<%=sdto.getIdx()%>&category=<%=category%>">
 			<%=sdto.getTitle() %></a></td>
