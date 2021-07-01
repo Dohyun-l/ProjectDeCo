@@ -30,7 +30,6 @@
 
 <style type="text/css">
 #talkContent {
-	border: 1px solid red;
 	margin: 0;
 	padding: 0 3%;
 	width: 40%;
@@ -38,6 +37,7 @@
 	background: linear-gradient(to bottom left, skyblue, pink);
 	overflow: scroll;
 	overflow-x: hidden;
+	clear: both;
 	float: left;
 }
 
@@ -60,8 +60,25 @@ hr {
 	clear: both;
 }
 
+#boardController {
+	clear: both;
+	float: right;
+}
+
 #googleSearch {
-	
+	float: right;
+}
+
+#talkInfo {
+	float: left;
+}
+
+#teamContent {
+	margin: 0 auto;
+}
+
+#boradArea {
+	box-sizing: border-box;
 }
 
 </style>
@@ -123,15 +140,18 @@ hr {
 	}
 
 	</script>
-
+	<div id="talkInfo">
 	<h1><%=team_idx%> 채팅방</h1>
 	<a href="./teamPage.tm?idx=<%=team_idx%>">메인으로</a>
 	닉네임 : <input type="text" id="nickname" value="<%=nickname%>" readonly>
 	내용 : <input type="text" id="content" onkeyup="enterKey()">
 	<input type="button" value="전송" onclick="writeContent()">
+	</div>
 
-	<hr>
-	<div id="talkContent"></div>
+
+	<div id="boardController">	
+	<a href="./teamMember/calendar.jsp" target="boradArea">일정관리</a>
+	<a href="https://map.naver.com/" target="boradArea">지도보기</a>
 
 	<!-- Search Google -->
 	<form method=get action="http://www.google.co.kr/search" target="_blank" id="googleSearch">
@@ -147,13 +167,15 @@ hr {
 		</table>
 	</form>
 	<!-- Search Google -->
-
-	<input type="button" value="일정관리" onclick=""><input type="button" value="지도" onclick="">
-	<div id="boardArea">
-	<iframe src="https://map.naver.com/" width="50%" height="50%"></iframe>
+	</div>
+	
+	<hr>
+	<div id="teamContent">
+		<div id="talkContent"></div>
+	
+		<iframe src="./teamMember/calendar.jsp" width="54%" height="700" id="boradArea" name="boradArea"></iframe>	
 		
 	</div>
-
 	<hr>
 
 </body>
