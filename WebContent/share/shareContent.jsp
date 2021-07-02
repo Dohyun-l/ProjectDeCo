@@ -1,3 +1,5 @@
+<%@page import="com.deco.like.likeDAO"%>
+<%@page import="com.deco.like.likeDTO"%>
 <%@page import="com.deco.user.userDTO"%>
 <%@page import="com.deco.share_comment.commentDTO"%>
 <%@page import="java.util.ArrayList"%>
