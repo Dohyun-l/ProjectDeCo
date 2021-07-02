@@ -9,7 +9,7 @@ public class shareDTO {
 	private String file;
 	private String category;
 	private int read_cnt;
-	private int like;
+	private int like_;
 	private String create_at;
 	private String tag;
 	private int anony;
@@ -71,12 +71,12 @@ public class shareDTO {
 		this.read_cnt = read_cnt;
 	}
 
-	public int getLike() {
-		return like;
+	public int getLike_() {
+		return like_;
 	}
 
-	public void setLike(int like) {
-		this.like = like;
+	public void setLike_(int like_) {
+		this.like_ = like_;
 	}
 
 	public String getCreate_at() {
@@ -114,7 +114,7 @@ public class shareDTO {
 	@Override
 	public String toString() {
 		return "shareDTO [idx=" + idx + ", user_num=" + user_num + ", title=" + title + ", content=" + content
-				+ ", file=" + file + ", category=" + category + ", read_cnt=" + read_cnt + ", like=" + like
+				+ ", file=" + file + ", category=" + category + ", read_cnt=" + read_cnt + ", like=" + like_
 				+ ", create_at=" + create_at + ", tag=" + tag + ", anony=" + anony + ", repo_cnt=" + repo_cnt + "]";
 	}
 

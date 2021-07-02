@@ -126,7 +126,7 @@
 			<td><%=sdto.getCreate_at() %></td>
 			<td><%=sdto.getRead_cnt() %></td>
 			<td><%=sdto.getCategory()%></td>
-			<td><%=sdto.getLike()%></td>  <!-- 좋아요  -->
+			<td><%=sdto.getLike_()%></td>  <!-- 좋아요  -->
 		</tr>
 	<%} %>
 	</table>
