@@ -6,8 +6,10 @@ public class Team_commentDTO {
 	private int team_idx;
 	private String nickname;
 	private String content;
-	private String date;
+	private String create_at;
 	private int secret;
+	
+	
 	public int getIdx() {
 		return idx;
 	}
@@ -32,11 +34,11 @@ public class Team_commentDTO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getDate() {
-		return date;
+	public String getCreate_at() {
+		return create_at;
 	}
-	public void setDate(String date) {
-		this.date = date;
+	public void setCreate_at(String create_at) {
+		this.create_at = create_at;
 	}
 	public int getSecret() {
 		return secret;
@@ -44,11 +46,13 @@ public class Team_commentDTO {
 	public void setSecret(int secret) {
 		this.secret = secret;
 	}
+	
 	@Override
 	public String toString() {
 		return "Team_commentDTO [idx=" + idx + ", team_idx=" + team_idx + ", nickname=" + nickname + ", content="
-				+ content + ", date=" + date + ", secret=" + secret + "]";
+				+ content + ", create_at=" + create_at + ", secret=" + secret + "]";
 	}
+	
 	
 	
 	
