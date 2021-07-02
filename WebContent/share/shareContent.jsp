@@ -207,5 +207,6 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 </form>
 
 <script type="module" src="./report/js/reportMain.js"></script>
+<script type="text/javascript" src="./like/js/likeFunc.js"></script>
 </body>
 </html>
