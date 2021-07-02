@@ -165,7 +165,7 @@ public class shareDAO {
 				sDTO.setCreate_at(rs.getString("create_at"));
 				sDTO.setFile(rs.getString("file"));
 				sDTO.setIdx(rs.getInt("idx"));
-				sDTO.setLike_(rs.getInt("like"));
+				sDTO.setLike_(rs.getInt("like_"));
 				sDTO.setRead_cnt(rs.getInt("read_cnt"));
 				sDTO.setTag(rs.getString("tag"));
 				sDTO.setTitle(rs.getString("title"));
@@ -212,7 +212,7 @@ public class shareDAO {
 				sDTO.setCreate_at(rs.getString("create_at"));
 				sDTO.setFile(rs.getString("file"));
 				sDTO.setIdx(rs.getInt("idx"));
-				sDTO.setLike_(rs.getInt("like"));
+				sDTO.setLike_(rs.getInt("like_"));
 				sDTO.setRead_cnt(rs.getInt("read_cnt"));
 				sDTO.setTag(rs.getString("tag"));
 				sDTO.setTitle(rs.getString("title"));
@@ -259,7 +259,7 @@ public class shareDAO {
 				sDTO.setCreate_at(rs.getString("create_at"));
 				sDTO.setFile(rs.getString("file"));
 				sDTO.setIdx(rs.getInt("idx"));
-				sDTO.setLike_(rs.getInt("like"));
+				sDTO.setLike_(rs.getInt("like_"));
 				sDTO.setRead_cnt(rs.getInt("read_cnt"));
 				sDTO.setTag(rs.getString("tag"));
 				sDTO.setTitle(rs.getString("title"));
@@ -300,7 +300,7 @@ public class shareDAO {
 				sDTO.setCreate_at(rs.getString("create_at"));
 				sDTO.setFile(rs.getString("file"));
 				sDTO.setIdx(rs.getInt("idx"));
-				sDTO.setLike_(rs.getInt("like"));
+				sDTO.setLike_(rs.getInt("like_"));
 				sDTO.setRead_cnt(rs.getInt("read_cnt"));
 				sDTO.setTag(rs.getString("tag"));
 				sDTO.setTitle(rs.getString("title"));
@@ -522,7 +522,7 @@ public class shareDAO {
 				sDTO.setCreate_at(rs.getString("create_at"));
 				sDTO.setFile(rs.getString("file"));
 				sDTO.setIdx(rs.getInt("idx"));
-				sDTO.setLike_(rs.getInt("like"));
+				sDTO.setLike_(rs.getInt("like_"));
 				sDTO.setRead_cnt(rs.getInt("read_cnt"));
 				sDTO.setTag(rs.getString("tag"));
 				sDTO.setTitle(rs.getString("title"));
