@@ -11,6 +11,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <title>Deco - 팀뷰</title>
+<script type="text/javascript">
+$(function(){
+	$(".submit").on("click", function(){
+		$.ajax()
+	}
+});
+
+</script>
 
 </head>
 <body>
@@ -18,15 +26,18 @@
 
 
 <%
+	
 	String idx = request.getParameter("idx");
 	userDAO udao = new userDAO();
 	teamDTO tdto = (teamDTO) request.getAttribute("tdto");
 	String masternick = udao.getUserNickNameByNum(tdto.getMaster());
 	int check = (int) request.getAttribute("check");
+	int user_num = (int) session.getAttribute("user_num");
 	/* HttpSession Session = request.getSession();
 	int user_num = (int) Session.getAttribute("user_num"); */
 
-	
+	int limit_p = Integer.parseInt(tdto.getLimit_p());
+	int checkSubmitMember = new teamMemberDAO().checkSubmitMember(Integer.parseInt(idx));
 %>
 <script type="text/javascript">
 function dropteam(){
@@ -44,7 +55,16 @@ function dropteam(){
  	<%=tdto.getTitle() %></h2><br>
  	<h3><%=masternick %> 팀장님</h3>
  	<b>지역 : <%=tdto.getLocation() %></b><br>
- 	<b><%=new teamMemberDAO().checkSubmitMember(Integer.parseInt(idx)) %> / <%=tdto.getLimit_p() %></b><br>
+ 	<%if(checkSubmitMember >= limit_p){
+ 	check = 0;
+ 	%>
+ 	<h2>모집 인원이 가득찼습니다.</h2>
+ 	
+ 	<%}else{ %>
+ 	<b><%=checkSubmitMember %> / <%=limit_p %></b>
+ 	
+ 	<%} %>
+ 	<br>
  	<b>모집 마감일 : <%=tdto.getDeadline() %></b><br>
  	<div id="DecotextContentView">
 	<h4>프로젝트 상세 내용 : <%=tdto.getContent() %></h4>
@@ -56,15 +76,15 @@ function dropteam(){
 	%>
 	
 	<%if(check == 1){ %>
-	<a href="./joinTeamMember.tm?idx=<%=idx%>">참여하기</a> | 
-	<a href="./deleteTeamMember.tm?idx=<%=idx %>">팀 탈퇴하기</a> | 
+		<a href="./joinTeamMember.tm?idx=<%=idx%>">참여하기</a> | 
+		<a href="./deleteTeamMember.tm?idx=<%=idx %>">팀 탈퇴하기</a> | 
 	<%} %>
-	 <a href="./teamPage.tm?idx=<%=idx%>">팀페이지</a> | 
+	    <a href="./teamPage.tm?idx=<%=idx%>">팀페이지</a> | 
 <%-- 		<a href="./deleteTeamMember.tm?idx=<%=idx %>">팀 탈퇴하기</a> | 
  --%>	<%
 	}
 	%>
-	<a href="./teamList.te"> 목록으로</a>
+		<a href="./teamList.te"> 목록으로</a>
 	 <%
 	 	
 	 		if(session.getAttribute("user_num")==null){
@@ -72,9 +92,28 @@ function dropteam(){
 	 		}else if(tdto.getMaster() == (int)session.getAttribute("user_num")){
 	 %>
 	 | <a href="">마스터</a> | 
-	<a href="./teamModify.te?idx=<%=idx%>">수정하기</a>
+	   <a href="./teamModify.te?idx=<%=idx%>">수정하기</a>
 	 | <a href="./deleteTeamAction.te?idx=<%=tdto.getIdx() %>" onclick="return dropteam();">팀삭제</a>
 	 <%} %>
+	 <br>
+	 <br>
+	 <br>
+	 
+	 	공개 : <input type="radio" checked="checked" name="secret" value="1"> | 
+	 	비공개 : <input type="radio" name="secret" value="0">
+	 	<br>
+	 	<br>
+	 	<input type="hidden" value="<%=idx %>" name="team_idx">
+	 	<input type="hidden" value="" name="nickname">
+	 	<input type="text" name="content" class="content" size="30" placeholder="궁금한점을 작성해주세요" style="text-align:center">
+	 	<br>
+	 	<br>
+	 	<input type="button" value="댓글작성하기" class="submit">
+	 	
+	 	
+	 	
+	
+	 
 	 
 </center>
 </body>

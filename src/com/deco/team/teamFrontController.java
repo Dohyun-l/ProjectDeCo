@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.deco.ActionForward;
 import com.deco.Controller;
+import com.deco.team.comment.Team_commentAction;
 
 @WebServlet("*.te")
 public class teamFrontController extends Controller {
@@ -76,6 +77,14 @@ public class teamFrontController extends Controller {
 			action = new teamModifyUpdateAction();
 			try {
 				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/Team_commentAction.te")){
+			System.out.println("C : Team_commentAction.te 호출");
+			action = new Team_commentAction();
+			try {
+				forward= action.execute(req, resp);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

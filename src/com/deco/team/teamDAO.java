@@ -405,8 +405,6 @@ public class teamDAO {
 		return check;
 	}
 	
-	
-	
 }
 
 
