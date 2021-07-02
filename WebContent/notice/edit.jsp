@@ -27,7 +27,10 @@
 <div id="se2_sample" style="margin:10px 0;">
 
 	<%
-		int user_num = (int) session.getAttribute("user_num");
+		int user_num = 0;
+		if(session.getAttribute("user_num") != null) {
+			user_num = (int) session.getAttribute("user_num");
+		}
 	%>
 
 	
@@ -41,15 +44,8 @@
 		<input type="hidden" name="content" id="content">
 		
 		<!-- 원래 이름 : name="ir1" -->
-		<textarea name="ir1" id="ir1" rows="10" cols="100" style="width:766px; height:412px; display:none;">내용을 입력해주세요</textarea>
+		<textarea name="ir1" id="ir1" rows="10" cols="100" style="width:766px; height:412px; display:none;"></textarea>
 	</form>
-	
-		<!-- <p>글 수정시 여기에 값을 넣어주면 됩니다.</p> -->
-	
-<!-- 	<input type="button" onclick="pasteHTML();" value="본문에 내용 넣기" />
-	<input type="button" onclick="showHTML();" value="본문 내용 가져오기" />
-	<input type="button" onclick="submitContents();" value="서버로 내용 전송" />
-	<input type="button" onclick="setDefaultFont();" value="기본 폰트 지정하기 (궁서_24)" /> -->
 	
 </div>
 
@@ -815,10 +811,10 @@
 	</div>
 </div>
 
-	<hr>
+<!-- 	<hr>
 	<input type="button" onclick="pasteHTML();" value="본문에 내용 넣기" />
 	<input type="button" onclick="showHTML();" value="본문 내용 가져오기" />
-	<input type="button" onclick="setDefaultFont();" value="기본 폰트 지정하기 (궁서_24)" />
+	<input type="button" onclick="setDefaultFont();" value="기본 폰트 지정하기 (궁서_24)" /> -->
 	
 	<hr>
 	<input type="button" onclick="readContent();submitContents();" value="글 작성"/>
@@ -864,7 +860,7 @@ if(window.frameElement){
 			return;
 		}
 		oEditor.exec("UPDATE_CONTENTS_FIELD");	// 에디터의 내용이 textarea에 적용됩니다.
-    	if(document.fr.ir1.value == ""){
+    	if(document.fr.ir1.value == "" || document.fr.ir1.value == "<p><br></p>"){
 			alert("내용을 입력하세요");
 			document.getElementById("ir1").focus();
 			return;

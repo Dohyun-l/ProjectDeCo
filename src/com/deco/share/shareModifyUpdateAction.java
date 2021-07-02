@@ -16,17 +16,27 @@ public class shareModifyUpdateAction implements Action{
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 	
 		System.out.println("M : shareModifyUpdateAction_execute() 호출");
-		
-		String idx = req.getParameter("contentNum");
-		String pageNum = req.getParameter("pageNum");
-		String pageSize = req.getParameter("pageSize");
-				
+	
+		//한글처리
 		req.setCharacterEncoding("utf-8");
 		
-		//세션제어
-		 HttpSession session = req.getSession();
-		 int user_num = (int) session.getAttribute("user_num");
-			
+		String pageNum = req.getParameter("pageNum");
+		String pageSize = req.getParameter("pageSize");
+		String category = req.getParameter("category");
+		
+		//세션처리
+		HttpSession session = req.getSession();
+				
+		int userNum = 0;
+				
+		if(session.getAttribute("user_num") == null){
+			resp.sendRedirect("./shareList.sh");
+			return null;
+		} else {
+			userNum = (int) session.getAttribute("user_num");
+		}
+	
+		
 		//파일 업로드
 		ServletContext ctx = req.getServletContext();
 		String realpath = ctx.getRealPath("/share/upload");
@@ -44,19 +54,21 @@ public class shareModifyUpdateAction implements Action{
 		
 		System.out.println("파일 업로드 완료");
 		
+		String idx = multi.getParameter("contentNum");
+		
 		shareDTO sDTO = new shareDTO();
 		
-		 //sDTO.setAnony(Integer.parseInt(multi.getParameter("anony")));
+		 sDTO.setAnony(Integer.parseInt(multi.getParameter("anony")));
 	     sDTO.setTitle(multi.getParameter("title"));
 	   	 sDTO.setCategory(multi.getParameter("category"));
-	     sDTO.setFile(multi.getFilesystemName("file"));
+	     sDTO.setFile(multi.getFilesystemName("filename"));
+	     sDTO.setContent(multi.getParameter("content"));
 	     		  
 	     //다중선택 배열로 받기
 	     String[] tags = multi.getParameterValues("tag");
 	     String tag = "";
 	     for(int i=0;i<tags.length;i++){
 	    	 tag += tags[i];
-	    	 //다중 선택시 디비에( , )로 나눠서 저장할건지... 알려줘
 	    	 
 	    	 if((tags.length-1) != i){
 	    		 tag += ","; 
@@ -64,6 +76,9 @@ public class shareModifyUpdateAction implements Action{
 	     }
 	     
 	     System.out.println(tag);
+	     
+	     sDTO.setTag(tag);
+	     sDTO.setIdx(Integer.parseInt(idx));
 	     
 	     //디비처리 
 	     shareDAO sDAO = new shareDAO();
@@ -73,13 +88,15 @@ public class shareModifyUpdateAction implements Action{
 		}
 		else
 		{
+			System.out.println("====================================");
 			sDAO.modifyShareContent(sDTO);
 		}
+	 	
+	 	System.out.println("@@@@@@@@@@@@@@@@@@@################ " + category);
 	     
-	     
-	     ActionForward forward = new ActionForward("./shareContent.sh?pageNum="+pageNum+"&pageSize="+pageSize, true);
+	    ActionForward forward = new ActionForward("./shareContent.sh?pageNum="+pageNum+"&pageSize="+pageSize+"&contentNum="+idx+"&category="+category, true);
 		
-	     return forward;
+	    return forward;
 		   
 		
 		

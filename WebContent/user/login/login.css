@@ -1,0 +1,17 @@
+.github-login {
+	width: 190px;
+    border-top: 1px solid gray;
+    border-radius: 20px;
+    margin-top: 10px;
+    background-image: linear-gradient(to left,rgb(59, 52, 52),black,rgb(59, 52, 52));
+	padding: 12px 20px;
+    background-color: rgb(235, 142, 126);
+    text-align: center;
+    cursor: pointer;
+    display: block;
+	text-decoration: none;
+	color:white;
+}
+#kakaoLogin:hover{
+	cursor: pointer;
+}

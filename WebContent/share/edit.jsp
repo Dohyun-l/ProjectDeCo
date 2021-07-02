@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="ko">
 <head>
@@ -5,54 +7,27 @@
 <meta http-equiv="Content-Script-Type" content="text/javascript">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <title>네이버 :: Smart Editor 2 &#8482;</title>
+
 <link href="css/ko_KR/smart_editor2.css" rel="stylesheet" type="text/css">
+<link href="css/ko_KR/smart_editor2_items.css" rel="stylesheet" type="text/css">
+<link href="css/ko_KR/smart_editor2_out.css" rel="stylesheet" type="text/css">
+<link href="css/ko_KR/smart_editor2_in.css" rel="stylesheet" type="text/css">
 <style type="text/css">
 	body { margin: 10px; }
 </style>
-<script type="text/javascript" src="./js/lib/jindo2.all.js" charset="utf-8"></script>
-<script type="text/javascript" src="./js/lib/jindo_component.js" charset="utf-8"></script>
-<script type="text/javascript" src="./js/service/SE2M_Configuration.js" charset="utf-8"></script>	<!-- 설정 파일 -->
-<script type="text/javascript" src="./js/service/SE2BasicCreator.js" charset="utf-8"></script>
-<script type="text/javascript" src="./js/smarteditor2.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/lib/jindo2.all.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/lib/jindo_component.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/service/SE2M_Configuration.js" charset="utf-8"></script>	<!-- 설정 파일 -->
+<script type="text/javascript" src="js/service/SE2BasicCreator.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/smarteditor2.js" charset="utf-8"></script>
+
+
 
 </head>
 <body>
-<h1>WebContent/notice/edit.html</h1>
-
-<!-- <h1>WebContent/notice/index.html</h1> -->
-
-<!--Example Start-->
-<div id="se2_sample" style="margin:10px 0;">
-
 	
-	<script type="text/javascript">
-		// 저장
-		noticeDTO nDTO = (noticeDTO)request.getAttribute("nDTO");
-	
-		int idx = Integer.parseInt(request.getParameter("idx"));
-	</script>
-	
-	<form action="./NoticeModifyAction.nt" method="post" name="fr">
-		<input type="hidden" name="idx" value="<%=idx%>">
-		제목 <input type="text" name="title" value="<%=nDTO.getTitle()%>">
-		<hr>
-		<input type="hidden" name="content" id="content">
-		<textarea name="ir1" id="ir1" rows="10" cols="100" style="width:766px; height:412px; display:none;">
-		<%=nDTO.getContent()%>
-		</textarea>
-	</form>
-	<hr>
-	
-		<!-- <p>글 수정시 여기에 값을 넣어주면 됩니다.</p> -->
-	
-<!-- 	<input type="button" onclick="pasteHTML();" value="본문에 내용 넣기" />
-	<input type="button" onclick="showHTML();" value="본문 내용 가져오기" />
-	<input type="button" onclick="submitContents();" value="서버로 내용 전송" />
-	<input type="button" onclick="setDefaultFont();" value="기본 폰트 지정하기 (궁서_24)" /> -->
-	
-</div>
-
-<!-- SE2 Markup Start -->	
+		<!-- 네이버 에디터.. -->
+		<!-- SE2 Markup Start -->	
 <div id="smart_editor2">
 	<div id="smart_editor2_content"><a href="#se2_iframe" class="blind">글쓰기영역으로 바로가기</a>
 		<div class="se2_tool" id="se2_tool">
@@ -602,7 +577,7 @@
 		<!-- 입력 -->
 		<div class="se2_input_area husky_seditor_editing_area_container">
 			
-			<!-- 원래 이름 : name="se2_iframe" -->
+			
 			<iframe src="about:blank" id="se2_iframe" name="se2_iframe" class="se2_input_wysiwyg" width="400" height="300" title="글쓰기 영역 : 도구 모음은 ALT+F10을, 도움말은 ALT+0을 누르세요." frameborder="0" style="display:block;"></iframe>
 			<textarea name="" rows="10" cols="100" title="HTML 편집 모드" class="se2_input_syntax se2_input_htmlsrc" style="display:none;outline-style:none;resize:none"> </textarea>
 			<textarea name="" rows="10" cols="100" title="TEXT 편집 모드" class="se2_input_syntax se2_input_text" style="display:none;outline-style:none;resize:none;"> </textarea>
@@ -813,16 +788,16 @@
 		<!-- //얼럿 메세지 공통 -->
 	</div>
 </div>
+<!-- SE2 Markup End -->
 
-	<hr>
-	<input type="button" onclick="pasteHTML();" value="본문에 내용 넣기" />
-	<input type="button" onclick="showHTML();" value="본문 내용 가져오기" />
-	<input type="button" onclick="setDefaultFont();" value="기본 폰트 지정하기 (궁서_24)" />
-	
-	<hr>
-	<input type="button" onclick="readContent();submitContents();" value="글 수정" />
-	<input type="button" value="목록으로" onclick="location.href='noticelist.nt';">
-	
+<!--Example Start-->
+<div id="se2_sample" style="margin:10px 0;">
+
+<textarea name="ir1" id="ir1" rows="10" cols="100" style="width:850px; height:400px; display:none;"></textarea>
+
+
+</div>
+
 <script type="text/javascript">
 if(window.frameElement){
 	jindo.$("se2_sample").style.display = "none";
@@ -846,42 +821,10 @@ if(window.frameElement){
 		}
 	});
 	
-	function pasteHTML() {
-		var sHTML = "<span style='color:#FF0000;'>이미지도 같은 방식으로 삽입합니다.<\/span>";
-		oEditor.exec("PASTE_HTML", [sHTML]);
-	}
-	
-	function showHTML() {
-		var sHTML = oEditor.getIR();
-		alert(sHTML);
-	}
-	
-	function submitContents() {
-		if(document.fr.title.value == ""){
-			alert("제목을 입력하세요");
-			document.fr.title.focus();
-			return;
-		}
-		oEditor.exec("UPDATE_CONTENTS_FIELD");	// 에디터의 내용이 textarea에 적용됩니다.
-    	if(document.fr.ir1.value == ""){
-			alert("내용을 입력하세요");
-			document.getElementById("ir1").focus();
-			return;
-		}
-		jindo.$("ir1").form.submit();
-		// 에디터의 내용에 대한 값 검증은 이곳에서 document.getElementById("ir1").value를 이용해서 처리하면 됩니다.
-	}
-   	function readContent() {
-	   document.fr.content.value = oEditor.getIR();
-	}
-	
-	function setDefaultFont() {
-		var sDefaultFont = '궁서';
-		var nFontSize = 24;
-		oEditor.setDefaultFont(sDefaultFont, nFontSize);
-	}
+
 }
 </script>
-<!--Example End-->
+
+
 </body>
 </html>

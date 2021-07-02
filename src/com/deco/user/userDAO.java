@@ -54,6 +54,32 @@ public class userDAO {
 		}
 	}
 	
+	//getUserInfo
+	public userDTO getUserInfo(int user_num){
+		userDTO uDTO = null;
+		
+		try {
+			conn = getConnection();
+			sql = "select * from user where user_num=?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, user_num);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				uDTO = new userDTO();
+				uDTO.setRs(rs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+		
+		return uDTO;
+	}
+	//getUserInfo
+	
 	//getUserNickNameByNum
 	public String getUserNickNameByNum(int userNum){
 		String UserName = null;
@@ -79,11 +105,36 @@ public class userDAO {
 		return UserName;
 	}
 	//getUserNickNameByNum
+	
+	//getUserNumByEmail
+	public int getUserNumByEmail(String email){
+		int user_num = -5;
+		
+		try {
+			conn = getConnection();
+			sql = "select user_num from user where email=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				user_num = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+		
+		return user_num;
+	}
+	//getUserNumByEmail
 
 	//getAdminByNum
 	public int getAdminByNum(int userNum){
 		
-		//0 -> 일반  |  1 -> 관리자  | -1 -> 에러
+		//0 -> 일반  |  1 -> 관리자  | -1 -> 이메일 인증 X		|  -10		소셜로그인했으나, 추가정보 입력안한 유저
 		int flag = -1;
 
 		try {
@@ -107,15 +158,41 @@ public class userDAO {
 	}
 	//getAdminByNum
 	
+	//getAdminByEmail
+	public int getAdminByEmail(String email){
+		//0 -> 일반  |  1 -> 관리자  | -1 -> 이메일 인증 X		|  -10		소셜로그인했으나, 추가정보 입력안한 유저
+		//2 -> 탈퇴 유예중
+		int flag = -1;
+
+		try {
+			conn = getConnection();
+			sql = "select admin_auth from user where email=?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				flag = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+		
+		return flag;
+	}
+	//getAdminByEmail
+	
 	//HashPW
 	private String HashPW(String pw){
 		return BCrypt.hashpw(pw, BCrypt.gensalt(5));
 	}
 	//HashPW
 	
-	//setJoinPreState
-	private void setJoinPreState(userDTO uDTO) throws SQLException{
-		
+	//setJoinInitSet()
+	private void setJoinInitSet(userDTO uDTO) throws SQLException{
 		pstmt.setInt(1, uDTO.getUser_num());
 		pstmt.setString(2, uDTO.getEmail());
 		pstmt.setString(3, HashPW(uDTO.getPw()));
@@ -125,6 +202,13 @@ public class userDAO {
 		pstmt.setString(7, uDTO.getPhone());
 		pstmt.setString(8, uDTO.getMajor());
 		pstmt.setString(9, uDTO.getInter());
+	}
+	//setJoinInitSet()
+	
+	//setJoinPreState
+	private void setJoinPreState(userDTO uDTO) throws SQLException{
+		
+		setJoinInitSet(uDTO);
 		
 		//private user는 기본적으로 계정 공개로 0으로 설정(참고: 비공개는 1로 함)
 		pstmt.setInt(10, 0);
@@ -136,6 +220,20 @@ public class userDAO {
 		pstmt.setString(12, uDTO.getEmail_auth());
 	}
 	//setJoinPreState
+	
+	//setJoinGitPreState
+	private void setJoinGitPreState(userDTO uDTO) throws SQLException{
+		
+		setJoinInitSet(uDTO);
+		
+		//private user는 기본적으로 계정 공개로 0으로 설정(참고: 비공개는 1로 함)
+		pstmt.setInt(10, 0);
+		
+		//Git으로 회원가입한 유저는 이메일 인증을 한 유저이지만, 추가적인 정보가 필요하다.
+		// -10으로 설정  =>  추가 필수 정보 입력시 0으로 변경
+		pstmt.setInt(11, -10);
+	}
+	//setJoinGitPreState
 	
 	//insertUser
 	public int insertUser(userDTO uDTO){
@@ -174,6 +272,43 @@ public class userDAO {
 		return flag;
 	}
 	//insertUser
+	
+	//insertGitUser
+	public int insertSocialUser(userDTO uDTO){
+		int flag = -5; 
+		
+		try {
+			conn = getConnection();
+			
+			//user_num 얻기
+			sql = "select max(user_num) from user";
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				uDTO.setUser_num(rs.getInt(1) + 1);
+			}
+			
+			//유저 DB에 넣기
+			//관리자면 1, 일반 유저 0, 이메일 인증전 유저 -1
+			sql = "insert into user (user_num, email, pw, name, nickname, addr, "
+					+ "phone, major, inter, create_at, last_login, private_user, admin_auth)"
+					+ "values(?,?,?,?,?,?,?,?,?,now(),now(),?,?)";
+
+			pstmt = conn.prepareStatement(sql);
+			setJoinGitPreState(uDTO);
+			pstmt.executeUpdate();
+			
+			flag = 1;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+		
+		return flag;
+	}
+	//insertGitUser
 	
 	//searchUserEmail
 	public boolean searchUserEmail(String nowEmail){
@@ -240,6 +375,8 @@ public class userDAO {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()){
+				System.out.println(rs.getString(1));
+				System.out.println(code);
 				flag = rs.getString(1).equals(code) ? 1 : 0;
 			}
 		} catch (SQLException e) {
@@ -266,6 +403,8 @@ public class userDAO {
 			System.out.println(email + " 유저 권한 부여 => " + authCode);
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally{
+			closeDB();
 		}
 		
 	}
@@ -295,6 +434,39 @@ public class userDAO {
 	}
 	//changeEamilCode
 	
+	//updateSocialUser
+	public int updateSocialUser(userDTO uDTO){
+		int flag = -5;
+		
+		try {
+			conn = getConnection();
+			sql = "update user set name=?,nickname=?,phone=?,addr=?,major=?,inter=?,admin_auth=? "
+					+ "where user_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, uDTO.getName());
+			pstmt.setString(2, uDTO.getNickname());
+			pstmt.setString(3, uDTO.getPhone());
+			pstmt.setString(4, uDTO.getAddr());
+			pstmt.setString(5, uDTO.getMajor());
+			pstmt.setString(6, uDTO.getInter());
+			
+			//추가 입력 성공시, 일반 유저로 조정
+			pstmt.setInt(7, 0);
+			pstmt.setInt(8, uDTO.getUser_num());
+			
+			pstmt.executeUpdate();
+			flag = 1;
+			System.out.println("소셜 로그인 유저 정보추가 완료!=!");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+		
+		return flag; 
+	}
+	//updateSocialUser
+	
 	//===========================================================================
 	
 	// HashPW로 돌린 DAO
@@ -312,7 +484,7 @@ public class userDAO {
 				if(rs.next()){
 					flag = -1;
 					if(BCrypt.checkpw(pw, rs.getString("pw"))){  //<-- 실적용
-					//if(pw.equals(rs.getString("pw"))){	// 테스트용 코드
+					// if(pw.equals(rs.getString("pw"))){	// 테스트용 코드
 						sql="select user_num from user where email=?";
 						pstmt.setString(1, email);
 						rs = pstmt.executeQuery();
@@ -360,12 +532,164 @@ public class userDAO {
 		return udto;
 	}
 	
-	public userDTO update(int user_num){
-		userDTO udto = null;
-		conn = getConnection();
-		sql="update ";
-		
-		
-		return udto;
+	public int update(userDTO udto, int user_num){
+		int check = -1;
+		try {
+			conn = getConnection();
+			sql="select pw from user where user_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, user_num);
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				if(BCrypt.checkpw(udto.getPw(), rs.getString("pw"))){
+					sql="update user set name=?, nickname=?, addr=?, phone=?, major=? where user_num=?";
+					
+					pstmt = conn.prepareStatement(sql);
+					
+					pstmt.setString(1, udto.getName());
+					pstmt.setString(2, udto.getNickname());
+					pstmt.setString(3, udto.getAddr());
+					pstmt.setString(4, udto.getPhone());
+					pstmt.setString(5, udto.getMajor());
+					
+					pstmt.setInt(6, user_num);
+					
+					check = pstmt.executeUpdate();
+				}else{
+					// 비밀번호 오류
+					check = 0;
+				}
+			}else{
+				// user_num 비어있다
+				check = -1;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+		return check;
 	}
+	
+	public int nickcheck(String nickname){
+		int data = 0;
+		try {
+				conn = getConnection();
+				sql ="select * from user where nickname=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, nickname);
+				rs = pstmt.executeQuery();
+			if(rs.next()){
+				data = 1;
+			}else{
+				data = 0;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+		return data;
+	}
+	/*
+	public int delete(String email, String pw){
+		int check = -1;
+		try {
+			conn = getConnection();
+			sql = "select pw from user where email=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				if(pw.equals(rs.getString("pw"))){
+					sql="delete from user where email=?";
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, email);
+					check = pstmt.executeUpdate();
+				}else{
+					// 비밀번호 오류!!
+					check = 0;
+				}
+			}else{
+				// 존재하지 않는 회원
+				check = -1;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+		
+		
+		return check;
+	}
+	*/
+	
+	public int delete(String email, String pw){
+		int check = -1;
+		try {
+			conn = getConnection();
+			sql="select pw,user_num from user where email=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				sql="update user set admin_auth=2 where email=?";
+				pstmt =conn.prepareStatement(sql);
+				pstmt.setString(1, email);
+				pstmt.executeUpdate();
+				if(BCrypt.checkpw(pw, rs.getString("pw"))){
+					sql="create event if not exists de_"+rs.getInt("user_num")+" on schedule at current_timestamp+interval 5 minute "
+					  + "do delete from user where email=?";
+					// 현재 10분 적용(시간 바꿀때마다 여기 적어주세요) ex) 1 month, 1 year, 1 minute, 30 seconds
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, email);
+					check = pstmt.executeUpdate();
+				}else{
+					// 비밀번호 오류
+					check = 1;
+				}
+			}else{
+				// 없는회원
+				check = -1;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+		return check;
+	}
+	
+	public int re(String email, String pw){
+		int check = -1;
+		try {
+			conn = getConnection();
+			sql="select pw,user_num from user where email=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				if(BCrypt.checkpw(pw, rs.getString("pw"))){
+					sql ="drop event de_"+rs.getInt("user_num");
+					pstmt = conn.prepareStatement(sql);
+					check = pstmt.executeUpdate();
+				}else{
+					// 비밀번호 오류
+					check = 1;
+				}
+			}else{
+				// 없는 회원
+				check = -1;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+		
+		return check;
+	}
+	
 }

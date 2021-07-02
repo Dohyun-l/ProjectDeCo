@@ -16,7 +16,7 @@
    String fileName = request.getParameter("file");
    
    // 업로드한 가상 경로
-   String savePath ="notice/upload";
+   String savePath ="upload";
    // 파일이 업로드된 경로   
    ServletContext ctx = getServletContext();
    String sDownloadPath = ctx.getRealPath(savePath);

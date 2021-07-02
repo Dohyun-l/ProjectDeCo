@@ -36,20 +36,35 @@ public class noticeFrontController extends Controller{
 	
 		}
 
-		else if(command.equals("/noticelist.nt")){
+		/*else if(command.equals("/noticelist.nt")){
 			forward = new ActionForward("./notice/list.jsp", false);
-	
-		}
+		}*/
 
-		else if(command.equals("/noticecontent.nt")){
+		/*else if(command.equals("/noticecontent.nt")){
 			forward = new ActionForward("./notice/content.jsp", false);
-		}
+		}*/
 		else if(command.equals("/filedown.nt")){
 			forward = new ActionForward("./notice/file_down.jsp", false);
 
 		}
 		//////////////////////////////////////////////////////
 		
+		else if(command.equals("/noticelist.nt")){
+			action = new noticeListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/noticecontent.nt")){
+			action = new noticeContentAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		else if(command.equals("/noticemodify.nt")){
 			action = new NoticeModifyFormAction();
 			try {
@@ -57,7 +72,6 @@ public class noticeFrontController extends Controller{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
 		}
 		else if(command.equals("/NoticeInsertAction.nt")){
 			System.out.println("2 : /NoticeInsertAction.nt 호출");
