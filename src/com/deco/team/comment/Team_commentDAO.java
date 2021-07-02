@@ -90,9 +90,10 @@ public class Team_commentDAO {
 		
 	// teamComment_List()
 		public List teamComment_List() {
-			List commentList = new ArrayList();
+			List teamCommentList = new ArrayList();
 
 			Team_commentDTO tcdto = null;
+			
 			try {
 				conn = getConnection();
 				sql = "select * from team_comment order by create_at desc";
@@ -104,24 +105,30 @@ public class Team_commentDAO {
 
 					tcdto = new Team_commentDTO();
 
+					tcdto.setIdx(rs.getInt("idx"));
+					tcdto.setTeam_idx(rs.getInt("team_idx"));
+					tcdto.setNickname(rs.getString("nickname"));
+					tcdto.setContent(rs.getString("content"));
+					tcdto.setCreate_at(rs.getString("create_at"));
+					tcdto.setSecret(rs.getInt("secret"));
 					
-
-					commentList.add(tcdto);
+					teamCommentList.add(tcdto);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
 				closeDB();
 			}
-			return commentList;
+			return teamCommentList;
 		}
 		// teamComment_List()
 
 		// teamComment_List(team_idx)
-		public List getCommentList(int team_idx) {
-			List commentList = new ArrayList();
+		public List teamComment_List(int team_idx) {
+			List teamCommentList = new ArrayList();
 
 			Team_commentDTO tcdto = null;
+			
 			try {
 				conn = getConnection();
 				sql = "select * from team_comment where team_idx=? order by create_at desc";
@@ -133,14 +140,24 @@ public class Team_commentDAO {
 
 				while (rs.next()) {
 
+					tcdto = new Team_commentDTO();
+
+					tcdto.setIdx(rs.getInt("idx"));
+					tcdto.setTeam_idx(rs.getInt("team_idx"));
+					tcdto.setNickname(rs.getString("nickname"));
+					tcdto.setContent(rs.getString("content"));
+					tcdto.setCreate_at(rs.getString("create_at"));
+					tcdto.setSecret(rs.getInt("secret"));
 					
+					teamCommentList.add(tcdto);
+						
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
 				closeDB();
 			}
-			return commentList;
+			return teamCommentList;
 		}
 		// teamComment_List(team_idx)
 	
