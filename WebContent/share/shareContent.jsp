@@ -94,6 +94,24 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 	</tr>
 </table>
 
+<!-- 좋아요 시작 -->
+	<%
+		likeDTO lDTO = new likeDTO();
+		likeDAO lDAO = new likeDAO();
+		lDTO.setUser_num(user_num);
+		lDTO.setContent_num(sDTO.getIdx());
+		lDTO.setContent_type(1);
+		int result = lDAO.checkLike(lDTO);		
+
+%>
+	<input id="user_num" type="hidden" name="user_num" value="<%=user_num%>">
+	<input id="content_num" type="hidden" name="content_num" value="<%=sDTO.getIdx()%>">
+	<input id="content_type" type="hidden" name="content_type" value="1">
+	<input id="likeResult" type="hidden" value="<%=result%>">
+	<button id="likeBtn"></button>
+
+<!-- 좋아요 끝 -->	
+
 <input type="button" value="목록으로" onclick="location.href='./shareList.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&category=<%=category%>';">
 <%if(user_num == sDTO.getUser_num()){ %>
 <input type="button" value="수정하기" onclick="location.href='./shareContentModify.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()%>&category=<%=category%>';">
