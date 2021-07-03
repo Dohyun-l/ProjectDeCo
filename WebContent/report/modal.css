@@ -5,6 +5,7 @@
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
+  animation: open .5s ease-in-out forwards;
 }
 
 .ReportModal .title {
@@ -30,4 +31,13 @@
 
 .ReportModal .content-wrapper img {
   width: 100%;
+}
+
+@keyframes open{
+	from{
+		opacity:0;
+	}
+	to{
+		opacity:1;
+	}
 }

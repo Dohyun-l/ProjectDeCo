@@ -11,7 +11,106 @@
     display: block;
 	text-decoration: none;
 	color:white;
+	margin: 0 auto;
 }
+
 #kakaoLogin:hover{
 	cursor: pointer;
+}
+
+main {
+	display:flex;
+	flex-direction: column;
+}
+
+.reqJoin{
+	text-align: center;
+}
+
+.reqJoin a{
+	text-decoration: none;
+	color: rgb(109, 109, 161);
+}
+
+.loginForm{
+	text-align: center;
+	position:relative;
+	display: flex;
+	flex-direction: column;
+	margin: 0 auto;
+	background-color: rgba(129, 121, 121, 0.2);
+	border-radius: 10px;
+	padding: 20px 20px;
+	box-shadow: 2px 5px 2px rgba(2, 1, 0, 0.3), 5px 1px 5px rgba(2, 1, 0, 0.3), -5px 1px 5px rgba(2, 1, 0, 0.3);	
+	margin-bottom: 20px;
+}
+
+.loginForm-TitleWrapper{
+	margin-bottom: 40px;
+}
+
+.loginForm-TitleWrapper .Title{
+	font-size: 30px;
+}
+
+.loginForm input{
+	border: none;
+	padding: 10px 10px;
+	font-size: 20px;
+	border-radius: 7px;
+}
+
+.loginForm input:focus{
+	outline: none;
+}
+
+.loginForm .loginForm__loginBtn{
+	margin-bottom: 20px;
+}
+
+.loginFrom-socialWrapper{
+	display: flex;
+	flex-direction: column;
+	border-top: rgba(0, 0, 0, 0.4) solid;
+	padding-top: 50px;
+	margin-top: 40px;
+	text-align: center;
+}
+
+.loginFrom-socialWrapper div{
+	margin-bottom: 20px;
+}
+
+.loginForm__inputData{
+	padding: 1px;
+	position: relative;
+	margin-bottom: 20px;
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+.loginForm__inputData .input__border{
+	position: absolute;
+	width: 0;
+	height: 0;
+	top: 0;
+	left: 0;
+	transition: height 0.3s, width 0.4s;
+	background: #11c7ff;
+	z-index: -1;
+}
+
+.loginForm__inputData input:focus ~ .input__border{
+	width: 100%;
+	height: 100%;
+}
+
+.loginForm__loginBtn{
+	position: relative;
+	top:0;
+	transition: top 1s ease;
+}
+
+.loginForm__loginBtn:active{
+	top: 5px;
 }

@@ -33,28 +33,41 @@ if(session.getAttribute("user_num") != null){
 <%
 	String referer = (String) request.getHeader("REFERER");
 %>
- <form action="./LoginAction.us" name="fr" method="post" onsubmit="return check();">
- <center>
- 	<h2>로그인</h2>
+<main>
+ <form action="./LoginAction.us" class="loginForm" name="fr" method="post" onsubmit="return check();">
+	<div class="loginForm-TitleWrapper">
+		<h2 class="Title">로그인</h2>
+	</div>
  	<input type="hidden" name="referer" value="<%=referer %>">
- 	<input type="email" name="email" size="20" style="text-align:center" placeholder="이메일을 입력하세요."><br>
- 	<br>
- 	<input type="password" name="pw" size="20" style="text-align:center" placeholder="비밀번호를 입력하세요."><br>
- 	<br>
- 	<input type="submit" value="로그인"> | <input type="button" value="회원가입" onclick="location.href='join.us'">
- 	<br>
- 	<br>
- 	<a id="kakaoLogin" href="./kakaoLoginStart.us">
-      <img
-      src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg"
-      width="222" />
-   </a>
-    <a href="./githubStart.us" class="github-login">
-        <i class="fab fa-github"></i> 깃허브로 로그인
-    </a>
-   <p id="reauthenticate-popup-result"></p>
- </center>
+ 	<div class="loginForm__inputData">
+		<input type="email" name="email" class="loginForm__emailInput" size="20" placeholder="이메일을 입력하세요."><br>
+		<div class="input__border"></div>
+	</div>
+	<div class="loginForm__inputData">
+		<input type="password" name="pw" class="loginForm__pwInput" size="20" placeholder="비밀번호를 입력하세요."><br>
+		<div class="input__border"></div>
+	</div>
+	<input type="submit" class="loginForm__loginBtn" value="로그인">
+ 	
+	<div class="loginFrom-socialWrapper">
+		<div>
+		<a id="kakaoLogin" href="./kakaoLoginStart.us">
+		  <img
+		  src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg"
+		  width="222" />
+	   </a>
+	</div>
+	<div>
+		<a href="./githubStart.us" class="github-login">
+			<i class="fab fa-github"></i> 깃허브로 로그인
+		</a>
+	</div>
+	</div>
  </form>
+ <div class="reqJoin" >
+ 	<a href="join.us">혹시 회원이 아니신가요? &rarr;</a>
+</div> 
+</main>
  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
  <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 </body>
