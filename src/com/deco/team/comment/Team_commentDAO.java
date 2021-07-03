@@ -65,7 +65,7 @@ public class Team_commentDAO {
 		
 		try {
 			conn = getConnection();
-			sql="select max(COMMENTNUM) from team_comment";
+			sql="select max(idx) from team_comment";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()){

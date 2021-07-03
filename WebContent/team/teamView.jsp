@@ -1,3 +1,7 @@
+<%@page import="java.util.List"%>
+
+<%@page import="com.deco.team.comment.Team_commentDAO"%>
+<%@page import="com.deco.team.comment.Team_commentDTO"%>
 <%@page import="java.io.Console"%>
 <%@page import="com.deco.team.member.teamMemberDAO"%>
 <%@page import="com.deco.user.userDAO"%>
@@ -11,14 +15,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <title>Deco - 팀뷰</title>
-<script type="text/javascript">
-$(function(){
-	$(".submit").on("click", function(){
-		$.ajax()
-	}
-});
-
-</script>
 
 </head>
 <body>
@@ -33,11 +29,11 @@ $(function(){
 	String masternick = udao.getUserNickNameByNum(tdto.getMaster());
 	int check = (int) request.getAttribute("check");
 	int user_num = (int) session.getAttribute("user_num");
-	/* HttpSession Session = request.getSession();
-	int user_num = (int) Session.getAttribute("user_num"); */
-
 	int limit_p = Integer.parseInt(tdto.getLimit_p());
 	int checkSubmitMember = new teamMemberDAO().checkSubmitMember(Integer.parseInt(idx));
+	int team_idx = Integer.parseInt(request.getParameter("idx"));
+	String nickname = udao.getUserNickNameByNum(user_num);
+	
 %>
 <script type="text/javascript">
 function dropteam(){
@@ -97,18 +93,37 @@ function dropteam(){
 	 <%} %>
 	 <br>
 	 <br>
+	 
+	 
+	 <br>
 	 <br>
 	 
-	 	공개 : <input type="radio" checked="checked" name="secret" value="1"> | 
-	 	비공개 : <input type="radio" name="secret" value="0">
+	 <script type="text/javascript">
+		$(function(){
+			$("#oh").on("click", function(){
+				$.ajax({
+					url:"./Team_commentAction.te",
+					type:"post",
+					data:{"team_idx":<%=team_idx %>, "nickname":"<%=nickname%>", "content":$("#content").val(), "secret":document.fr.secret.value},
+					success:function(data){
+						location.reload();
+					}
+				});
+			});
+		});
+		
+	</script>
+	 	<form name="fr">
+	 
+	 	공개 : <input type="radio" checked="checked" name="secret" value="1" id="sec"> | 
+	 	비공개 : <input type="radio" name="secret" value="0" id="sec">
 	 	<br>
 	 	<br>
-	 	<input type="hidden" value="<%=idx %>" name="team_idx">
-	 	<input type="hidden" value="" name="nickname">
-	 	<input type="text" name="content" class="content" size="30" placeholder="궁금한점을 작성해주세요" style="text-align:center">
+	 	<input type="text" name="content" id="content" size="30" placeholder="궁금한점을 작성해주세요" style="text-align:center">
 	 	<br>
 	 	<br>
-	 	<input type="button" value="댓글작성하기" class="submit">
+	 	<input type="button" value="댓글작성하기" id="oh">
+	 	</form>
 	 	
 	 	
 	 	
