@@ -102,16 +102,23 @@ function dropteam(){
 	 <br>
 	<!-- 댓글 -->
 
-<table border="1">
+<table border="1" style="text-align:center">
 	<tr>
-		<td>글번호</td>
-		<td>작성자</td>
-		<td>내용</td>
-		<td>작성날짜</td>
+		
+		<td width="200">작성자</td>
+		<td width="400">내용</td>
+		<td width="200">작성날짜</td>
+		<td width="200">수정/삭제</td>
 	</tr>
-
+<%
+	List teamCommentList = (ArrayList) request.getAttribute("teamCommentList");
+	
+	for(int i=0; i<teamCommentList.size(); i++){
+		Team_commentDTO tcdto = (Team_commentDTO) teamCommentList.get(i);
+		%>
 		
 	<script type="text/javascript">
+		// 댓글 달기 ajax
 		$(function(){
 			$("#oh").on("click", function(){
 				$.ajax({
@@ -124,45 +131,92 @@ function dropteam(){
 				});
 			});
 		});
+		// 댓글 달기 ajax
+		
+		// 댓글 수정버튼 이벤트 처리
 		$(function(){
-			$("#my").on("click",function(){
+			var t ="<input type='text' id='re<%=i %>' name='content' placeholder='수정할내용을 입력해주세요.' size='40'' style='text-align:center'>&nbsp";
+				t +="<input type='button' id='remove<%=i %>' value='수정하기'>";
+			$("#god<%=i %>").on("click",function(){
+				$(".hid<%=i %>").html(t);
+			});
+		});
+		// 댓글 수정버튼 이벤트 처리
+		
+		//댓글 수정 ajax
+		$(function(){
+			$(document).on("click", "#remove<%=i %>",function(){
 				$.ajax({
-					url:"./Team_commentDeleteAction.te",
+					url:"./Team_commentUpdateAction.te",
 					type:"post",
-					data:{"idx":<%=team_idx %>},
-					success:function(){
+					data:{"idx":<%=tcdto.getIdx() %>, "content":$("#re<%=i %>").val()},
+					success:function(data){
 						location.reload();
 					}
 				});
 			});
 		});
+		//댓글 수정 ajax
+		
+		// 댓글 삭제 ajax
+		$(function(){
+			$("#my<%=i %>").on("click",function(){
+				
+			if(confirm("삭제하시겠습니까?")){
+				$.ajax({
+					url:"./Team_commentdeleteAction.te",
+					type:"post",
+					data:{"idx":<%=tcdto.getIdx() %>},
+					success:function(check){
+						if(check == 1){
+						location.reload();
+						}else if(check == 0){
+							alert("본인이 단 글이 아닙니다.");
+						}else{
+							alert("잘못된 접근입니다.");
+						}
+						}
+					});
+				}else{
+					return false;
+				}
+			});
+		});
+		// 댓글 삭제 ajax
 	</script> 
-	<%
-	List teamCommentList = (ArrayList) request.getAttribute("teamCommentList");
 	
-	for(int i=0; i<teamCommentList.size(); i++){
-		Team_commentDTO tcdto = (Team_commentDTO) teamCommentList.get(i);
-		%>
 	
 	<tr>
-		<td><%=teamCommentList.size()-i %></td>
+		
 		<td><%=tcdto.getNickname() %></td>
+		<%if(tcdto.getSecret() == 1){ %>
 		<td><%=tcdto.getContent() %></td>
+		<%}else{ %>
+		<td>비공개 글입니다.</td>
+		<%} %>
 		<td><%=tcdto.getCreate_at() %></td>
-			
+		<%if(tcdto.getNickname().equals(nickname)){ %>
+			<td><input type="button" value="댓글삭제" id="my<%=i %>"> | <input type="button" value="댓글수정" id="god<%=i %>"></td>
+		<%}else{ %>
+			<td>작성자가 아닙니다.</td>
+		<%} %>
 	</tr>
+			<tr>
+				<td colspan="5"><div class="hid<%=i %>"></div></td>
+			</tr>
 <%} %>	
 		</table>	
 	 	<form name="fr">
 	 
+	 	<br>
+	 	<br>
 	 	공개 : <input type="radio" checked="checked" name="secret" value="1" id="sec"> | 
 	 	비공개 : <input type="radio" name="secret" value="0" id="sec">
 	 	<br>
 	 	<br>
 	 	<input type="text" name="content" id="content" size="30" placeholder="궁금한점을 작성해주세요" style="text-align:center">
-	 	<br>
-	 	<br>
-	 	<input type="button" value="댓글작성하기" id="oh"> | <input type="button" value="댓글수정" id="my"> | <input type="button" value="댓글삭제" id="my">
+	 	
+	 	<input type="button" value="댓글작성하기" id="oh">
 	 	</form>
 	 	
 	 	
