@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 
 <%@page import="com.deco.team.comment.Team_commentDAO"%>
@@ -99,8 +100,18 @@ function dropteam(){
 	 
 	 <br>
 	 <br>
-	 
-	 <script type="text/javascript">
+	<!-- 댓글 -->
+
+<table border="1">
+	<tr>
+		<td>글번호</td>
+		<td>작성자</td>
+		<td>내용</td>
+		<td>작성날짜</td>
+	</tr>
+
+		
+	<script type="text/javascript">
 		$(function(){
 			$("#oh").on("click", function(){
 				$.ajax({
@@ -118,14 +129,30 @@ function dropteam(){
 				$.ajax({
 					url:"./Team_commentDeleteAction.te",
 					type:"post",
-					data:{"idx":<%= %>},
+					data:{"idx":<%=team_idx %>},
 					success:function(){
 						location.reload();
 					}
 				});
 			});
 		});
-	</script>
+	</script> 
+	<%
+	List teamCommentList = (ArrayList) request.getAttribute("teamCommentList");
+	
+	for(int i=0; i<teamCommentList.size(); i++){
+		Team_commentDTO tcdto = (Team_commentDTO) teamCommentList.get(i);
+		%>
+	
+	<tr>
+		<td><%=teamCommentList.size()-i %></td>
+		<td><%=tcdto.getNickname() %></td>
+		<td><%=tcdto.getContent() %></td>
+		<td><%=tcdto.getCreate_at() %></td>
+			
+	</tr>
+<%} %>	
+		</table>	
 	 	<form name="fr">
 	 
 	 	공개 : <input type="radio" checked="checked" name="secret" value="1" id="sec"> | 
@@ -135,14 +162,14 @@ function dropteam(){
 	 	<input type="text" name="content" id="content" size="30" placeholder="궁금한점을 작성해주세요" style="text-align:center">
 	 	<br>
 	 	<br>
-	 	<input type="button" value="댓글작성하기" id="oh"> | <input type="button" value="댓글삭제" id="my">
+	 	<input type="button" value="댓글작성하기" id="oh"> | <input type="button" value="댓글수정" id="my"> | <input type="button" value="댓글삭제" id="my">
 	 	</form>
 	 	
 	 	
 	 	
 	
-	 
-	 
+		 
+ 
 </center>
 </body>
 </html>
