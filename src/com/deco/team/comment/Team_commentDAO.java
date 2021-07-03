@@ -161,9 +161,55 @@ public class Team_commentDAO {
 		}
 		// teamComment_List(team_idx)
 	
-	
-	
-	
+		// commentdelete(Team_commentDTO tcdto)
+		public int commentDelete(Team_commentDTO tcdto){
+			int check = -1;
+			try {
+				conn = getConnection();
+				sql="select * from team_comment where idx=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, tcdto.getIdx());
+				rs = pstmt.executeQuery();
+				if(rs.next()){
+					if(tcdto.getNickname().equals(rs.getString("nickname"))){
+						sql="delete from team_comment where idx=?";
+						pstmt = conn.prepareStatement(sql);
+						pstmt.setInt(1, tcdto.getIdx());
+						pstmt.executeUpdate();
+						
+						check = 1;
+					}else{
+						check = 0;
+					}
+				}else{
+					check = -1;
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally{
+				closeDB();
+			}
+			return check;
+		}
+		// commentdelete(Team_commentDTO tcdto)
+		// commentUpdate(Team_commentDTO tcdto)
+		public void commentUpdate(Team_commentDTO tcdto){
+			try {
+				conn = getConnection();
+				sql="update team_comment set content=? where idx=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, tcdto.getContent());
+				pstmt.setInt(2, tcdto.getIdx());
+				pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally{
+				closeDB();
+			}
+			
+		}
+		// commentUpdate(Team_commentDTO tcdto)
+		
 	
 	
 	
