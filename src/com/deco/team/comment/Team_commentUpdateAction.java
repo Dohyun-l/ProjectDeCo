@@ -14,6 +14,7 @@ public class Team_commentUpdateAction implements Action{
 		Team_commentDTO tcdto = new Team_commentDTO();
 		tcdto.setIdx(Integer.parseInt(req.getParameter("idx")));
 		tcdto.setContent(req.getParameter("content"));
+		tcdto.setSecret(Integer.parseInt(req.getParameter("secret")));
 		Team_commentDAO tcdao = new Team_commentDAO();
 		tcdao.commentUpdate(tcdto);
 		

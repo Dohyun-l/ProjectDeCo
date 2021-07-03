@@ -16,6 +16,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <title>Deco - 팀뷰</title>
+<script type="text/javascript">
+function need(){
+	if(document.fr.content.value == ""){
+		alert("댓글을 입력해주세요.");
+		return false;
+	}
+}
+</script>
 
 </head>
 <body>
@@ -135,8 +143,15 @@ function dropteam(){
 		
 		// 댓글 수정버튼 이벤트 처리
 		$(function(){
-			var t ="<input type='text' id='re<%=i %>' name='content' placeholder='수정할내용을 입력해주세요.' size='40'' style='text-align:center'>&nbsp";
+			var t ="<form name='fr2'>";
+				t +="<input type='text' id='re<%=i %>' name='content' placeholder='수정할내용을 입력해주세요.' size='40'' style='text-align:center'>&nbsp";
 				t +="<input type='button' id='remove<%=i %>' value='수정하기'>";
+				if(<%=tcdto.getSecret() %>==1){
+				t +="<br>공개 : <input type='radio' value='1' name='ret<%=i %>' checked> / 비공개 : <input type='radio' value='0' name='ret<%=i %>'>";
+				}else{
+				t +="<br>공개 : <input type='radio' value='1' name='ret<%=i %>' > / 비공개 : <input type='radio' value='0' name='ret<%=i %>' checked>";
+				}
+				t +="</form>";
 			$("#god<%=i %>").on("click",function(){
 				$(".hid<%=i %>").html(t);
 			});
@@ -149,7 +164,7 @@ function dropteam(){
 				$.ajax({
 					url:"./Team_commentUpdateAction.te",
 					type:"post",
-					data:{"idx":<%=tcdto.getIdx() %>, "content":$("#re<%=i %>").val()},
+					data:{"idx":<%=tcdto.getIdx() %>, "content":$("#re<%=i %>").val(), "secret":document.fr2.ret<%=i %>.value},
 					success:function(data){
 						location.reload();
 					}
@@ -189,7 +204,7 @@ function dropteam(){
 	<tr>
 		
 		<td><%=tcdto.getNickname() %></td>
-		<%if(tcdto.getSecret() == 1){ %>
+		<%if(tcdto.getSecret() == 1 || masternick.equals(nickname) || tcdto.getNickname().equals(nickname)){ %>
 		<td><%=tcdto.getContent() %></td>
 		<%}else{ %>
 		<td>비공개 글입니다.</td>
@@ -216,14 +231,8 @@ function dropteam(){
 	 	<br>
 	 	<input type="text" name="content" id="content" size="30" placeholder="궁금한점을 작성해주세요" style="text-align:center">
 	 	
-	 	<input type="button" value="댓글작성하기" id="oh">
+	 	<input type="button" value="댓글작성하기" id="oh" onclick="return need();">
 	 	</form>
-	 	
-	 	
-	 	
-	
-		 
- 
 </center>
 </body>
 </html>

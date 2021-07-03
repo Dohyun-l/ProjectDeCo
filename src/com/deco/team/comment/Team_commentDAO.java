@@ -196,10 +196,11 @@ public class Team_commentDAO {
 		public void commentUpdate(Team_commentDTO tcdto){
 			try {
 				conn = getConnection();
-				sql="update team_comment set content=? where idx=?";
+				sql="update team_comment set content=?, secret=? where idx=?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, tcdto.getContent());
-				pstmt.setInt(2, tcdto.getIdx());
+				pstmt.setInt(2, tcdto.getSecret());
+				pstmt.setInt(3, tcdto.getIdx());
 				pstmt.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();
