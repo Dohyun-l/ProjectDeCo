@@ -1,3 +1,4 @@
+<%@page import="com.deco.user.userDAO"%>
 <%@page import="com.deco.notice.db.noticeDTO"%>
 <%@page import="com.deco.notice.db.noticeDAO"%>
 <%@page import="java.util.ArrayList"%>
@@ -21,10 +22,15 @@
 	   }
 	</script>
 	
-	
 	<%
+		int user_num = (int) session.getAttribute("flag");
+		userDAO usDAO = new userDAO();
+		String nickName = usDAO.getUserNickNameByNum(user_num);
+		
+		int adminCheck = usDAO.getAdminByNum(user_num);
+	%>
 	
-	
+ 	<%
 		// 디비에 저장된 글의 개수를 알기
 		
 		// BoardDAO 객체 생성
@@ -70,8 +76,13 @@
 	
 	<h2> ITWILL 게시판 글목록 [총 : <%= cnt %>개] </h2>
 	
+		<h3><%= nickName %>님 환영합니다~!</h3>
+	
 		<h3><a href="./Main.nt">메인으로</a></h3>
-		<h3><a href="./noticeform.nt">공지글쓰기</a></h3>
+		
+		<%if(adminCheck == -1){ %>
+		<h3><a href="./noticeform.nt?user_num=<%=user_num%>">공지글쓰기</a></h3>
+		<%} %>
 		
 		<form name="fr">
 		<select name="pageChange" id="pageChange" onchange="PageChange()">
@@ -88,8 +99,8 @@
 		<tr>
 			<td>글번호</td>
 			<td>작성자</td>
+			<td>닉네임</td>
 			<td>제목</td>
-			<!-- <td>내용</td> -->
 			<td>작성일</td>
 			<td>조회수</td>
 		</tr>
@@ -100,8 +111,9 @@
 		<tr>
 			<td><%=nDTO.getIdx() %></td>
 			<td><%=nDTO.getUser_num() %></td>
+			<td><%=usDAO.getUserNickNameByNum(nDTO.getUser_num()) %></td>
 			<td>
-			<a href="noticecontent.nt?idx=<%=nDTO.getIdx()%>&pageNum=<%=pageNum%>&cnt=<%=cnt%>"><%=nDTO.getTitle()%></a>
+			<a href="noticecontent.nt?idx=<%=nDTO.getIdx()%>&user_num=<%=user_num%>&pageNum=<%=pageNum%>&cnt=<%=cnt%>"><%=nDTO.getTitle()%></a>
 			</td>
 			<%-- <td><%=nDTO.getContent() %></td> --%>
 			<td><%=nDTO.getCreate_at() %></td>
@@ -140,30 +152,24 @@
 			// 이전 (해당 페이지블럭의 첫번째 페이지 호출)
 			if(startPage > pageBlock){
 				%>
-				<a href="noticelist.nt?pageNum=<%= startPage-pageBlock %>">[이전]</a>
+				<a href="noticelist.nt?pageNum=<%= startPage-pageBlock %>&pageSize=<%=pageSize%>">[이전]</a>
 				<%
 			}
 			
 			// 숫자 1....5
 			for(int i=startPage; i<=endPage;i++){
 				%>
-				<a href="noticelist.nt?pageNum=<%=i %>">[<%= i %>]</a>
+				<a href="noticelist.nt?pageNum=<%=i %>&pageSize=<%=pageSize%>">[<%= i %>]</a>
 				<%
 			}
 			
 			// 다음 (기존의 페이지 블럭보다 페이지의 수가 많을때)
 			if(endPage < pageCount){
 				%>
-				<a href="noticelist.nt?pageNum=<%= startPage+pageBlock %>">[다음]</a>
+				<a href="noticelist.nt?pageNum=<%= startPage+pageBlock %>&pageSize=<%=pageSize%>">[다음]</a>
 				<%
 			}
-			
-	
-			
-			
 		}
-		
-	
 		//////////////////////////////////////////////////////////////////////
 	%>
 	

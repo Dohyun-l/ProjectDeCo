@@ -10,6 +10,7 @@
 </head>
 <body>
 <%
+
 	int user_num = -1;
 	int admin_auth = -1;
 	userDAO uDAO;
@@ -21,7 +22,6 @@
 		name = uDAO.getUserNickNameByNum(user_num);
 		admin_auth = uDAO.getAdminByNum(user_num);
 	}
-	
 %>
 	<%if(name == null && user_num == -1) {%>
 		<a href="./login.us">로그인</a>
@@ -35,7 +35,7 @@
 	
 	<a href="./Main.nt">공지사항</a>
 	
-	<a href="./share/shareList.sh">정보공유</a>
+	<a href="./shareList.sh">정보공유</a>
 	
 	<a href="./teamMain.te">팀만들기</a>
 	

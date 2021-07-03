@@ -70,8 +70,8 @@ public class MailServlet extends HttpServlet{
 	 
 	    public MyAuthentication(){
 	         
-	        String id = "decoauth@gmail.com";       // 구글 ID
-	        String pw = "deco1234";          // 구글 비밀번호
+	        String id = "kookoorugoo@gmail.com";       // 구글 ID
+	        String pw = "kookoorugoo";          // 구글 비밀번호
 	 
 	        // ID와 비밀번호를 입력한다.
 	        pa = new PasswordAuthentication(id, pw);

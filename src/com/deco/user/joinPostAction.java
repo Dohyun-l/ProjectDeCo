@@ -5,7 +5,6 @@ import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 
@@ -20,13 +19,6 @@ public class joinPostAction implements Action{
 		
 		req.setCharacterEncoding("utf-8");
 
-		HttpSession session = req.getSession();
-		
-		if(session.getAttribute("user_num") != null){
-			forward = new ActionForward("./main.us", true);
-			return forward;
-		}
-		
 		userDTO uDTO = new userDTO();
 		uDTO.setReq(req);
 		uDTO.setEmail_auth(new RandomCode().getCode(6));
