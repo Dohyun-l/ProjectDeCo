@@ -151,10 +151,9 @@ public class BookmarkDAO {
    	}
    	//deleteBookmark(bkDTO)
    
-   //checkAllBookmark(bkDTO)
-   	public void checkAllBookmark(BookmarkDTO bmDTO){
+  //ckBookmark(bkDTO)
+   	public int ckBookmark(int user_num, int content_num){
    		int result = 0;
-   		int idx = 0;
    		
    		try {
    			conn = getConnection();
@@ -162,55 +161,28 @@ public class BookmarkDAO {
    			sql = "select * from bookmark where user_num=? and content_num=?";
    			pstmt = conn.prepareStatement(sql);
    			
-   			pstmt.setInt(1, bmDTO.getUser_num());
-   			pstmt.setInt(2, bmDTO.getContent_num());
+   			pstmt.setInt(1, user_num);
+   			pstmt.setInt(2, content_num);
    			
    			rs = pstmt.executeQuery();
    			
    			if(rs.next()){
-   				// 있으면 삭제
-   				sql = "delete from bookmark where user_num=? and content_num=?";
-   	   			pstmt = conn.prepareStatement(sql);
-   	   			
-   	   			pstmt.setInt(1, bmDTO.getUser_num());
-   	   			pstmt.setInt(2, bmDTO.getContent_num());
-   	   			
-   	   			pstmt.executeUpdate();
-
-   	   			System.out.println("DAO : 북마크 삭제 완료! -> ");
+   				result = 1;
    			}else{
-   				//없으면 추가
-   				sql = "select max(idx) from bookmark";
-   	 			PreparedStatement pstmt2 = conn.prepareStatement(sql);
-   	 			
-   	 			ResultSet rs2 = pstmt2.executeQuery();
-   	 			
-   	 			if(rs.next()){
-   	 				idx = rs2.getInt(1) + 1;
-   	 			}
-
-   	 			System.out.println("DAO : 번호 + " + idx);
-   	 			
-   	 			// 상품을 장바구니에 추가
-   	 			sql = "insert into bookmark(idx, user_num, content_num, type) values(?,?,?,0);";
-   	 			pstmt = conn.prepareStatement(sql);
-   	 			
-   	 			pstmt.setInt(1, idx);
-   	 			pstmt.setInt(2, bmDTO.getUser_num());
-   	 			pstmt.setInt(3, bmDTO.getContent_num());
-   	 			
-   	 			pstmt.executeUpdate();
-   	 			
-   	 			System.out.println("DAO : 북마크 추가 완료");
+   				result = 0;
    			}
 
+   			System.out.println("DAO : 북마크 체크 완료! -> " + result);
+   			
    		} catch (SQLException e) {
    			e.printStackTrace();
    		}finally {
    			closeDB();
    		}
+   		
+   		return result;
    	}
-   	//checkAllBookmark(bkDTO)
+   	//ckBookmark(bkDTO)
    
    
    

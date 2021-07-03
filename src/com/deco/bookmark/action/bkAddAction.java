@@ -28,13 +28,8 @@ public class bkAddAction implements Action {
 			bmDAO.addBookmark(bmDTO);
 		}
 		
-		
-		// 페이지 이동(./AdminGoodsList.ag)
-		/*ActionForward forward = new ActionForward("./noticelist.nt", true);*/
-		
-		/*request.setAttribute("page_num", page_num);*/
-		
-		/*return forward;*/
+		request.setAttribute("result", result);
+
 		return null;
 	}
 

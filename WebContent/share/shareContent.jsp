@@ -1,3 +1,4 @@
+<%@page import="com.deco.bookmark.db.BookmarkDAO"%>
 <%@page import="com.deco.user.userDTO"%>
 <%@page import="com.deco.share_comment.commentDTO"%>
 <%@page import="java.util.ArrayList"%>
@@ -92,6 +93,21 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 		<td colspan="5"><%=sDTO.getContent()%></td>
 	</tr>
 </table>
+
+<!-- 즐겨찾기 -->
+<script type="text/javascript" src="./bookmark/bookmark.js"></script>
+	<%
+			BookmarkDAO bmDAO = new BookmarkDAO();
+			int result = bmDAO.ckBookmark(user_num, sDTO.getIdx());
+	%>
+	
+	<%if(result != 1){%>
+    	<input type="button" value="☆" id="bmox" onclick="bookmark(${user_num},<%=sDTO.getIdx()%>)">
+    <%}else{ %>
+    	<input type="button" value="★" id="bmox" onclick="bookmark(${user_num},<%=sDTO.getIdx()%>)">
+    <%} %>
+<!-- 즐겨찾기 -->
+
 
 <input type="button" value="목록으로" onclick="location.href='./shareList.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&category=<%=category%>';">
 <%if(user_num == sDTO.getUser_num()){ %>

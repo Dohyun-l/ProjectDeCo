@@ -1,3 +1,4 @@
+<%@page import="com.deco.bookmark.db.BookmarkDAO"%>
 <%@page import="java.util.List"%>
 <%@page import="com.deco.user.userDAO"%>
 <%@page import="com.deco.notice.db.noticeDTO"%>
@@ -12,6 +13,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js" charset="UTF-8"></script>
 	<h1>WebContent/board/list.jsp</h1>
 	
 	<%
@@ -95,6 +97,7 @@
 			<td>제목</td>
 			<td>작성일</td>
 			<td>조회수</td>
+			<td>즐겨찾기</td>
 		</tr>
 		<% 
 		for(int i=0; i<boardList.size(); i++){
@@ -110,6 +113,17 @@
 			<%-- <td><%=nDTO.getContent() %></td> --%>
 			<td><%=nDTO.getCreate_at() %></td>
 			<td><%=nDTO.getCount() %></td>
+			<td>
+			<%
+				BookmarkDAO bmDAO = new BookmarkDAO();
+				int result = bmDAO.ckBookmark(user_num, nDTO.getIdx());
+			%>
+			<%if(result != 1){%>
+			    <img src="./imgbm/bookmarkx.png" id="bm_img" height="30px" width="30px">
+		    <%}else{ %>
+			    <img src="./imgbm/bookmarko.png" id="bm_img" height="30px" width="30px">
+		    <%} %>
+			</td>
 		</tr>
 		<% 
 		}

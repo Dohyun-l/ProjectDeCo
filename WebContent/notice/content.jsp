@@ -24,6 +24,7 @@
 		String pageNum = request.getParameter("pageNum");
 		
 		noticeDTO nDTO = (noticeDTO)request.getAttribute("noticeContent");
+		/* int result = (int)request.getAttribute("result"); */
 
 		int user_num = 0;
 		if(session.getAttribute("user_num") != null) {
@@ -38,20 +39,32 @@
 		int idxExistPre = nDAO.getIdxExistPre(idx);
 		int idxExistNext = nDAO.getIdxExistNext(idx);
 		
-		// 글 조회수를 1증가 (DB 처리)
-		/* nDAO.updateReadcount(idx); */
-		
-		// DB에서 글번호(num)에 해당하는 글정보를 모두 가져와서 출력
-		/* noticeDTO nDTO = nDAO.getBoard(idx); */
-		
 		String fl = nDTO.getFile();
 		
-
 		userDAO usDAO = new userDAO();
 		String nickName = usDAO.getUserNickNameByNum(user_num);
 		
 		int adminCheck = usDAO.getAdminByNum(user_num);
 	%>
+	
+	<!-- 북마크 체크 -->
+	<script type="text/javascript" src="./bookmark/bookmark.js"></script>
+	
+	<%
+			BookmarkDAO bmDAO = new BookmarkDAO();
+			int result = bmDAO.ckBookmark(user_num, idx);
+	%>
+	
+	<%if(result != 1){%>
+    	<input type="button" value="☆" id="bmox" onclick="bookmark(${user_num},${param.idx})">
+	    <img onclick="bookmark(${user_num},${param.idx})" src="./imgbm/bookmarkx.png" id="bm_img" 
+	    	height="50px" width="50px">
+    <%}else{ %>
+    	<input type="button" value="★" id="bmox" onclick="bookmark(${user_num},${param.idx})">
+	    <img onclick="bookmark(${user_num},${param.idx})" src="./imgbm/bookmarko.png" id="bm_img"
+	    	 height="50px" width="50px">
+    <%} %>
+	<!-- 북마크 체크 -->
 	
 	<table border="1">
 		<tr>
@@ -91,53 +104,7 @@
 		
 	</table>
 	
-	<%
-		BookmarkDTO bmDTO = new BookmarkDTO();
-		bmDTO.setUser_num(user_num);
-		bmDTO.setContent_num(nDTO.getIdx());
-		BookmarkDAO bmDAO = new BookmarkDAO();
-		int result = bmDAO.checkBookmark(bmDTO);
-	%>
-	
 	<hr>
-	<script>
-	function bookmark(){
-		$.ajax({
-			url: "./addBookmark.bm",
-			type: "GET",
-			async: false,
-			data: {user_num: ${user_num},content_num: ${param.idx}},
-			contentType : "charset=UTF-8",
-			success: function(data){
-				if($('#bmox').val() == "☆"){
-					$('#bmox').val("★");
-				}else if($('#bmox').val() == "★"){
-					$('#bmox').val("☆");
-				}
-				
-				if($("#bm_img").attr("src") == "./imgbm/bookmarko.png"){
-					$("#bm_img").attr("src", "./imgbm/bookmarkx.png");
-				}else if($("#bm_img").attr("src") == "./imgbm/bookmarkx.png"){
-					$("#bm_img").attr("src", "./imgbm/bookmarko.png");
-				}
-				
-			},
-			error: function(){
-				alert('통신실패!!');
-			}
-			
-		})
-	}
-	</script>
-	<!--  -->
-	<%if(result != 1){%>
-    	<input type="button" value="☆" id="bmox" onclick="return bookmark()">
-	    <img onclick="return bookmark()" src="./imgbm/bookmarkx.png" id="bm_img" height="50px" width="50px">
-    <%}else{ %>
-    	<input type="button" value="★" id="bmox" onclick="return bookmark()">
-	    <img onclick="return bookmark()" src="./imgbm/bookmarko.png" id="bm_img"
-	    	 height="50px" width="50px">
-    <%} %>
     	
 	<script>
 	function del(){
