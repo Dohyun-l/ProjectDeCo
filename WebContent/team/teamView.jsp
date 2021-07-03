@@ -34,6 +34,8 @@
 	int team_idx = Integer.parseInt(request.getParameter("idx"));
 	String nickname = udao.getUserNickNameByNum(user_num);
 	
+	
+	
 %>
 <script type="text/javascript">
 function dropteam(){
@@ -111,7 +113,18 @@ function dropteam(){
 				});
 			});
 		});
-		
+		$(function(){
+			$("#my").on("click",function(){
+				$.ajax({
+					url:"./Team_commentDeleteAction.te",
+					type:"post",
+					data:{"idx":<%= %>},
+					success:function(){
+						location.reload();
+					}
+				});
+			});
+		});
 	</script>
 	 	<form name="fr">
 	 
@@ -122,7 +135,7 @@ function dropteam(){
 	 	<input type="text" name="content" id="content" size="30" placeholder="궁금한점을 작성해주세요" style="text-align:center">
 	 	<br>
 	 	<br>
-	 	<input type="button" value="댓글작성하기" id="oh">
+	 	<input type="button" value="댓글작성하기" id="oh"> | <input type="button" value="댓글삭제" id="my">
 	 	</form>
 	 	
 	 	
