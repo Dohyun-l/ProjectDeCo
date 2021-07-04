@@ -42,7 +42,7 @@
 }
 .userForm{
     width: 50%;
-    max-width: 700px;
+    max-width: 525px;
     min-width: 500px;
 }
 .userForm input:not(.subjectInput){

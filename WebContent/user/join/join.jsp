@@ -46,7 +46,6 @@ if(session.getAttribute("user_num") != null){
 		</div>
 		<div class="userForm__inputData">
 			<input type="text" name="addr" id="addr" placeholder="주소" readonly>
-			<div class="input__border"></div>
 		</div>
 		<button onclick="return callAddress()">주소찾기</button>
 
