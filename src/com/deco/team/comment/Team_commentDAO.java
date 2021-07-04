@@ -71,12 +71,12 @@ public class Team_commentDAO {
 			if(rs.next()){
 				idx = rs.getInt(1)+1;
 			}
-			sql ="insert into deco.team_comment(idx, team_idx, nickname, content, create_at, secret) "
+			sql ="insert into deco.team_comment(idx, team_idx, user_num, content, create_at, secret) "
 					+ "values(?,?,?,?,now(),?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, idx);
 			pstmt.setInt(2, tcdto.getTeam_idx());
-			pstmt.setString(3, tcdto.getNickname());
+			pstmt.setInt(3, tcdto.getUser_num());
 			pstmt.setString(4, tcdto.getContent());
 			pstmt.setInt(5, tcdto.getSecret());
 			pstmt.executeUpdate();
@@ -106,7 +106,7 @@ public class Team_commentDAO {
 
 					tcdto.setIdx(rs.getInt("idx"));
 					tcdto.setTeam_idx(rs.getInt("team_idx"));
-					tcdto.setNickname(rs.getString("nickname"));
+					tcdto.setUser_num(rs.getInt("user_num"));
 					tcdto.setContent(rs.getString("content"));
 					tcdto.setCreate_at(rs.getString("create_at"));
 					tcdto.setSecret(rs.getInt("secret"));
@@ -143,7 +143,7 @@ public class Team_commentDAO {
 
 					tcdto.setIdx(rs.getInt("idx"));
 					tcdto.setTeam_idx(rs.getInt("team_idx"));
-					tcdto.setNickname(rs.getString("nickname"));
+					tcdto.setUser_num(rs.getInt("user_num"));
 					tcdto.setContent(rs.getString("content"));
 					tcdto.setCreate_at(rs.getString("create_at"));
 					tcdto.setSecret(rs.getInt("secret"));
@@ -170,7 +170,7 @@ public class Team_commentDAO {
 				pstmt.setInt(1, tcdto.getIdx());
 				rs = pstmt.executeQuery();
 				if(rs.next()){
-					if(tcdto.getNickname().equals(rs.getString("nickname"))){
+					if(tcdto.getUser_num()==rs.getInt("user_num")){
 						sql="delete from team_comment where idx=?";
 						pstmt = conn.prepareStatement(sql);
 						pstmt.setInt(1, tcdto.getIdx());

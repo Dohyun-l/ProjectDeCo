@@ -48,6 +48,7 @@ function need(){
 	
 	
 	
+	
 %>
 <script type="text/javascript">
 function dropteam(){
@@ -121,7 +122,7 @@ function dropteam(){
 					$.ajax({
 						url:"./Team_commentAction.te",
 						type:"post",
-						data:{"team_idx":<%=team_idx %>, "nickname":"<%=nickname %>", "content":$("#content").val(), "secret":document.fr.secret.value},
+						data:{"team_idx":<%=team_idx %>, "user_num":<%=user_num %>, "content":$("#content").val(), "secret":document.fr.secret.value},
 						success:function(data){
 							location.reload();
 						}
@@ -146,6 +147,7 @@ function dropteam(){
 	
 	for(int i=0; i<teamCommentList.size(); i++){
 		Team_commentDTO tcdto = (Team_commentDTO) teamCommentList.get(i);
+		String commentnick = udao.getUserNickNameByNum(tcdto.getUser_num());
 		%>
 		
 	
@@ -220,14 +222,14 @@ function dropteam(){
 	
 	<tr>
 		
-		<td><%=tcdto.getNickname() %></td>
-		<%if(tcdto.getSecret() == 1 || masternick.equals(nickname) || tcdto.getNickname().equals(nickname)){ %>
+		<td><%=commentnick %></td>
+		<%if(tcdto.getSecret() == 1 ||tdto.getMaster()== user_num || tcdto.getUser_num()== user_num){ %>
 		<td><%=tcdto.getContent() %></td>
 		<%}else{ %>
 		<td>비공개 글입니다.</td>
 		<%} %>
 		<td><%=tcdto.getCreate_at() %></td>
-		<%if(tcdto.getNickname().equals(nickname)){ %>
+		<%if(tcdto.getUser_num()==user_num){ %>
 			<td><input type="button" value="댓글삭제" id="my<%=i %>"> | <input type="button" value="댓글수정" id="god<%=i %>"></td>
 		<%}else{ %>
 			<td>작성자가 아닙니다.</td>
