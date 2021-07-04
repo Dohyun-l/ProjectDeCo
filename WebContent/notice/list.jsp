@@ -114,6 +114,7 @@
 			<td><%=nDTO.getCreate_at() %></td>
 			<td><%=nDTO.getCount() %></td>
 			<td>
+			
 			<%
 				BookmarkDAO bmDAO = new BookmarkDAO();
 				int result = bmDAO.ckBookmark(user_num, nDTO.getIdx());
