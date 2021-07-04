@@ -1,16 +1,31 @@
 @CHARSET "UTF-8";
 
-#tb_list {
-	
-	
-	
+#wrap {
+	width: 1000px;
+	margin: 5% auto;
+	font-size: 17px;
+	text-align: center;
 }
 
+.clear{clear: both;}
 
+.search_fr {
+	float:left;
+}
+#pageChange {
+	float: right;
+}
+#write_btn {
+	float: right;
+}
 
-
-
-
+#wrap a {
+	text-decoration: none;
+	color: black;
+}
+#wrap a:link {color: gray;}
+#wrap a:hover {color: olive;}
+#wrap a:active {color: red;}
 
 
 

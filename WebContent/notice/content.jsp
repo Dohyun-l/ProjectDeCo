@@ -9,9 +9,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<link href="./css/notice/list.css" rel="stylesheet">
 <title>Insert title here</title>
 </head>
 <body>
+<div id="wrap">
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js" charset="UTF-8"></script>
 
 	<h1>WebContent/board/content.jsp</h1>
@@ -47,26 +50,7 @@
 		int adminCheck = usDAO.getAdminByNum(user_num);
 	%>
 	
-	<!-- 북마크 체크 -->
-	<script type="text/javascript" src="./bookmark/bookmark.js"></script>
-	
-	<%
-			BookmarkDAO bmDAO = new BookmarkDAO();
-			int result = bmDAO.ckBookmark(user_num, idx);
-	%>
-	
-	<%if(result != 1){%>
-    	<input type="button" value="☆" id="bmox" onclick="bookmark(${user_num},${param.idx})">
-	    <img onclick="bookmark(${user_num},${param.idx})" src="./imgbm/bookmarkx.png" id="bm_img" 
-	    	height="50px" width="50px">
-    <%}else{ %>
-    	<input type="button" value="★" id="bmox" onclick="bookmark(${user_num},${param.idx})">
-	    <img onclick="bookmark(${user_num},${param.idx})" src="./imgbm/bookmarko.png" id="bm_img"
-	    	 height="50px" width="50px">
-    <%} %>
-	<!-- 북마크 체크 -->
-	
-	<table border="1">
+	<table border="1" class="table table-bordered">
 		<tr>
 			<td>글번호</td>
 			<td><%=nDTO.getIdx()%></td>
@@ -89,7 +73,7 @@
 			<td colspan="3"><%=nDTO.getTitle()%></td>
 		</tr>
 		<tr>
-			<td colspan="4" width="500" height="500"><%=nDTO.getContent()%></td>
+			<td colspan="4" width="300" height="300"><%=nDTO.getContent()%></td>
 		</tr>
 		
 		<%if(fl != null){ %>
@@ -118,6 +102,24 @@
 	}
 	</script>
 	
+	<!-- 북마크 체크 -->
+	<script type="text/javascript" src="./bookmark/bookmark.js"></script>
+	<%
+			BookmarkDAO bmDAO = new BookmarkDAO();
+			int result = bmDAO.ckBookmark(user_num, idx);
+	%>
+	
+	<%if(result != 1){%>
+    	<input type="button" value="☆" id="bmox" onclick="bookmark(${user_num},${param.idx})">
+	    <%-- <img onclick="bookmark(${user_num},${param.idx})" src="./imgbm/bookmarkx.png" id="bm_img" 
+	    	height="50px" width="50px"> --%>
+    <%}else{ %>
+    	<input type="button" value="★" id="bmox" onclick="bookmark(${user_num},${param.idx})">
+	    <%-- <img onclick="bookmark(${user_num},${param.idx})" src="./imgbm/bookmarko.png" id="bm_img"
+	    	 height="50px" width="50px"> --%>
+    <%} %>
+	<!-- 북마크 체크 -->
+	
 	<%if(adminCheck == 1){%>
 		<input type="button" value="수정하기" 
 					onclick="location.href='./noticemodify.nt?idx=<%=nDTO.getIdx()%>&pageNum=<%=pageNum%>';">
@@ -141,6 +143,6 @@
 	<%}else{%>
 			<a href="noticecontent.nt?idx=<%=idxExistNext%>&pageNum=<%=pageNum%>">다음글</a> 
 	<%}} %>
-
+</div>
 </body>
 </html>

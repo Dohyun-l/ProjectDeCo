@@ -11,15 +11,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- bootstrap -->
-<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-<link href="list.css" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<link href="./css/notice/list.css" rel="stylesheet">
 <!-- bootstrap -->
 <title>Insert title here</title>
 </head>
 <body>
+<div id="wrap">
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js" charset="UTF-8"></script>
-	<h1>WebContent/board/list.jsp</h1>
-	
+	<!-- <h1>WebContent/board/list.jsp</h1> -->
+	<h1>공지사항</h1>
 	<%
 		int user_num = 0;
 		if(session.getAttribute("user_num") != null) {
@@ -39,15 +40,14 @@
 		
 		int adminCheck = usDAO.getAdminByNum(user_num);
 	%>
-	<h2> ITWILL 게시판 글목록 [총 : <%= cnt %>개] </h2>
+	<%-- <h2> ITWILL 게시판 글목록 [총 : <%= cnt %>개] </h2>
 	
-		<h3><%= nickName %>님 환영합니다~!</h3>
-	
-		<h3><a href="./Main.nt">메인으로</a></h3>
+	<h3><%= nickName %>님 환영합니다~!</h3> --%>
 
-		<%if(adminCheck == 1){ %>
-		<h3><a href="./noticeform.nt?user_num=<%=user_num%>">공지글쓰기</a></h3>
-		<%} %>
+	<%if(adminCheck == 1){ %>
+	<input id="write_btn" type="button" onclick="location.href='./noticeform.nt?user_num=<%=user_num%>'" value="글쓰기">
+	<%-- <h3><a href="./noticeform.nt?user_num=<%=user_num%>">공지글쓰기</a></h3> --%>
+	<%} %>
 
 	<script type="text/javascript">
 	/* 몇개씩 목록보기 */
@@ -79,7 +79,7 @@
 	
 	<br>
 	
-	<form name="form" action="./noticelist.nt?pageNum=<%=pageNum %>&pageSize=<%=pageSize %>" method="post" onsubmit="return searchCheck()">
+	<form name="form" class="search_fr" action="./noticelist.nt?pageNum=<%=pageNum %>&pageSize=<%=pageSize %>" method="post" onsubmit="return searchCheck()">
 	<select name="opt">
                 <option value="0">제목</option>
                 <option value="1">내용</option>
@@ -90,35 +90,37 @@
             <input type="submit" value="검색"/>
 	</form>
 	<!--  -->
-	
+	<div class="clear"></div>
 	
 	<br>
-	<table border="1">
+	<table class="table table-hover">
+		<thead>
 		<tr>
-			<td>글번호</td>
-			<td>작성자</td>
-			<td>닉네임</td>
-			<td>제목</td>
-			<td>작성일</td>
-			<td>조회수</td>
-			<td>즐겨찾기</td>
+			<th scope="col">글번호</th>
+			<!-- <th scope="col">작성자</th> -->
+			<th scope="col">닉네임</th>
+			<th scope="col">제목</th>
+			<th scope="col">작성일</th>
+			<th scope="col">조회수</th>
+			<th scope="col">즐겨찾기</th>
 		</tr>
+		</thead>
 		<% 
 		for(int i=0; i<boardList.size(); i++){
 				noticeDTO nDTO = (noticeDTO)boardList.get(i);	
 		%>
+		<tbody>
 		<tr>
 			<td><%=nDTO.getIdx() %></td>
-			<td><%=nDTO.getUser_num() %></td>
+			<%-- <td><%=nDTO.getUser_num() %></td> --%>
 			<td><%=usDAO.getUserNickNameByNum(nDTO.getUser_num()) %></td>
 			<td>
-			<a href="noticecontent.nt?idx=<%=nDTO.getIdx()%>&user_num=<%=user_num%>&pageNum=<%=pageNum%>&cnt=<%=cnt%>"><%=nDTO.getTitle()%></a>
+			<a class="list_title" href="noticecontent.nt?idx=<%=nDTO.getIdx()%>&user_num=<%=user_num%>&pageNum=<%=pageNum%>&cnt=<%=cnt%>"><%=nDTO.getTitle()%></a>
 			</td>
 			<%-- <td><%=nDTO.getContent() %></td> --%>
 			<td><%=nDTO.getCreate_at() %></td>
 			<td><%=nDTO.getCount() %></td>
 			<td>
-			
 			<%
 				BookmarkDAO bmDAO = new BookmarkDAO();
 				int result = bmDAO.ckBookmark(user_num, nDTO.getIdx());
@@ -130,6 +132,7 @@
 		    <%} %>
 			</td>
 		</tr>
+		</tbody>
 		<% 
 		}
 		%>
@@ -184,8 +187,9 @@
 		//////////////////////////////////////////////////////////////////////
 	%>
 	
+	<hr>
+	<h3><a href="./Main.nt">메인으로</a></h3>
 	
-	
-
+</div>
 </body>
 </html>
