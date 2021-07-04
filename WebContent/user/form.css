@@ -59,8 +59,8 @@
 }
 
 input:read-only{
-    background-color: rgb(90, 88, 88);
-    color: white;
+    background-color: rgba(90, 88, 88, 0.4);
+    color: white !important;
 }
 
 input:read-only::placeholder{
