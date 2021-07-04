@@ -11,6 +11,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Deco - 팀</title>
 <link href="./team/search.css" rel="stylesheet" type="text/css">
+<link href="./team/teamList.css" rel="stylesheet">
 </head>
 <body>
 	<%
@@ -41,9 +42,6 @@ function changeBoardSize(){
 	location.href = "./teamList.te?pageNum=<%=pageNum%>&pageSize="+ pageSize;
 	}
 	</script>
-	<center>
-
-		<h2>프로젝트 리스트</h2>
 
 		<form name="form"
 			action="./teamList.te?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>"
@@ -79,66 +77,63 @@ function changeBoardSize(){
 		</form>
 		</div>
 		<br>
-		<table border="1">
-			<tr>
-				<td width="130" style="text-align: center">프로젝트 리더</td>
-				<td width="300" style="text-align: center">프로젝트 제목</td>
-				<td width="100" style="text-align: center">지역</td>
-				<td width="200" style="text-align: center">모집 시작일</td>
-				<td width="200" style="text-align: center">모집 마감일</td>
-			</tr>
-			<%
-				for (int i = 0; i < teamList.size(); i++) {
-					teamDTO tdto = (teamDTO) teamList.get(i);
-					String masternick = udao.getUserNickNameByNum(tdto.getMaster());
-			%>
-			<tr>
-				<td style="text-align: center"><%=masternick%></td>
-				<td style="text-align: center"><a
-					href="./teamView.te?idx=<%=tdto.getIdx()%>";><%=tdto.getTitle()%></a></td>
-				<td style="text-align: center"><%=tdto.getLocation()%></td>
-				<td style="text-align: center"><%=tdto.getCreate_at().substring(0, 10)%></td>
-				<td style="text-align: center"><%=tdto.getDeadline()%></td>
-			</tr>
-			<%
-				}
-			%>
-		</table>
-		<%
-			int cnt = tdao.numOfTeam();
-			int currentpage = Integer.parseInt(pageNum);
-
-			if (cnt != 0) {
-
-				int pageCount = cnt / pageSize + (cnt % pageSize == 0 ? 0 : 1);
-				int pageBlock = 2;
-				int startPage = ((currentpage - 1) / pageBlock) * pageBlock + 1;
-				int endPage = startPage + pageBlock - 1;
-				if (endPage > pageCount) {
-					endPage = pageCount;
-				}
-				if (startPage > pageBlock) {
+		
+			<div class="cards">
+	<%for (int i=0; i<teamList.size(); i++){
+		teamDTO tdto = (teamDTO) teamList.get(i);
+		String masternick = udao.getUserNickNameByNum(tdto.getMaster());
 		%>
-		<a
-			href="./teamList.te?pageNum=<%=startPage - pageBlock%>&pageSize=<%=pageSize%>">[이전]</a>
-		<%
-			}
-				for (int i = startPage; i <= endPage; i++) {
-		%>
-		<a href="./teamList.te?pageNum=<%=i%>&pageSize=<%=pageSize%>">[<%=i%>]
-		</a>
-		<%
-			}
-				if (endPage < pageCount) {
-		%>
-		<a
-			href="./teamList.te?pageNum=<%=startPage + pageBlock%>&pageSize=<%=pageSize%>">[다음]</a>
-		<%
-			}
-			}
-		%>
-		<br> <br> <a href="./main.us">메인페이지로</a>
+	<div class="card" onclick="location.href='./teamView.te?idx=<%=tdto.getIdx() %>'">
+		<div class="card-face">
+			<div class="card-label">
+				#<%=i+1 %><br>
+				title : <%=tdto.getTitle() %><br>
+				master : <%=masternick %><br>
+				location : <%=tdto.getLocation() %><br>
+			</div>
+		</div>
+	</div>
+	<%} %>
+	<center>
+<div class="a">
+<%
+ 
+   
+   int cnt = tdao.numOfTeam();
+   int currentpage = Integer.parseInt(pageNum);
+   
+   if(cnt != 0){
+   
+      int pageCount = cnt/pageSize + (cnt % pageSize == 0 ? 0 : 1);
+      int pageBlock = 5;
+      int startPage = ((currentpage - 1)/pageBlock) * pageBlock + 1;
+      int endPage = startPage + pageBlock -1;
+      if(endPage > pageCount){
+         endPage = pageCount;
+      }
+      if(startPage > pageBlock){
+         %>
+         <a href="./teamList.te?pageNum=<%=startPage-pageBlock %>&pageSize=<%=pageSize%>" class="a1">[이전]</a>
+         <%
+      }
+      for(int i=startPage; i<=endPage; i++){
+         %>
+            <a href="./teamList.te?pageNum=<%=i%>&pageSize=<%=pageSize%>" class="a3">[<%=i %>]</a>
+         <%
+      }
+      if(endPage < pageCount){
+         %>
+         <a href="./teamList.te?pageNum=<%=startPage+pageBlock %>&pageSize=<%=pageSize%>" class="a4">[다음]</a>
+         <%
+      }
+   }
+%>
+	<br>
+	<br>
+	<a href="./main.us" class="a2">메인페이지</a>
+	</div>
 	</center>
+</div>
 
 
 

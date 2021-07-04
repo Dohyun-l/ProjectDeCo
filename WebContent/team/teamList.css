@@ -11,10 +11,14 @@ body {
   overflow: hidden;
 }
 
+a:link { text-decoration: none; text-shadow: 0 0 24px; }
+a:visited { text-decoration: none; text-shadow: 0 0 24px; }
+.a{position: absolute; bottom: 20%; left:5%; font-size: 25px;}
+
 .cards {
   bottom: 0;
   display: flex;
-  height: 400px;
+  height: 250px;
   padding: 0 50px;
   justify-content: center;
   position: fixed;
@@ -75,7 +79,7 @@ body {
   transform: translateY(45px) rotate(-28.125deg);
 }
 .card:nth-child(1) .card-face .card-label {
-  color: #db0000;
+  color: #000000;
   text-shadow: -0.025em 0.025em 0 #ff8080;
 }
 .card:nth-child(1):hover .card-face {
@@ -97,7 +101,7 @@ body {
   transform: translateY(35px) rotate(-21.875deg);
 }
 .card:nth-child(2) .card-face .card-label {
-  color: #db0084;
+  color: #000000;
   text-shadow: -0.025em 0.025em 0 #ff80cc;
 }
 .card:nth-child(2):hover .card-face {
@@ -119,7 +123,7 @@ body {
   transform: translateY(25px) rotate(-15.625deg);
 }
 .card:nth-child(3) .card-face .card-label {
-  color: #af00db;
+  color: #000000;
   text-shadow: -0.025em 0.025em 0 #e680ff;
 }
 .card:nth-child(3):hover .card-face {
@@ -141,7 +145,7 @@ body {
   transform: translateY(15px) rotate(-9.375deg);
 }
 .card:nth-child(4) .card-face .card-label {
-  color: #2c00db;
+  color: #000000;
   text-shadow: -0.025em 0.025em 0 #9980ff;
 }
 .card:nth-child(4):hover .card-face {
@@ -163,7 +167,7 @@ body {
   transform: translateY(5px) rotate(-3.125deg);
 }
 .card:nth-child(5) .card-face .card-label {
-  color: #0058db;
+  color: #000000;
   text-shadow: -0.025em 0.025em 0 #80b3ff;
 }
 .card:nth-child(5):hover .card-face {
@@ -185,7 +189,7 @@ body {
   transform: translateY(5px) rotate(3.125deg);
 }
 .card:nth-child(6) .card-face .card-label {
-  color: #00dbdb;
+  color: #000000;
   text-shadow: -0.025em 0.025em 0 #80ffff;
 }
 .card:nth-child(6):hover .card-face {
@@ -207,7 +211,7 @@ body {
   transform: translateY(15px) rotate(9.375deg);
 }
 .card:nth-child(7) .card-face .card-label {
-  color: #00db58;
+  color: #000000;
   text-shadow: -0.025em 0.025em 0 #80ffb3;
 }
 .card:nth-child(7):hover .card-face {
@@ -229,7 +233,7 @@ body {
   transform: translateY(25px) rotate(15.625deg);
 }
 .card:nth-child(8) .card-face .card-label {
-  color: #2cdb00;
+  color: #000000;
   text-shadow: -0.025em 0.025em 0 #99ff80;
 }
 .card:nth-child(8):hover .card-face {
@@ -251,7 +255,7 @@ body {
   transform: translateY(35px) rotate(21.875deg);
 }
 .card:nth-child(9) .card-face .card-label {
-  color: #afdb00;
+  color: #000000;
   text-shadow: -0.025em 0.025em 0 #e6ff80;
 }
 .card:nth-child(9):hover .card-face {
@@ -273,7 +277,7 @@ body {
   transform: translateY(45px) rotate(28.125deg);
 }
 .card:nth-child(10) .card-face .card-label {
-  color: #db8400;
+  color: #000000;
   text-shadow: -0.025em 0.025em 0 #ffcc80;
 }
 .card:nth-child(10):hover .card-face {
@@ -299,3 +303,4 @@ body {
     transform: scale(1.15);
   }
 }
+

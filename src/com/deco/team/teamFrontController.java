@@ -44,7 +44,7 @@ public class teamFrontController extends Controller {
 			System.out.println("C : teamList.te 호출");
 			action = new teamListAction();
 			try {
-				action.execute(req, resp);
+				forward = action.execute(req, resp);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
