@@ -109,6 +109,26 @@ function dropteam(){
 	 <br>
 	 <br>
 	<!-- 댓글 -->
+	
+	<script type="text/javascript">
+		// 댓글 달기 ajax
+		$(function(){
+			$(this).off("click").on("click", ".oh",function(){
+				need();
+			
+				$.ajax({
+					url:"./Team_commentAction.te",
+					type:"post",
+					data:{"team_idx":<%=team_idx %>, "nickname":"<%=nickname %>", "content":$("#content").val(), "secret":document.fr.secret.value},
+					success:function(data){
+						location.reload();
+					}
+				});
+			});
+		});
+		// 댓글 달기 ajax
+	</script>
+	
 
 <table border="1" style="text-align:center">
 	<tr>
@@ -125,35 +145,22 @@ function dropteam(){
 		Team_commentDTO tcdto = (Team_commentDTO) teamCommentList.get(i);
 		%>
 		
-	<script type="text/javascript">
-		// 댓글 달기 ajax
-		$(function(){
-			$("#oh").on("click", function(){
-				$.ajax({
-					url:"./Team_commentAction.te",
-					type:"post",
-					data:{"team_idx":<%=team_idx %>, "nickname":"<%=nickname%>", "content":$("#content").val(), "secret":document.fr.secret.value},
-					success:function(data){
-						location.reload();
-					}
-				});
-			});
-		});
-		// 댓글 달기 ajax
-		
+	
+		<script type="text/javascript">
 		// 댓글 수정버튼 이벤트 처리
 		$(function(){
-			var t ="<form name='fr2'>";
+			var t ="<td colspan='5'><form name='fr<%=i%>' onsubmit='return false;'>";
 				t +="<input type='text' id='re<%=i %>' name='content' placeholder='수정할내용을 입력해주세요.' size='40'' style='text-align:center'>&nbsp";
-				t +="<input type='button' id='remove<%=i %>' value='수정하기'>";
+				t +="<input type='button' id='remove<%=i %>' value='수정하기' >";
 				if(<%=tcdto.getSecret() %>==1){
 				t +="<br>공개 : <input type='radio' value='1' name='ret<%=i %>' checked> / 비공개 : <input type='radio' value='0' name='ret<%=i %>'>";
 				}else{
 				t +="<br>공개 : <input type='radio' value='1' name='ret<%=i %>' > / 비공개 : <input type='radio' value='0' name='ret<%=i %>' checked>";
 				}
-				t +="</form>";
+				t +="</form></td>";
 			$("#god<%=i %>").on("click",function(){
 				$(".hid<%=i %>").html(t);
+				$(".hid<%=i %>").fadeToggle(t);
 			});
 		});
 		// 댓글 수정버튼 이벤트 처리
@@ -161,15 +168,22 @@ function dropteam(){
 		//댓글 수정 ajax
 		$(function(){
 			$(document).on("click", "#remove<%=i %>",function(){
+				
+			if(document.fr<%=i%>.content.value == ""){
+				alert("수정하실 댓글의 내용을 입력해주세요.");
+				return false;
+			}else{
 				$.ajax({
 					url:"./Team_commentUpdateAction.te",
 					type:"post",
-					data:{"idx":<%=tcdto.getIdx() %>, "content":$("#re<%=i %>").val(), "secret":document.fr2.ret<%=i %>.value},
+					data:{"idx":<%=tcdto.getIdx() %>, "content":$("#re<%=i %>").val(), "secret":document.fr<%=i%>.ret<%=i %>.value},
 					success:function(data){
 						location.reload();
 					}
 				});
+				}
 			});
+			
 		});
 		//댓글 수정 ajax
 		
@@ -216,12 +230,12 @@ function dropteam(){
 			<td>작성자가 아닙니다.</td>
 		<%} %>
 	</tr>
-			<tr>
-				<td colspan="5"><div class="hid<%=i %>"></div></td>
+			<tr class="hid<%=i %>" style="display:none">
+				
 			</tr>
 <%} %>	
 		</table>	
-	 	<form name="fr">
+	 	<form name="fr" onsubmit="return false;">
 	 
 	 	<br>
 	 	<br>
@@ -231,7 +245,8 @@ function dropteam(){
 	 	<br>
 	 	<input type="text" name="content" id="content" size="30" placeholder="궁금한점을 작성해주세요" style="text-align:center">
 	 	
-	 	<input type="button" value="댓글작성하기" id="oh" onclick="return need();">
+<!-- 	 	<input type="button" value="댓글작성하기" class="oh" onclick="return need();"> -->
+	 		<input type="button" value="댓글작성하기" class="oh">
 	 	</form>
 </center>
 </body>
