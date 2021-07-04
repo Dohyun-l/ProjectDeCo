@@ -12,6 +12,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import com.deco.share.shareDTO;
+
 public class teamDAO {
 
 	private Connection conn = null;
@@ -59,11 +61,11 @@ public class teamDAO {
 	}
 	// 자원해제코드 - finally 구문에서 사용
 
-	public void create_team(teamDTO tdto) {
+	public int create_team(teamDTO tdto) {
 		int idx = 0;
 		try {
 			conn = getConnection();
-			sql = "select count(*) from team";
+			sql = "select max(idx) from team";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
@@ -72,6 +74,7 @@ public class teamDAO {
 
 			sql = "insert into team (idx, title, content, location, master, limit_p, create_at, deadline) "
 					+ "values(?,?,?,?,?,?,now(),?)";
+			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, idx);
 			pstmt.setString(2, tdto.getTitle());
@@ -86,6 +89,7 @@ public class teamDAO {
 		} finally {
 			closeDB();
 		}
+		return idx;
 	}
 
 	// teamList()
@@ -96,7 +100,7 @@ public class teamDAO {
 		teamDTO tdto = null;
 		try {
 			conn = getConnection();
-			sql = "select * from team";
+			sql = "select * from team order by idx desc";
 			pstmt = conn.prepareStatement(sql);
 
 			rs = pstmt.executeQuery();
@@ -222,5 +226,186 @@ public class teamDAO {
 		return result;
 	}
 	// getLimitPersonOfTeamIdx(int idx)
+	
+	// getteamView
+	public teamDTO getteamView(int idx){
+		teamDTO tdto = null;
+		try {
+			conn = getConnection();
+			sql = "select * from team where idx=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				tdto = new teamDTO();
+				tdto.setContent(rs.getString("content"));
+				tdto.setCreate_at(rs.getString("create_at"));
+				tdto.setDeadline(rs.getString("deadline"));
+				tdto.setIdx(rs.getInt("idx"));
+				tdto.setLimit_p(rs.getString("limit_p"));
+				tdto.setLocation(rs.getString("location"));
+				tdto.setMaster(rs.getInt("master"));
+				tdto.setTitle(rs.getString("title"));
+				
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+		
+		return tdto;
+	}
+	
+	// getteamView
 
+	// deleteTeam
+	public int deleteTeam(int team_idx, int master){
+		int check = -1;
+		try {
+			conn = getConnection();
+			sql="select * from team where idx=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, team_idx);
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				if(master == rs.getInt("master")){
+					sql="delete from team where idx=?";
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setInt(1, team_idx);
+					pstmt.executeUpdate();
+					
+					check = 1;
+				}else{
+					// 팀번호는 있지만 마스터가 아님
+					check = 0;
+				}
+			}else{
+				// 없는팀
+				check = -1;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+		return check;
+	}
+	// deleteTeam
+	// teamUpdate
+	public int teamUpdate(teamDTO tdto){
+		int check = -1;
+		try {
+			conn = getConnection();
+			sql="select * from team where idx=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, tdto.getIdx());
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				if(tdto.getMaster() == rs.getInt("master")){
+					sql="update team set title=?, content=?, location=?, master=?, limit_p=?, deadline=? where idx=?";
+
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, tdto.getTitle());
+					pstmt.setString(2, tdto.getContent());
+					pstmt.setString(3, tdto.getLocation());
+					pstmt.setInt(4, tdto.getMaster());
+					pstmt.setString(5, tdto.getLimit_p());
+					pstmt.setString(6, tdto.getDeadline());
+					pstmt.setInt(7, tdto.getIdx());
+					pstmt.executeUpdate();
+					check = 1;
+					
+					System.out.println("DAO : 팀 내용 수정완료"); 
+				}else{
+					// 마스터가 아닙니다.
+					check = 0;
+				}
+			}else{
+				check = -1;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		return check;
+	}
+	
+	// teamUpdate
+	
+	// teamSearchList(opt,condition)
+	public List teamSearchList(String opt, String condition) {
+		teamDTO tdto = null;
+		List teamSearchList = new ArrayList();
+
+		try {
+			conn = getConnection();
+			if (opt.equals("0")) {
+				sql = "select * from team where title like '%" + condition + "%' order by idx desc";
+			} else if (opt.equals("1")) {
+				sql = "select * from team where content like '%" + condition + "%' order by idx desc";
+			} else if (opt.equals("2")) {
+				sql = "select * from team where location like '%" + condition + "%' order by idx desc";
+			}
+			System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+			System.out.println(sql);
+			pstmt = conn.prepareStatement(sql);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				tdto = new teamDTO();
+				
+				tdto.setContent(rs.getString("content"));
+				tdto.setCreate_at(rs.getString("create_at"));
+				tdto.setDeadline(rs.getString("deadline"));
+				tdto.setIdx(rs.getInt("idx"));
+				tdto.setLimit_p(rs.getString("limit_p"));
+				tdto.setLocation(rs.getString("location"));
+				tdto.setMaster(rs.getInt("master"));
+				tdto.setTitle(rs.getString("title"));
+				
+				teamSearchList.add(tdto);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+
+		return teamSearchList;
+	}
+	// teamSearchList(opt,condition)
+
+	public int teamDeadlineCheck(String deadline, int getidx){
+		int check = -1;
+		try {
+			conn = getConnection();
+			sql="select * from team where date(deadline) >= date(now()) and idx=?";
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, getidx);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				check = 1;
+			} else {
+				check = 0;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+		return check;
+	}
+	
 }
+
+
+

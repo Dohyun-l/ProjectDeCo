@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import com.deco.Action;
 import com.deco.ActionForward;
 
+
 public class teamListAction implements Action{
 
 	@Override
@@ -30,13 +31,16 @@ public class teamListAction implements Action{
 		
 		teamDAO tdao = new teamDAO();
 		
+		// 검색조건과 검색내용 가져오기
+        String opt =req.getParameter("opt");
+        String condition = req.getParameter("condition");
+		
 		//팀생성 글 개수 보기 
 		int cnt =  tdao.numOfTeam();
 		
 		String str_pageSize = req.getParameter("pageSize");
 		
 		int pageSize = 0;
-		
 		if (str_pageSize == null){
 			pageSize = 5;
 		} else {
@@ -54,14 +58,22 @@ public class teamListAction implements Action{
 		int endRow = currentPage*pageSize;
 		
 		//팀 리스트 보기
-		List teamList = tdao.teamList(startRow,pageSize);
+		List teamList = null;
 		
+		if (condition != null){
+			teamList = tdao.teamSearchList(opt,condition);
+		}else{
+			teamList = tdao.teamList(startRow,pageSize);
+		}
 		
 		req.setAttribute("teamList", teamList);
 		req.setAttribute("pageNum", pageNum);
 		req.setAttribute("pageSize", pageSize);
 		
-		ActionForward forward = new ActionForward("./teamList.jsp",false);
+		System.out.println(pageSize);
+		
+		ActionForward forward = new ActionForward();
+		forward = new ActionForward("./team/teamList.jsp", false);
 		
 		return forward;
 	}
