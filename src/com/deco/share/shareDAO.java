@@ -489,7 +489,7 @@ public class shareDAO {
 	// postContentNum(idx, category)
 
 	// shareSearchList(opt,condition)
-	public List shareSearchList(String opt, String condition) {
+	public List shareSearchList(String opt,String condition) {
 		shareDTO sDTO = null;
 		List shareSearchList = new ArrayList();
 

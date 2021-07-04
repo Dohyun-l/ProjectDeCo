@@ -4,16 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Deco</title>
+<title>Deco - 팀모집</title>
 </head>
 <body>
-<%
-	response.sendRedirect(request.getContextPath()+"/login.us");
-
-
-
-%>
-
+	<h1>WebContent/team/teamMain.jsp</h1>
+	
+<a href="./createTeam.te">방만들기</a>
+<a href="./teamList.te">팀리스트 확인</a>
 
 
 </body>
