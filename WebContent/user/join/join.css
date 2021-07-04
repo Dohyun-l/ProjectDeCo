@@ -50,3 +50,12 @@
 .searchNodeContainer{
     text-align: left !important;
 }
+
+.reqLogin{
+	text-align: center;
+}
+
+.reqLogin a{
+	text-decoration: none;
+	color: rgb(109, 109, 161);
+}

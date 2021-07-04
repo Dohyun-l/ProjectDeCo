@@ -71,6 +71,9 @@ if(session.getAttribute("user_num") != null){
 		</div>
 		<button id="joinSubmit">회원가입</button>
 	</form>
+	<div class="reqLogin" >
+		<a href="login.us">이미 회원이신가요? &rarr;</a>
+   </div> 
 </main>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="./user/join/js/addrAPI.js"></script>
