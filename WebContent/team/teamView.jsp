@@ -20,7 +20,10 @@
 function need(){
 	if(document.fr.content.value == ""){
 		alert("댓글을 입력해주세요.");
+		document.fr.content.focus();
 		return false;
+	} else {
+		return true;
 	}
 }
 </script>
@@ -114,16 +117,16 @@ function dropteam(){
 		// 댓글 달기 ajax
 		$(function(){
 			$(this).off("click").on("click", ".oh",function(){
-				need();
-			
-				$.ajax({
-					url:"./Team_commentAction.te",
-					type:"post",
-					data:{"team_idx":<%=team_idx %>, "nickname":"<%=nickname %>", "content":$("#content").val(), "secret":document.fr.secret.value},
-					success:function(data){
-						location.reload();
-					}
-				});
+				if(need()){
+					$.ajax({
+						url:"./Team_commentAction.te",
+						type:"post",
+						data:{"team_idx":<%=team_idx %>, "nickname":"<%=nickname %>", "content":$("#content").val(), "secret":document.fr.secret.value},
+						success:function(data){
+							location.reload();
+						}
+					});
+				}
 			});
 		});
 		// 댓글 달기 ajax
