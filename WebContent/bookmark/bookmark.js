@@ -1,10 +1,10 @@
-function bookmark(user_num, content_num){
+function bookmark(user_num, content_num, type){
 	
 		$.ajax({
 			url: "./addBookmark.bm",
 			type: "GET",
 			async: true,
-			data: {user_num: user_num,content_num: content_num},
+			data: {user_num: user_num,content_num: content_num, type: type},
 			contentType : "charset=UTF-8",
 			success: function(data){
 				if($('#bmox').val() == "☆"){

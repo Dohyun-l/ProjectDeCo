@@ -106,15 +106,14 @@
 	<script type="text/javascript" src="./bookmark/bookmark.js"></script>
 	<%
 			BookmarkDAO bmDAO = new BookmarkDAO();
-			int result = bmDAO.ckBookmark(user_num, idx);
+			int result = bmDAO.ckBookmark(user_num, idx,1);
 	%>
-	
 	<%if(result != 1){%>
-    	<input type="button" value="☆" id="bmox" onclick="bookmark(${user_num},${param.idx})">
+    	<input type="button" value="☆" id="bmox" onclick="bookmark(${user_num},${param.idx},1)">
 	    <%-- <img onclick="bookmark(${user_num},${param.idx})" src="./imgbm/bookmarkx.png" id="bm_img" 
 	    	height="50px" width="50px"> --%>
     <%}else{ %>
-    	<input type="button" value="★" id="bmox" onclick="bookmark(${user_num},${param.idx})">
+    	<input type="button" value="★" id="bmox" onclick="bookmark(${user_num},${param.idx},1)">
 	    <%-- <img onclick="bookmark(${user_num},${param.idx})" src="./imgbm/bookmarko.png" id="bm_img"
 	    	 height="50px" width="50px"> --%>
     <%} %>

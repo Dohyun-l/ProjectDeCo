@@ -17,6 +17,7 @@ public class bkAddAction implements Action {
 		BookmarkDTO bmDTO = new BookmarkDTO();
 		bmDTO.setUser_num(Integer.parseInt(request.getParameter("user_num")));
 		bmDTO.setContent_num(Integer.parseInt(request.getParameter("content_num")));
+		bmDTO.setType(Integer.parseInt(request.getParameter("type")));
 		
 		BookmarkDAO bmDAO = new BookmarkDAO();
 		

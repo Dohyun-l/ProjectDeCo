@@ -12,7 +12,10 @@
 	
 	<%
 		// 세션객체의 정보를 가져와서 확인
-		int user_num = (int) session.getAttribute("user_num");
+		int user_num = 0;
+		if(session.getAttribute("user_num") != null) {
+			user_num = (int) session.getAttribute("user_num");
+		}
 	
 		userDAO usDAO = new userDAO();
 		String nickName = usDAO.getUserNickNameByNum(user_num);
@@ -26,8 +29,8 @@
 		} */
 	%>
 	
-	<h2><%= user_num %>님 환영합니다~!</h2>
-	<h2><%= nickName %>님 환영합니다~!</h2>
+	<%-- <h2><%= user_num %>님 환영합니다~!</h2>
+	<h2><%= nickName %>님 환영합니다~!</h2> --%>
 	
 	<!-- Search Google -->
 	<form method=get action="http://www.google.co.kr/search" target="_blank" >
@@ -51,8 +54,6 @@
 	<h3><a href="./noticelist.nt"> 게시판 리스트 </a></h3>
 	
 	<h3><a href="./main.us"> 메인 </a></h3>
-	
-	<h3><a href="./main.us"> 마이페이지 </a></h3>
 	
 </body>
 </html>

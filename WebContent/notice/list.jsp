@@ -123,7 +123,7 @@
 			<td>
 			<%
 				BookmarkDAO bmDAO = new BookmarkDAO();
-				int result = bmDAO.ckBookmark(user_num, nDTO.getIdx());
+				int result = bmDAO.ckBookmark(user_num, nDTO.getIdx(),1);
 			%>
 			<%if(result != 1){%>
 			    <img src="./imgbm/bookmarkx.png" id="bm_img" height="30px" width="30px">

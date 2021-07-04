@@ -98,13 +98,13 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 <script type="text/javascript" src="./bookmark/bookmark.js"></script>
 	<%
 			BookmarkDAO bmDAO = new BookmarkDAO();
-			int result = bmDAO.ckBookmark(user_num, sDTO.getIdx());
+			int result = bmDAO.ckBookmark(user_num, sDTO.getIdx(),2);
 	%>
 	
 	<%if(result != 1){%>
-    	<input type="button" value="☆" id="bmox" onclick="bookmark(${user_num},<%=sDTO.getIdx()%>)">
+    	<input type="button" value="☆" id="bmox" onclick="bookmark(${user_num},<%=sDTO.getIdx()%>,2)">
     <%}else{ %>
-    	<input type="button" value="★" id="bmox" onclick="bookmark(${user_num},<%=sDTO.getIdx()%>)">
+    	<input type="button" value="★" id="bmox" onclick="bookmark(${user_num},<%=sDTO.getIdx()%>,2)">
     <%} %>
 <!-- 즐겨찾기 -->
 
