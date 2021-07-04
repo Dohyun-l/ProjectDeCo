@@ -170,6 +170,7 @@
 				<%
 			}
 			
+			
 			// 숫자 1....5
 			for(int i=startPage; i<=endPage;i++){
 				%>
