@@ -1,0 +1,52 @@
+.subInputContainer{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    max-width: 100%;
+    min-height: 50px;
+    max-height: 1000px;
+    background-color: white;
+    margin-bottom: 15px;
+}
+.subjectInput{
+    margin: 0;
+    position: absolute;
+    width: 100%;
+    min-height: 20px;
+    outline: none;
+    border: none;
+    background-color: white;
+    background-color: rgba(255, 255, 255, 0);
+    box-sizing: border-box;
+}
+
+.cofirmContainer i{
+    margin-right: 8px;
+}
+
+.subjectInputWrapper{
+    display: flex;
+}
+
+.InputContainer{
+    display: grid;
+    grid-template-rows: 30px 1fr;
+    box-sizing: border-box;
+}
+.cofirmContainer{
+    display: flex;
+}
+.searchBox{
+    display: none;
+    flex-direction: column;
+}
+.userForm{
+    width: 50%;
+}
+.userForm input:not(.subjectInput){
+    width: 100%;
+    text-align: center;
+}
+.searchNodeContainer{
+    text-align: left !important;
+}

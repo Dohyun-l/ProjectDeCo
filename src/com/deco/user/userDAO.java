@@ -699,32 +699,4 @@ public class userDAO {
 		return check;
 	}
 	
-	public int nickcheck(String nickname, int user_num){
-		int data = -1;
-		try {
-			conn = getConnection();
-			sql="select * from user where nickname=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, nickname);
-			rs = pstmt.executeQuery();
-			// System.out.println(rs.getInt("user_num"));
-			System.out.println(user_num);
-			if(rs.next()){
-				
-				if(user_num == rs.getInt("user_num")){
-					data= 2;
-				} else {
-					data = 1;
-				}
-			}else{
-				data = 0;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally{
-			closeDB();
-		}
-		return data;
-	}
-	
 }

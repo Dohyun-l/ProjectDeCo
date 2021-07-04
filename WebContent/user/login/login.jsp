@@ -5,6 +5,7 @@
 <html>
 <head>
 <link rel="stylesheet" href="./user/login/login.css">
+<link rel="stylesheet" href="./user/form.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Deco</title>
@@ -33,17 +34,17 @@ if(session.getAttribute("user_num") != null){
 <%
 	String referer = (String) request.getHeader("REFERER");
 %>
-<main>
- <form action="./LoginAction.us" class="loginForm" name="fr" method="post" onsubmit="return check();">
-	<div class="loginForm-TitleWrapper">
+<main class="userMain">
+ <form action="./LoginAction.us" class="userForm loginForm" name="fr" method="post" onsubmit="return check();">
+	<div class="userForm-TitleWrapper">
 		<h2 class="Title">로그인</h2>
 	</div>
  	<input type="hidden" name="referer" value="<%=referer %>">
- 	<div class="loginForm__inputData">
+ 	<div class="userForm__inputData">
 		<input type="email" name="email" class="loginForm__emailInput" size="20" placeholder="이메일을 입력하세요."><br>
 		<div class="input__border"></div>
 	</div>
-	<div class="loginForm__inputData">
+	<div class="userForm__inputData">
 		<input type="password" name="pw" class="loginForm__pwInput" size="20" placeholder="비밀번호를 입력하세요."><br>
 		<div class="input__border"></div>
 	</div>
