@@ -26,7 +26,7 @@
 		<%=nDTO.getContent()%>
 		</textarea>
 	</form>
-	<jsp:include page="./edit.html"></jsp:include>
+	<jsp:include page="./edit.jsp"></jsp:include>
 	<hr>
 	
 	<input type="button" onclick="readContent();submitContents();" value="글 수정" />

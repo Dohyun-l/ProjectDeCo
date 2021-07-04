@@ -49,8 +49,9 @@ public class LoginAction implements Action{
 			return null;
 		}
 		
-		
+		System.out.println(flag);
 		HttpSession session = req.getSession();
+
 		session.setAttribute("user_num", flag);
 		
 		int auth = loDAO.getAdminByEmail(email);
@@ -63,7 +64,8 @@ public class LoginAction implements Action{
 			ActionForward forward = new ActionForward("./SocialJoin.us", true);
 			return forward;
 		}
-		// ActionForward forward = new ActionForward(req.getContextPath()+"/main.us",true);
+
+
 		String exceptURL = "http://localhost:8088/ProjectDeCo/userlogout.us";
 		String exceptURL2 = "http://localhost:8088/ProjectDeCo/DeleteAction.us";
 		
@@ -71,8 +73,8 @@ public class LoginAction implements Action{
 			ActionForward forward = new ActionForward(req.getContextPath()+"/main.us",true);
 			return forward;
 		}else{
-			ActionForward forward = new ActionForward(referer, true);
-			return forward;
+		ActionForward forward = new ActionForward(referer, true);
+		return forward;
 		}
 	}
 
