@@ -209,7 +209,21 @@ public class Team_commentDAO {
 			
 		}
 		// commentUpdate(Team_commentDTO tcdto)
-		
+		// teamdeletecomment
+		public void teamdeletecomment(int team_idx){
+			try {
+				conn = getConnection();
+				sql="delete from team_comment where team_idx=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, team_idx);
+				pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally{
+				closeDB();
+			}
+					
+		}
 	
 	
 	
