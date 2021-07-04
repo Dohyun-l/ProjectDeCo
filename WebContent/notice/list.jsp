@@ -45,7 +45,7 @@
 	
 		<h3><a href="./Main.nt">메인으로</a></h3>
 
-		<%if(adminCheck == -1){ %>
+		<%if(adminCheck == 1){ %>
 		<h3><a href="./noticeform.nt?user_num=<%=user_num%>">공지글쓰기</a></h3>
 		<%} %>
 
