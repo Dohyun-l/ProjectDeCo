@@ -118,7 +118,6 @@
 	}
 	</script>
 	
-	<hr>
 	<%if(adminCheck == -1){%>
 		<input type="button" value="수정하기" 
 					onclick="location.href='./noticemodify.nt?idx=<%=nDTO.getIdx()%>&pageNum=<%=pageNum%>';">
