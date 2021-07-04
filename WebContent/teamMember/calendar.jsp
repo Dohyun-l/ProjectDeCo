@@ -4,17 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Deco</title>
+<title>Insert title here</title>
 </head>
 <body>
-<%
-	response.sendRedirect(request.getContextPath()+"/login.us");
 
-
-
-%>
-
-
+	<h1>여기는 달력</h1>
 
 </body>
 </html>
