@@ -50,7 +50,8 @@ const getKeyword = (event) => {
     const comfirmContainer = CONTAINER.querySelector(".cofirmContainer");
     const inputBox = event.target.parentElement.parentElement.parentElement.querySelector(".subjectInput");
     const clickValue = event.target.innerText;
-    
+    const serachBox = event.target.parentElement.parentElement;
+
     if (comfirmContainer.childNodes.length > 4) {
         alert("과목은 최대 5개까지 선택해주세요!");
         return event.preventDefault();
@@ -85,6 +86,8 @@ const getKeyword = (event) => {
     console.log(targetItem.style.display);
     inputBox.value = "";
     inputBox.focus();
+
+    serachBox.style.display="none"
 
     event.preventDefault();
 }
