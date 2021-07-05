@@ -47,7 +47,7 @@
 }
 
 .userForm input:not(.subjectInput){
-    width: 95%;
+    width: 100%;
     text-align: center;
 }
 
@@ -98,3 +98,7 @@
 	padding-left: 10px;
 }
 
+#addr{
+    font-weight: 200;
+    text-shadow: none;
+}
