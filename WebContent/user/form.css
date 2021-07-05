@@ -1,40 +1,66 @@
-.userForm{
+input:focus::-webkit-input-placeholder,
+textarea:focus::-webkit-input-placeholder {
+	/* WebKit browsers */
+	color: transparent;
+}
+
+input:focus:-moz-placeholder,
+textarea:focus:-moz-placeholder {
+	/* Mozilla Firefox 4 to 18 */
+	color: transparent;
+}
+
+input:focus::-moz-placeholder,
+textarea:focus::-moz-placeholder {
+	/* Mozilla Firefox 19+ */
+	color: transparent;
+}
+
+input:focus:-ms-input-placeholder,
+textarea:focus:-ms-input-placeholder {
+	/* Internet Explorer 10+ */
+	color: transparent;
+}
+
+.userForm {
 	text-align: center;
-	position:relative;
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	margin: 0 auto;
 	background-color: rgba(129, 121, 121, 0.2);
 	border-radius: 10px;
 	padding: 20px 20px;
-	box-shadow: 2px 5px 2px rgba(2, 1, 0, 0.3), 5px 1px 5px rgba(2, 1, 0, 0.3), -5px 1px 5px rgba(2, 1, 0, 0.3);	
+	box-shadow: 2px 5px 2px rgba(2, 1, 0, 0.3), 5px 1px 5px rgba(2, 1, 0, 0.3), -5px 1px 5px rgba(2, 1, 0, 0.3);
 	margin-bottom: 20px;
 }
-.userForm-TitleWrapper{
+
+.userForm-TitleWrapper {
 	margin-bottom: 40px;
 }
 
-.userForm-TitleWrapper .Title{
+.userForm-TitleWrapper .Title {
 	font-size: 30px;
 }
 
 .userMain {
-	display:flex;
+	display: flex;
 	flex-direction: column;
 }
 
-.userForm input{
+.userForm input,
+.btn {
 	border: none;
 	padding: 10px 10px;
 	font-size: 20px;
 	border-radius: 7px;
 }
 
-.userForm input:focus{
+.userForm input:focus {
 	outline: none;
 }
 
-.userForm__inputData{
+.userForm__inputData {
 	padding: 2px;
 	position: relative;
 	margin-bottom: 20px;
@@ -42,7 +68,7 @@
 	overflow: hidden;
 }
 
-.userForm__inputData .input__border{
+.userForm__inputData .input__border {
 	position: absolute;
 	width: 0;
 	height: 0;
@@ -53,24 +79,26 @@
 	z-index: -1;
 }
 
-.userForm__inputData input:focus ~ .input__border{
+.userForm__inputData input:focus~.input__border {
 	width: 100%;
 	height: 100%;
 }
 
-input:read-only{
-    background-color: rgba(90, 88, 88, 0.4);
-    color: white !important;
+input:read-only {
+	background-color: rgba(90, 88, 88, 0.4);
+	color: white !important;
 }
 
-input:read-only::placeholder{
-    color: whitesmoke;
+input:read-only::placeholder {
+	color: whitesmoke;
 }
 
 .userForm__submit {
-  transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+	transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
 }
+
 .userForm__submit:hover {
-  box-shadow: 0 0 40px 40px green inset;
-  color:white;
+	box-shadow: 0 0 40px 40px green inset;
+	color: white;
+	font-weight: 600;
 }

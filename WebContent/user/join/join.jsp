@@ -47,7 +47,7 @@ if(session.getAttribute("user_num") != null){
 		<div class="userForm__inputData">
 			<input type="text" name="addr" id="addr" placeholder="주소" readonly>
 		</div>
-		<button onclick="return callAddress()">주소찾기</button>
+		<button class="btn addrBtn" onclick="return callAddress()">주소찾기</button>
 
 		<div id="majorContainer" class="subInputContainer">
 			<div class="cofirmContainer"></div>
@@ -68,7 +68,7 @@ if(session.getAttribute("user_num") != null){
 				<div id="searchBox2" class="searchBox"></div>
 			</div>	
 		</div>
-		<button id="joinSubmit">회원가입</button>
+		<button id="joinSubmit" class="btn userForm__submit">회원가입</button>
 	</form>
 	<div class="reqLogin" >
 		<a href="login.us">이미 회원이신가요? &rarr;</a>
