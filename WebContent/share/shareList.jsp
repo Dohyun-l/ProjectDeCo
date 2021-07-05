@@ -10,7 +10,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>정보공유</title>
-
+<link rel="stylesheet" href="./share/css/share.css">
 
 
 </head>
