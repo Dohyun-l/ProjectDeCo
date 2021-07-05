@@ -48,7 +48,7 @@ if(session.getAttribute("user_num") != null){
 		<input type="password" name="pw" class="loginForm__pwInput" size="20" placeholder="비밀번호를 입력하세요."><br>
 		<div class="input__border"></div>
 	</div>
-	<input type="submit" class="loginForm__loginBtn" value="로그인">
+	<input type="submit" class="userForm__submit" value="로그인">
  	
 	<div class="loginFrom-socialWrapper">
 		<div>

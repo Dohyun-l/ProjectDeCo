@@ -66,3 +66,11 @@ input:read-only{
 input:read-only::placeholder{
     color: whitesmoke;
 }
+
+.userForm__submit {
+  transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+}
+.userForm__submit:hover {
+  box-shadow: 0 0 40px 40px green inset;
+  color:white;
+}
