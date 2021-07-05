@@ -68,6 +68,7 @@ const getKeyword = (event) => {
     inputElement.value = clickValue;
 
     const targetItem = document.createElement("span");
+    targetItem.className = "subjectItem"
     targetItem.dataset.id = comfirmContainer.childNodes.length;
     targetItem.dataset.value = clickValue;
     targetItem.innerText = clickValue;
