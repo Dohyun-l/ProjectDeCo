@@ -45,12 +45,28 @@
     max-width: 525px;
     min-width: 500px;
 }
+
 .userForm input:not(.subjectInput){
     width: 95%;
     text-align: center;
 }
+
+.searchBox>.searchNodeContainer:first-child {
+    margin-top: 10px;
+}
+
+.searchBox > .searchNodeContainer:last-child{
+	margin-bottom: 10px;
+}
+
 .searchNodeContainer{
+    margin-left: 10px;
     text-align: left !important;
+}
+
+.searchNodeContainer a:focus{
+	outline-color: rgba(4, 217, 255, 0.664);
+    box-shadow: 3px 3px 4px 1px rgba(4, 217, 255, 1),3px -3px 4px 1px rgba(4, 217, 255, 1),-3px 3px 4px 1px rgba(4, 217, 255, 1);
 }
 
 .reqLogin{
@@ -76,5 +92,9 @@
   box-shadow: 0 0 40px 40px rgba(74, 150, 180, 0.5) inset;
   color:white;
   font-weight: 600;
+}
+
+.subjectItem{
+	padding-left: 10px;
 }
 
