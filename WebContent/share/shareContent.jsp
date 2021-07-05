@@ -11,6 +11,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<link href="./share/css/list.css" rel="stylesheet">
 <title>Insert title here</title>
  <!-- jquery 준비 시작 -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -19,6 +21,7 @@
 
 
 </head>
+<div class="wrap">
 <body>
 
 <%
@@ -45,7 +48,7 @@ if (session.getAttribute("user_num") != null) {
 if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 <input type="button" value="다음글" onclick="location.href='./shareContent.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=new shareDAO().postContentNum(sDTO.getIdx(), category)%>&category=<%=category%>'">
 <%} %>
-<table border="1">
+<table border="1" class="table table-bordered">
 	<tr>
 		<td>글번호</td>
 		<td><%=sDTO.getIdx()%></td>
@@ -102,8 +105,9 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 
 
 <!-- 댓글 -->
-<form action="" name="commentListfr">
-<table border="1">
+<form action="" name="commentListfr" id="commentListfr">
+<table border="1" class="table table-hover">
+	<thead>
 	<tr>
 		<td>글번호</td>
 		<td>작성자</td>
@@ -111,6 +115,7 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 		<td>작성날짜</td>
 		<td>수정/삭제</td>
 	</tr>
+	</thead>
 <%
 	List commentList = (ArrayList) request.getAttribute("commentList");
 
@@ -142,6 +147,7 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 		   });
 		});
 		</script>
+		<tbody>
 	<tr>
 		<td><%=commentList.size()-i %></td>
 		<td><%=new userDAO().getUserNickNameByNum(cDTO.getUser_num())%></td>
@@ -156,6 +162,8 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 		
 		<%} %>
 <% } %>
+</tr>
+</tbody>
 </table>
 </form>
 <script type="text/javascript">
@@ -186,6 +194,6 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
  <input type="reset" value="취소">
 </form>
 
-
+</div>
 </body>
 </html>

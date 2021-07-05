@@ -6,12 +6,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
+<link href="./share/css/write.css" rel="stylesheet">
 <title>정보 공유 - 글쓰기</title>
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <!-- <script src="share/js/jquery-3.6.0.js"></script> -->
-
+<link href="./share/css/write.css" rel="stylesheet">
 <script type="text/javascript">
 
 $(document).ready(function($) {
@@ -67,7 +67,9 @@ function shareWriteCheck() {
 </script>
 
 </head>
+
 <body>
+
 	<h1>WebContent/share/writeShare.jsp</h1>
 	<hr>
 		
@@ -85,13 +87,14 @@ function shareWriteCheck() {
 		String nickname = udao.getUserNickNameByNum(userNum);
 	%>
 	
-		
-		<form action="./shareWriteAction.sh" method="post" onsubmit="return shareWriteCheck()" name="fr" enctype="multipart/form-data">
+		<div id="write">
+		<div id="smart_editor2">
+		<form action="./shareWriteAction.sh" method="post" onsubmit="return shareWriteCheck()" name="fr" enctype="multipart/form-data" id="fr">
 		<!-- 닉네임 -->
 		닉네임 : <input type="text" id="nickname" name="nickname" value="<%=nickname%>"readonly>
 		<input type="radio" name="anony" value="0" checked="checked">공개
 		<input type="radio" name="anony" value="1">비공개
-		<hr>
+		<hr id="cutBar">
 		<!-- 게시판 분류 -->
 		
 		<!-- 제목 -->	  		
@@ -103,7 +106,7 @@ function shareWriteCheck() {
   			<option value='Company'>회사추천</option>
   			<option value='Academy'>학원추천</option>
   			<option value='HowTo'>How to</option>  			
-		</select><hr>
+		</select><hr id="cutBar">
 		
 		
 		5개 이하로 체크해주세요<br>
@@ -176,10 +179,13 @@ function shareWriteCheck() {
 		data-callback="recaptcha"></div>
 		<!-- https://dedeweb.tistory.com/34 -->
 		<br>
+		<div id="buttons">
 		<input type="submit" value="등록">
 		<input type="reset" value="취소"> 
 		<input type="button" value="메인으로" onclick="location.href='./shareList.sh'">
+		</div>
 		</form>
-	
+		</div>
+	</div>
 </body>
 </html>

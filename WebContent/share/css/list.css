@@ -1,0 +1,58 @@
+@CHARSET "UTF-8";
+
+.wrap {
+	width: 65%;
+    margin: 5% 9%;
+    font-size: 17px;
+    text-align: center;
+    float: left;
+}
+
+#top {
+	margin-top: 200px;
+	width: 15%;
+    float: left;
+}
+
+#top a{
+text-decoration: none;
+color: black;
+margin-right: 30px; 
+margin-top: 10px;
+
+}
+
+nav>ul {list-style: none;/*목록 앞의 모양 제거*/}
+
+.clear{clear: both;}
+
+.search_fr {
+	float:left;
+	margin-top: 20px;
+}
+.pageChange {
+	float: right;
+    margin-bottom: 30px;
+}
+#write_btn {
+	float: right;
+}
+
+#wrap a {
+	text-decoration: none;
+	color: black;
+}
+#wrap a:link {color: gray;}
+#wrap a:hover {color: olive;}
+#wrap a:active {color: red;}
+
+#commentListfr input[type=text]{
+	width: 100%;
+    border: none;
+}
+#commentListfr input[type=button]{
+	border: none;
+}
+
+
+
