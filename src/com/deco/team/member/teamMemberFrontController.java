@@ -123,6 +123,9 @@ public class teamMemberFrontController extends Controller {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if (command.equals("/teamMemberCalendar.tm")) {
+			System.out.println("C : /teamMemberCalendar.tm 호출");
+			forward = new ActionForward("./teamMember/calendar.jsp", false);
 		}
 
 		/////////////////////////////////////////////////////////

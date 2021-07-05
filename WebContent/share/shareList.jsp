@@ -119,10 +119,12 @@
 			<th>작성일</th>
 			<th>조회수</th>
 			<th>카테고리</th>
+			<th>좋아요</th> <!-- 좋아요  -->
 		</tr>
 		</thead>
 	<%for(int i=0; i<shareList.size(); i++){ 
 		shareDTO sdto = (shareDTO) shareList.get(i);
+
 	%>
 	<tbody>
 		<tr>
@@ -141,11 +143,13 @@
 			<td><%=sdto.getCreate_at() %></td>
 			<td><%=sdto.getRead_cnt() %></td>
 			<td><%=sdto.getCategory()%></td>
+			<td><%=sdto.getLike_()%></td>  <!-- 좋아요  -->
 		</tr>
 		</tbody>
 	<%} %>
 	</table>
 	<hr>
+	
 	
 	<%
 	shareDAO sdao = new shareDAO();

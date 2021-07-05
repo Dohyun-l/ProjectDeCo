@@ -29,7 +29,7 @@
 	
 	<a href="./teamMemberTalk.tm?idx=<%=idx%>">팀 채팅방</a>
 	
-	<a href="#">일정 공유</a>
+	<a href="./teamMemberCalendar.tm?idx=<%=idx%>">일정 공유</a>
 	
 	<%if(user_num == tdto.getMaster()) { %>
 	<a href="./memberList.tm?idx=<%=idx%>">멤버 관리</a>	
