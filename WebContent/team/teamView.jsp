@@ -16,31 +16,24 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <title>Deco - 팀뷰</title>
-<script type="text/javascript">
-function need(){
-	if(document.fr.content.value == ""){
-		alert("댓글을 입력해주세요.");
-		document.fr.content.focus();
-		return false;
-	} else {
-		return true;
-	}
-}
-</script>
-
 </head>
 <body>
 <center>
-
+	
 
 <%
-	
+	int user_num = 0;
+		if(session.getAttribute("user_num")!=null){
+			user_num = (int) session.getAttribute("user_num");
+		}
+
+
 	String idx = request.getParameter("idx");
 	userDAO udao = new userDAO();
 	teamDTO tdto = (teamDTO) request.getAttribute("tdto");
 	String masternick = udao.getUserNickNameByNum(tdto.getMaster());
 	int check = (int) request.getAttribute("check");
-	int user_num = (int) session.getAttribute("user_num");
+	
 	int limit_p = Integer.parseInt(tdto.getLimit_p());
 	int checkSubmitMember = new teamMemberDAO().checkSubmitMember(Integer.parseInt(idx));
 	int team_idx = Integer.parseInt(request.getParameter("idx"));
@@ -51,6 +44,16 @@ function need(){
 	
 %>
 <script type="text/javascript">
+function need(){
+	if(document.fr.content.value == ""){
+		alert("댓글을 입력해주세요.");
+		document.fr.content.focus();
+		return false;
+	} else {
+		return true;
+	}
+}
+
 function dropteam(){
 	if(confirm("정말 프로젝트를 취소하시겠습니까?")){
 		

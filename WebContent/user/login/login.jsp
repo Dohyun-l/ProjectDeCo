@@ -5,6 +5,7 @@
 <html>
 <head>
 <link rel="stylesheet" href="./user/login/login.css">
+<link rel="stylesheet" href="./user/login/login2.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Deco</title>
@@ -33,15 +34,23 @@ if(session.getAttribute("user_num") != null){
 <%
 	String referer = (String) request.getHeader("REFERER");
 %>
+	<div class="segment">
  <form action="./LoginAction.us" name="fr" method="post" onsubmit="return check();">
  <center>
- 	<h2>로그인</h2>
+ 	 <h1>Login</h1>
  	<input type="hidden" name="referer" value="<%=referer %>">
  	<input type="email" name="email" size="20" style="text-align:center" placeholder="이메일을 입력하세요."><br>
  	<br>
  	<input type="password" name="pw" size="20" style="text-align:center" placeholder="비밀번호를 입력하세요."><br>
  	<br>
- 	<input type="submit" value="로그인"> | <input type="button" value="회원가입" onclick="location.href='join.us'">
+ 	 <div class="segment">
+ 	<!-- <input type="submit" value="로그인" class="red"> -->
+ 	
+ 	<button class="unit" type="submit"><i class="icon ion-md-arrow-back"></i></button>
+ 	<br> 
+ 	<br> 
+ 	<input type="button" value="회원가입" onclick="location.href='join.us'">
+ 	</div>
  	<br>
  	<br>
  	<a id="kakaoLogin" href="./kakaoLoginStart.us">
@@ -53,6 +62,7 @@ if(session.getAttribute("user_num") != null){
         <i class="fab fa-github"></i> 깃허브로 로그인
     </a>
    <p id="reauthenticate-popup-result"></p>
+
  </center>
  </form>
  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
