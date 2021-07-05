@@ -90,7 +90,13 @@ public class GitLoginFin implements Action{
 					return new ActionForward("./SocialJoin.us",true);
 				}
 				
+				int setDataState = uDAO.getAdminByEmail((String)userEmail.get("email"));
+				
 				setSession(req, userEmail);
+				
+				if(setDataState == -10){
+					return new ActionForward("./SocialJoin.us",true);
+				}
 				
 			}else{
 				return new ActionForward("./login.us", true);
