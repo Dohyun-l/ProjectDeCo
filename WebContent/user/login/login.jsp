@@ -37,12 +37,12 @@ if(session.getAttribute("user_num") != null){
 <main class="userMain">
  <form action="./LoginAction.us" class="userForm loginForm" name="fr" method="post" onsubmit="return check();">
 	<div class="userForm-TitleWrapper">
-		<h2 class="Title">로그인</h2>
+		<h2 class="Title">Login</h2>
 	</div>
  	<input type="hidden" name="referer" value="<%=referer %>">
-		<input type="email" name="email" class="loginForm__emailInput" size="20" placeholder="이메일을 입력하세요."><br>
-		<input type="password" name="pw" class="loginForm__pwInput" size="20" placeholder="비밀번호를 입력하세요."><br>
-	<input type="submit" class="userForm__submit" value="로그인">
+		<input type="email" name="email" class="loginForm__emailInput" size="20" placeholder="Insert Your Email."><br>
+		<input type="password" name="pw" class="loginForm__pwInput" size="20" placeholder="Insert Your Password."><br>
+	<input type="submit" class="userForm__submit" value="Login">
  	
 	<div class="loginFrom-socialWrapper">
 		<div>

@@ -89,8 +89,6 @@
 }
 
 .addrBtn:hover {
-  box-shadow: 0 0 40px 40px rgba(74, 150, 180, 0.5) inset;
-  color:white;
   font-weight: 600;
 }
 

@@ -34,7 +34,7 @@
 .loginFrom-socialWrapper{
 	display: flex;
 	flex-direction: column;
-	border-top: rgba(0, 0, 0, 0.4) solid;
+	border-top: 2px solid rgba(83, 83, 83, 0.397);
 	padding-top: 50px;
 	margin-top: 40px;
 	text-align: center;
