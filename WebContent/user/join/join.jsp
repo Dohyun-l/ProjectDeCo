@@ -21,6 +21,7 @@ if(session.getAttribute("user_num") != null){
 			<h2 class="Title">Join Us</h2>
 		</div>
 		<div class="userForm__inputData">
+			<div id="checkResultId" class="checkResult"></div>
 			<input type="text" name="email" id="email" placeholder="Email">
 		</div>
 		<div class="userForm__inputData">
@@ -33,6 +34,7 @@ if(session.getAttribute("user_num") != null){
 			<input type="text" name="name" id="name" placeholder="Name">
 		</div>
 		<div class="userForm__inputData">
+			<div id="checkResultNickname" class="checkResult"></div>
 			<input type="text" name="nickname" id="nickname" placeholder="Nick Name">
 		</div>
 		<div class="userForm__inputData">
