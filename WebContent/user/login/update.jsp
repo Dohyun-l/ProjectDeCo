@@ -6,6 +6,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Deco - 회원정보수정</title>
+<link rel="stylesheet" href="./user/form.css">
+
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="./user/join/js/addrAPI.js"></script>
@@ -90,7 +92,7 @@ function check(){
 	%>
 	<center>
 	<form action="./UpdateAction.us" method="post" onsubmit="return check();" name="fr">
-				<h2>회원 정보 수정</h2>
+				<h2>User Update</h2>
 				<input type="hidden" name="user_num" value="<%=user_num %>" class="us">
 		비밀번호 : <input type="password" name="pw" placeholder="현재 비밀번호를 입력해주세요." style="text-align:center" size="30"><br>
 		이름 : <input type="text" name="name" value="<%=udto.getName() %>" style="text-align:center" size="15"><br>
@@ -107,7 +109,8 @@ function check(){
 		전공분야 : <input type="text" name="major" value="<%=udto.getMajor() %>" style="text-align:center" size="40"><br>
 		관심분야 : <input type="text" name="inter" value="<%=udto.getInter() %>" style="text-align:center" size="40">
 		<br><br>
-		<input type="submit" value="수정하기"> | <input type="button" value="취소하기" onclick="history.back();">
+		<input type="submit" value="수정하기">
+		<input type="button" value="취소하기" onclick="history.back();">
 		
 		
 	</form>
