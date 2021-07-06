@@ -1,5 +1,10 @@
 @CHARSET "UTF-8";
 
+* {
+	margin: 0;
+	padding: 0;
+}
+
 #wrap {
 	width: 1000px;
 	margin: 5% auto;
@@ -14,21 +19,20 @@
 }
 #pageChange {
 	float: right;
+	margin-top: 20px;
+	margin-right: 20px;
 }
 #write_btn {
 	float: right;
+	margin-top: 20px;
 }
 
 #wrap a {
 	text-decoration: none;
 	color: black;
 }
-#wrap a:link {color: gray;}
-#wrap a:hover {color: olive;}
-#wrap a:active {color: red;}
 
-
-
-
+#wrap a:link, #wrap a:visited {color: gray;}
+#wrap a:hover, #wrap a:active {color: olive;}
 
 
