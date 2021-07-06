@@ -5,7 +5,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -13,10 +13,13 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 <!-- bootstrap -->
 <link href="./share/css/list.css" rel="stylesheet">
+<link href="./share/css/side.css" rel="stylesheet"> 
+<link href="./share/css/button.css" rel="stylesheet"> 
+
+
 <title>정보공유</title>
 </head>
 <body>
-
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js" charset="UTF-8"></script>
 
 	
@@ -34,21 +37,28 @@
 		}
 	%>
 	<br>
-	<div id="top">
 	
 	<nav>
-	<ul>
-		<li><a href="./shareList.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>">전체보기</a></li>
-		<li><a href="./shareList.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&category=Tips">Tips</a></li>
-		<li><a href="./shareList.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&category=Conference">컨퍼런스</a></li>
-		<li><a href="./shareList.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&category=Company">회사추천</a></li>
-		<li><a href="./shareList.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&category=Academy">학원추천</a></li>
-		<li><a href="./shareList.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&category=HowTo">How to</a></li>
-	</ul>
-	</nav>
-	<br>
-	<hr>
-	</div>
+  <div class="menu-btn">
+    <div class="line line--1"></div>
+    <div class="line line--2"></div>
+    <div class="line line--3"></div>
+  </div>
+
+  <div class="nav-links">
+  	<a href="./shareList.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>" class="link">전체보기</a>
+	<a href="./shareList.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&category=Tips" class="link">Tips</a>
+	<a href="./shareList.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&category=Conference" class="link">컨퍼런스</a>
+	<a href="./shareList.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&category=Company" class="link">회사추천</a>
+	<a href="./shareList.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&category=Academy" class="link">학원추천</a>
+	<a href="./shareList.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&category=HowTo" class="link">How to</a>
+  </div>
+</nav>
+
+
+<div class="inform"> 
+
+
 	
 	<script type="text/javascript">
 	function changeBoardSize(){
@@ -129,7 +139,7 @@
 	<tbody>
 		<tr>
 			<td><%=sdto.getIdx() %></td>
-			<td><a href="./shareContent.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&contentNum=<%=sdto.getIdx()%>&category=<%=category%>">
+ 			<td><a href="./shareContent.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&contentNum=<%=sdto.getIdx()%>&category=<%=category%>">
 			<%=sdto.getTitle() %></a></td>
 			<%if(sdto.getAnony()==1){%>
 				<td>
@@ -189,5 +199,7 @@
 <hr>
 <a href="./main.us">메인으로 </a>
 </div>
+</div>
+<script  src="./share/script.js"></script>
 </body>
 </html>

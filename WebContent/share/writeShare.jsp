@@ -12,6 +12,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <!-- <script src="share/js/jquery-3.6.0.js"></script> -->
 <link href="./share/css/write.css" rel="stylesheet">
+<link href="./share/css/button.css" rel="stylesheet">
 <script type="text/javascript">
 
 $(document).ready(function($) {

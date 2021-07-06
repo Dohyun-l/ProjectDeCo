@@ -15,11 +15,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 <link href="./share/css/list.css" rel="stylesheet">
+<link href="./share/css/button.css" rel="stylesheet">
 <title>Insert title here</title>
  <!-- jquery 준비 시작 -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- jquery 준비 끝 -->
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <link rel="stylesheet" href="./report/modal.css">
 
@@ -51,6 +51,7 @@ if (session.getAttribute("user_num") != null) {
 if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 <input type="button" value="다음글" onclick="location.href='./shareContent.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=new shareDAO().postContentNum(sDTO.getIdx(), category)%>&category=<%=category%>'">
 <%} %>
+
 <table border="1" class="table table-bordered">
 	<tr>
 		<td>글번호</td>
@@ -113,7 +114,7 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 	<input id="content_num" type="hidden" name="content_num" value="<%=sDTO.getIdx()%>">
 	<input id="content_type" type="hidden" name="content_type" value="1">
 	<input id="likeResult" type="hidden" value="<%=result%>">
-	<button id="likeBtn"></button>
+	
 
 <!-- 좋아요 끝 -->	
 
@@ -122,13 +123,14 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 <input type="button" value="수정하기" onclick="location.href='./shareContentModify.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()%>&category=<%=category%>';">
 <input type="button" value="삭제하기" onclick="location.href='./shareContentDelete.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()%>&category=<%=category%>';">
 <%} %>
-<div id="reportBtnContainer"></div>
+<div id="reportBtnContainer"><br><button id="likeBtn"></button></div>
+
 <br><br>
 
 
 <!-- 댓글 -->
-<form action="" name="commentListfr" id="commentListfr">
-<table border="1" class="table table-hover">
+<form action="" name="commentListfr" >
+<table id="commentListfr">
 	<thead>
 	<tr>
 		<td>글번호</td>
@@ -208,11 +210,12 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 	}
 
 </script>
-
+<br>
 <form action="./shareCommentAction.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()%>&category=<%=category %>"
 		 method="post" onsubmit="return insertCommentCheck()" name="commentfr">
- <textarea placeholder="Leave a comment here" id="comment" name="comment" rows="5" cols="60" style="resize: none;"></textarea>		
- <input type="submit" value="등록하기">
+ <textarea placeholder="Leave a comment here" class="form-control" id="comment" name="comment" rows="5" cols="60" style="resize: none;"></textarea>		
+ <br>
+ <input type="submit" value="등록하기" >
  <input type="reset" value="취소">
 </form>
 

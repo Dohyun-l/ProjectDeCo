@@ -7,7 +7,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
+<link href="./share/css/write.css" rel="stylesheet">
+<link href="./share/css/button.css" rel="stylesheet">
 <title>정보 공유 - 글쓰기</title>
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -94,9 +95,10 @@ $(document).ready(function($) {
 		String category = request.getParameter("category");
 	%>
 	
-		
-		<form action="shareContentModifyUpdate.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&contentNum=<%=sdto.getIdx()%>&category=<%=category%>"
-		 method="post" onsubmit="return shareWriteCheck()" name="fr" enctype="multipart/form-data">
+		<div id="write">
+		<div id="smart_editor2">
+		<form action="shareContentModifyUpdate.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&contentNum=<%=sdto.getIdx()%>&category=<%=category%> "
+		 method="post" onsubmit="return shareWriteCheck()" name="fr"  id="fr" enctype="multipart/form-data">
 		<!-- 닉네임 -->
 		닉네임 : <input type="text" id="nickname" name="nickname" value="<%=nickname%>"readonly>
 		
@@ -108,7 +110,7 @@ $(document).ready(function($) {
 		<%if(sdto.getAnony() == 1){ %>		
 		 checked="checked"
 	 	<%} %>>비공개
-		<hr>
+		<hr id="cutBar">
 		<!-- 게시판 분류 -->
 		
 		<!-- 제목 -->	  		
@@ -135,7 +137,7 @@ $(document).ready(function($) {
   			<%if(sdto.getCategory().equals("HowTo")){ %>		
 		 	selected
 	 		<%} %>>How to</option>  			
-		</select><hr>
+		</select><hr id="cutBar">
 		
 		
 		5개 이하로 체크해주세요<br>
@@ -230,10 +232,13 @@ $(document).ready(function($) {
 		data-callback="recaptcha"></div>
 		<!-- https://dedeweb.tistory.com/34 -->
 		<br>
+		<div id="buttons">
 		<input type="submit" value="등록">
 		<input type="reset" value="취소"> 
 		<input type="button" value="메인으로" onclick="location.href='./shareList.sh'">
+		</div>
 		</form>
-	
+		</div>
+	</div>	
 </body>
 </html>
