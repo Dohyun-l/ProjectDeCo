@@ -1,7 +1,7 @@
 <%@page import="com.deco.user.userDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <link rel="stylesheet" href="./user/login/login.css">
@@ -68,5 +68,6 @@ if(session.getAttribute("user_num") != null){
 </main>
  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
  <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+ <script type="module" src="./user/login/js/memoId.js"></script>
 </body>
 </html>
