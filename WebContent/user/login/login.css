@@ -12,6 +12,8 @@
 	text-decoration: none;
 	color:white;
 	margin: 0 auto;
+	text-shadow: none !important;
+	font-weight: 600 !important;
 }
 
 #kakaoLogin:hover{
@@ -52,4 +54,13 @@
 
 .loginForm__loginBtn:active{
 	top: 5px;
+}
+
+.memoIdWrapper{
+	display: flex;
+	flex-direction: row;
+	text-align: center !important;
+	width: fit-content !important;
+	margin: 0 auto;
+	margin-top: 10px;
 }

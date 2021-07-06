@@ -43,7 +43,10 @@ if(session.getAttribute("user_num") != null){
 		<input type="email" name="email" class="loginForm__emailInput" size="20" placeholder="Insert Your Email."><br>
 		<input type="password" name="pw" class="loginForm__pwInput" size="20" placeholder="Insert Your Password."><br>
 	<input type="submit" class="userForm__submit" value="Login">
- 	
+ 	<div class="memoIdWrapper">
+		 <input type="checkbox" name="memoId" id="memoId" value="true">
+		 <label for="memoId">아이디 기억하기</label>
+	 </div>
 	<div class="loginFrom-socialWrapper">
 		<div>
 		<a id="kakaoLogin" href="./kakaoLoginStart.us">

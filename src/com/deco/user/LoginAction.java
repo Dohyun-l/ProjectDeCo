@@ -21,6 +21,7 @@ public class LoginAction implements Action{
 		String email = req.getParameter("email");
 		String pw = req.getParameter("pw");
 		String referer = req.getParameter("referer");
+		System.out.println(req.getParameter("memoId"));
 		userDAO loDAO = new userDAO();
 		
 		int flag = loDAO.login(email, pw);
