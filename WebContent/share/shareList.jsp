@@ -59,10 +59,9 @@
 			return false;
 		}
 	}
-	
 	</script>
-	<div class="wrap">
 	
+	<div class="wrap">
 	<h1>정보공유 글보기</h1>
 	<form name="fr">
 		<select id="boardSize" class="pageChange" onchange="changeBoardSize()" name="changePageSize">
