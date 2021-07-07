@@ -3,6 +3,8 @@ package com.deco.notice.action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.deco.Action;
+import com.deco.ActionForward;
 import com.deco.notice.db.noticeDAO;
 
 public class NoticeDeleteAction implements Action {
@@ -18,9 +20,8 @@ System.out.println("M :NoticeDeleteAction_execute() 호출");
 		nDAO.deleteNotice(idx);;
 		
 		// 페이지 이동(./AdminGoodsList.ag)
-		ActionForward forward = new ActionForward();
-		forward.setPath("./noticelist.nt");
-		forward.setRedirect(true);		
+		ActionForward forward = new ActionForward("./noticelist.nt", true);
+	
 		return forward;
 	}
 

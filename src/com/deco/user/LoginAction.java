@@ -2,6 +2,7 @@ package com.deco.user;
 
 import java.io.PrintWriter;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -49,8 +50,9 @@ public class LoginAction implements Action{
 			return null;
 		}
 		
-		
+		System.out.println(flag);
 		HttpSession session = req.getSession();
+
 		session.setAttribute("user_num", flag);
 		
 		int auth = loDAO.getAdminByEmail(email);
@@ -63,7 +65,18 @@ public class LoginAction implements Action{
 			ActionForward forward = new ActionForward("./SocialJoin.us", true);
 			return forward;
 		}
-		// ActionForward forward = new ActionForward(req.getContextPath()+"/main.us",true);
+		
+		String memoId = req.getParameter("memoId");
+		System.out.println("id기억 체크 : =========> "+ memoId);
+		
+		if(memoId != null){
+			Cookie userID = new Cookie("userID", email);
+			userID.setPath(req.getContextPath());
+			userID.setMaxAge(700000000);
+			
+			res.addCookie(userID);
+		}
+
 		String exceptURL = "http://localhost:8088/ProjectDeCo/userlogout.us";
 		String exceptURL2 = "http://localhost:8088/ProjectDeCo/DeleteAction.us";
 		
@@ -71,8 +84,8 @@ public class LoginAction implements Action{
 			ActionForward forward = new ActionForward(req.getContextPath()+"/main.us",true);
 			return forward;
 		}else{
-			ActionForward forward = new ActionForward(referer, true);
-			return forward;
+		ActionForward forward = new ActionForward(referer, true);
+		return forward;
 		}
 	}
 

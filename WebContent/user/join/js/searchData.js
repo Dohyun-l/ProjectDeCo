@@ -4,17 +4,53 @@ const emailInput = document.querySelector("#email");
 const nicknameInput = document.querySelector("#nickname");
 const joinForm = document.querySelector("#joinForm");
 
+const allowResponse = (container) => {
+
+    let inText = "";
+
+    switch (container.id) {
+        case "checkResultId":
+            inText = '사용가능한 아이디 입니다!'
+            break;
+        case "checkResultNickname":
+            inText = '사용가능한 닉네임 입니다!'
+            break;
+        default:
+            break;
+    }
+    container.innerText = inText;
+    container.style.color = "green";
+}
+
+const rejectResponse = (container) => {
+    
+    let inText = "";
+
+    switch (container.id) {
+        case "checkResultId":
+            inText = '사용 불가능한 아이디 입니다!'
+            break;
+        case "checkResultNickname":
+            inText = '사용 불가능한 닉네임 입니다!'
+            break;
+        default:
+            break;
+    }
+    container.innerText = inText;
+    container.style.color = "red";
+}
+
 const SearchData = async(event,url) => {
     const $target = event.target;
     const $term = $target.value;
     const URL = url;
     const state = await (await fetch(URL,getPostRequest($term))).json();
     
-    if($term === '' || state.exists){
-        $target.style.borderColor = 'red';
+    if(state.exists || $term.length < 1){
+        rejectResponse($target.parentElement.querySelector(".checkResult"))
         $target.classList.remove("permit")
     } else {
-        $target.style.borderColor = 'green';
+        allowResponse($target.parentElement.querySelector(".checkResult"))
         $target.classList.add("permit");
     }
 }
@@ -47,8 +83,11 @@ const checkAuthHandler = async(event) => {
     }
 }
 
+if ((!emailInput.readOnly && emailInput.value.length > 0) && nicknameInput.value.length > 0) {
+    emailInput.addEventListener("load",emailSearchHandler);
+    nicknameInput.addEventListener("load",nicknameSearchHandler);
+}
+
 emailInput.addEventListener("keyup",emailSearchHandler);
-nicknameInput.addEventListener("keyup", nicknameSearchHandler);
-emailInput.addEventListener("click",emailSearchHandler);
-nicknameInput.addEventListener("click", nicknameSearchHandler);
+nicknameInput.addEventListener("keyup",nicknameSearchHandler);
 joinForm.addEventListener("submit", checkAuthHandler);

@@ -7,8 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONObject;
-
 import com.deco.Action;
 import com.deco.ActionForward;
 
@@ -20,13 +18,6 @@ public class joinPostAction implements Action{
 		
 		req.setCharacterEncoding("utf-8");
 
-		HttpSession session = req.getSession();
-		
-		if(session.getAttribute("user_num") != null){
-			forward = new ActionForward("./main.us", true);
-			return forward;
-		}
-		
 		userDTO uDTO = new userDTO();
 		uDTO.setReq(req);
 		uDTO.setEmail_auth(new RandomCode().getCode(6));
@@ -55,7 +46,6 @@ public class joinPostAction implements Action{
 		
 		//인증할 유저 email req영역에 속성으로 저장
 		//req.setAttribute("email", uDTO.getEmail());
-		System.out.println("WEFWEFQF?WEQF?QWEF???EWF?QWEF?WQEF?WQEF?WQEF?WQEF");
 		setSession(req, uDTO.getEmail());
 		forward = new ActionForward("./emailAuth.us", true);
 		return forward;

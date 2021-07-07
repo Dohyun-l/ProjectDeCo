@@ -36,4 +36,14 @@ public class getBody extends HttpServlet {
 
     	return (String)postBodyObject.get("reqData"); 
     }
+    
+    public static JSONObject getJsonObj(HttpServletRequest req) throws Exception{
+    	//post로 온 body를 받는 영역
+    	String postBody = getBody.readBody(req);
+    	
+    	JSONParser jsonParser = new JSONParser();
+		JSONObject postBodyObject = (JSONObject) jsonParser.parse(postBody);
+    	
+    	return postBodyObject;
+    }
 }

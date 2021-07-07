@@ -13,9 +13,18 @@ export const searchSubject = async(event) => {
     console.log(data);
 
     return data.map((item,idx) => {
-        return `<div><a class="searchNode" data-id="${idx}" tabindex="${idx}"
+        return `<div class="searchNodeContainer"><a class="searchNode" data-id="${idx}" tabindex="${idx}"
          href="#">${item.subName}</a></div>`
     }).join('');
+}
+
+const findSubjectName = (name, list) => {
+    for (var i = 0; i < list.length; i++) {
+        if (list[i].childNodes[0].value === name) {
+            return true;
+        }
+    }
+    return false;
 }
 
 const handleSearchBox = async(event) => {
@@ -36,21 +45,13 @@ const handleSearchBox = async(event) => {
     searchBox.style.display = "flex";
 }
 
-const findSubjectName = (name, list) => {
-    for (var i = 0; i < list.length; i++) {
-        if (list[i].childNodes[0].value === name) {
-            return true;
-        }
-    }
-    return false;
-}
-
 const getKeyword = (event) => {
     const CONTAINER = event.target.parentElement.parentElement.parentElement.parentElement;
     const comfirmContainer = CONTAINER.querySelector(".cofirmContainer");
     const inputBox = event.target.parentElement.parentElement.parentElement.querySelector(".subjectInput");
     const clickValue = event.target.innerText;
-    
+    const serachBox = event.target.parentElement.parentElement;
+
     if (comfirmContainer.childNodes.length > 4) {
         alert("과목은 최대 5개까지 선택해주세요!");
         return event.preventDefault();
@@ -67,13 +68,14 @@ const getKeyword = (event) => {
     inputElement.value = clickValue;
 
     const targetItem = document.createElement("span");
+    targetItem.className = "subjectItem"
     targetItem.dataset.id = comfirmContainer.childNodes.length;
     targetItem.dataset.value = clickValue;
     targetItem.innerText = clickValue;
 
-    const remove = document.createElement("span");
+    const remove = document.createElement("i");
     remove.dataset.role = "remove";
-    remove.innerText = "❌"
+    remove.className = "fas fa-times-circle"
 
     targetItem.appendChild(remove);
     remove.addEventListener("click",e => e.target.parentElement.parentElement.remove())
@@ -85,6 +87,8 @@ const getKeyword = (event) => {
     console.log(targetItem.style.display);
     inputBox.value = "";
     inputBox.focus();
+
+    serachBox.style.display="none"
 
     event.preventDefault();
 }

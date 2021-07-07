@@ -83,7 +83,7 @@ public class shareDAO {
 			}
 
 			// 3 sql 작성 (insert) & pstmt 객체 생성
-			sql = "insert into share " + "values(?,?,?,?,?,?,?,?,now(),?,?)";
+			sql = "insert into share " + "values(?,?,?,?,?,?,?,?,now(),?,?,?)";
 
 			pstmt = conn.prepareStatement(sql);
 
@@ -95,9 +95,10 @@ public class shareDAO {
 			pstmt.setString(5, sDTO.getFile());
 			pstmt.setString(6, sDTO.getCategory());
 			pstmt.setInt(7, sDTO.getRead_cnt());
-			pstmt.setInt(8, sDTO.getLike());
+			pstmt.setInt(8, sDTO.getLike_());
 			pstmt.setString(9, sDTO.getTag());
 			pstmt.setInt(10, sDTO.getAnony());
+			pstmt.setInt(11, 0);
 
 			// 4 sql 실행
 
@@ -164,11 +165,12 @@ public class shareDAO {
 				sDTO.setCreate_at(rs.getString("create_at"));
 				sDTO.setFile(rs.getString("file"));
 				sDTO.setIdx(rs.getInt("idx"));
-				sDTO.setLike(rs.getInt("like"));
+				sDTO.setLike_(rs.getInt("like_"));
 				sDTO.setRead_cnt(rs.getInt("read_cnt"));
 				sDTO.setTag(rs.getString("tag"));
 				sDTO.setTitle(rs.getString("title"));
 				sDTO.setUser_num(rs.getInt("user_num"));
+				sDTO.setRepo_cnt(rs.getInt("repo_cnt"));
 
 				shareList.add(sDTO);
 			}
@@ -210,11 +212,12 @@ public class shareDAO {
 				sDTO.setCreate_at(rs.getString("create_at"));
 				sDTO.setFile(rs.getString("file"));
 				sDTO.setIdx(rs.getInt("idx"));
-				sDTO.setLike(rs.getInt("like"));
+				sDTO.setLike_(rs.getInt("like_"));
 				sDTO.setRead_cnt(rs.getInt("read_cnt"));
 				sDTO.setTag(rs.getString("tag"));
 				sDTO.setTitle(rs.getString("title"));
 				sDTO.setUser_num(rs.getInt("user_num"));
+				sDTO.setRepo_cnt(rs.getInt("repo_cnt"));
 
 				shareList.add(sDTO);
 			}
@@ -256,11 +259,12 @@ public class shareDAO {
 				sDTO.setCreate_at(rs.getString("create_at"));
 				sDTO.setFile(rs.getString("file"));
 				sDTO.setIdx(rs.getInt("idx"));
-				sDTO.setLike(rs.getInt("like"));
+				sDTO.setLike_(rs.getInt("like_"));
 				sDTO.setRead_cnt(rs.getInt("read_cnt"));
 				sDTO.setTag(rs.getString("tag"));
 				sDTO.setTitle(rs.getString("title"));
 				sDTO.setUser_num(rs.getInt("user_num"));
+				sDTO.setRepo_cnt(rs.getInt("repo_cnt"));
 
 				shareList.add(sDTO);
 			}
@@ -296,11 +300,12 @@ public class shareDAO {
 				sDTO.setCreate_at(rs.getString("create_at"));
 				sDTO.setFile(rs.getString("file"));
 				sDTO.setIdx(rs.getInt("idx"));
-				sDTO.setLike(rs.getInt("like"));
+				sDTO.setLike_(rs.getInt("like_"));
 				sDTO.setRead_cnt(rs.getInt("read_cnt"));
 				sDTO.setTag(rs.getString("tag"));
 				sDTO.setTitle(rs.getString("title"));
 				sDTO.setUser_num(rs.getInt("user_num"));
+				sDTO.setRepo_cnt(rs.getInt("repo_cnt"));
 
 			}
 
@@ -484,7 +489,7 @@ public class shareDAO {
 	// postContentNum(idx, category)
 
 	// shareSearchList(opt,condition)
-	public List shareSearchList(String opt, String condition) {
+	public List shareSearchList(String opt,String condition) {
 		shareDTO sDTO = null;
 		List shareSearchList = new ArrayList();
 
@@ -517,7 +522,7 @@ public class shareDAO {
 				sDTO.setCreate_at(rs.getString("create_at"));
 				sDTO.setFile(rs.getString("file"));
 				sDTO.setIdx(rs.getInt("idx"));
-				sDTO.setLike(rs.getInt("like"));
+				sDTO.setLike_(rs.getInt("like_"));
 				sDTO.setRead_cnt(rs.getInt("read_cnt"));
 				sDTO.setTag(rs.getString("tag"));
 				sDTO.setTitle(rs.getString("title"));
@@ -562,5 +567,30 @@ public class shareDAO {
 	}
 	
 	// getWriteUserNum(int idx)
+	
+	// reportCount
+	public boolean reportCount(int idx){
+		boolean flag = false;
+		
+		try {
+			conn = getConnection();
+			sql = "update share set repo_cnt = repo_cnt + 1 where idx=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			
+			if(pstmt.executeUpdate() < 1){
+				return flag;
+			}
+			
+			flag = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+		
+		return flag;
+	}
+	// reportCount
 	
 }
