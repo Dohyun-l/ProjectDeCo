@@ -22,27 +22,19 @@
 <!-- jquery 준비 끝 -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <link rel="stylesheet" href="./report/modal.css">
-
 </head>
-<div class="wrap">
 <body>
+<%@ include file="../../main/header.jsp" %>
+<div class="wrap">
 
 <%
 request.setCharacterEncoding("utf-8");
 
 shareDTO sDTO =(shareDTO) request.getAttribute("shareContent");
 
-
 String pageSize = request.getParameter("pageSize");
 String pageNum = request.getParameter("pageNum");
 String category = request.getParameter("category");
-int user_num = 0;
-
-if (session.getAttribute("user_num") != null) {
-	user_num = (int)session.getAttribute("user_num");
-}
-
-
 %>
 
 <%if(new shareDAO().preContentNum(sDTO.getIdx(), category) != 0){ %>

@@ -20,13 +20,14 @@
 
 </head>
 <body>
+<%@ include file="../../main/header.jsp" %>
 <div class="wrap">
 <center>
 	<div id="up"><a href="#page1"><img src="https://img.icons8.com/color/48/000000/circled-up-2--v2.png"/></a></div>
 	<div id="cont"><a href="#content"><img src="https://img.icons8.com/color/48/000000/circled-down-2--v2.png"/></a></div>
 	<div id="page1"></div>
 <%
-	int user_num = 0;
+	/* int user_num = 0; */
 		if(session.getAttribute("user_num")!=null){
 			user_num = (int) session.getAttribute("user_num");
 		}

@@ -23,7 +23,6 @@ $(document).ready(function($) {
 	});
 });
 
-
 function shareWriteCheck() {
 	document.fr.content.value = oEditor.getIR();
 	
@@ -65,13 +64,9 @@ function shareWriteCheck() {
 	
 }
 </script>
-
 </head>
-
 <body>
-
-	<h1>WebContent/share/writeShare.jsp</h1>
-	<hr>
+<%@ include file="../../main/header.jsp" %>
 		
 	<%
 	

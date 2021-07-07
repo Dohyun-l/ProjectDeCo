@@ -13,7 +13,7 @@ $color-white: #FFF;
 html, body {
   height: 100%;
   margin: 0 auto;
-  font-family:'Nanum Gothic Coding', monospace;}
+  font-family:'Nanum Gothic Coding', monospace !important;}
 
 .AlogoDeco {float: left;
 	   margin-top: 10px;
