@@ -10,7 +10,7 @@ $color-white: #FFF;
 
 * {text-align:center;}
 
-html, body {
+#mainDeco {
   height: 100%;
   margin: 0 auto;
   font-family:'Nanum Gothic Coding', monospace !important;}
@@ -65,10 +65,10 @@ a.HmenuDeco {font-weight: 400;
  		color: black;
  		text-decoration: none;}
 
-a.p {color: black;
+a.pMainDeco {color: black;
      text-decoration: none;}
 
-p {font-size: 64px;
+p.tagPDeco {font-size: 64px;
    font-weight: 400;
    font-size: 80%;
    margin: 0.1px;
