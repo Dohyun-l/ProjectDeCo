@@ -10,7 +10,7 @@ $color-white: #FFF;
 
 * {text-align:center;}
 
-html, body {
+#mainDeco {
   height: 100%;
   margin: 0 auto;
   font-family:'Nanum Gothic Coding', monospace !important;}
@@ -65,10 +65,10 @@ a.HmenuDeco {font-weight: 400;
  		color: black;
  		text-decoration: none;}
 
-a.p {color: black;
+a.pMainDeco {color: black;
      text-decoration: none;}
 
-p {font-size: 64px;
+p.tagPDeco {font-size: 64px;
    font-weight: 400;
    font-size: 80%;
    margin: 0.1px;
@@ -98,7 +98,7 @@ p {font-size: 64px;
       	     transition: all 0.2s ease;}
 
 #wrapDeco {clear: both;
-	   height: 100%;}
+	   }
 
 header {background-color: #86d0c7;
 		height: 150px;
@@ -107,7 +107,7 @@ header {background-color: #86d0c7;
 article {}
 
 
-li {margin: 0 auto;
+nav-1 li {margin: 0 auto;
 	list-style:none;
 	width: 23%;
 	float: left;}

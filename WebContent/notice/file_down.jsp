@@ -11,7 +11,6 @@
 <body>
   <h1>WebContent/fileupload/file_down.jsp</h1>
   <%
-  
    // 파라미터값 저장 (filename)
    String fileName = request.getParameter("file");
    

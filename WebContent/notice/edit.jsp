@@ -16,27 +16,31 @@
 <script type="text/javascript" src="./js/service/SE2M_Configuration.js" charset="utf-8"></script>	<!-- 설정 파일 -->
 <script type="text/javascript" src="./js/service/SE2BasicCreator.js" charset="utf-8"></script>
 <script type="text/javascript" src="./js/smarteditor2.js" charset="utf-8"></script>
-
+<link href="./css/notice/write.css" rel="stylesheet">
 </head>
 <body>
 <h1>WebContent/notice/edit.html</h1>
 
-<!-- <h1>WebContent/notice/index.html</h1> -->
 
+<!-- <h1>WebContent/notice/index.html</h1> -->
+<div id="write">
 <!--Example Start-->
-<div id="se2_sample" style="margin:10px 0;">
+<div id="se2_sample">
 
 	<%
-		int user_num = (int) session.getAttribute("flag");
+		int user_num = 0;
+		if(session.getAttribute("user_num") != null) {
+			user_num = (int) session.getAttribute("user_num");
+		}
 	%>
 
 	
 	<form action="./NoticeInsertAction.nt" method="post" enctype="multipart/form-data" name="fr">
 		<input type="hidden" name="user_num" id="user_num" value="<%=user_num%>">
-		제목 <input type="text" name="title">
-		<hr>
+		제목 <input type="text" name="title" id="title">
+		<hr id="cutBar">
 		<input type="file" name="file">
-		<hr>
+		<hr id="cutBar">
 		
 		<input type="hidden" name="content" id="content">
 		
@@ -594,7 +598,7 @@
 
 		<hr>
 		<!-- 입력 -->
-		<div class="se2_input_area husky_seditor_editing_area_container">
+		<div class="se2_input_area husky_seditor_editing_area_container" id="iframeSize">
 			
 			<!-- 원래 이름 : name="se2_iframe" -->
 			<iframe src="about:blank" id="se2_iframe" name="se2_iframe" class="se2_input_wysiwyg" width="400" height="300" title="글쓰기 영역 : 도구 모음은 ALT+F10을, 도움말은 ALT+0을 누르세요." frameborder="0" style="display:block;"></iframe>
@@ -813,10 +817,12 @@
 	<input type="button" onclick="showHTML();" value="본문 내용 가져오기" />
 	<input type="button" onclick="setDefaultFont();" value="기본 폰트 지정하기 (궁서_24)" /> -->
 	
-	<hr>
+	<hr id="cutBar">
+	<div id="buttons">
 	<input type="button" onclick="readContent();submitContents();" value="글 작성"/>
 	<input type="button" value="목록으로" onclick="location.href='noticelist.nt';">
-	
+	</div>
+</div>
 <script type="text/javascript">
 if(window.frameElement){
 	jindo.$("se2_sample").style.display = "none";

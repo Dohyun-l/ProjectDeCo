@@ -13,6 +13,10 @@
 <link href="./team/search.css" rel="stylesheet" type="text/css">
 <link href="./team/teamList.css" rel="stylesheet">
 </head>
+<div>
+<%@ include file="../../main/header.jsp" %>
+</div>
+
 <body>
 	<div class="wrap">
 	<!-- 방만들기 -->
@@ -27,7 +31,7 @@
 		int pageSize = (int) request.getAttribute("pageSize");
 		String pageNum = (String) request.getAttribute("pageNum");
 
-		int user_num = 0;
+		/* int user_num = 0; */
 
 		if (session.getAttribute("user_num") != null) {
 			user_num = (int) session.getAttribute("user_num");

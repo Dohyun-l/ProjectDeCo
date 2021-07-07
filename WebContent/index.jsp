@@ -16,7 +16,6 @@
 	info.jsp, main.jsp 페이지 (회원탈퇴, 회원탈퇴 취소) 링크 admin_auth 2인 회원 숨김처리<br>
 	회원 탈퇴 시 mysql 워크벤치 설정 필요 (1. set global event_scheduler = on;) 구문1번 실행시킨후 <br>
 	(2. show variables like '%event%';) 2번구문 실행시켜 event_scheduler = on 확인후 진행<br>
-
 <%
 	response.sendRedirect(request.getContextPath()+"/main.us");
  %>

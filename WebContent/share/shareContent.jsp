@@ -1,3 +1,5 @@
+
+<%@page import="com.deco.bookmark.db.BookmarkDAO"%>
 <%@page import="com.deco.like.likeDAO"%>
 <%@page import="com.deco.like.likeDTO"%>
 <%@page import="com.deco.user.userDTO"%>
@@ -92,6 +94,23 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 	</tr>
 </table>
 
+
+<script type="text/javascript" src="./bookmark/bookmark.js"></script>
+	<%
+			BookmarkDAO bmDAO = new BookmarkDAO();
+			int check = bmDAO.ckBookmark(user_num, sDTO.getIdx(),2);
+	%>
+	
+	<%if(check != 1){%>
+    	<input type="button" value="☆" id="bmox" onclick="bookmark(${user_num},<%=sDTO.getIdx()%>,2)">
+    <%}else{ %>
+    	<input type="button" value="★" id="bmox" onclick="bookmark(${user_num},<%=sDTO.getIdx()%>,2)">
+    <%} %>
+<!-- 즐겨찾기 -->
+
+
+<input type="button" value="목록으로" onclick="location.href='./shareList.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&category=<%=category%>';">
+
 <!-- 좋아요 시작 -->
 	<%
 		likeDTO lDTO = new likeDTO();
@@ -109,6 +128,7 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 <!-- 좋아요 끝 -->	
 
 <input type="button" value="목록으로" onclick="location.href='./shareList.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&category=<%=category%>';" class="write-btn">
+
 <%if(user_num == sDTO.getUser_num()){ %>
 <input type="button" value="수정하기" onclick="location.href='./shareContentModify.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()%>&category=<%=category%>';" class="write-btn">
 <input type="button" value="삭제하기" onclick="location.href='./shareContentDelete.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()%>&category=<%=category%>';" class="write-btn">

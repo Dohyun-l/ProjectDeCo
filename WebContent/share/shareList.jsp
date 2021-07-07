@@ -1,3 +1,4 @@
+<%@page import="com.deco.bookmark.db.BookmarkDAO"%>
 <%@page import="com.deco.share.shareDAO"%>
 <%@page import="com.deco.user.userDAO"%>
 <%@page import="com.deco.share.shareDTO"%>
@@ -112,6 +113,7 @@
 			<th>작성일</th>
 			<th>조회수</th>
 			<th>카테고리</th>
+			<th>즐겨찾기</th>
 			<th>좋아요</th> <!-- 좋아요  -->
 		</tr>
 		</thead>
@@ -136,6 +138,17 @@
 			<td><%=sdto.getCreate_at() %></td>
 			<td><%=sdto.getRead_cnt() %></td>
 			<td><%=sdto.getCategory()%></td>
+			<td>
+			<%
+				BookmarkDAO bmDAO = new BookmarkDAO();
+				int result = bmDAO.ckBookmark(user_num, sdto.getIdx(),2);
+			%>
+			<%if(result != 1){%>
+			    <img src="./imgbm/bookmarkx.png" id="bm_img" height="30px" width="30px">
+		    <%}else{ %>
+			    <img src="./imgbm/bookmarko.png" id="bm_img" height="30px" width="30px">
+		    <%} %>
+			</td>
 			<td><%=sdto.getLike_()%></td>  <!-- 좋아요  -->
 		</tr>
 		</tbody>

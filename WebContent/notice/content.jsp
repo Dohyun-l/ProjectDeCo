@@ -9,17 +9,31 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<link href="./css/notice/list.css" rel="stylesheet">
 <title>Insert title here</title>
 </head>
 <body>
+<div id="wrap">
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js" charset="UTF-8"></script>
+
 	<h1>WebContent/board/content.jsp</h1>
 	
+	
 	<%
+		request.setCharacterEncoding("utf-8");
 		// 페이지 이동시 전달정보(파라미터)가 있으면 항상 가장 먼저 저당
 		// num, pageNum
 		int idx = Integer.parseInt(request.getParameter("idx"));
 		String pageNum = request.getParameter("pageNum");
 		
+		noticeDTO nDTO = (noticeDTO)request.getAttribute("noticeContent");
+		/* int result = (int)request.getAttribute("result"); */
+
+		int user_num = 0;
+		if(session.getAttribute("user_num") != null) {
+			user_num = (int) session.getAttribute("user_num");
+		}
 		
 		// BoardDAO 객체 생성
 		noticeDAO nDAO = new noticeDAO();
@@ -29,23 +43,15 @@
 		int idxExistPre = nDAO.getIdxExistPre(idx);
 		int idxExistNext = nDAO.getIdxExistNext(idx);
 		
-		// 글 조회수를 1증가 (DB 처리)
-		nDAO.updateReadcount(idx);
-		
-		// DB에서 글번호(num)에 해당하는 글정보를 모두 가져와서 출력
-		noticeDTO nDTO = nDAO.getBoard(idx);
-		
 		String fl = nDTO.getFile();
-	%>
-	<%
-		int user_num = (int) session.getAttribute("flag");
+		
 		userDAO usDAO = new userDAO();
 		String nickName = usDAO.getUserNickNameByNum(user_num);
 		
 		int adminCheck = usDAO.getAdminByNum(user_num);
 	%>
 	
-	<table border="1">
+	<table border="1" class="table table-bordered">
 		<tr>
 			<td>글번호</td>
 			<td><%=nDTO.getIdx()%></td>
@@ -68,7 +74,7 @@
 			<td colspan="3"><%=nDTO.getTitle()%></td>
 		</tr>
 		<tr>
-			<td colspan="4" width="500" height="500"><%=nDTO.getContent()%></td>
+			<td colspan="4" width="300" height="300"><%=nDTO.getContent()%></td>
 		</tr>
 		
 		<%if(fl != null){ %>
@@ -83,37 +89,8 @@
 		
 	</table>
 	
-	<%
-		BookmarkDTO bmDTO = new BookmarkDTO();
-		bmDTO.setUser_num(user_num);
-		bmDTO.setContent_num(nDTO.getIdx());
-		BookmarkDAO bmDAO = new BookmarkDAO();
-		int result = bmDAO.checkBookmark(bmDTO);
-	%>
-	
-	
 	<hr>
-	<%if(result != 1){ %>
-	<form action="./bkAddAction.bm" method="post" name="gfr">
-		<!-- 아이디, 글번호 가져가기 -->
-		<%-- <input type="hidden" name="num" value="<%=dto.getNum()%>"> --%>
-		<input type="hidden" name="user_num" value="<%=user_num%>">
-		<input type="hidden" name="content_num" value="<%=nDTO.getIdx()%>">
-	
-		<input type="submit" name="bookmark" value="즐겨찾기">
-	</form>
-	<%}else{ %>
-	<form action="./bkDeleteAction.bm" method="post" name="gfr">
-		<!-- 아이디, 글번호 가져가기 -->
-		<%-- <input type="hidden" name="num" value="<%=dto.getNum()%>"> --%>
-		<input type="hidden" name="user_num" value="<%=user_num%>">
-		<input type="hidden" name="content_num" value="<%=nDTO.getIdx()%>">
-	
-		<input type="submit" name="bookmark" value="즐겨찾기없애기">
-	</form>
-	
-	
-	<%} %>
+    	
 	<script>
 	function del(){
 		if(confirm("정말 삭제하시겠습니까 ?") == true){
@@ -126,8 +103,24 @@
 	}
 	</script>
 	
-	<hr>
-	<%if(adminCheck == -1){ %>
+	<!-- 북마크 체크 -->
+	<script type="text/javascript" src="./bookmark/bookmark.js"></script>
+	<%
+			BookmarkDAO bmDAO = new BookmarkDAO();
+			int result = bmDAO.ckBookmark(user_num, idx,1);
+	%>
+	<%if(result != 1){%>
+    	<input type="button" value="☆" id="bmox" onclick="bookmark(${user_num},${param.idx},1)">
+	    <%-- <img onclick="bookmark(${user_num},${param.idx})" src="./imgbm/bookmarkx.png" id="bm_img" 
+	    	height="50px" width="50px"> --%>
+    <%}else{ %>
+    	<input type="button" value="★" id="bmox" onclick="bookmark(${user_num},${param.idx},1)">
+	    <%-- <img onclick="bookmark(${user_num},${param.idx})" src="./imgbm/bookmarko.png" id="bm_img"
+	    	 height="50px" width="50px"> --%>
+    <%} %>
+	<!-- 북마크 체크 -->
+	
+	<%if(adminCheck == 1){%>
 		<input type="button" value="수정하기" 
 					onclick="location.href='./noticemodify.nt?idx=<%=nDTO.getIdx()%>&pageNum=<%=pageNum%>';">
 					
@@ -150,6 +143,6 @@
 	<%}else{%>
 			<a href="noticecontent.nt?idx=<%=idxExistNext%>&pageNum=<%=pageNum%>">다음글</a> 
 	<%}} %>
-
+</div>
 </body>
 </html>

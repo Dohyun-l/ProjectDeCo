@@ -19,6 +19,7 @@
 <script type="text/javascript" src="./js/service/SE2BasicCreator.js" charset="utf-8"></script>
 <script type="text/javascript" src="./js/smarteditor2.js" charset="utf-8"></script>
 
+
 </head>
 <body>
 <h1>WebContent/notice/edit.html</h1>
@@ -34,7 +35,10 @@
 	
 		int idx = Integer.parseInt(request.getParameter("idx"));
 		
-		int user_num = (int) session.getAttribute("flag");
+		int user_num = 0;
+		if(session.getAttribute("user_num") != null) {
+			user_num = (int) session.getAttribute("user_num");
+		}
 	%>
 	
 	<form action="./NoticeModifyAction.nt" method="post" name="fr">
