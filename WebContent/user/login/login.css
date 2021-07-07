@@ -12,6 +12,8 @@
 	text-decoration: none;
 	color:white;
 	margin: 0 auto;
+	text-shadow: none !important;
+	font-weight: 600 !important;
 }
 
 #kakaoLogin:hover{
@@ -34,7 +36,7 @@
 .loginFrom-socialWrapper{
 	display: flex;
 	flex-direction: column;
-	border-top: rgba(0, 0, 0, 0.4) solid;
+	border-top: 2px solid rgba(83, 83, 83, 0.397);
 	padding-top: 50px;
 	margin-top: 40px;
 	text-align: center;
@@ -52,4 +54,13 @@
 
 .loginForm__loginBtn:active{
 	top: 5px;
+}
+
+.memoIdWrapper{
+	display: flex;
+	flex-direction: row;
+	text-align: center !important;
+	width: fit-content !important;
+	margin: 0 auto;
+	margin-top: 10px;
 }

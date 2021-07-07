@@ -18,34 +18,30 @@ if(session.getAttribute("user_num") != null){
 <main class="userMain">
 	<form id="joinForm" class="userForm" action="joinAction.us" method="post">
 		<div class="userForm-TitleWrapper">
-			<h2 class="Title">회원가입</h2>
+			<h2 class="Title">Join Us</h2>
 		</div>
 		<div class="userForm__inputData">
-			<input type="text" name="email" id="email" placeholder="이메일">
-			<div class="input__border"></div>
+			<div id="checkResultId" class="checkResult"></div>
+			<input type="text" name="email" id="email" placeholder="Email">
 		</div>
 		<div class="userForm__inputData">
-			<input type="password" name="pw" id="pw" placeholder="비밀번호">
-			<div class="input__border"></div>
+			<input type="password" name="pw" id="pw" placeholder="Password">
 		</div>
 		<div class="userForm__inputData">
-			<input type="password" name="pw2" id="pw2" placeholder="비밀번호 확인">
-			<div class="input__border"></div>
+			<input type="password" name="pw2" id="pw2" placeholder="Confirm Password">
 		</div>
 		<div class="userForm__inputData">
-			<input type="text" name="name" id="name" placeholder="이름">
-			<div class="input__border"></div>
+			<input type="text" name="name" id="name" placeholder="Name">
 		</div>
 		<div class="userForm__inputData">
-			<input type="text" name="nickname" id="nickname" placeholder="닉네임">
-			<div class="input__border"></div>
+			<div id="checkResultNickname" class="checkResult"></div>
+			<input type="text" name="nickname" id="nickname" placeholder="Nick Name">
 		</div>
 		<div class="userForm__inputData">
-			<input type="text" name="phone" id="phone" placeholder="휴대전화(010-XXXX-XXXX)" maxlength="13">
-			<div class="input__border"></div>
+			<input type="text" name="phone" id="phone" placeholder="Phone(010-XXXX-XXXX)" maxlength="13">
 		</div>
 		<div class="userForm__inputData">
-			<input type="text" name="addr" id="addr" placeholder="주소" readonly>
+			<input type="text" name="addr" id="addr" placeholder="Address" readonly>
 		</div>
 		<button class="btn addrBtn" onclick="return callAddress()">주소찾기</button>
 
