@@ -56,7 +56,7 @@ nav>ul {list-style: none;/*목록 앞의 모양 제거*/}
 }
 
 #commentListfr td{ 
-  width: 200px;
+  width: 170px;
   padding: 10px;
   vertical-align: top;
   border-bottom: 1px solid #ccc;

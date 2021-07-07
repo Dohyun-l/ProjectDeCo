@@ -46,10 +46,10 @@ if (session.getAttribute("user_num") != null) {
 %>
 
 <%if(new shareDAO().preContentNum(sDTO.getIdx(), category) != 0){ %>
-<input type="button" value="이전글" onclick="location.href='./shareContent.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=new shareDAO().preContentNum(sDTO.getIdx(), category)%>&category=<%=category%>'">
+<button value="이전글" onclick="location.href='./shareContent.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=new shareDAO().preContentNum(sDTO.getIdx(), category)%>&category=<%=category%>'"><i class="fas fa-arrow-left"></i>이전글</button>
 <%} 
 if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
-<input type="button" value="다음글" onclick="location.href='./shareContent.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=new shareDAO().postContentNum(sDTO.getIdx(), category)%>&category=<%=category%>'">
+<button value="다음글" onclick="location.href='./shareContent.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=new shareDAO().postContentNum(sDTO.getIdx(), category)%>&category=<%=category%>'">다음글<i class="fas fa-arrow-right"></i></button>
 <%} %>
 
 <table border="1" class="table table-bordered">
@@ -123,9 +123,10 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 <input type="button" value="수정하기" onclick="location.href='./shareContentModify.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()%>&category=<%=category%>';">
 <input type="button" value="삭제하기" onclick="location.href='./shareContentDelete.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()%>&category=<%=category%>';">
 <%} %>
-<div id="reportBtnContainer"></div>
-<br><button id="likeBtn"><i class="fas fa-heart"></i></button>
 <br><br>
+<button id="likeBtn"></button><br><br>
+<div id="reportBtnContainer"></div>
+<br>
 
 
 <!-- 댓글 -->
@@ -179,7 +180,7 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 		<td><%=cDTO.getCreate_at() %></td>
 		<%
 		if(user_num == cDTO.getUser_num()){ %>
-		<td><input type="button" value="수정하기" id="cm<%=i%>">/
+		<td><input type="button" value="수정하기" id="cm<%=i%>">
 		<input type="button" value="삭제하기" onclick="location.href='./shareCommentDeleteAction.sh?comment_idx=<%=cDTO.getComment_idx()%>&pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()%>&category=<%=category %>'">
 		<input type="hidden" value="<%=cDTO.getComment_idx() %>" id="ci<%=i%>"/>
 		</td>

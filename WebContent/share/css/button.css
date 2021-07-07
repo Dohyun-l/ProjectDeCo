@@ -2,7 +2,7 @@
 
 body, p, input, select, textarea, button {
   font-family: "Montserrat", sans-serif;
-  letter-spacing: -0.2px;
+  letter-spacing: 1.8px;
   font-size: 16px;
 }
 
@@ -12,7 +12,7 @@ body, p, input, select, textarea, button {
 button, input {
   border: 0;
   outline: 0;
-  font-size: 15px;
+  font-size: 16px;
   border-radius: 320px;
   padding: 10px;
   text-shadow: 1px 1px 0 #FFF;
@@ -25,7 +25,7 @@ label {
 }
 
 input {
-  margin-right: 8px;
+  margin-right: 9px;
   box-shadow: inset 2px 2px 5px #BABECC, inset -5px -5px 10px #FFF;
   box-sizing: border-box;
   transition: all 0.2s ease-in-out;
@@ -82,3 +82,5 @@ button.red {
   margin: 0;
   flex: 1;
 }
+
+
