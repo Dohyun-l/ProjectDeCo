@@ -48,7 +48,6 @@ public class joinPostAction implements Action{
 		
 		//인증할 유저 email req영역에 속성으로 저장
 		//req.setAttribute("email", uDTO.getEmail());
-		System.out.println("WEFWEFQF?WEQF?QWEF???EWF?QWEF?WQEF?WQEF?WQEF?WQEF");
 		setSession(req, uDTO.getEmail());
 		forward = new ActionForward("./emailAuth.us", true);
 		return forward;

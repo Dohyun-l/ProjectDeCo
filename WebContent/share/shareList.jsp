@@ -106,9 +106,11 @@
 			<th>조회수</th>
 			<th>카테고리</th>
 			<th>즐겨찾기</th>
+			<th>좋아요</th> <!-- 좋아요  -->
 		</tr>
 	<%for(int i=0; i<shareList.size(); i++){ 
 		shareDTO sdto = (shareDTO) shareList.get(i);
+
 	%>
 		<tr>
 			<td><%=sdto.getIdx() %></td>
@@ -137,9 +139,11 @@
 			    <img src="./imgbm/bookmarko.png" id="bm_img" height="30px" width="30px">
 		    <%} %>
 			</td>
+			<td><%=sdto.getLike_()%></td>  <!-- 좋아요  -->
 		</tr>
 	<%} %>
 	</table>
+	
 	
 	<%
 	shareDAO sdao = new shareDAO();

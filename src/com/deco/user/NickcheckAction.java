@@ -15,7 +15,6 @@ public class NickcheckAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		
 		HttpSession session = req.getSession();
 		String nickname = req.getParameter("nickname");
 		int user_num = Integer.parseInt(req.getParameter("user_num"));
@@ -32,8 +31,5 @@ public class NickcheckAction implements Action{
 		return null;
 	}
 
-	
-	
-	
-	
+
 }

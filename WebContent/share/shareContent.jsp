@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 <%@page import="com.deco.bookmark.db.BookmarkDAO"%>
+=======
+<%@page import="com.deco.like.likeDAO"%>
+<%@page import="com.deco.like.likeDTO"%>
+>>>>>>> branch 'master' of https://github.com/Dohyun-l/ProjectDeCo.git
 <%@page import="com.deco.user.userDTO"%>
 <%@page import="com.deco.share_comment.commentDTO"%>
 <%@page import="java.util.ArrayList"%>
@@ -17,7 +22,8 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- jquery 준비 끝 -->
 
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link rel="stylesheet" href="./report/modal.css">
 
 </head>
 <body>
@@ -98,22 +104,41 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 <script type="text/javascript" src="./bookmark/bookmark.js"></script>
 	<%
 			BookmarkDAO bmDAO = new BookmarkDAO();
-			int result = bmDAO.ckBookmark(user_num, sDTO.getIdx(),2);
+			int resultbm = bmDAO.ckBookmark(user_num, sDTO.getIdx(),2);
 	%>
 	
-	<%if(result != 1){%>
+	<%if(resultbm != 1){%>
     	<input type="button" value="☆" id="bmox" onclick="bookmark(${user_num},<%=sDTO.getIdx()%>,2)">
     <%}else{ %>
     	<input type="button" value="★" id="bmox" onclick="bookmark(${user_num},<%=sDTO.getIdx()%>,2)">
     <%} %>
 <!-- 즐겨찾기 -->
 
+<!-- 좋아요 시작 -->
+	<%
+		likeDTO lDTO = new likeDTO();
+		likeDAO lDAO = new likeDAO();
+		lDTO.setUser_num(user_num);
+		lDTO.setContent_num(sDTO.getIdx());
+		lDTO.setContent_type(1);
+		int result = lDAO.checkLike(lDTO);		
+
+%>
+	<input id="user_num" type="hidden" name="user_num" value="<%=user_num%>">
+	<input id="content_num" type="hidden" name="content_num" value="<%=sDTO.getIdx()%>">
+	<input id="content_type" type="hidden" name="content_type" value="1">
+	<input id="likeResult" type="hidden" value="<%=result%>">
+	<button id="likeBtn"></button>
+
+<!-- 좋아요 끝 -->	
+>>>>>>> branch 'master' of https://github.com/Dohyun-l/ProjectDeCo.git
 
 <input type="button" value="목록으로" onclick="location.href='./shareList.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&category=<%=category%>';">
 <%if(user_num == sDTO.getUser_num()){ %>
 <input type="button" value="수정하기" onclick="location.href='./shareContentModify.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()%>&category=<%=category%>';">
 <input type="button" value="삭제하기" onclick="location.href='./shareContentDelete.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()%>&category=<%=category%>';">
 <%} %>
+<div id="reportBtnContainer"></div>
 <br><br>
 
 
@@ -202,6 +227,7 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
  <input type="reset" value="취소">
 </form>
 
-
+<script type="module" src="./report/js/reportMain.js"></script>
+<script type="text/javascript" src="./like/js/likeFunc.js"></script>
 </body>
 </html>
