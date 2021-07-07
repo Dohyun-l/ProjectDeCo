@@ -14,6 +14,11 @@
 <link href="./team/teamList.css" rel="stylesheet">
 </head>
 <body>
+	<div class="wrap">
+	<!-- 방만들기 -->
+	<button onclick="location.href='./main.us';" class="main">메인으로</button>
+	<button onclick="location.href='./createTeam.te';" class="room">팀꾸리기</button>
+	<!-- /방만들기 -->
 	<%
 		userDAO udao = new userDAO();
 		teamDAO tdao = new teamDAO();
@@ -56,7 +61,7 @@ function changeBoardSize(){
 					<div class="finder__outer" style="width: 300px; height: 10px;">
 						<div class="finder__inner">
 							<div class="finder__icon" ref="icon"></div>
-							<input type="text" name="condition" class="finder__input" />&nbsp;
+							<input type="text" name="condition" class="finder__input" autocomplete="off"/>&nbsp;
 							<input type="hidden" value="검색" />&nbsp; 
 						</div>
 					</div>
@@ -130,12 +135,15 @@ function changeBoardSize(){
 %>
 	<br>
 	<br>
-	<a href="./main.us" class="a2">메인페이지</a>
+	
+	
+	
+	
 	</div>
 	</center>
 </div>
 
 
-
+</div>
 </body>
 </html>
