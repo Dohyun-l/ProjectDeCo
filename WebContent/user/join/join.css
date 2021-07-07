@@ -47,7 +47,7 @@
 }
 
 .userForm input:not(.subjectInput){
-    width: 95%;
+    width: 100%;
     text-align: center;
 }
 
@@ -89,8 +89,6 @@
 }
 
 .addrBtn:hover {
-  box-shadow: 0 0 40px 40px rgba(74, 150, 180, 0.5) inset;
-  color:white;
   font-weight: 600;
 }
 
@@ -98,3 +96,7 @@
 	padding-left: 10px;
 }
 
+#addr{
+    font-weight: 200;
+    text-shadow: none;
+}

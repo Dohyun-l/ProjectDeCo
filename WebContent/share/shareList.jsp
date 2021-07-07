@@ -16,6 +16,8 @@
 <link href="./share/css/side.css" rel="stylesheet"> 
 <link href="./share/css/button.css" rel="stylesheet"> 
 <title>정보공유</title>
+
+<link rel="stylesheet" href="./share/css/share.css">
 </head>
 <body>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js" charset="UTF-8"></script>

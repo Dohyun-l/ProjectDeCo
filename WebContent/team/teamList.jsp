@@ -57,8 +57,8 @@ function changeBoardSize(){
 				<option value="1">프로젝트 내용</option>
 				<option value="2">프로젝트 지역</option>
 			</select>
-				<div class="finder">
-					<div class="finder__outer" style="width: 300px; height: 10px;">
+				<div class="finder" id="coco">
+					<div class="finder__outer" style="width: 390px; height: 10px;">
 						<div class="finder__inner">
 							<div class="finder__icon" ref="icon"></div>
 							<input type="text" name="condition" class="finder__input" autocomplete="off"/>&nbsp;

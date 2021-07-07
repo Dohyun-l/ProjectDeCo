@@ -6,23 +6,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>회원가입 직후 로그인 성공시</title>
+<title>DeCo | Email 인증</title>
 <link rel="stylesheet" href="https://unpkg.com/mvp.css">
 </head>
 <body>
-<%
-if(session.getAttribute("user_num") == null){
-	response.sendRedirect("./login.us");
-	return ;
-}
-userDAO uDAO = new userDAO();
-int user_num = (Integer)session.getAttribute("user_num");
-int admin_auth = uDAO.getAdminByNum(user_num);
+<%@ include file="../../main/header.jsp" %>
 
+<%
 if(admin_auth != -1){
 	response.sendRedirect("./main.us");	
 }
 %>
+
 	<main>
 		<form action="./emailAuthAction.us" method="post">
 			<h2>이메일 인증을 해주세요!</h2>
