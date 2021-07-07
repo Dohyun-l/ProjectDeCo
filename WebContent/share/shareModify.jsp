@@ -69,11 +69,9 @@ $(document).ready(function($) {
 
 </head>
 <body>
-	<h1>WebContent/share/shareModify.jsp</h1>
-	<hr>
-		
+<%@ include file="../../main/header.jsp" %>	
+<hr>	
 	<%
-	
 		int userNum = 0;
 	
 		if(session.getAttribute("user_num") == null){
