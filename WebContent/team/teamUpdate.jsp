@@ -56,6 +56,7 @@ function teamUpdateCheck() {
 </script>
 
 </head>
+<%@ include file="../../main/header.jsp" %>
 <body>
 	<%
 	

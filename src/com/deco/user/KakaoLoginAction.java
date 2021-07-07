@@ -77,11 +77,18 @@ public class KakaoLoginAction implements Action{
 					return new ActionForward("./SocialJoin.us",true);
 				}
 				
+				int setDataState = uDAO.getAdminByEmail(userEmail);
+				
 				setSession(req, userEmail);
+				
+				if(setDataState == -10){
+					return new ActionForward("./SocialJoin.us",true);
+				}
+				
 		 }else{
 			 return new ActionForward("./login.us", true);
 		 }
-		return new ActionForward("./SocialJoin.us",true);
+		return new ActionForward("./main.us",true);
 	}
 	
 	public void ValueException(HttpServletResponse res, String msg) throws IOException{

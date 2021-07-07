@@ -1,0 +1,160 @@
+@CHARSET "UTF-8";
+@import url(https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Montserrat:500,700&amp;display=swap);
+
+$ruler: 16px;
+$color-red: #AE1100;
+$color-bg: #EBECF0;
+$color-shadow: #BABECC;
+$color-white: #FFF;
+
+* {text-align:center;}
+
+html, body {
+  height: 100%;
+  margin: 0 auto;
+  font-family:'Nanum Gothic Coding', monospace !important;}
+
+.AlogoDeco {float: left;
+	   margin-top: 10px;
+	   margin-left: 1%;
+	   width: 10%;}
+
+.thinDeco { font-weight: 400; }
+.thickDeco { font-weight: 700; }
+
+		
+#HnavDeco {
+	   float: left;
+	   width: 60%;
+	   margin-left: 4%;
+	   padding-top: 80px;
+	   padding-bottom: 40px;}
+	   
+#HloginDeco {
+		color:black;
+		 float: left;
+		 width: 13%;
+		 margin-left: 8%;
+		 padding-top: 5px;
+		 }
+
+#HsearchDeco {
+		  vertical-align: left;
+		  padding-top: 10px;
+		  margin-left: 10%;
+		  float: left;
+		  width: 10%;}
+
+a.HlogoDeco {
+  		font-size: 64px;
+ 	 	color: black;
+  		text-decoration: none;
+  		position: relative;
+  		display: block;}
+
+a.HmenuDeco {font-weight: 400;
+ 	 	font-size: 28px;
+ 		color: black;
+  		text-decoration: none;
+  		position: relative;
+  		display: block;}
+
+.HloginDeco {margin-top:-10px;
+  		font-size: 20px;
+ 		color: black;
+ 		text-decoration: none;}
+
+a.p {color: black;
+     text-decoration: none;}
+
+p {font-size: 64px;
+   font-weight: 400;
+   font-size: 80%;
+   margin: 0.1px;
+   white-space: nowrap;
+   color: black;}
+     
+
+[class^="Decolink-"] {
+  display: inline-block;
+  margin: 2em}
+
+.Decolink-1 a:before, .Decolink-1 a:after {
+ 		 content: '';
+ 	 	 border-bottom: solid 3px black;
+ 		 position: absolute;
+ 		 bottom: 0;
+ 		 width: 0;}
+
+.Decolink-1 a:before { left: 0; }
+.Decolink-1 a:after { right: 0; }
+
+.Decolink-1 a:hover:before, .Decolink-1 a:hover:after {
+  width: 50%;}
+
+.Decolink-1 a:before, .Decolink-1 a:after {
+ 	 -webkit-transition: all 0.2s ease;
+      	     transition: all 0.2s ease;}
+
+#wrapDeco {clear: both;
+	   }
+
+header {background-color: #86d0c7;
+		height: 150px;
+		min-width: 980px;}
+
+article {}
+
+
+nav-1 li {margin: 0 auto;
+	list-style:none;
+	width: 23%;
+	float: left;}
+
+
+
+/* 로그인 버튼  */
+
+.userFormDeco {
+	width:70%;
+	text-align: center;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	margin: 0 auto;
+	border-radius: 10px;
+	padding: 20px 20px;
+	margin-bottom: 20px;
+}
+
+.userMainDeco {
+	display: flex;
+	flex-direction: column;
+}
+
+.userFormDeco input,
+.btnDeco {
+	border: none;
+	padding: 7px 7px;
+	font-size: 20px;
+	border-radius: 7px;
+	box-shadow: 2px 5px 2px rgba(2, 1, 0, 0.3), 5px 1px 5px rgba(2, 1, 0, 0.3), -5px 1px 5px rgba(2, 1, 0, 0.3);
+}
+
+.userFormDeco input:focus {
+	outline: none;
+}
+
+
+.userForm__buttonDeco {
+	transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+}
+
+.userForm__buttonDeco:hover {
+	box-shadow: 0 0 40px 40px #82c0b9 inset;
+	color: white;
+	font-weight: 600;
+}
+	
+	
