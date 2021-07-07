@@ -12,6 +12,7 @@ export default class reportBtn {
 
         this.eventBtn = document.createElement('button');
         this.eventBtn.id = "reportBtn"
+        this.eventBtn.className ="btn"
         this.eventBtn.appendChild(reportIcon);
         this.eventBtn.appendChild(span)
         this.eventBtn.addEventListener("click", this.OnClick)
