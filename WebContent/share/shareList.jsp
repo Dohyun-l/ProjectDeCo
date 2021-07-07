@@ -5,19 +5,21 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- bootstrap -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<!-- bootstrap -->
+<link href="./share/css/list.css" rel="stylesheet">
+<link href="./share/css/side.css" rel="stylesheet"> 
+<link href="./share/css/button.css" rel="stylesheet"> 
 <title>정보공유</title>
-
-
-
 </head>
 <body>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js" charset="UTF-8"></script>
 
-	<h1>정보공유 글보기</h1>
-	
 	<%
 		List shareList = (ArrayList)request.getAttribute("shareList");
 	
@@ -31,20 +33,23 @@
 			user_num = (int) session.getAttribute("user_num");
 		}
 	%>
-	
-	<a href="./main.us">메인으로 돌아가기</a>
-	
-	<ul>
-		<li><a href="./shareList.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>">전체보기</a></li>
-		<li><a href="./shareList.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&category=Tips">Tips</a></li>
-		<li><a href="./shareList.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&category=Conference">컨퍼런스</a></li>
-		<li><a href="./shareList.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&category=Company">회사추천</a></li>
-		<li><a href="./shareList.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&category=Academy">학원추천</a></li>
-		<li><a href="./shareList.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&category=HowTo">How to</a></li>
-	</ul>
-	
-	<hr>
-	
+	<nav>
+  <div class="menu-btn">
+    <div class="line line--1"></div>
+    <div class="line line--2"></div>
+    <div class="line line--3"></div>
+  </div>
+  <div class="nav-links">
+  	<a href="./shareList.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>" class="link">전체보기</a>
+	<a href="./shareList.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&category=Tips" class="link">Tips</a>
+	<a href="./shareList.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&category=Conference" class="link">컨퍼런스</a>
+	<a href="./shareList.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&category=Company" class="link">회사추천</a>
+	<a href="./shareList.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&category=Academy" class="link">학원추천</a>
+	<a href="./shareList.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&category=HowTo" class="link">How to</a>
+  </div>
+</nav>
+<div class="inform"> 
+
 	<script type="text/javascript">
 	function changeBoardSize(){
 		pageSize = document.fr.boardSize.value;
@@ -59,22 +64,37 @@
 	}
 	
 	</script>
+	<div class="wrap">
 	
-	<form name="form" action="./shareList.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize %>" method="post" onsubmit="return searchCheck()">
-	<select name="opt">
-                <option value="0">제목</option>
-                <option value="1">내용</option>
-                <option value="2">제목+내용</option>
-                <option value="3">작성자</option>
-            </select>
-            <input type="text" size="20" name="condition"/>&nbsp;
-            <input type="submit" value="검색"/>
-	</form>
-	<br>
-	<script type="text/javascript">
-		function share_write_userCheck() {
+	<h1>정보공유 글보기</h1>
+	<form name="fr">
+		<select id="boardSize" class="pageChange" onchange="changeBoardSize()" name="changePageSize">
+			<option>n개씩 보기</option>
+			<option value="5">5개씩 보기</option>
+			<option value="10">10개씩 보기</option>
+			<option value="15">15개씩 보기</option>
+			<option value="20">20개씩 보기</option>
+		</select>
+	</form>	
+		<form name="form"
+			action="./shareList.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>"
+			method="post" onsubmit="return searchCheck()" class="search_fr">
+				<select name="opt">
+					<option value="0">제목</option>
+					<option value="1">내용</option>
+					<option value="2">제목+내용</option>
+					<option value="3">작성자</option>
+				</select>
+			<input type="text"name="condition" />&nbsp; 
+			<input type="submit" value="검색" />
+		</form>
+		<div class="clear"></div>
+		<br>
+		<script type="text/javascript">
+			function share_write_userCheck() {
 
-			var user_num = <%=user_num%>;
+				var user_num =
+		<%=user_num%>;
 			
 			if (user_num == 0){
 				if(confirm("로그인이 필요합니다. 로그인 하시겠습니까?")){
@@ -85,18 +105,10 @@
 			}
 		}
 	</script>
-	<input type="button" onclick="share_write_userCheck()" value="글쓰기">
 	
-	<form name="fr">
-		<select id="boardSize" onchange="changeBoardSize()" name="changePageSize">
-			<option>n개씩 보기</option>
-			<option value="5">5개씩 보기</option>
-			<option value="10">10개씩 보기</option>
-			<option value="15">15개씩 보기</option>
-			<option value="20">20개씩 보기</option>
-		</select>
-	</form>
-	<table border="1">
+	<div class="clear"></div>
+	<table class="table table-hover">
+	<thead>
 		<tr>
 			<th>글 번호</th>
 			<th>제목</th>
@@ -106,13 +118,15 @@
 			<th>카테고리</th>
 			<th>좋아요</th> <!-- 좋아요  -->
 		</tr>
+		</thead>
 	<%for(int i=0; i<shareList.size(); i++){ 
 		shareDTO sdto = (shareDTO) shareList.get(i);
 
 	%>
+	<tbody>
 		<tr>
 			<td><%=sdto.getIdx() %></td>
-			<td><a href="./shareContent.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&contentNum=<%=sdto.getIdx()%>&category=<%=category%>">
+ 			<td><a href="./shareContent.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&contentNum=<%=sdto.getIdx()%>&category=<%=category%>">
 			<%=sdto.getTitle() %></a></td>
 			<%if(sdto.getAnony()==1){%>
 				<td>
@@ -128,9 +142,10 @@
 			<td><%=sdto.getCategory()%></td>
 			<td><%=sdto.getLike_()%></td>  <!-- 좋아요  -->
 		</tr>
+		</tbody>
 	<%} %>
 	</table>
-	
+	<hr>
 	
 	<%
 	shareDAO sdao = new shareDAO();
@@ -164,9 +179,11 @@
 		}
 	}
 %>
-
-
-
-
+<input type="button" onclick="share_write_userCheck()" value="글쓰기" class="write-btn">
+<hr>
+<a href="./main.us">메인으로 </a>
+</div>
+</div>
+<script  src="./share/script.js"></script>
 </body>
 </html>

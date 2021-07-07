@@ -240,6 +240,8 @@ public class reportDAO {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally{
+			closeDB();
 		}
 		
 		return result;

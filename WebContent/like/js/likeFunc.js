@@ -17,7 +17,7 @@ async function handleLike() {
 	
 	var response = await (await fetch(url,data))
 	
-	likeBtn.innerText = "좋아요 취소"
+	likeBtn.innerHTML = `<i class="far fa-heart"></i>좋아요 취소`
 	likeBtn.removeEventListener("click", handleUnLike)
 	likeBtn.addEventListener("click", handleUnLike)
 }
@@ -36,18 +36,18 @@ async function handleUnLike(){
 	
 	var response = await (await fetch(url,data))
 	
-	likeBtn.innerText = "좋아요"
+	likeBtn.innerHTML = `<i class="fas fa-heart"></i>좋아요`
 	likeBtn.removeEventListener("click", handleLike)
 	likeBtn.addEventListener("click", handleLike)
 }
 
 if(likeResult.value == 1){
 	//likeBtn.innerHTML ==> html 코드 작성하면 됩니다
-	likeBtn.innerText = "좋아요 취소"
+	likeBtn.innerHTML = `<i class="far fa-heart"></i>좋아요 취소`
 	likeBtn.addEventListener("click", handleUnLike)
 		
 }else{
-	likeBtn.innerText = "좋아요"
+	likeBtn.innerHTML = `<i class="fas fa-heart"></i>좋아요`
 	likeBtn.addEventListener("click", handleLike)	
 }
 

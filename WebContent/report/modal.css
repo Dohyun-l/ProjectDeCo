@@ -14,6 +14,13 @@
   margin-bottom: 20px;
 }
 
+.ReportModal .title span {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+
 .ReportModal .title,
 .ReportModal .description {
   padding: 5px;
@@ -29,8 +36,17 @@
   border-radius: 5px;
 }
 
+.ReportModal .report__type{
+	width: fit-content !important;
+}
+
 .ReportModal .content-wrapper img {
   width: 100%;
+}
+
+.ReportModal .content_button-Wrapper {
+  text-align: center;
+  padding: 0 0 20px 0;
 }
 
 @keyframes open{

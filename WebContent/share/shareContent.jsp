@@ -13,15 +13,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<link href="./share/css/list.css" rel="stylesheet">
+<link href="./share/css/button.css" rel="stylesheet">
 <title>Insert title here</title>
  <!-- jquery 준비 시작 -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- jquery 준비 끝 -->
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <link rel="stylesheet" href="./report/modal.css">
 
 </head>
+<div class="wrap">
 <body>
 
 <%
@@ -43,12 +46,13 @@ if (session.getAttribute("user_num") != null) {
 %>
 
 <%if(new shareDAO().preContentNum(sDTO.getIdx(), category) != 0){ %>
-<input type="button" value="이전글" onclick="location.href='./shareContent.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=new shareDAO().preContentNum(sDTO.getIdx(), category)%>&category=<%=category%>'">
+<button value="이전글" onclick="location.href='./shareContent.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=new shareDAO().preContentNum(sDTO.getIdx(), category)%>&category=<%=category%>'"><i class="fas fa-arrow-left"></i>이전글</button>
 <%} 
 if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
-<input type="button" value="다음글" onclick="location.href='./shareContent.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=new shareDAO().postContentNum(sDTO.getIdx(), category)%>&category=<%=category%>'">
+<button value="다음글" onclick="location.href='./shareContent.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=new shareDAO().postContentNum(sDTO.getIdx(), category)%>&category=<%=category%>'">다음글<i class="fas fa-arrow-right"></i></button>
 <%} %>
-<table border="1">
+
+<table border="1" class="table table-bordered">
 	<tr>
 		<td>글번호</td>
 		<td><%=sDTO.getIdx()%></td>
@@ -110,7 +114,7 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 	<input id="content_num" type="hidden" name="content_num" value="<%=sDTO.getIdx()%>">
 	<input id="content_type" type="hidden" name="content_type" value="1">
 	<input id="likeResult" type="hidden" value="<%=result%>">
-	<button id="likeBtn"></button>
+	
 
 <!-- 좋아요 끝 -->	
 
@@ -119,13 +123,16 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 <input type="button" value="수정하기" onclick="location.href='./shareContentModify.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()%>&category=<%=category%>';">
 <input type="button" value="삭제하기" onclick="location.href='./shareContentDelete.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()%>&category=<%=category%>';">
 <%} %>
-<div id="reportBtnContainer"></div>
 <br><br>
+<button id="likeBtn"></button><br><br>
+<div id="reportBtnContainer"></div>
+<br>
 
 
 <!-- 댓글 -->
-<form action="" name="commentListfr">
-<table border="1">
+<form action="" name="commentListfr" >
+<table id="commentListfr">
+	<thead>
 	<tr>
 		<td>글번호</td>
 		<td>작성자</td>
@@ -133,6 +140,7 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 		<td>작성날짜</td>
 		<td>수정/삭제</td>
 	</tr>
+	</thead>
 <%
 	List commentList = (ArrayList) request.getAttribute("commentList");
 
@@ -164,6 +172,7 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 		   });
 		});
 		</script>
+		<tbody>
 	<tr>
 		<td><%=commentList.size()-i %></td>
 		<td><%=new userDAO().getUserNickNameByNum(cDTO.getUser_num())%></td>
@@ -171,13 +180,15 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 		<td><%=cDTO.getCreate_at() %></td>
 		<%
 		if(user_num == cDTO.getUser_num()){ %>
-		<td><input type="button" value="수정하기" id="cm<%=i%>">/
+		<td><input type="button" value="수정하기" id="cm<%=i%>">
 		<input type="button" value="삭제하기" onclick="location.href='./shareCommentDeleteAction.sh?comment_idx=<%=cDTO.getComment_idx()%>&pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()%>&category=<%=category %>'">
 		<input type="hidden" value="<%=cDTO.getComment_idx() %>" id="ci<%=i%>"/>
 		</td>
 		
 		<%} %>
 <% } %>
+</tr>
+</tbody>
 </table>
 </form>
 <script type="text/javascript">
@@ -200,14 +211,16 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 	}
 
 </script>
-
+<br>
 <form action="./shareCommentAction.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()%>&category=<%=category %>"
 		 method="post" onsubmit="return insertCommentCheck()" name="commentfr">
- <textarea placeholder="Leave a comment here" id="comment" name="comment" rows="5" cols="60" style="resize: none;"></textarea>		
- <input type="submit" value="등록하기">
+ <textarea placeholder="Leave a comment here" class="form-control" id="comment" name="comment" rows="5" cols="60" style="resize: none;"></textarea>		
+ <br>
+ <input type="submit" value="등록하기" >
  <input type="reset" value="취소">
 </form>
 
+</div>
 <script type="module" src="./report/js/reportMain.js"></script>
 <script type="text/javascript" src="./like/js/likeFunc.js"></script>
 </body>
