@@ -134,6 +134,14 @@ public class teamMemberFrontController extends Controller {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if (command.equals("/readSchedule.tm")) {
+			System.out.println("C : /readSchedule.tm 호출");
+			action = new readScheduleAction();
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}			
 		}
 
 		/////////////////////////////////////////////////////////
