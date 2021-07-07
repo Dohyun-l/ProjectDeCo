@@ -34,7 +34,7 @@
         <p><a class="p" href="./main.us">Developer Completion</a></p>    
       </div>
   </div>
-	<nav id="HnavDeco">
+	<nav-1 id="HnavDeco">
 	  <ul>
 		<li>
 		<a class="HmenuDeco" href="./Main.nt">Notice</a>
@@ -49,7 +49,7 @@
 		<a class="HmenuDeco" href="./shareList.sh">My Page</a>
 		</li>
 	  </ul>
-	</nav>	
+	</nav-1>	
 	
 	<div id="HsearchDeco">
 		<input type="text" value="검색창" onclick="this.value=''"> <!-- 나중에 구글 검색 넣기  -->
@@ -59,7 +59,7 @@
 	<div id="HloginDeco">
 <!-- 		<a class="Hlogin" href="./login.us">login</a> /
 		<a class="Hlogin" href="./login.us">join</a> -->
-	<form class="userFormDeco loginFormDeco" name="fr">	
+	<form class="userFormDeco loginFormDeco" name="frDeco">	
 		<main class="userMainDeco">
 	<input type="button" class="userForm__buttonDeco" value="로그인" onclick="location.href='./login.us'">
  </form>
@@ -67,7 +67,7 @@
 	</div>
 	<%} else{%>
 	<div id="HloginDeco">
-	<form class="userFormDeco loginFormDeco" name="fr">	
+	<form class="userFormDeco loginFormDeco" name="frDeco">	
 		<h2 class="HloginDeco">Welcome <%=name %></h2>
 <%-- 마이페이지 추천	<a class="Hlogin" href="./info.us?user_num=<%=user_num %>">회원정보 조회</a> --%>
 <%-- 관리자 페이지 추천 	<%if(admin_auth == 2){ %><a class="Hlogin" href="./cancel.us">회원탈퇴 취소</a><%} %> --%>
@@ -81,6 +81,7 @@
 	
 	<!-- 회원탈퇴취소 admin_auth 값이 2인 사람만 보이게 수정 -->
 </header>
+</div>
 <div style="clear:both;"></div>
 </body>
 </html>

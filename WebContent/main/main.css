@@ -98,7 +98,7 @@ p {font-size: 64px;
       	     transition: all 0.2s ease;}
 
 #wrapDeco {clear: both;
-	   height: 100%;}
+	   }
 
 header {background-color: #86d0c7;
 		height: 150px;
@@ -107,7 +107,7 @@ header {background-color: #86d0c7;
 article {}
 
 
-li {margin: 0 auto;
+nav-1 li {margin: 0 auto;
 	list-style:none;
 	width: 23%;
 	float: left;}
