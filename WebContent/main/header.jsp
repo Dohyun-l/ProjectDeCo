@@ -33,7 +33,6 @@
         <p><a class="p" href="./main.us">Developer Completion</a></p>    
       </div>
   </div>
-	
 	<nav id="Hnav">
 	  <ul>
 		<li>
