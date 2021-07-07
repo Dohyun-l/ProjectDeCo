@@ -1,7 +1,7 @@
 <%@page import="com.deco.user.userDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <link rel="stylesheet" href="./user/login/login.css">
@@ -36,23 +36,21 @@ if(session.getAttribute("user_num") != null){
 	String referer = (String) request.getHeader("REFERER");
 %>
 
-	
+<%@ include file="../../main/header.jsp" %>
+
 <main class="userMain">
  <form action="./LoginAction.us" class="userForm loginForm" name="fr" method="post" onsubmit="return check();">
 	<div class="userForm-TitleWrapper">
-		<h2 class="Title">로그인</h2>
+		<h2 class="Title">Login</h2>
 	</div>
  	<input type="hidden" name="referer" value="<%=referer %>">
- 	<div class="userForm__inputData">
-		<input type="email" name="email" class="loginForm__emailInput" size="20" placeholder="이메일을 입력하세요."><br>
-		<div class="input__border"></div>
-	</div>
-	<div class="userForm__inputData">
-		<input type="password" name="pw" class="loginForm__pwInput" size="20" placeholder="비밀번호를 입력하세요."><br>
-		<div class="input__border"></div>
-	</div>
-	<input type="submit" class="userForm__submit" value="로그인">
- 	
+		<input type="email" name="email" class="loginForm__emailInput" size="20" placeholder="Insert Your Email."><br>
+		<input type="password" name="pw" class="loginForm__pwInput" size="20" placeholder="Insert Your Password."><br>
+	<input type="submit" class="userForm__submit" value="Login">
+ 	<div class="memoIdWrapper">
+		 <input type="checkbox" name="memoId" id="memoId" value="true">
+		 <label for="memoId">아이디 기억하기</label>
+	 </div>
 	<div class="loginFrom-socialWrapper">
 		<div>
 		<a id="kakaoLogin" href="./kakaoLoginStart.us">
@@ -74,5 +72,6 @@ if(session.getAttribute("user_num") != null){
 </main>
  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
  <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+ <script type="module" src="./user/login/js/memoId.js"></script>
 </body>
 </html>
