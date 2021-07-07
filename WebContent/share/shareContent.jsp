@@ -123,8 +123,8 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 <input type="button" value="수정하기" onclick="location.href='./shareContentModify.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()%>&category=<%=category%>';">
 <input type="button" value="삭제하기" onclick="location.href='./shareContentDelete.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=sDTO.getIdx()%>&category=<%=category%>';">
 <%} %>
-<div id="reportBtnContainer"><br><button id="likeBtn"></button></div>
-
+<div id="reportBtnContainer"></div>
+<br><button id="likeBtn"><i class="fas fa-heart"></i></button>
 <br><br>
 
 

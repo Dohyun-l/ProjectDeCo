@@ -15,14 +15,11 @@
 <link href="./share/css/list.css" rel="stylesheet">
 <link href="./share/css/side.css" rel="stylesheet"> 
 <link href="./share/css/button.css" rel="stylesheet"> 
-
-
 <title>정보공유</title>
 </head>
 <body>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js" charset="UTF-8"></script>
 
-	
 	<%
 		List shareList = (ArrayList)request.getAttribute("shareList");
 	
@@ -36,15 +33,12 @@
 			user_num = (int) session.getAttribute("user_num");
 		}
 	%>
-	<br>
-	
 	<nav>
   <div class="menu-btn">
     <div class="line line--1"></div>
     <div class="line line--2"></div>
     <div class="line line--3"></div>
   </div>
-
   <div class="nav-links">
   	<a href="./shareList.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>" class="link">전체보기</a>
 	<a href="./shareList.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&category=Tips" class="link">Tips</a>
@@ -54,12 +48,8 @@
 	<a href="./shareList.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&category=HowTo" class="link">How to</a>
   </div>
 </nav>
-
-
 <div class="inform"> 
 
-
-	
 	<script type="text/javascript">
 	function changeBoardSize(){
 		pageSize = document.fr.boardSize.value;
@@ -85,10 +75,7 @@
 			<option value="15">15개씩 보기</option>
 			<option value="20">20개씩 보기</option>
 		</select>
-	</form>
-	
-	
-		
+	</form>	
 		<form name="form"
 			action="./shareList.sh?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>"
 			method="post" onsubmit="return searchCheck()" class="search_fr">
@@ -160,7 +147,6 @@
 	</table>
 	<hr>
 	
-	
 	<%
 	shareDAO sdao = new shareDAO();
 	
@@ -193,9 +179,7 @@
 		}
 	}
 %>
-
 <input type="button" onclick="share_write_userCheck()" value="글쓰기" class="write-btn">
-
 <hr>
 <a href="./main.us">메인으로 </a>
 </div>
