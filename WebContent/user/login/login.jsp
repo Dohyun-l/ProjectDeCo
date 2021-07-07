@@ -35,6 +35,7 @@ if(session.getAttribute("user_num") != null){
 <%
 	String referer = (String) request.getHeader("REFERER");
 %>
+
 <%@ include file="../../main/header.jsp" %>
 
 <main class="userMain">
