@@ -90,32 +90,51 @@ function check(){
 		userDTO udto = (userDTO) request.getAttribute("udto");
 		int user_num = Integer.parseInt(request.getParameter("user_num"));
 	%>
-	<center>
-	<form action="./UpdateAction.us" method="post" onsubmit="return check();" name="fr">
-				<h2>User Update</h2>
-				<input type="hidden" name="user_num" value="<%=user_num %>" class="us">
-		비밀번호 : <input type="password" name="pw" placeholder="현재 비밀번호를 입력해주세요." style="text-align:center" size="30"><br>
-		이름 : <input type="text" name="name" value="<%=udto.getName() %>" style="text-align:center" size="15"><br>
-		닉네임 : <input type="text" name="nickname" value="<%=udto.getNickname() %>" style="text-align:center" size="15" class="jj">
+	<form action="./UpdateAction.us" method="post" onsubmit="return check();" name="fr" class="userForm">
+		<div class="userForm-TitleWrapper">
+			<h2 class="Title">User Update</h2>
+		</div>
+		<input type="hidden" name="user_num" value="<%=user_num %>" class="us">
 		<input type="hidden" name="idDumplication" value="1" class="ttx">
-		<br>
 
-		주소 : <input type="text" name="addr" id="addr" value="<%=udto.getAddr() %>" style="text-align:center" size="70">
-		&nbsp<button onclick="return callAddress()">주소찾기</button>
+		<div class="userForm__inputData">
+			<label for="pwInput">비밀번호</label>
+			<input id="pwInput" type="password" name="pw" placeholder="현재 비밀번호를 입력해주세요." style="text-align:center" size="30">
+		</div>
+		<div class="userForm__inputData">
+			<label for="emailInput">이름</label>
+			<input id="emailInput" type="text" name="name" value="<%=udto.getName() %>" style="text-align:center" size="15">
+		</div>
 		
+		<div class="userForm__inputData">
+			<label for="nickInput">닉네임</label> 
+			<input id="nickInput" type="text" name="nickname" value="<%=udto.getNickname() %>" style="text-align:center" size="15" class="jj">
+		</div>
+		<div class="userForm__inputData">
+
+		</div>
+		<div class="userForm__inputData">
+			<label for="addrBtn">주소</label>  
+			<input type="text" name="addr" id="addr" value="<%=udto.getAddr() %>" style="text-align:center" size="70">
+			<button id="addrBtn" onclick="return callAddress()">주소찾기</button>
+		</div>
 		
-		<br>
-		전화번호 : <input type="text" name="phone" id="phone" value="<%=udto.getPhone() %>" style="text-align:center" size="40" maxlength="13"><br>
-		전공분야 : <input type="text" name="major" value="<%=udto.getMajor() %>" style="text-align:center" size="40"><br>
-		관심분야 : <input type="text" name="inter" value="<%=udto.getInter() %>" style="text-align:center" size="40">
-		<br><br>
+		<div class="userForm__inputData">
+			<label for="emailInput">전화번호</label> 
+			<input type="text" name="phone" id="phone" value="<%=udto.getPhone() %>" style="text-align:center" size="40" maxlength="13">
+		</div>
+		<div class="userForm__inputData">
+			<label for="emailInput">전공분야</label> 
+			<input type="text" name="major" value="<%=udto.getMajor() %>" style="text-align:center" size="40">
+		</div>
+		<div class="userForm__inputData">
+			<label for="emailInput">관심분야</label>
+			<input type="text" name="inter" value="<%=udto.getInter() %>" style="text-align:center" size="40">
+		</div>
+
 		<input type="submit" value="수정하기">
 		<input type="button" value="취소하기" onclick="history.back();">
-		
-		
 	</form>
 	
-	</center>
-
 </body>
 </html>
