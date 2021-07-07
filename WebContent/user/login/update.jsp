@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Deco - 회원정보수정</title>
 <link rel="stylesheet" href="./user/form.css">
+<link rel="stylesheet" href="./user/login/update.css">
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -125,11 +126,11 @@ function check(){
 		</div>
 		<div class="userForm__inputData">
 			<label for="emailInput">전공분야</label> 
-			<input type="text" name="major" value="<%=udto.getMajor() %>" style="text-align:center" size="40">
+			<input type="text" name="major" value="<%=udto.getMajor() %>" size="40">
 		</div>
 		<div class="userForm__inputData">
 			<label for="emailInput">관심분야</label>
-			<input type="text" name="inter" value="<%=udto.getInter() %>" style="text-align:center" size="40">
+			<input type="text" name="inter" value="<%=udto.getInter() %>" size="40">
 		</div>
 
 		<input type="submit" value="수정하기">
