@@ -65,49 +65,38 @@ function dropteam(){
  	<b>PM. <%=masternick %></b>
  	<br>
  	<b><%=tdto.getLocation() %></b><br>
- 	<b>모집 현황 :</b>
+ 	
  	<%if(checkSubmitMember >= limit_p){
  	check = 0;
  	%>
- 	<h2>모집 인원이 가득찼습니다.</h2>
+ 	<b style="color: red">모집 인원이 마감되었습니다.</b>
  	
  	<%}else{ %>
- 	<b><%=checkSubmitMember %> / <%=limit_p %></b>
+ 	<b>모집 현황 : <%=checkSubmitMember %> / <%=limit_p %></b>
  	
  	<%} %>
- 	<br>
+ 	<br><br>
+ 	<% if(check != 1){ %>
  	<b>모집 마감일 : <%=tdto.getDeadline() %></b><br>
+ 	<% }else{ %>
+ 		<b style="color: red">모집 기간이 지났습니다.</b>
+ 	<%} %>
  	<div id="DecotextContentView">
 	<h4><%=tdto.getContent() %></h4>
  	</div>
  	</div>
  	<br>
- 	
-
- 	
- 	
- 	
-	<%
-	
-	if(session.getAttribute("user_num")!=null){
-	
-	%>
-	
+	<% if(session.getAttribute("user_num")!=null){ %>
 		<div class="hi">
 		<nav class="nav">
-	<%if(check == 1){ %>
-		<a href="./joinTeamMember.tm?idx=<%=idx%>" class="nav-item" active-color="blue">참여하기</a>
-		<a href="./deleteTeamMember.tm?idx=<%=idx %>" class="nav-item" active-color="green">팀탈퇴</a>
-	<%} %>
-	    <a href="./teamPage.tm?idx=<%=idx%>" class="nav-item" active-color="blue">팀</a>
-	<%
-	}
-	%>
-		
-				
-		
-	 <%
-	 	
+			<% if(check == 1){ %>
+				<a href="./joinTeamMember.tm?idx=<%=idx%>" class="nav-item" active-color="blue">참여하기</a>
+				<a href="./deleteTeamMember.tm?idx=<%=idx %>" class="nav-item" active-color="green">팀탈퇴</a>
+			<% } %>
+			    <a href="./teamPage.tm?idx=<%=idx%>" class="nav-item" active-color="blue">팀</a>
+			<%
+			}
+	
 	 		if(session.getAttribute("user_num")==null){
 	 			
 	 		}else if(tdto.getMaster() == (int)session.getAttribute("user_num")){
