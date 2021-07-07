@@ -1,5 +1,6 @@
 @CHARSET "UTF-8";
 
+
 .wrap {
 	width: 65%;
     margin: 5% 16%;
@@ -7,6 +8,7 @@
     text-align: center;
     float: left;
 }
+
 
 #top {
 	margin-top: 200px;
