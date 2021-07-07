@@ -64,9 +64,9 @@
 	<div id="Hlogin">
 <!-- 		<a class="Hlogin" href="./login.us">login</a> /
 		<a class="Hlogin" href="./login.us">join</a> -->
-	<form action="./LoginAction.us" class="userForm loginForm" name="fr" method="post" onsubmit="return check();">	
+	<form class="userForm loginForm" name="fr">	
 		<main class="userMain">
-	<input type="submit" class="userForm__submit" value="로그인">
+	<input type="button" class="userForm__button" value="로그인" onclick="location.href='./login.us'">
  </form>
 </main>
 	</div>
