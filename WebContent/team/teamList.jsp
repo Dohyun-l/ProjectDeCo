@@ -62,7 +62,7 @@ function changeBoardSize(){
 						<div class="finder__inner">
 							<div class="finder__icon" ref="icon"></div>
 							<input type="text" name="condition" class="finder__input" autocomplete="off"/>&nbsp;
-							<input type="hidden" value="검색" />&nbsp;  
+							<input type="hidden" value="검색" />&nbsp;   
 						</div>
 					</div>
 				</div>
