@@ -21,7 +21,6 @@ public class insertScheduleAction implements Action {
 		}
 		calendarDTO cdto = new calendarDTO();
 		
-		
 		cdto.setAllday(req.getParameter("allDay"));
 		cdto.setDescription(req.getParameter("description"));
 		cdto.setEnd(req.getParameter("end"));
@@ -33,6 +32,9 @@ public class insertScheduleAction implements Action {
 		cdto.setType(req.getParameter("type"));
 		cdto.setUser_idx(user_num);
 		
+		calendarDAO cdao = new calendarDAO();
+		
+		cdao.insertSchedule(cdto);
 		
 		return null;
 	}

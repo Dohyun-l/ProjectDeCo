@@ -1,5 +1,6 @@
 var draggedEventIsAllDay;
 var activeInactiveWeekends = true;
+var team_idx = $('#team_idx');
 
 var calendar = $('#calendar').fullCalendar({
 
@@ -22,7 +23,6 @@ var calendar = $('#calendar').fullCalendar({
                               },
   eventLimitClick           : 'week', //popover
   navLinks                  : true,
-  defaultDate               : moment('2019-05'), //실제 사용시 현재 날짜로 수정
   timeFormat                : 'HH:mm',
   defaultTimedEventDuration : '01:00:00',
   editable                  : true,
@@ -107,11 +107,12 @@ var calendar = $('#calendar').fullCalendar({
   events: function (start, end, timezone, callback) {
     $.ajax({
       type: "get",
-      url: "data.json",
+      url: "./readSchedule.tm",
       data: {
         // 화면이 바뀌면 Date 객체인 start, end 가 들어옴
-        //startDate : moment(start).format('YYYY-MM-DD'),
-        //endDate   : moment(end).format('YYYY-MM-DD')
+        startDate : moment(start).format('YYYY-MM-DD'),
+        endDate   : moment(end).format('YYYY-MM-DD'),
+        team_idx : team_idx.val()
       },
       success: function (response) {
         var fixedDate = response.map(function (array) {
