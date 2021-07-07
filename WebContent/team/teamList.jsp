@@ -14,6 +14,11 @@
 <link href="./team/teamList.css" rel="stylesheet">
 </head>
 <body>
+	<div class="wrap">
+	<!-- 방만들기 -->
+	<button onclick="location.href='./main.us';" class="main">메인으로</button>
+	<button onclick="location.href='./createTeam.te';" class="room">팀꾸리기</button>
+	<!-- /방만들기 -->
 	<%
 		userDAO udao = new userDAO();
 		teamDAO tdao = new teamDAO();
@@ -56,8 +61,8 @@ function changeBoardSize(){
 					<div class="finder__outer" style="width: 300px; height: 10px;">
 						<div class="finder__inner">
 							<div class="finder__icon" ref="icon"></div>
-							<input type="text" name="condition" class="finder__input" />&nbsp;
-							<input type="hidden" value="검색" />&nbsp; 
+							<input type="text" name="condition" class="finder__input" autocomplete="off"/>&nbsp;
+							<input type="hidden" value="검색" />&nbsp;   
 						</div>
 					</div>
 				</div>
@@ -71,8 +76,6 @@ function changeBoardSize(){
 				<option>n개씩 보기</option>
 				<option value="5">5개씩 보기</option>
 				<option value="10">10개씩 보기</option>
-				<option value="15">15개씩 보기</option>
-				<option value="20">20개씩 보기</option>
 			</select>
 		</form>
 		</div>
@@ -96,16 +99,17 @@ function changeBoardSize(){
 	<%} %>
 	<center>
 <div class="a">
+	 <nav class="nav">
 <%
  
    
    int cnt = tdao.numOfTeam();
    int currentpage = Integer.parseInt(pageNum);
-   
+  
    if(cnt != 0){
    
       int pageCount = cnt/pageSize + (cnt % pageSize == 0 ? 0 : 1);
-      int pageBlock = 5;
+      int pageBlock = 3;
       int startPage = ((currentpage - 1)/pageBlock) * pageBlock + 1;
       int endPage = startPage + pageBlock -1;
       if(endPage > pageCount){
@@ -113,29 +117,32 @@ function changeBoardSize(){
       }
       if(startPage > pageBlock){
          %>
-         <a href="./teamList.te?pageNum=<%=startPage-pageBlock %>&pageSize=<%=pageSize%>" class="a1">[이전]</a>
+         <a href="./teamList.te?pageNum=<%=startPage-pageBlock %>&pageSize=<%=pageSize%>" class="nav-item">[이전]</a>
          <%
       }
       for(int i=startPage; i<=endPage; i++){
          %>
-            <a href="./teamList.te?pageNum=<%=i%>&pageSize=<%=pageSize%>" class="a3">[<%=i %>]</a>
+            <a href="./teamList.te?pageNum=<%=i%>&pageSize=<%=pageSize%>" class="nav-item"><%=i %></a>
          <%
       }
       if(endPage < pageCount){
          %>
-         <a href="./teamList.te?pageNum=<%=startPage+pageBlock %>&pageSize=<%=pageSize%>" class="a4">[다음]</a>
+         <a href="./teamList.te?pageNum=<%=startPage+pageBlock %>&pageSize=<%=pageSize%>" class="nav-item">[다음]</a>
          <%
       }
    }
 %>
 	<br>
 	<br>
-	<a href="./main.us" class="a2">메인페이지</a>
+	</nav>
+	
+	
+	
 	</div>
 	</center>
 </div>
 
 
-
+</div>
 </body>
 </html>
