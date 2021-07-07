@@ -15,23 +15,23 @@ html, body {
   margin: 0 auto;
   font-family:'Nanum Gothic Coding', monospace;}
 
-.Alogo {float: left;
+.AlogoDeco {float: left;
 	   margin-top: 10px;
 	   margin-left: 1%;
 	   width: 10%;}
 
-.thin { font-weight: 400; }
-.thick { font-weight: 700; }
+.thinDeco { font-weight: 400; }
+.thickDeco { font-weight: 700; }
 
 		
-#Hnav {
+#HnavDeco {
 	   float: left;
 	   width: 60%;
 	   margin-left: 4%;
 	   padding-top: 80px;
 	   padding-bottom: 40px;}
 	   
-#Hlogin {
+#HloginDeco {
 		color:black;
 		 float: left;
 		 width: 13%;
@@ -39,28 +39,28 @@ html, body {
 		 padding-top: 5px;
 		 }
 
-#Hsearch {
+#HsearchDeco {
 		  vertical-align: left;
 		  padding-top: 10px;
 		  margin-left: 10%;
 		  float: left;
 		  width: 10%;}
 
-a.Hlogo {
+a.HlogoDeco {
   		font-size: 64px;
  	 	color: black;
   		text-decoration: none;
   		position: relative;
   		display: block;}
 
-a.Hmenu {font-weight: 400;
+a.HmenuDeco {font-weight: 400;
  	 	font-size: 28px;
  		color: black;
   		text-decoration: none;
   		position: relative;
   		display: block;}
 
-.Hlogin {margin-top:-10px;
+.HloginDeco {margin-top:-10px;
   		font-size: 20px;
  		color: black;
  		text-decoration: none;}
@@ -76,29 +76,29 @@ p {font-size: 64px;
    color: black;}
      
 
-[class^="link-"] {
+[class^="Decolink-"] {
   display: inline-block;
   margin: 2em}
 
-.link-1 a:before, .link-1 a:after {
+.Decolink-1 a:before, .Decolink-1 a:after {
  		 content: '';
  	 	 border-bottom: solid 3px black;
  		 position: absolute;
  		 bottom: 0;
  		 width: 0;}
 
-.link-1 a:before { left: 0; }
-.link-1 a:after { right: 0; }
+.Decolink-1 a:before { left: 0; }
+.Decolink-1 a:after { right: 0; }
 
-.link-1 a:hover:before, .link-1 a:hover:after {
+.Decolink-1 a:hover:before, .Decolink-1 a:hover:after {
   width: 50%;}
 
-.link-1 a:before, .link-1 a:after {
+.Decolink-1 a:before, .Decolink-1 a:after {
  	 -webkit-transition: all 0.2s ease;
       	     transition: all 0.2s ease;}
 
-#wrap {clear: both;
-	   height: 2400px;}
+#wrapDeco {clear: both;
+	   height: 100%;}
 
 header {background-color: #86d0c7;
 		height: 150px;
@@ -116,7 +116,7 @@ li {margin: 0 auto;
 
 /* 로그인 버튼  */
 
-.userForm {
+.userFormDeco {
 	width:70%;
 	text-align: center;
 	position: relative;
@@ -128,13 +128,13 @@ li {margin: 0 auto;
 	margin-bottom: 20px;
 }
 
-.userMain {
+.userMainDeco {
 	display: flex;
 	flex-direction: column;
 }
 
-.userForm input,
-.btn {
+.userFormDeco input,
+.btnDeco {
 	border: none;
 	padding: 7px 7px;
 	font-size: 20px;
@@ -142,16 +142,16 @@ li {margin: 0 auto;
 	box-shadow: 2px 5px 2px rgba(2, 1, 0, 0.3), 5px 1px 5px rgba(2, 1, 0, 0.3), -5px 1px 5px rgba(2, 1, 0, 0.3);
 }
 
-.userForm input:focus {
+.userFormDeco input:focus {
 	outline: none;
 }
 
 
-.userForm__button {
+.userForm__buttonDeco {
 	transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
 }
 
-.userForm__button:hover {
+.userForm__buttonDeco:hover {
 	box-shadow: 0 0 40px 40px #82c0b9 inset;
 	color: white;
 	font-weight: 600;

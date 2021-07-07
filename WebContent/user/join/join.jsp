@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <link rel="stylesheet" href="./user/join/join.css">
 <link rel="stylesheet" href="./user/form.css">
-<title>Join</title>
+<title>DeCo | Join</title>
 </head>
 <body>
 <%
@@ -15,6 +15,8 @@ if(session.getAttribute("user_num") != null){
 	response.sendRedirect("./main.us");	
 }
 %>
+<%@ include file="../../main/header.jsp" %>
+
 <main class="userMain">
 	<form id="joinForm" class="userForm" action="joinAction.us" method="post">
 		<div class="userForm-TitleWrapper">

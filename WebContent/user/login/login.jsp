@@ -34,6 +34,8 @@ if(session.getAttribute("user_num") != null){
 <%
 	String referer = (String) request.getHeader("REFERER");
 %>
+<%@ include file="../../main/header.jsp" %>
+
 <main class="userMain">
  <form action="./LoginAction.us" class="userForm loginForm" name="fr" method="post" onsubmit="return check();">
 	<div class="userForm-TitleWrapper">
