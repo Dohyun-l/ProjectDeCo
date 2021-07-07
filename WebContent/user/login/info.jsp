@@ -5,7 +5,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Deco</title>
+<link rel="stylesheet" href="./user/login/info.css">
+<link rel="stylesheet" href="./user/form.css">
+<title>Deco | UserInfo</title>
 </head>
 <body>
 	<%
@@ -13,55 +15,57 @@
 		userDTO udto = (userDTO) request.getAttribute("udto");
 		
 	%>
-		<center>
-		
-		<h2>회원정보 조회</h2>
-		<table border="1">
+		<div class="table-users">
+		<div class="header"><span>User Info</span></div>
+		<table cellspacing="0">
 			<tr>
-				<td>이메일</td>
+				<th>이메일</th>
 				<td><%=udto.getEmail() %></td>
 			</tr>
 			<tr>
-				<td>이름</td>
+				<th>이름</th>
 				<td><%=udto.getName() %></td>
 			</tr>
 			<tr>
-				<td>닉네임</td>
+				<th>닉네임</th>
 				<td><%=udto.getNickname() %></td>
 			</tr>
 			<tr>
-				<td>주소</td>
+				<th>주소</th>
 				<td><%=udto.getAddr() %></td>
 			</tr>
 			<tr>
-				<td>전화번호</td>
+				<th>전화번호</th>
 				<td><%=udto.getPhone() %></td>
 			</tr>
 			<tr>
-				<td>전공분야</td>
+				<th>전공분야</th>
 				<td><%=udto.getMajor() %></td>
 			</tr>
 			<tr>
-				<td>Inter</td>
+				<th>Inter</th>
 				<td><%=udto.getInter() %></td>
 			</tr>
 			<tr>
-				<td>생성일</td>
+				<th>생성일</th>
 				<td><%=udto.getCreate_at() %></td>
 			</tr>
 			<tr>
-				<td>마지막 로그인날</td>
+				<th>마지막 로그인날</th>
 				<td><%=udto.getLast_login() %></td>
 			</tr>
 			<tr>
-				<td>포인트</td>
+				<th>포인트</th>
 				<td><%=udto.getPoint() %></td>
 			</tr>
 		</table>
-	<a href="./main.us">메인 페이지</a> | <a href="./update.us?user_num=<%=udto.getUser_num() %>">정보수정</a> | <a href="./delete.us?user_num=<%=udto.getUser_num() %>">회원탈퇴</a>
-	</center>
-	<!-- admin_auth 2인 회원 회원탈퇴버튼 숨김 -->
-
+	</div>
+	<div class="btnWrapper">
+		<a href="./main.us"><button>메인 페이지</button></a>
+		<a href="./update.us?user_num=<%=udto.getUser_num() %>"><button>정보수정</button></a>
+		<a href="./delete.us?user_num=<%=udto.getUser_num() %>"><button>회원탈퇴</button></a>
+		<!-- admin_auth 2인 회원 회원탈퇴버튼 숨김 -->
+	</div>
 
 </body>
 </html>
