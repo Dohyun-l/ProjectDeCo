@@ -23,6 +23,7 @@ public class readScheduleAction implements Action {
 		cdto.setStart(req.getParameter("startDate"));
 		cdto.setEnd(req.getParameter("endDate"));
 		
+		
 		calendarDAO cdao = new calendarDAO();
 		JSONArray scheduleList = cdao.readSchedule(cdto);
 		
