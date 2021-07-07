@@ -17,6 +17,7 @@
 			user_num = (int) session.getAttribute("user_num");
 		}
 	
+		
 		userDAO usDAO = new userDAO();
 		String nickName = usDAO.getUserNickNameByNum(user_num);
 		

@@ -19,6 +19,7 @@
 <script type="text/javascript" src="./js/service/SE2BasicCreator.js" charset="utf-8"></script>
 <script type="text/javascript" src="./js/smarteditor2.js" charset="utf-8"></script>
 
+
 </head>
 <body>
 <h1>WebContent/notice/edit.html</h1>

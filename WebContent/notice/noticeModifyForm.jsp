@@ -16,7 +16,6 @@
 	
 		int idx = Integer.parseInt(request.getParameter("idx"));
 	%>
-	
 	<form action="./NoticeModifyAction.nt" method="post" name="fr">
 		<input type="hidden" name="idx" value="<%=idx%>">
 		제목 <input type="text" name="title" value="<%=nDTO.getTitle()%>">

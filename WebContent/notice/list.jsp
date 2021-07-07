@@ -26,7 +26,6 @@
 		if(session.getAttribute("user_num") != null) {
 			user_num = (int) session.getAttribute("user_num");
 		}
-		
 		/* List shareList = (ArrayList)request.getAttribute("shareList"); */
 		List boardList = (ArrayList)request.getAttribute("noticeList");
 		

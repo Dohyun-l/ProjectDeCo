@@ -21,6 +21,7 @@
 <body>
 <h1>WebContent/notice/edit.html</h1>
 
+
 <!-- <h1>WebContent/notice/index.html</h1> -->
 <div id="write">
 <!--Example Start-->

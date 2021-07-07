@@ -19,6 +19,7 @@
 
 	<h1>WebContent/board/content.jsp</h1>
 	
+	
 	<%
 		request.setCharacterEncoding("utf-8");
 		// 페이지 이동시 전달정보(파라미터)가 있으면 항상 가장 먼저 저당
