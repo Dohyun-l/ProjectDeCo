@@ -37,7 +37,11 @@
 }
 
 .ReportModal .report__type{
-	width: fit-content !important;
+	-webkit-appearance: auto;
+}
+
+.ReportModal .content_input{
+  display: flex;
 }
 
 .ReportModal .content-wrapper img {
