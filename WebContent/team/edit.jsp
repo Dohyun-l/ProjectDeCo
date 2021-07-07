@@ -21,7 +21,7 @@
 <script type="text/javascript" src="js/service/SE2BasicCreator.js" charset="utf-8"></script>
 <script type="text/javascript" src="js/smarteditor2.js" charset="utf-8"></script>
 
-
+<link href="./share/css/write.css" rel="stylesheet">
 
 </head>
 <body>
@@ -575,10 +575,10 @@
 
 		<hr>
 		<!-- 입력 -->
-		<div class="se2_input_area husky_seditor_editing_area_container">
+		<div class="se2_input_area husky_seditor_editing_area_container iframeSize">
 			
 			
-			<iframe src="about:blank" id="se2_iframe" name="se2_iframe" class="se2_input_wysiwyg" width="400" height="300" title="글쓰기 영역 : 도구 모음은 ALT+F10을, 도움말은 ALT+0을 누르세요." frameborder="0" style="display:block;"></iframe>
+			<iframe src="about:blank" id="se2_iframe" name="se2_iframe" class="se2_input_wysiwyg iframeSize" width="400" height="300" title="글쓰기 영역 : 도구 모음은 ALT+F10을, 도움말은 ALT+0을 누르세요." frameborder="0" style="display:block;"></iframe>
 			<textarea name="" rows="10" cols="100" title="HTML 편집 모드" class="se2_input_syntax se2_input_htmlsrc" style="display:none;outline-style:none;resize:none"> </textarea>
 			<textarea name="" rows="10" cols="100" title="TEXT 편집 모드" class="se2_input_syntax se2_input_text" style="display:none;outline-style:none;resize:none;"> </textarea>
 			

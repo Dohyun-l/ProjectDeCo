@@ -10,9 +10,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Deco - 팀 수정</title>
-
+<link href="./team/css/write.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-
 <script type="text/javascript">
 
 function teamUpdateCheck() {
@@ -77,7 +76,8 @@ function teamUpdateCheck() {
 		String pageNum = request.getParameter("pageNum");
 		
 	%>
-		<center>
+		<div id="write">
+		<div id="smart_editor2">
 		<form action="./teamModifyUpdate.te?pageNum=<%=pageNum%>&pageSize=<%=pageSize%>&idx=<%=tdto.getIdx()%>"
 		 method="post" name="fr" onsubmit="return teamUpdateCheck();">
 		<!-- 닉네임 -->
@@ -86,7 +86,7 @@ function teamUpdateCheck() {
 		<input type="hidden" value="<%=tdto.getMaster()%>" name="master">
 		<!-- 제목 -->	  		
 		프로젝트 명 : <input type="text" name="title" value="<%=tdto.getTitle()%>" style="text-align:center" style="text-align:center">
-		<hr>
+		<hr id="cutBar">
 		<select name='location'>
   			<option value="" selected>지역을 선택해주세요</option>
   			<option value="Seoul"
@@ -125,7 +125,8 @@ function teamUpdateCheck() {
   			<%if(tdto.getLocation().equals("Jeju")){ %>	
   			selected
   			<%} %>>제주도</option>					
-		</select><hr>
+		</select>
+		<hr id="cutBar">
 		
 		<select name='limit_p'>
   			<option value="" selected>인원을 선택해주세요</option>
@@ -173,11 +174,14 @@ function teamUpdateCheck() {
 		<div class="g-recaptcha" id="g-recaptcha" data-sitekey="6LdQ1zEbAAAAAOzJAHtwDc8LTdr2vNQffqV-K15l" 	
 		data-callback="recaptcha"></div>
 		<br>
+		<div id="buttons">
 		<input type="submit" value="수정하기">/
 		<input type="reset" value="취소"> /
 		<input type="button" value="수정취소" onclick="history.back()">
+		</div>
 		</form>
-		</center>
+		</div>
+	</div>
 
 
 
