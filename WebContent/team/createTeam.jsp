@@ -10,7 +10,7 @@
 <link href="./team/css/write.css" rel="stylesheet">
 <title>팀 - 스터디</title>
 <script type="text/javascript">
-
+<%@ include file="../../main/header.jsp" %>
 
 
 function createTeamCheck() {

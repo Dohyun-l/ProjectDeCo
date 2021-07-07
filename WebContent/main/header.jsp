@@ -43,7 +43,7 @@
 		<a class="HmenuDeco" href="./shareList.sh">Share</a>
 		</li>
 		<li>
-		<a class="HmenuDeco" href="./shareList.sh">Project</a>
+		<a class="HmenuDeco" href="./teamList.te">Project</a>
 		</li>
 		<li>
 		<a class="HmenuDeco" href="./shareList.sh">My Page</a>
