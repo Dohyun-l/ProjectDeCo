@@ -32,6 +32,11 @@ nav>ul {list-style: none;/*목록 앞의 모양 제거*/}
 	float:left;
 	margin-top: 20px;
 }
+
+ #search_fr{
+	width: 250px;
+} 
+
 .pageChange {
 	float: right;
     margin-bottom: 30px;
@@ -57,12 +62,12 @@ nav>ul {list-style: none;/*목록 앞의 모양 제거*/}
   margin : 0 auto;
 }
 
-#commentListfr td{ 
-  width: 170px;
-  padding: 10px;
-  vertical-align: top;
-  border-bottom: 1px solid #ccc;
-  }
+#commentListfr td {
+    width: 170px;
+    padding: 20px;
+    vertical-align: middle;
+    border-bottom: 1px solid #ccc;
+}
 
 #commentListfr input[type=text]{
 	width: 100%;
@@ -83,3 +88,12 @@ nav>ul {list-style: none;/*목록 앞의 모양 제거*/}
 	margin-top: -10px;
 }
 
+.btn{
+	margin-right: 7px;
+}
+
+.btnwrap{
+	display: flex;
+	align-items: center;
+	margin-bottom: 65px;
+}

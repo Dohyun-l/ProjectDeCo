@@ -85,8 +85,8 @@
 					<option value="2">제목+내용</option>
 					<option value="3">작성자</option>
 				</select>
-			<input type="text"name="condition" />&nbsp; 
-			<input type="submit" value="검색" />
+			<input type="text"name="condition" id="search_fr"/>&nbsp; 
+			<input type="submit" value="검색" class="write-btn" style="margin-top:0px;"/>
 		</form>
 		<div class="clear"></div>
 		<br>
