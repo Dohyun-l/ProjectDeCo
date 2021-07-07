@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
 </head>
 <body>
 <h1>WebContent/notice/noticeform.jsp</h1>
@@ -14,7 +15,6 @@
 		   document.fr.content.value = oEditor.getIR();
 		}
 	</script>
-	
 	<form action="./NoticeInsertAction.nt" method="post" enctype="multipart/form-data" name="fr">
 		제목 <input type="text" name="title">
 		<hr>

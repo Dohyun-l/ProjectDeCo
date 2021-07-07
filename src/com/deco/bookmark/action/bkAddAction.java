@@ -12,25 +12,26 @@ public class bkAddAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println("C : bkAddAction_execute()호출");
 		
 		BookmarkDTO bmDTO = new BookmarkDTO();
 		bmDTO.setUser_num(Integer.parseInt(request.getParameter("user_num")));
 		bmDTO.setContent_num(Integer.parseInt(request.getParameter("content_num")));
+		bmDTO.setType(Integer.parseInt(request.getParameter("type")));
 		
 		BookmarkDAO bmDAO = new BookmarkDAO();
 		
 		int result = bmDAO.checkBookmark(bmDTO);
 		
-		if(result != 1){
+		if(result == 1){
+			bmDAO.deleteBookmark(bmDTO);
+		}else if(result == 0){
 			bmDAO.addBookmark(bmDTO);
 		}
 		
-		// 페이지 이동(./AdminGoodsList.ag)
-		ActionForward forward = new ActionForward("./noticelist.nt", true);
-		
-		/*request.setAttribute("page_num", page_num);*/
-		
-		return forward;
+		request.setAttribute("result", result);
+
+		return null;
 	}
 
 }

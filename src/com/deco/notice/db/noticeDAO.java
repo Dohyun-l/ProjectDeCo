@@ -5,11 +5,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+
+import com.deco.share.shareDTO;
 
 public class noticeDAO {
 
@@ -488,7 +491,57 @@ public class noticeDAO {
 			}
 			return result;
 		}
-
 		// getIdxExistNext()
+		
+		
+		// noticeSearchList(opt,condition)
+		public List noticeSearchList(String opt, String condition) {
+			noticeDTO nDTO = null;
+			List noticeSearchList = new ArrayList();
+
+			try {
+				conn = getConnection();
+				if (opt.equals("0")) {
+					sql = "select * from notice where title like '%" + condition + "%' order by idx desc";
+				} else if (opt.equals("1")) {
+					sql = "select * from notice where content like '%" + condition + "%' order by idx desc";
+				} else if (opt.equals("2")) {
+					sql = "select * from notice where concat(title,content) like '%" + condition + "%' order by idx desc";
+				} else if (opt.equals("3")) {
+					sql = "select * from notice " + "where user_num = " + "(select user_num from deco.user "
+							+ "where nickname like '%" + condition + "%') order by idx desc";
+				}
+				System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+				System.out.println(sql);
+				System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+				pstmt = conn.prepareStatement(sql);
+
+				rs = pstmt.executeQuery();
+
+				while (rs.next()) {
+
+					nDTO = new noticeDTO();
+					
+					nDTO.setIdx(rs.getInt("idx"));
+					nDTO.setUser_num(rs.getInt("user_num"));
+					nDTO.setTitle(rs.getString("title"));
+					nDTO.setContent(rs.getString("content"));
+					nDTO.setFile(rs.getString("file"));
+					nDTO.setCreate_at(rs.getDate("create_at"));
+					nDTO.setCount(rs.getInt("count"));
+
+					noticeSearchList.add(nDTO);
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				closeDB();
+			}
+
+			return noticeSearchList;
+		}
+		// noticeSearchList(opt,condition)
+		
 	
 }

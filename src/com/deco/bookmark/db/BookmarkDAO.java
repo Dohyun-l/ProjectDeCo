@@ -76,12 +76,13 @@ public class BookmarkDAO {
  			System.out.println("DAO : 번호 + " + idx);
  			
  			// 상품을 장바구니에 추가
- 			sql = "insert into bookmark(idx, user_num, content_num, type) values(?,?,?,0);";
+ 			sql = "insert into bookmark(idx, user_num, content_num, type) values(?,?,?,?);";
  			pstmt = conn.prepareStatement(sql);
  			
  			pstmt.setInt(1, idx);
  			pstmt.setInt(2, bmDTO.getUser_num());
  			pstmt.setInt(3, bmDTO.getContent_num());
+ 			pstmt.setInt(4, bmDTO.getType());
  			
  			pstmt.executeUpdate();
  			
@@ -102,11 +103,12 @@ public class BookmarkDAO {
    		try {
    			conn = getConnection();
 
-   			sql = "select * from bookmark where user_num=? and content_num=?";
+   			sql = "select * from bookmark where user_num=? and content_num=? and type=?";
    			pstmt = conn.prepareStatement(sql);
    			
    			pstmt.setInt(1, bmDTO.getUser_num());
    			pstmt.setInt(2, bmDTO.getContent_num());
+   			pstmt.setInt(3, bmDTO.getType());
    			
    			rs = pstmt.executeQuery();
    			
@@ -133,11 +135,12 @@ public class BookmarkDAO {
    		try {
    			conn = getConnection();
 
-   			sql = "delete from bookmark where user_num=? and content_num=?";
+   			sql = "delete from bookmark where user_num=? and content_num=? and type=?";
    			pstmt = conn.prepareStatement(sql);
    			
    			pstmt.setInt(1, bmDTO.getUser_num());
    			pstmt.setInt(2, bmDTO.getContent_num());
+   			pstmt.setInt(3, bmDTO.getType());
    			
    			pstmt.executeUpdate();
 
@@ -151,7 +154,39 @@ public class BookmarkDAO {
    	}
    	//deleteBookmark(bkDTO)
    
-   
+  //ckBookmark(bkDTO)
+   	public int ckBookmark(int user_num, int content_num, int type){
+   		int result = 0;
+   		
+   		try {
+   			conn = getConnection();
+
+   			sql = "select * from bookmark where user_num=? and content_num=? and type=?";
+   			pstmt = conn.prepareStatement(sql);
+   			
+   			pstmt.setInt(1, user_num);
+   			pstmt.setInt(2, content_num);
+   			pstmt.setInt(3, type);
+   			
+   			rs = pstmt.executeQuery();
+   			
+   			if(rs.next()){
+   				result = 1;
+   			}else{
+   				result = 0;
+   			}
+
+   			System.out.println("DAO : 북마크 체크 완료! -> " + result);
+   			
+   		} catch (SQLException e) {
+   			e.printStackTrace();
+   		}finally {
+   			closeDB();
+   		}
+   		
+   		return result;
+   	}
+   	//ckBookmark(bkDTO)
    
    
    
