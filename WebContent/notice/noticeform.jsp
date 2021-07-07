@@ -15,7 +15,6 @@
 		   document.fr.content.value = oEditor.getIR();
 		}
 	</script>
-	
 	<form action="./NoticeInsertAction.nt" method="post" enctype="multipart/form-data" name="fr">
 		제목 <input type="text" name="title">
 		<hr>

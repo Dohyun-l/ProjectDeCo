@@ -7,10 +7,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
+<link href="./team/css/write.css" rel="stylesheet">
 <title>팀 - 스터디</title>
 <script type="text/javascript">
-
+<%@ include file="../../main/header.jsp" %>
 
 
 function createTeamCheck() {
@@ -74,18 +74,19 @@ function createTeamCheck() {
 	%>
 	
 	
-		<center>
-		<form action="./createTeamAction.te" method="post" name="fr" onsubmit="return createTeamCheck();">
+		<div id="write">
+		<div id="smart_editor2">
+		<form action="./createTeamAction.te" method="post" name="fr" onsubmit="return createTeamCheck();" id="fr">
 		<!-- 닉네임 -->
 		팀리더 : <br>
 		<input type="text" id="nickname" name="nickname" value="<%=nickname%>"readonly style="text-align:center"><br>
-			<hr>
+		<hr id="cutBar">
 		<!-- 제목 -->	  		
 		<input type="text" name="title" placeholder="제목을 입력해주세요" size="30" style="text-align:center">
 		<hr>
 		
 		<select name='location'>
-  			<option value='' selected>지역을 선택해주세요</option>
+  			<option value='' selected>지역을 선택하세요</option>
   			<option value="Seoul">서울</option>
  			<option value="Busan">부산</option>
   			<option value="Incheon">인천</option>
@@ -107,8 +108,7 @@ function createTeamCheck() {
   			<option value=9>9명</option>
   			<option value=10>10명</option>			
 		</select><hr>
-				
-				
+						
 		모집 기한 : <input type="date" name="deadline" id="deadline"><br>
 				
 		<input type="hidden" name="content">
@@ -117,10 +117,13 @@ function createTeamCheck() {
 		<div class="g-recaptcha" id="g-recaptcha" data-sitekey="6LdQ1zEbAAAAAOzJAHtwDc8LTdr2vNQffqV-K15l" 	
 		data-callback="recaptcha"></div>
 		<br>
+		<div id="buttons">
 		<input type="submit" value="팀만들기"> /
 		<input type="reset" value="취소"> /
 		<input type="button" value="메인으로" onclick="location.href='./teamMain.te'">
+		</div>
 		</form>
-	</center>
+		</div>
+	</div>
 </body>
 </html>

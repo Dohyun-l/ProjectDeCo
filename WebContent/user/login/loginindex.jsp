@@ -9,9 +9,6 @@
 <body>
 <%
 	response.sendRedirect(request.getContextPath()+"/login.us");
-
-
-
 %>
 
 

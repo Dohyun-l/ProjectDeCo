@@ -119,7 +119,9 @@ export default class reportInfo{
                             <input type="radio" id="report__type4" data-type="4" class="report__type" name="report-type__btn"><label for="report__type4">기타</label>
                             <input type="text" class="etcInput" style="display:none;">
                         </div>
-                        <button id="repo__submit">제출</button>
+                        <div class="content_button-Wrapper">
+                            <button id="repo__submit">제출</button>
+                        </div>
                     </div>
                 </div>
             </div>

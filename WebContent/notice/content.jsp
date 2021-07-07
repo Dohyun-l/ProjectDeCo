@@ -17,7 +17,7 @@
 <div id="wrap">
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js" charset="UTF-8"></script>
 
-	<h1>WebContent/board/content.jsp</h1>
+	<!-- <h1>WebContent/board/content.jsp</h1> -->
 	
 	<%
 		request.setCharacterEncoding("utf-8");

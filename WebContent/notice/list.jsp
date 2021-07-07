@@ -17,16 +17,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div id="wrap">
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js" charset="UTF-8"></script>
 	<!-- <h1>WebContent/board/list.jsp</h1> -->
+	<%@ include file="../main/header.jsp" %>
+	
+<div id="wrap">
 	<h1>공지사항</h1>
 	<%
-		int user_num = 0;
 		if(session.getAttribute("user_num") != null) {
 			user_num = (int) session.getAttribute("user_num");
 		}
-		
 		/* List shareList = (ArrayList)request.getAttribute("shareList"); */
 		List boardList = (ArrayList)request.getAttribute("noticeList");
 		
