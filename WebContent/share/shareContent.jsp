@@ -46,6 +46,20 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 <button value="다음글" onclick="location.href='./shareContent.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=new shareDAO().postContentNum(sDTO.getIdx(), category)%>&category=<%=category%>'" style="margin-bottom: 20px;">다음글<i class="fas fa-arrow-right"></i></button>
 <%} %>
 
+<!-- 즐겨찾기 -->
+<script type="text/javascript" src="./bookmark/bookmark.js"></script>
+	<%
+			BookmarkDAO bmDAO = new BookmarkDAO();
+			int check = bmDAO.ckBookmark(user_num, sDTO.getIdx(),2);
+	%>
+	
+	<%if(check != 1){%>
+    	<input type="button" value="☆" id="bmox" onclick="bookmark(${user_num},<%=sDTO.getIdx()%>,2)">
+    <%}else{ %>
+    	<input type="button" value="★" id="bmox" onclick="bookmark(${user_num},<%=sDTO.getIdx()%>,2)">
+    <%} %>
+<!-- 즐겨찾기 -->
+
 <table border="1" class="table table-bordered">
 	<tr>
 		<td>글번호</td>
@@ -93,23 +107,6 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 		<td colspan="5"><%=sDTO.getContent()%></td>
 	</tr>
 </table>
-
-
-<script type="text/javascript" src="./bookmark/bookmark.js"></script>
-	<%
-			BookmarkDAO bmDAO = new BookmarkDAO();
-			int check = bmDAO.ckBookmark(user_num, sDTO.getIdx(),2);
-	%>
-	
-	<%if(check != 1){%>
-    	<input type="button" value="☆" id="bmox" onclick="bookmark(${user_num},<%=sDTO.getIdx()%>,2)">
-    <%}else{ %>
-    	<input type="button" value="★" id="bmox" onclick="bookmark(${user_num},<%=sDTO.getIdx()%>,2)">
-    <%} %>
-<!-- 즐겨찾기 -->
-
-
-<input type="button" value="목록으로" onclick="location.href='./shareList.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&category=<%=category%>';">
 
 <!-- 좋아요 시작 -->
 	<%
@@ -185,7 +182,7 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 	<tr>
 		<td><%=commentList.size()-i %></td>
 		<td><%=new userDAO().getUserNickNameByNum(cDTO.getUser_num())%></td>
-		<td><input type="text" value="<%=cDTO.getContent() %>" readonly id="cc<%=i%>" 
+		<td><input type="text" value="<%=cDTO.getContent() %>" readonly id="cc<%=i%>" class="cc"
 		style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;"></td>
 		<td><%=cDTO.getCreate_at() %></td>
 		<%
@@ -233,5 +230,10 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 </div>
 <script type="module" src="./report/js/reportMain.js"></script>
 <script type="text/javascript" src="./like/js/likeFunc.js"></script>
+<br style="clear: both;">&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
 </body>
 </html>

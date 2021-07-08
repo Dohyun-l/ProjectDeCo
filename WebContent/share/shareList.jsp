@@ -196,11 +196,6 @@
 <br>&nbsp;
 <br>&nbsp;
 <br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
-
-
 <script  src="./share/script.js"></script>
 </body>
 </html>
