@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -205,5 +207,51 @@ public class likeDAO {
 	}
 	// likeCount()
 	 예비용 (add , delete 정상 작동이면 삭제 필수) */
+	
+	//getUserLikeContent
+	public List<likeDTO> getUserLikeContent(int user_num, int type) {
+		List<likeDTO> likeList = new ArrayList<likeDTO>();
+		
+		try {
+			conn = getConnection();
+			
+			//type = 1 -share ,  2 - team,  other - all
+			String getType = "";
+			switch (type) {
+			case 1:
+				getType = " and content_type=1";
+				break;
+			
+			case 2:
+				getType = " and content_type=2";
+				break;
+				
+			default:
+				break;
+			}
+			
+			sql = "select * from like_ where user_num=?" + getType;
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, user_num);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				likeDTO lDTO = new likeDTO();
+				lDTO.setIdx(rs.getInt(1));
+				lDTO.setUser_num(rs.getInt(2));
+				lDTO.setContent_num(rs.getInt(3));
+				lDTO.setContent_type(rs.getInt(4));
+				
+				likeList.add(lDTO);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+		
+		return likeList;
+	}
+	//getUserLikeContent
 	
 }
