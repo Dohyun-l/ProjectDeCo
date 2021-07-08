@@ -3,12 +3,12 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
+<head >
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="./main/main.css">
 </head>
-<body>
+<body id="mainDeco">
 
 <%
 	int user_num = -1;
@@ -31,7 +31,7 @@
         <a class="HlogoDeco" href="./main.us" >
           <span class="thickDeco">D</span><span class="thinDeco">e</span><span class="thickDeco">C</span><span class="thinDeco">o</span>
         </a>
-        <p><a class="p" href="./main.us">Developer Completion</a></p>    
+        <p class="tagPDeco"><a class="pMainDeco" href="./main.us">Developer Completion</a></p>    
       </div>
   </div>
 	<nav-1 id="HnavDeco">
