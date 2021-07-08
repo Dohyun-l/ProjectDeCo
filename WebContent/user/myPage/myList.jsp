@@ -13,7 +13,7 @@
 	<%@ include file="../../user/myPageNav.jsp" %>
 	
 	<div class="userContentList-Wrapper">
-		<div class="userContentList-LikeWrapper">
+		<div class="userContentList-tableWrapper">
 		<div><h2>좋아요한 게시물</h2></div>
 		<table>
 		<c:forEach items="${AllList.likeShare }" var="likeShareOne">
@@ -24,7 +24,7 @@
 		</c:forEach>
 		</table>	
 		</div>
-		<div class="userContentList-LikeWrapper">
+		<div class="userContentList-tableWrapper">
 		<table>
 		<div><h2>즐겨찾기 게시물</h2></div>
 		<c:forEach items="${AllList.bookShare }" var="bookShareOne">
@@ -35,7 +35,7 @@
 		</c:forEach>
 		</table>	
 		</div>
-		<div class="userContentList-LikeWrapper">
+		<div class="userContentList-tableWrapper">
 		<table>
 		<div><h2>내가 쓴 게시물</h2></div>
 		<c:forEach items="${AllList.userWriteShare }" var="userWriteShareOne">
