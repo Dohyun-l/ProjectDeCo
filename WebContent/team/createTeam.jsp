@@ -10,9 +10,6 @@
 <link href="./team/css/write.css" rel="stylesheet">
 <title>팀 - 스터디</title>
 <script type="text/javascript">
-<%@ include file="../../main/header.jsp" %>
-
-
 function createTeamCheck() {
     document.fr.content.value= oEditor.getIR();
    
@@ -55,15 +52,14 @@ function createTeamCheck() {
 </script>
 </head>
 <body>
-	<h1>WebContent/team/createTeam.jsp</h1>
-	<hr>
-		
+	<%@ include file="../../main/header.jsp" %>
+	
 	<%
 	
 		int userNum = 0;
 	
 		if(session.getAttribute("user_num") == null){
-			response.sendRedirect("./teamMain.te");
+			response.sendRedirect("./login.us");
 		} else {
 			userNum = (int) session.getAttribute("user_num");
 		}
@@ -71,19 +67,16 @@ function createTeamCheck() {
 		userDAO udao = new userDAO();
 		String nickname = udao.getUserNickNameByNum(userNum);
 		
-	%>
-	
-	
+	%>	
 		<div id="write">
 		<div id="smart_editor2">
 		<form action="./createTeamAction.te" method="post" name="fr" onsubmit="return createTeamCheck();" id="fr">
 		<!-- 닉네임 -->
-		팀리더 : <br>
-		<input type="text" id="nickname" name="nickname" value="<%=nickname%>"readonly style="text-align:center"><br>
+		팀리더 : <input type="text" id="nickname" name="nickname" value="<%=nickname%>"readonly style="text-align:center"><br>
 		<hr id="cutBar">
 		<!-- 제목 -->	  		
 		<input type="text" name="title" placeholder="제목을 입력해주세요" size="30" style="text-align:center">
-		<hr>
+		<hr id="cutBar">
 		
 		<select name='location'>
   			<option value='' selected>지역을 선택하세요</option>
@@ -107,7 +100,8 @@ function createTeamCheck() {
   			<option value=8>8명</option>  
   			<option value=9>9명</option>
   			<option value=10>10명</option>			
-		</select><hr>
+		</select>
+		<hr id="cutBar">
 						
 		모집 기한 : <input type="date" name="deadline" id="deadline"><br>
 				
@@ -120,7 +114,7 @@ function createTeamCheck() {
 		<div id="buttons">
 		<input type="submit" value="팀만들기"> /
 		<input type="reset" value="취소"> /
-		<input type="button" value="메인으로" onclick="location.href='./teamMain.te'">
+		<input type="button" value="메인으로" onclick="window.location.href='./teamList.te'">
 		</div>
 		</form>
 		</div>

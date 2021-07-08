@@ -46,6 +46,20 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 <button value="다음글" onclick="location.href='./shareContent.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&contentNum=<%=new shareDAO().postContentNum(sDTO.getIdx(), category)%>&category=<%=category%>'" style="margin-bottom: 20px;">다음글<i class="fas fa-arrow-right"></i></button>
 <%} %>
 
+<!-- 즐겨찾기 -->
+<script type="text/javascript" src="./bookmark/bookmark.js"></script>
+	<%
+			BookmarkDAO bmDAO = new BookmarkDAO();
+			int check = bmDAO.ckBookmark(user_num, sDTO.getIdx(),2);
+	%>
+	
+	<%if(check != 1){%>
+    	<input type="button" value="☆" id="bmox" onclick="bookmark(${user_num},<%=sDTO.getIdx()%>,2)">
+    <%}else{ %>
+    	<input type="button" value="★" id="bmox" onclick="bookmark(${user_num},<%=sDTO.getIdx()%>,2)">
+    <%} %>
+<!-- 즐겨찾기 -->
+
 <table border="1" class="table table-bordered">
 	<tr>
 		<td>글번호</td>
@@ -94,23 +108,6 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 	</tr>
 </table>
 
-
-<script type="text/javascript" src="./bookmark/bookmark.js"></script>
-	<%
-			BookmarkDAO bmDAO = new BookmarkDAO();
-			int check = bmDAO.ckBookmark(user_num, sDTO.getIdx(),2);
-	%>
-	
-	<%if(check != 1){%>
-    	<input type="button" value="☆" id="bmox" onclick="bookmark(${user_num},<%=sDTO.getIdx()%>,2)">
-    <%}else{ %>
-    	<input type="button" value="★" id="bmox" onclick="bookmark(${user_num},<%=sDTO.getIdx()%>,2)">
-    <%} %>
-<!-- 즐겨찾기 -->
-
-
-<input type="button" value="목록으로" onclick="location.href='./shareList.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&category=<%=category%>';">
-
 <!-- 좋아요 시작 -->
 	<%
 		likeDTO lDTO = new likeDTO();
@@ -125,8 +122,6 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 	<input id="content_num" type="hidden" name="content_num" value="<%=sDTO.getIdx()%>">
 	<input id="content_type" type="hidden" name="content_type" value="1">
 	<input id="likeResult" type="hidden" value="<%=result%>">
-	
-
 <!-- 좋아요 끝 -->	
 
 <input type="button" value="목록으로" onclick="location.href='./shareList.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&category=<%=category%>';" class="write-btn">
@@ -139,8 +134,6 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 	<button id="likeBtn" class="btn"></button><br><br>
 	<div id="reportBtnContainer"></div>
 </div>
-
-
 
 <!-- 댓글 -->
 <form action="" name="commentListfr" >
@@ -189,7 +182,7 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 	<tr>
 		<td><%=commentList.size()-i %></td>
 		<td><%=new userDAO().getUserNickNameByNum(cDTO.getUser_num())%></td>
-		<td><input type="text" value="<%=cDTO.getContent() %>" readonly id="cc<%=i%>" 
+		<td><input type="text" value="<%=cDTO.getContent() %>" readonly id="cc<%=i%>" class="cc"
 		style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;"></td>
 		<td><%=cDTO.getCreate_at() %></td>
 		<%
@@ -234,9 +227,13 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
  <input type="submit" value="등록하기">
  <input type="reset" value="취소">
 </form>
-
 </div>
 <script type="module" src="./report/js/reportMain.js"></script>
 <script type="text/javascript" src="./like/js/likeFunc.js"></script>
+<br style="clear: both;">&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
 </body>
 </html>

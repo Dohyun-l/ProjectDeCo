@@ -125,7 +125,12 @@ public class teamMemberFrontController extends Controller {
 			}
 		} else if (command.equals("/teamMemberCalendar.tm")) {
 			System.out.println("C : /teamMemberCalendar.tm 호출");
-			forward = new ActionForward("./teamMember/fullcalendar/calendar.jsp", false);
+			action = new teamMemberCalendarAction();
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		} else if (command.equals("/insertSchedule.tm")) {
 			System.out.println("C : /insertSchedule.tm 호출");
 			action = new insertScheduleAction();

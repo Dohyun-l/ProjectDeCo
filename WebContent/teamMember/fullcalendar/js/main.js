@@ -97,6 +97,8 @@ var calendar = $('#calendar').fullCalendar({
       container: 'body'
     });
 
+    console.log(event);
+    
     return filtering(event);
 
   },

@@ -10,8 +10,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Deco - 팀</title>
-<link href="./team/search.css" rel="stylesheet" type="text/css">
-<link href="./team/teamList.css" rel="stylesheet">
+<link href="./team/css/search.css" rel="stylesheet">
+<link href="./team/css/teamList.css" rel="stylesheet">
 </head>
 <div>
 <%@ include file="../../main/header.jsp" %>

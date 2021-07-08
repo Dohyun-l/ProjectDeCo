@@ -350,7 +350,6 @@ public class teamMemberDAO {
 
 				teamList.add(tmdto);
 			}
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
