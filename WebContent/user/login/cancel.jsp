@@ -22,7 +22,7 @@ function check(){
 </head>
 <body>
 <center>
-<h2>사랑은 돌아오는거야~~!! (회원탈퇴 취소)</h2>
+<h2>회원탈퇴 취소</h2>
 <form action="./CancelAction.us" method="post" name="fr" onsubmit="return check();">
 		<input type="email" name="email" placeholder="이메일을 입력하세요." style="text-align:center" size="40"><br>
 		<br>

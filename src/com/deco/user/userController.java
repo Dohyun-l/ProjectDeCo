@@ -119,6 +119,10 @@ public class userController extends Controller{
 		}else if(command.equals("/UserContentList.us")){
 			action = new getUserContentListAction();
 			forward = action.execute(req, res);
+		
+		}else if(command.equals("/UserJoinTeam.us")){
+			action = new getUserJoinTeam();
+			forward = action.execute(req, res);
 		}
 		
 		render(forward,req,res);

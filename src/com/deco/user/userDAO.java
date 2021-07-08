@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -11,6 +13,9 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import org.mindrot.jbcrypt.BCrypt;
+
+import com.deco.team.teamDTO;
+import com.deco.team.teamListAction;
 
 public class userDAO {
 	
@@ -699,4 +704,52 @@ public class userDAO {
 		return check;
 	}
 	
+	//getUserJoinTeam
+	public List getUserJoinTeam(int user_num){
+		List<List<teamDTO>> TeamList = new ArrayList();
+		List<teamDTO> allowedList = new ArrayList();
+		List<teamDTO> waitingList = new ArrayList();
+		
+		try {
+			conn = getConnection();
+			sql = "select t.idx, t.title, t.content, t.location, t.master, t.limit_p, t.deadline, tm.submit "
+					+ "from team t join ("
+					+ "select team_idx, submit "
+					+ "from team_member "
+					+ "where member=?) tm "
+					+ "on t.idx = tm.team_idx";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, user_num);
+			
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				teamDTO tDTO = new teamDTO();
+				tDTO.setIdx(rs.getInt(1));
+				tDTO.setTitle(rs.getString(2));
+				tDTO.setContent(rs.getString(3));
+				tDTO.setLocation(rs.getString(4));
+				tDTO.setMaster(rs.getInt(5));
+				tDTO.setLimit_p(rs.getString(6));
+				tDTO.setDeadline(rs.getString(7));
+				
+				int submit = rs.getInt(8);
+				if(submit == 1){
+					allowedList.add(tDTO);
+					continue;
+				}
+				waitingList.add(tDTO);
+			}
+			TeamList.add(allowedList);
+			TeamList.add(waitingList);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+		
+		return TeamList;
+	}
+	//getUserJoinTeam
 }
