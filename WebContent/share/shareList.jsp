@@ -7,7 +7,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html class="shareHtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- bootstrap -->
@@ -19,7 +19,7 @@
 <title>정보공유</title>
 <link rel="stylesheet" href="./share/css/share.css">
 </head>
-<body>
+<body class="">
 <%@ include file="../../main/header.jsp" %>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js" charset="UTF-8"></script>
 
@@ -190,9 +190,17 @@
 %>
 <input type="button" onclick="share_write_userCheck()" value="글쓰기" class="write-btn">
 <hr>
-<a href="./main.us">메인으로 </a>
 </div>
 </div>
+<br style="clear: both;">&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+
+
 <script  src="./share/script.js"></script>
 </body>
 </html>
