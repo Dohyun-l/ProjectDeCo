@@ -125,8 +125,6 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 	<input id="content_num" type="hidden" name="content_num" value="<%=sDTO.getIdx()%>">
 	<input id="content_type" type="hidden" name="content_type" value="1">
 	<input id="likeResult" type="hidden" value="<%=result%>">
-	
-
 <!-- 좋아요 끝 -->	
 
 <input type="button" value="목록으로" onclick="location.href='./shareList.sh?pageNum=<%=pageNum %>&pageSize=<%=pageSize%>&category=<%=category%>';" class="write-btn">
@@ -139,8 +137,6 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 	<button id="likeBtn" class="btn"></button><br><br>
 	<div id="reportBtnContainer"></div>
 </div>
-
-
 
 <!-- 댓글 -->
 <form action="" name="commentListfr" >
@@ -234,7 +230,6 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
  <input type="submit" value="등록하기">
  <input type="reset" value="취소">
 </form>
-
 </div>
 <script type="module" src="./report/js/reportMain.js"></script>
 <script type="text/javascript" src="./like/js/likeFunc.js"></script>

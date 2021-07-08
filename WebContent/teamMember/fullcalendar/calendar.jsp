@@ -1,3 +1,7 @@
+<%@page import="com.deco.user.userDAO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.deco.team.member.teamMemberDTO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -25,6 +29,8 @@
 	
 	<%
 		String team_idx = request.getParameter("idx");
+	
+		List<teamMemberDTO> tmList = (ArrayList<teamMemberDTO>) request.getAttribute("teamMemberList"); 
 	%>
 	
 	
@@ -159,16 +165,13 @@
                 <div class="col-lg-6">
                     <label for="calendar_view">등록자별</label>
                     <div class="input-group">
-                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="1"
-                                checked>정연</label>
-                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="2"
-                                checked>다현</label>
-                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="3"
-                                checked>사나</label>
-                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="4"
-                                checked>나연</label>
-                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="5"
-                                checked>지효</label>
+                    
+                    	<%for (int i=0; i<tmList.size(); i++){
+                    			teamMemberDTO tmdto = tmList.get(i);
+                    		%>
+                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="<%=new userDAO().getUserNickNameByNum(tmdto.getMember()) %>"
+                                checked><%=new userDAO().getUserNickNameByNum(tmdto.getMember()) %></label>
+                        <%} %>
                     </div>
                 </div>
 

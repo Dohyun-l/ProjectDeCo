@@ -70,7 +70,7 @@ $(document).ready(function($) {
 </head>
 <body>
 <%@ include file="../../main/header.jsp" %>	
-<hr>	
+	
 	<%
 		int userNum = 0;
 	
@@ -234,7 +234,7 @@ $(document).ready(function($) {
 		<div id="buttons">
 		<input type="submit" value="등록">
 		<input type="reset" value="취소"> 
-		<input type="button" value="메인으로" onclick="location.href='./shareList.sh'">
+		<input type="button" value="목록으로" onclick="location.href='./shareList.sh'">
 		</div>
 		</form>
 		</div>
