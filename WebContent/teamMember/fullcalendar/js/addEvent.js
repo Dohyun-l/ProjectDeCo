@@ -9,6 +9,7 @@ var editType = $('#edit-type');
 var editColor = $('#edit-color');
 var editDesc = $('#edit-desc');
 var team_idx = $('#team_idx');
+var username = $('#username');
 
 var addBtnContainer = $('.modalBtnContainer-addEvent');
 var modifyBtnContainer = $('.modalBtnContainer-modifyEvent');
@@ -27,10 +28,14 @@ var newEvent = function (start, end, eventType) {
     editStart.val(start);
     editEnd.val(end);
     editDesc.val('');
-    
+        
     addBtnContainer.show();
     modifyBtnContainer.hide();
     eventModal.modal('show');
+    
+    /******** 임시 RAMDON ID - 실제 DB 연동시 삭제 **********/
+    var eventId = (1 + Math.floor(Math.random() * 1000)) * (-1);
+    /******** 임시 RAMDON ID - 실제 DB 연동시 삭제 **********/
 
 
     //새로운 일정 저장버튼 클릭
@@ -38,6 +43,8 @@ var newEvent = function (start, end, eventType) {
     $('#save-event').on('click', function () {
 
         var eventData = {
+    		_id: eventId,
+        	username: username.val(),
             title: editTitle.val(),
             start: editStart.val(),
             end: editEnd.val(),
@@ -70,7 +77,7 @@ var newEvent = function (start, end, eventType) {
             eventData.allDay = true;
         }
 
-        $("#calendar").fullCalendar('renderEvent', eventData, true);
+        
         eventModal.find('input, textarea').val('');
         editAllDay.prop('checked', false);
         eventModal.modal('hide');
@@ -91,7 +98,7 @@ var newEvent = function (start, end, eventType) {
                 team_idx: team_idx.val()
             },
             success: function (response) {
-
+            	$("#calendar").fullCalendar('renderEvent', eventData, true);
                 //DB연동시 중복이벤트 방지를 위한
                 //$('#calendar').fullCalendar('removeEvents');
                 //$('#calendar').fullCalendar('refetchEvents');

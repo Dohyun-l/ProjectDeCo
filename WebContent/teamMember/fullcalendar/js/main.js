@@ -119,7 +119,7 @@ var calendar = $('#calendar').fullCalendar({
       success: function (response) {
         var fixedDate = response.map(function (array) {
           if (array.allDay && array.start !== array.end) {
-            array.end = moment(array.end).add(1, 'days'); // 이틀 이상 AllDay 일정인 경우 달력에 표기시 하루를 더해야 정상출력
+            array.end = moment(array.end).add(0, 'days'); // 이틀 이상 AllDay 일정인 경우 달력에 표기시 하루를 더해야 정상출력
           }
           return array;
         });
@@ -143,13 +143,23 @@ var calendar = $('#calendar').fullCalendar({
     //리사이즈한 일정 업데이트
     $.ajax({
       type: "get",
-      url: "",
+      url: "./updateDateSchedule.tm",
       data: {
-        //id: event._id,
-        //....
+    	  idx: event._id,
+    	  start: newDates.startDate,
+    	  end: newDates.endDate
       },
       success: function (response) {
-        alert('수정: ' + newDates.startDate + ' ~ ' + newDates.endDate);
+    	if(response == 1) {
+    		  alert('수정이 완료되었습니다.');     
+      		$("#calendar").fullCalendar('updateEvent', event);
+      	} else if (response == 0) {
+      		alert('본인 일정이 아닙니다.');
+      		location.reload();
+      	} else {
+      		alert('일정변경에 문제가 생겼습니다.');
+      		location.reload();
+      	}
       }
     });
 
@@ -178,12 +188,23 @@ var calendar = $('#calendar').fullCalendar({
     //드롭한 일정 업데이트
     $.ajax({
       type: "get",
-      url: "",
+      url: "./updateDateSchedule.tm",
       data: {
-        //...
+    	  idx: event._id,
+    	  start: newDates.startDate,
+    	  end: newDates.endDate
       },
       success: function (response) {
-        alert('수정: ' + newDates.startDate + ' ~ ' + newDates.endDate);
+    	if(response == 1) {
+    		  alert('수정이 완료되었습니다.');     
+      		$("#calendar").fullCalendar('updateEvent', event);
+      	} else if (response == 0) {
+      		alert('본인 일정이 아닙니다.');
+      		location.reload();
+      	} else {
+      		alert('일정변경에 문제가 생겼습니다.');
+      		location.reload();
+      	}
       }
     });
 

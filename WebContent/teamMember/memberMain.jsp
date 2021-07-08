@@ -10,16 +10,18 @@
 </head>
 <body>
 
+<%@ include file="../../main/header.jsp" %>
+
 	<h1>WebContent/teamMember/memberMain.jsp</h1>
 	
 	<%
 		String idx = request.getParameter("idx");
 
-		int user_num = 0;	
+		int usernum = 0;	
 		if(session.getAttribute("user_num") == null) {
 			response.sendRedirect("./teamList.te");
 		} else {
-			user_num = (int) session.getAttribute("user_num");
+			usernum = (int) session.getAttribute("user_num");
 		}
 		
 		teamDAO tdao = new teamDAO();

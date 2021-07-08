@@ -1,3 +1,6 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.deco.team.member.teamMemberDTO"%>
+<%@page import="java.util.List"%>
 <%@page import="com.deco.user.userDAO"%>
 <%@page import="com.deco.team.talk.talkDTO"%>
 <%@page import="com.deco.team.talk.talkDAO"%>
@@ -12,15 +15,15 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <%
-	int user_num = 0;
+	int usernum = 0;
 	
 	if(session.getAttribute("user_num") == null) {
 		response.sendRedirect("./teamList.te");
 	} else {
-		user_num = (int) session.getAttribute("user_num");
+		usernum = (int) session.getAttribute("user_num");
 	}
 
-	String nickname = new userDAO().getUserNickNameByNum(user_num);
+	String nickname = new userDAO().getUserNickNameByNum(usernum);
 
 	String team_idx = request.getParameter("idx");
 
@@ -84,7 +87,7 @@ hr {
 </style>
 </head>
 <body>
-
+<%@ include file="../../main/header.jsp" %>
 	<script type="text/javascript">
 	
 	$(function(){
@@ -139,16 +142,20 @@ hr {
 
 	</script>
 	<div id="talkInfo">
-	<h1><%=team_idx%> 채팅방</h1>
-	<a href="./teamPage.tm?idx=<%=team_idx%>">메인으로</a>
 	닉네임 : <input type="text" id="nickname" value="<%=nickname%>" readonly>
 	내용 : <input type="text" id="content" onkeyup="enterKey()">
 	<input type="button" value="전송" onclick="writeContent()">
 	</div>
 
 
-	<div id="boardController">	
-	<a href="./teamMember/calendarView.jsp" target="boradArea">일정관리</a>
+	<div id="boardController">
+	<%	
+		List<teamMemberDTO> tmList = (ArrayList<teamMemberDTO>) request.getAttribute("teamMemberList");
+		
+	%>
+	
+	
+	<a href="./calendarView.jsp" target="boradArea">일정관리</a>
 	<a href="https://map.naver.com/" target="boradArea">지도보기</a>
 
 	<!-- Search Google -->
@@ -171,10 +178,11 @@ hr {
 	<div id="teamContent">
 		<div id="talkContent"></div>
 	
-		<iframe src="./teamMember/calendarView.jsp" width="54%" height="700" id="boradArea" name="boradArea"></iframe>	
+		<iframe src="./calendarView.jsp" width="54%" height="700" id="boradArea" name="boradArea"></iframe>	
 		
 	</div>
 	<hr>
+	
 
 </body>
 </html>

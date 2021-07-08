@@ -76,40 +76,62 @@ var editEvent = function (event, element, view) {
         event.backgroundColor = editColor.val();
         event.description = editDesc.val();
 
-        $("#calendar").fullCalendar('updateEvent', event);
-
         //일정 업데이트
         $.ajax({
             type: "get",
-            url: "",
+            url: "./updateSchedule.tm",
             data: {
-                //...
+            	idx: event._id,
+            	title: event.title,
+                description: event.description,
+                start: event.start,
+                end: event.end,
+                type: event.type,
+                backgroundColor: event.backgroundColor,
+                allDay: event.allDay
             },
             success: function (response) {
-                alert('수정되었습니다.')
+            	if(response == 1) {
+            		alert('수정이 완료되었습니다.');     
+            		$("#calendar").fullCalendar('updateEvent', event);
+            	} else if (response == 0) {
+            		alert('본인 일정이 아닙니다.');
+            		location.reload();
+            	} else {
+            		alert('일정변경에 문제가 생겼습니다.');
+            		location.reload();
+            	}
             }
         });
-
     });
 };
 
 // 삭제버튼
 $('#deleteEvent').on('click', function () {
-    
+    	
     $('#deleteEvent').unbind();
-    $("#calendar").fullCalendar('removeEvents', $(this).data('id'));
     eventModal.modal('hide');
 
+    var idx = $(this).data('id');
+    
     //삭제시
     $.ajax({
         type: "get",
-        url: "",
+        url: "./deleteSchedule.tm",
         data: {
-            //...
+        	idx: $(this).data('id')
         },
         success: function (response) {
-            alert('삭제되었습니다.');
+            if(response == 1) {
+            	alert('삭제되었습니다.');
+            	$("#calendar").fullCalendar('removeEvents', idx);
+        	} else if (response == 0) {
+        		alert('본인 일정이 아닙니다.');
+        		location.reload();
+        	} else {
+        		alert('일정변경에 문제가 생겼습니다.');
+        		location.reload();
+        	}
         }
     });
-
 });
