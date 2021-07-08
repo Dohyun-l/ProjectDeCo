@@ -50,7 +50,7 @@ public class joinTeamMemberAction implements Action {
 				if (result == 1) {
 					out.print("<script>");
 					out.print("alert('신청이 완료 되었습니다.');");
-					out.print("location.href='./teamMain.te';");
+					out.print("location.href='./teamView.te?idx="+team_idx+"';");
 					out.print("</script>");
 					out.close();
 					

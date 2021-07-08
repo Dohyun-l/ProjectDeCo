@@ -77,7 +77,7 @@ function dropteam(){
  	
  	<%} %>
  	<br><br>
- 	<% if(check != 1){ %>
+ 	<% if(check == 1){ %>
  	<b>모집 마감일 : <%=tdto.getDeadline() %></b><br>
  	<% }else{ %>
  		<b style="color: red">모집 기간이 지났습니다.</b>
@@ -127,6 +127,8 @@ function dropteam(){
 		// 댓글 달기 ajax
 		$(function(){
 			$(this).off("click").on("click", ".oh",function(){
+				
+			
 				if(document.fr.content.value == ""){
 					alert("댓글을 작성해주세요.");
 					document.fr.content.focus();
