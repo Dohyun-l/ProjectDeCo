@@ -32,7 +32,6 @@
 			user_num = (int) session.getAttribute("user_num");
 		}
 
-
 	String idx = request.getParameter("idx");
 	userDAO udao = new userDAO();
 	teamDTO tdto = (teamDTO) request.getAttribute("tdto");
@@ -263,7 +262,7 @@ function dropteam(){
 		
 		</div>
 		<br>
-				
+				<% if(session.getAttribute("user_num")!=null){ %>
 	 	<form name="fr" onsubmit="return false;">
 	 
 	 	
@@ -280,7 +279,7 @@ function dropteam(){
 	 	<br>
 	 		<button id="red" type="button" class="oh">등록</button>
 	 	</form>
-	 	
+	 	<%} %>
 	
 </center>
 </div>
