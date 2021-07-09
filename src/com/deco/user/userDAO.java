@@ -99,7 +99,7 @@ public class userDAO {
 			rs = pstmt.executeQuery();
 			if(rs.next()){
 				UserName = rs.getString(1);
-				System.out.println(rs.getString(1));
+				System.out.println("이름 : " + rs.getString(1));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -706,9 +706,9 @@ public class userDAO {
 	
 	//getUserJoinTeam
 	public List getUserJoinTeam(int user_num){
-		List<List<teamDTO>> TeamList = new ArrayList();
-		List<teamDTO> allowedList = new ArrayList();
-		List<teamDTO> waitingList = new ArrayList();
+		List<List<teamDTO>> TeamList = new ArrayList<List<teamDTO>>();
+		List<teamDTO> allowedList = new ArrayList<teamDTO>();
+		List<teamDTO> waitingList = new ArrayList<teamDTO>();
 		
 		try {
 			conn = getConnection();
@@ -739,6 +739,8 @@ public class userDAO {
 				}
 				waitingList.add(tDTO);
 			}
+			System.out.println("승인 => "+allowedList);
+			System.out.println("대기 => "+waitingList);
 			TeamList.add(allowedList);
 			TeamList.add(waitingList);
 			
