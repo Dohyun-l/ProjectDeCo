@@ -17,12 +17,15 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+	<%@ include file="../../main/header.jsp" %>
 <div id="wrap">
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js" charset="UTF-8"></script>
 	<!-- <h1>WebContent/board/list.jsp</h1> -->
+
+	
 	<h1>공지사항</h1>
 	<%
-		int user_num = 0;
 		if(session.getAttribute("user_num") != null) {
 			user_num = (int) session.getAttribute("user_num");
 		}
@@ -187,7 +190,7 @@
 		//////////////////////////////////////////////////////////////////////
 	%>
 	<hr>
-	<h3><a href="./Main.nt">메인으로</a></h3>
+	
 </div>
 </body>
 </html>

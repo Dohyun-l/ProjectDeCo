@@ -40,7 +40,7 @@ public class teamMemberMainAction implements Action {
 		PrintWriter out = resp.getWriter();
 		
 		if (result == 1) {
-			return new ActionForward("./teamMember/memberMain.jsp", false);
+			return new ActionForward("./teamMember/talkView.jsp", false);
 		} else {
 			out.print("<script>");
 			out.print("alert('해당팀의 팀페이지에 입장 권한이 없습니다.');");

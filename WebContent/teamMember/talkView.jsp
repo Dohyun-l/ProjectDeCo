@@ -88,6 +88,7 @@ hr {
 </head>
 <body>
 <%@ include file="../../main/header.jsp" %>
+<%@ include file="../../teamMember/memberMain.jsp" %>
 	<script type="text/javascript">
 	
 	$(function(){

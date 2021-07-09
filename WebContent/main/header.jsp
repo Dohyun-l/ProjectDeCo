@@ -37,7 +37,7 @@
 	<nav-1 id="HnavDeco">
 	  <ul>
 		<li>
-		<a class="HmenuDeco" href="./Main.nt">Notice</a>
+		<a class="HmenuDeco" href="./noticelist.nt">Notice</a>
 		</li>
 		<li>
 		<a class="HmenuDeco" href="./shareList.sh">Share</a>
