@@ -10,8 +10,12 @@ html,body{
 }
 
 .myPageNavigator{
+	position:fix;
+	top:30%;
+	left:30%;
 	border-radius:10px;	
 	background-color:#86D0C7;
+	height: 150px;
 }
 
 .myPageNavigator ul{
