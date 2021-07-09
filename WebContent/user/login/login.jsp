@@ -42,8 +42,8 @@ if(session.getAttribute("user_num") != null){
 		<h2 class="Title">Login</h2>
 	</div>
  	<input type="hidden" name="referer" value="<%=referer %>">
-		<input type="email" name="email" class="loginForm__emailInput" size="20" placeholder="Insert Your Email."><br>
-		<input type="password" name="pw" class="loginForm__pwInput" size="20" placeholder="Insert Your Password."><br>
+		<input type="email" name="email" class="loginForm__emailInput" size="20" placeholder="Insert Your Email." size="50" style="text-align:center"><br>
+		<input type="password" name="pw" class="loginForm__pwInput" size="20" placeholder="Insert Your Password." size="50" style="text-align:center"><br> 
 	<input type="submit" class="userForm__submit" value="Login">
  	<div class="memoIdWrapper">
 		 <input type="checkbox" name="memoId" id="memoId" value="true">
