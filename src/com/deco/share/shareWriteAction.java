@@ -61,7 +61,6 @@ public class shareWriteAction implements Action {
 	     String tag = "";
 	     for(int i=0;i<tags.length;i++){
 	    	 tag += tags[i];
-	    	 //다중 선택시 디비에( , )로 나눠서 저장할건지... 알려줘
 	    	 
 	    	 if((tags.length-1) != i){
 	    		 tag += ","; 
