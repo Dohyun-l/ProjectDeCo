@@ -4,8 +4,13 @@
 	box-sizing: border-box;
 }
 
-html, body {
+.shareHtml, .shareBody {
 	height: 100vh;
+	width: 100%;
+}
+
+
+.shareHtml{
 	width: 100%;
 }
 
@@ -13,11 +18,12 @@ body {
 	margin: 0;
 	padding: 0;
 	background-image: linear-gradient(220deg, white 30%, gray);
+	background-attachment: fixed;
 }
 
 nav {
 	overflow: hidden;
-	position: relative;
+	position: absolute;
 	transform: translateX(-300px);
 	height: 70%;
 	width: 400px;
@@ -119,8 +125,8 @@ nav .nav-links .link:hover {
 }
 
 .inform {
-	position: absolute;
-	top: 50%;
+	position: relative;
+	top: 0%;
 	left: 55%;
 	transform: translate(-50%, -50%);
 	color: rgba(255, 255, 255, 0.8);

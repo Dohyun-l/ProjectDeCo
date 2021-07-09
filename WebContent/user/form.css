@@ -142,6 +142,7 @@ textarea:focus:-ms-input-placeholder {
 .userMain {
 	display: flex;
 	flex-direction: column;
+	padding-bottom: 20px;
 }
 
 .userForm input,

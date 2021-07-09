@@ -15,6 +15,8 @@
 		userDTO udto = (userDTO) request.getAttribute("udto");
 		
 	%>
+	<%@ include file="../../main/header.jsp" %>
+	<%@ include file="../../user/myPageNav.jsp" %>
 		<div class="table-users">
 		<div class="header"><span>User Info</span></div>
 		<table cellspacing="0">
@@ -61,10 +63,7 @@
 		</table>
 	</div>
 	<div class="btnWrapper">
-		<a href="./main.us"><button>메인 페이지</button></a>
 		<a href="./update.us?user_num=<%=udto.getUser_num() %>"><button>정보수정</button></a>
-		<a href="./delete.us?user_num=<%=udto.getUser_num() %>"><button>회원탈퇴</button></a>
-		<!-- admin_auth 2인 회원 회원탈퇴버튼 숨김 -->
 	</div>
 
 </body>

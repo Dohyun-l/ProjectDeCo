@@ -31,7 +31,7 @@
 				  return weekList[date.dow];
 			},
 			contentHeight: 800,
-			fixedWeekCount: false,
+			fixedWeekCount: true,
 			showNonCurrentDates: true
 		});
 		calendar.render();

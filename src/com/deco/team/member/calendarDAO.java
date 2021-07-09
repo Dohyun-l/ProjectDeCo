@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,8 @@ import javax.sql.DataSource;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+
+import com.deco.user.userDAO;
 
 public class calendarDAO {
 
@@ -119,17 +122,16 @@ public class calendarDAO {
 			while (rs.next()){
 				schedule = new JSONObject();
 				
-				schedule.put("idx", rs.getInt("idx"));
-				schedule.put("team_idx", rs.getInt("team_idx"));
-				schedule.put("user_idx", rs.getInt("user_idx"));
+				schedule.put("_id", rs.getInt("idx"));
+				schedule.put("username", new userDAO().getUserNickNameByNum(rs.getInt("user_idx")));
 				schedule.put("title", rs.getString("title"));
 				schedule.put("description", rs.getString("description"));
-				schedule.put("start", rs.getString("start"));
-				schedule.put("end", rs.getString("end"));
+				schedule.put("start", new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").format(rs.getTimestamp("start")));
+				schedule.put("end", new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").format(rs.getTimestamp("end")));
 				schedule.put("type", rs.getString("type"));
-				schedule.put("backgroundcolor", rs.getString("backgroundcolor"));
-				schedule.put("textcolor", rs.getString("textcolor"));
-				schedule.put("allday", rs.getString("allday"));
+				schedule.put("backgroundColor", rs.getString("backgroundcolor"));
+				schedule.put("textColor", rs.getString("textcolor"));
+				schedule.put("allDay", rs.getString("allday"));
 				
 				scheduleList.add(schedule);
 			}
