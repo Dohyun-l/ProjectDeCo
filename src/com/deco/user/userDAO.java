@@ -14,6 +14,7 @@ import javax.sql.DataSource;
 
 import org.mindrot.jbcrypt.BCrypt;
 
+import com.deco.notice.db.noticeDTO;
 import com.deco.team.teamDTO;
 import com.deco.team.teamListAction;
 
@@ -754,4 +755,33 @@ public class userDAO {
 		return TeamList;
 	}
 	//getUserJoinTeam
+	
+	//getAdminNotice
+	public List<noticeDTO> getAdminNotice(int user_num){
+		List<noticeDTO> retList = new ArrayList<noticeDTO>();
+		
+		try {
+			conn = getConnection();
+			sql = "select * from notice where user_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, user_num);
+			
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				noticeDTO nDTO = new noticeDTO();
+				nDTO.setIdx(rs.getInt(1));
+				nDTO.setUser_num(rs.getInt(2));
+				nDTO.setTitle(rs.getString(3));
+				
+				retList.add(nDTO);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+		
+		return retList;
+	}
+	//getAdminNotice
 }

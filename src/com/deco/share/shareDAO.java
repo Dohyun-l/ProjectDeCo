@@ -600,7 +600,7 @@ public class shareDAO {
 		
 		try{
 			conn = getConnection();
-			sql = "select s.idx, s.title, s.user_num, s.category "
+			sql = "select s.idx, s.title, s.user_num, s.category, l.content_type "
 					+ "from share s join like_ l "
 					+ "on (s.idx = l.content_num and l.content_type = 1 and l.user_num=?)";
 			
@@ -659,6 +659,9 @@ public class shareDAO {
 				sDTO.setUser_num(rs.getInt(3));
 				sDTO.setCategory(rs.getString(4));
 				
+				//type을 임의로 anony에 세팅해 줌.
+				sDTO.setAnony(rs.getInt(5));
+				
 				bookShareList.add(sDTO);
 			}
 		} catch (SQLException e) {
@@ -687,7 +690,7 @@ public class shareDAO {
 				sDTO.setIdx(rs.getInt(1));
 				sDTO.setUser_num(rs.getInt(2));
 				sDTO.setTitle(rs.getString(3));
-				sDTO.setCategory(rs.getString(4));
+				sDTO.setCategory(rs.getString(6));
 				
 				userWriteList.add(sDTO);
 			}

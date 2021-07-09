@@ -15,3 +15,19 @@
 	color:#FFFFFF;
 	box-shadow: 1px 2px 1px 1px rgba(1,1,1,0.2), -1px 2px 1px 1px rgba(1,1,1,0.2);
 }
+
+.userContentList-tableWrapper table{
+	margin: 0 auto;
+}
+
+table{
+	max-width: 400px !important;
+	border: 1px solid #00ca00;
+	border-radius: 4px;
+}
+
+a{
+	text-decoration: none;
+	color:#a27948;
+}
+
