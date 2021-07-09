@@ -3,6 +3,9 @@ html,body{
 	height: 100%;
 }
 .myPageWrapper{
+	display: grid;
+	grid-template-columns:125px 1fr;
+	grid-gap: 25px;
 	height: 100%;
 }
 

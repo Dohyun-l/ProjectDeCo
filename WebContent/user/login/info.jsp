@@ -33,7 +33,7 @@
 		<div class="userInfo-Wrapper">
 			<div class="table-users">
 			<div class="header"><span>User Info</span></div>
-			<table cellspacing="0">
+			<table cellspacing="0" class="info-table__detail">
 				<tr>
 					<th>이메일</th>
 					<td><%=udto.getEmail() %></td>
@@ -77,7 +77,7 @@
 			</table>
 			</div>
 			<div class="btnWrapper">
-				<a href="./update.us?user_num=<%=udto.getUser_num() %>"><button>정보수정</button></a>
+				<a href="./update.us?user_num=<%=udto.getUser_num() %>"><button class = "infoBtn__submit">정보수정</button></a>
 			</div>
 		</div>
 	</main>

@@ -10,7 +10,6 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="./user/myPage/joinTeamList.css">
 <link rel="stylesheet" href="./user/myPage/layout.css">
-<link rel="stylesheet" href="./user/form.css">
 </head>
 <body>
 	<%@ include file="../../main/header.jsp" %>
