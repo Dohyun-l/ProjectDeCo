@@ -754,4 +754,21 @@ public class userDAO {
 		return TeamList;
 	}
 	//getUserJoinTeam
+	// logindateupdate
+	public void dateupdate(String email){
+		try {
+			conn = getConnection();
+			sql="update user set last_login=now() where email=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+		
+	}
+	
+	
 }
