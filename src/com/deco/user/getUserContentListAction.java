@@ -38,6 +38,11 @@ public class getUserContentListAction implements Action{
 		List<shareDTO> bookShare = getBookShare();
 		List<shareDTO> userWriteShare = getWriteShare();
 		
+		System.out.println(likeShare);
+		System.out.println(bookShare);
+		System.out.println(userWriteShare);
+		
+		
 		AllList.put("likeShare", likeShare);
 		AllList.put("bookShare", bookShare);
 		AllList.put("userWriteShare", userWriteShare);

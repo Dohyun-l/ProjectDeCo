@@ -602,8 +602,7 @@ public class shareDAO {
 			conn = getConnection();
 			sql = "select s.idx, s.title, s.user_num, s.category "
 					+ "from share s join like_ l "
-					+ "on (s.idx = l.content_num and l.content_type = 1) "
-					+ "where s.user_num=?";
+					+ "on (s.idx = l.content_num and l.content_type = 1 and l.user_num=?)";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, user_num);
@@ -646,10 +645,9 @@ public class shareDAO {
 		
 		try {
 			conn = getConnection();
-			sql = "select s.idx, s.title, s.user_num, s.category "
+			sql = "select s.idx, s.title, s.user_num, s.category, b.type "
 					+ "from share s join bookmark b "
-					+ "on (s.idx = b.content_num and b.type in (2,3,4,5,6)) "
-					+ "where s.user_num=?";
+					+ "on (s.idx = b.content_num and b.user_num=? and b.type between 1 and 6);";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, user_num);
 			
