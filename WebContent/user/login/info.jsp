@@ -10,7 +10,8 @@
 <title>Deco | UserInfo</title>
 </head>
 <body>
-<%@ include file="../../main/header.jsp" %>
+	<%@ include file="../../main/header.jsp" %>
+	<%@ include file="../../user/myPageNav.jsp" %>
 	<%
 		request.setCharacterEncoding("UTF-8");
 		userDTO udto = (userDTO) request.getAttribute("udto");
@@ -26,8 +27,7 @@
 			<%
 		}
 	%>
-	<%@ include file="../../main/header.jsp" %>
-	<%@ include file="../../user/myPageNav.jsp" %>
+
 		<div class="table-users">
 		<div class="header"><span>User Info</span></div>
 		<table cellspacing="0">
