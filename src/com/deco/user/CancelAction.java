@@ -40,6 +40,9 @@ public class CancelAction implements Action{
 			return null;
 		}
 		
+		//다시 일반유저 상태로 되돌림
+		udao.setUserAuth(0, email);
+		
 		out.print("<script>");
 		out.print("alert('Welcome back!!!');");
 		out.print("location.href='/ProjectDeCo/main.us';");
