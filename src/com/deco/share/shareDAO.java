@@ -12,6 +12,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import com.deco.like.likeDTO;
 import com.sun.org.apache.bcel.internal.generic.CompoundInstruction;
 
 public class shareDAO {
@@ -593,4 +594,113 @@ public class shareDAO {
 	}
 	// reportCount
 	
+	//getUserShare
+	public List<shareDTO> getUserLikeList(int user_num){
+		List<shareDTO> likeShareList = new ArrayList<shareDTO>();
+		
+		try{
+			conn = getConnection();
+			sql = "select s.idx, s.title, s.user_num, s.category "
+					+ "from share s join like_ l "
+					+ "on (s.idx = l.content_num and l.content_type = 1) "
+					+ "where s.user_num=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, user_num);
+			
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				shareDTO sDTO = new shareDTO();
+				sDTO.setIdx(rs.getInt(1));
+				sDTO.setTitle(rs.getString(2));
+				sDTO.setUser_num(rs.getInt(3));
+				sDTO.setCategory(rs.getString(4));
+				
+				likeShareList.add(sDTO);
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+		
+		return likeShareList;
+	}
+	//getUserShare
+	
+	//getUserBookList
+	/*bookmark
+	type
+	1-공지사항
+	
+	2-Tip
+	3-컨퍼런스
+	4-회사추천
+	5-학원추천
+	6-howto
+	
+	
+	7-팀*/
+	public List<shareDTO> getUserBookList(int user_num){
+		List<shareDTO> bookShareList = new ArrayList<shareDTO>();
+		
+		try {
+			conn = getConnection();
+			sql = "select s.idx, s.title, s.user_num, s.category "
+					+ "from share s join bookmark b "
+					+ "on (s.idx = b.content_num and b.type in (2,3,4,5,6)) "
+					+ "where s.user_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, user_num);
+			
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				shareDTO sDTO = new shareDTO();
+				sDTO.setIdx(rs.getInt(1));
+				sDTO.setTitle(rs.getString(2));
+				sDTO.setUser_num(rs.getInt(3));
+				sDTO.setCategory(rs.getString(4));
+				
+				bookShareList.add(sDTO);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+		
+		return bookShareList;
+	}
+	//getUserBookList
+	
+	//getUserWriteList
+	public List<shareDTO> getUserWriteList(int user_num){
+		List<shareDTO> userWriteList = new ArrayList<shareDTO>();
+		
+		try {
+			conn = getConnection();
+			sql = "select * from share where user_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, user_num);
+			
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				shareDTO sDTO = new shareDTO();
+				sDTO.setIdx(rs.getInt(1));
+				sDTO.setUser_num(rs.getInt(2));
+				sDTO.setTitle(rs.getString(3));
+				sDTO.setCategory(rs.getString(4));
+				
+				userWriteList.add(sDTO);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+		
+		return userWriteList;
+	}
+	//getUserWriteList
 }

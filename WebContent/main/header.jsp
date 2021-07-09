@@ -46,7 +46,7 @@
 		<a class="HmenuDeco" href="./teamList.te">Project</a>
 		</li>
 		<li>
-		<a class="HmenuDeco" href="./shareList.sh">My Page</a>
+		<a class="HmenuDeco" href="./info.us?user_num=<%=user_num %>">My Page</a>
 		</li>
 	  </ul>
 	</nav-1>	
@@ -68,8 +68,8 @@
 	<%} else{%>
 	<div id="HloginDeco">
 	<form class="userFormDeco loginFormDeco" name="frDeco">	
-		<h2 class="HloginDeco">Welcome<br> <%=name %></h2>
-<%-- 마이페이지 추천	<a class="Hlogin" href="./info.us?user_num=<%=user_num %>">회원정보 조회</a> --%>
+		<h2 class="HloginDeco">Welcome <%=name %></h2>
+<a class="Hlogin" href="./info.us?user_num=<%=user_num %>">회원정보 조회</a>
 <%-- 관리자 페이지 추천 	<%if(admin_auth == 2){ %><a class="Hlogin" href="./cancel.us">회원탈퇴 취소</a><%} %> --%>
 <!-- 		<a class="Hlogin" href="./userlogout.us">logout</a> -->
 		<main class="userMainDeco">

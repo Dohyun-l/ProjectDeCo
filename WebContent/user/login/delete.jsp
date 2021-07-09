@@ -8,7 +8,7 @@
 <title>Deco</title>
 <script type="text/javascript">
 function cancel(){
-		location.href="./main.us";
+		history.back();
 	}
 </script>
 <script>
@@ -40,7 +40,8 @@ function cancel(){
 %>
 
 	<center>
-	<h2>회원탈퇴</h2>
+	
+	<h2>회원 탈퇴</h2>
 	<h4>회원탈퇴후 한달간 정상적으로 이용 가능하시며 한달후 탈퇴 처리가 진행됩니다.</h4>
 	<form action="./DeleteAction.us" method="post" name="fr" onsubmit="return check();">
 		<input type="email" name="email" placeholder="이메일을 입력하세요." style="text-align:center"><br>
