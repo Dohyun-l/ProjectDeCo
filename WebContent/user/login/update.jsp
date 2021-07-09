@@ -6,7 +6,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Deco - 회원정보수정</title>
-<link rel="stylesheet" href="./user/form.css">
 <link rel="stylesheet" href="./user/login/update.css">
 <link rel="stylesheet" href="./user/myPage/layout.css">
 
@@ -95,7 +94,7 @@ function check(){
 	<main class="myPageWrapper">
 
 	<%@ include file="../../user/myPageNav.jsp" %>
-	<form action="./UpdateAction.us" method="post" onsubmit="return check();" name="fr" class="userForm">
+	<form action="./UpdateAction.us" method="post" onsubmit="return check();" name="fr" class ="updateUserForm">
 		<div class="userForm-TitleWrapper">
 			<h2 class="Title">User Update</h2>
 		</div>
