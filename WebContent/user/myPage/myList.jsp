@@ -6,46 +6,64 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="./user/myPage/layout.css">
+<link rel="stylesheet" href="./user/myPage/myList.css">
+<link rel="stylesheet" href="./user/form.css">
+<link rel="stylesheet" href="./user/login/info.css">
 <title>Insert title here</title>
 </head>
 <body>
 	<%@ include file="../../main/header.jsp" %>
-	<%@ include file="../../user/myPageNav.jsp" %>
 	
-	<div class="userContentList-Wrapper">
-		<div class="userContentList-tableWrapper">
-		<div><h2>좋아요한 게시물</h2></div>
-		<table>
-		<c:forEach items="${AllList.likeShare }" var="likeShareOne">
-				<tr>
-					<td><a href="./shareContent.sh?pageNum=1&pageSize=5&contentNum=${likeShareOne.idx }&category=null">${likeShareOne.title }</a></td>
-					<td>${likeShareOne.category }</td>
-				</tr>		
-		</c:forEach>
-		</table>	
+	<main class="myPageWrapper">
+		<%@ include file="../../user/myPageNav.jsp" %>
+		
+		<div class="userContentList-Wrapper">
+			<div class="userContentList-tableWrapper">
+			<div class="tableWrapper__title-Wrapper"><span>좋아요한 게시물</span></div>
+			<table>
+			<c:forEach items="${AllList.likeShare }" var="likeShareOne">
+					<tr>
+						<td class="list__category">[${likeShareOne.category }]</td>
+						<td class="list__title"><a href="./shareContent.sh?pageNum=1&pageSize=5&contentNum=${likeShareOne.idx }&category=null">${likeShareOne.title }</a></td>
+					</tr>		
+			</c:forEach>
+			</table>	
+			</div>
+			<div class="userContentList-tableWrapper">
+			<table>
+			<div class="tableWrapper__title-Wrapper"><span>즐겨찾기 게시물</span></div>
+			<c:forEach items="${AllList.bookShare }" var="bookShareOne">
+					<tr>
+						<td class="list__category">
+						<c:choose>
+							<c:when test="${bookShareOne.anony != 1 }">[${bookShareOne.category }]</c:when>
+							<c:when test="${bookShareOne.anony == 1 }">[Notion]</c:when>
+						</c:choose>
+						</td>
+						<td class="list__title"><a href="./shareContent.sh?pageNum=1&pageSize=5&contentNum=${bookShareOne.idx }&category=null">${bookShareOne.title }</a></td>
+					</tr>	
+			</c:forEach>
+			</table>	
+			</div>
+			<div class="userContentList-tableWrapper">
+			<table>
+			<div class="tableWrapper__title-Wrapper"><span>내가 쓴 게시물</span></div>
+			<c:forEach items="${AllList.userWriteShare }" var="userWriteShareOne">
+					<tr>
+						<td class="list__category">[${userWriteShareOne.category }]</td>
+						<td class="list__title"><a href="./shareContent.sh?pageNum=1&pageSize=5&contentNum=${userWriteShareOne.idx }&category=null">${userWriteShareOne.title }</a></td>
+					</tr>			
+			</c:forEach>
+			<c:forEach items="${AllList.noticeList }" var="noticeOne">
+					<tr>
+						<td class="list__category">[Notion]</td>
+						<td class="list__title"><a href="./noticecontent.nt?idx=${noticeOne.idx }&user_num=${noticeOne.user_num }&pageNum=1&cnt=1">${noticeOne.title }</a></td>
+					</tr>	
+			</c:forEach>
+			</table>	
+			</div>
 		</div>
-		<div class="userContentList-tableWrapper">
-		<table>
-		<div><h2>즐겨찾기 게시물</h2></div>
-		<c:forEach items="${AllList.bookShare }" var="bookShareOne">
-				<tr>
-					<td><a href="./shareContent.sh?pageNum=1&pageSize=5&contentNum=${bookShareOne.idx }&category=null">${bookShareOne.title }</a></td>
-					<td>${bookShareOne.category }</td>
-				</tr>	
-		</c:forEach>
-		</table>	
-		</div>
-		<div class="userContentList-tableWrapper">
-		<table>
-		<div><h2>내가 쓴 게시물</h2></div>
-		<c:forEach items="${AllList.userWriteShare }" var="userWriteShareOne">
-				<tr>
-					<td><a href="./shareContent.sh?pageNum=1&pageSize=5&contentNum=${userWriteShareOne.idx }&category=null">${userWriteShareOne.title }</a></td>
-					<td>${userWriteShareOne.category }</td>
-				</tr>			
-		</c:forEach>
-		</table>	
-		</div>
-	</div>
+	</main>
 </body>
 </html>

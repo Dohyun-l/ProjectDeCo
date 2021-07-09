@@ -21,6 +21,7 @@ function check(){
 </script>
 </head>
 <body>
+<%@ include file="../../main/header.jsp" %>
 <center>
 <h2>회원탈퇴 취소</h2>
 <form action="./CancelAction.us" method="post" name="fr" onsubmit="return check();">

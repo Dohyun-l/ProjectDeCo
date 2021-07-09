@@ -9,60 +9,69 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="./user/myPage/joinTeamList.css">
+<link rel="stylesheet" href="./user/myPage/layout.css">
+<link rel="stylesheet" href="./user/form.css">
 </head>
 <body>
 	<%@ include file="../../main/header.jsp" %>
-	<%@ include file="../../user/myPageNav.jsp" %>
 	
-	<%uDAO = new userDAO(); %>
-	
-	<div class="userTeamList-Wrapper">
-		<div class="userTeamList-JoinedList">
-		<h1>가입된 리스트</h1>
+	<main class="myPageWrapper">
+		<%@ include file="../../user/myPageNav.jsp" %>
 		
-		<div class="TeamList-Wrapper">
-		<c:forEach items="${TeamList[0] }" var="joinTeam">
-			<div class="userTeamList-JoinedList__item myPage-TeamCard">
-				<div class="userTeamList-TeamCard__item-title"><span>${joinTeam.title }</span></div>
-				<c:set var="masterID" value="${joinTeam.master }" />
-				
-				<%int masterID = Integer.parseInt(pageContext.getAttribute("masterID").toString());
-				pageContext.setAttribute("masterName", uDAO.getUserNickNameByNum(masterID));
-				%>
-				
-				<div class="userTeamList-TeamCard__item-master">
-					<span class="masterHead">마스터</span>
-					<span class="masterTail">${masterName }</span>
-				</div>
-					
-				<div class="userTeamList-TeamCard__item-curPersonnel"></div>
-			</div>
-		</c:forEach>
-		</div>
-		</div>
+		<%uDAO = new userDAO(); %>
 		
-		<div class="userTeamList-WaitingList">
-		<h1>승인 대기중 리스트</h1>
-		<div class="TeamList-Wrapper">
-			<c:forEach items="${TeamList[1] }" var="waitingTeam">
-				<div class="userTeamList-WaitingList__item myPage-TeamCard">
-					<div class="userTeamList-TeamCard__item-title"><span>${waitingTeam.title }</span></div>
-					<c:set var="masterID" value="${waitingTeam.master }" />
-					
-					<%int masterID = Integer.parseInt(pageContext.getAttribute("masterID").toString());
-					pageContext.setAttribute("masterName", uDAO.getUserNickNameByNum(masterID));
-					%>
-					
-					<div class="userTeamList-TeamCard__item-master">
-						<span class="masterHead">마스터</span>
-						<span class="masterTail">${masterName }</span>
-					</div>
+		<div class="userTeamList-Wrapper">
+			<div class="userTeamList-JoinedList">
+			<h1>가입된 리스트</h1>
+			
+			<div class="TeamList-Wrapper">
+			<c:forEach items="${TeamList[0] }" var="joinTeam">
+				<a href="./teamView.te?idx=${joinTeam.idx }">
+					<div class="userTeamList-JoinedList__item myPage-TeamCard">
+						<div class="userTeamList-TeamCard__item-title"><span>${joinTeam.title }</span></div>
+						<c:set var="masterID" value="${joinTeam.master }" />
 						
-					<div class="userTeamList-TeamCard__item-curPersonnel"></div>
-				</div>
+						<%int masterID = Integer.parseInt(pageContext.getAttribute("masterID").toString());
+						pageContext.setAttribute("masterName", uDAO.getUserNickNameByNum(masterID));
+						%>
+						
+						<div class="userTeamList-TeamCard__item-master">
+							<span class="masterHead">마스터</span>
+							<span class="masterTail">${masterName }</span>
+						</div>
+							
+						<div class="userTeamList-TeamCard__item-curPersonnel"></div>
+					</div>
+				</a>
 			</c:forEach>
+			</div>
+			</div>
+			
+			<div class="userTeamList-WaitingList">
+			<h1>승인 대기중 리스트</h1>
+			<div class="TeamList-Wrapper">
+				<c:forEach items="${TeamList[1] }" var="waitingTeam">
+				<a href="./teamView.te?idx=${waitingTeam.idx }">
+						<div class="userTeamList-WaitingList__item myPage-TeamCard">
+							<div class="userTeamList-TeamCard__item-title"><span>${waitingTeam.title }</span></div>
+							<c:set var="masterID" value="${waitingTeam.master }" />
+							
+							<%int masterID = Integer.parseInt(pageContext.getAttribute("masterID").toString());
+							pageContext.setAttribute("masterName", uDAO.getUserNickNameByNum(masterID));
+							%>
+							
+							<div class="userTeamList-TeamCard__item-master">
+								<span class="masterHead">마스터</span>
+								<span class="masterTail">${masterName }</span>
+							</div>
+								
+							<div class="userTeamList-TeamCard__item-curPersonnel"></div>
+						</div>
+					</a>
+				</c:forEach>
+			</div>
+			</div>
 		</div>
-		</div>
-	</div>
+	</main>
 </body>
 </html>
