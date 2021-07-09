@@ -6,13 +6,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="./user/login/info.css">
-<link rel="stylesheet" href="./user/form.css">
 <link rel="stylesheet" href="./user/myPage/layout.css">
 <title>Deco | UserInfo</title>
 </head>
 <body>
 	<%@ include file="../../main/header.jsp" %>
-	<%@ include file="../../user/myPageNav.jsp" %>
 	<%
 		request.setCharacterEncoding("UTF-8");
 		userDTO udto = (userDTO) request.getAttribute("udto");
