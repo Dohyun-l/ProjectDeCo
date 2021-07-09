@@ -1,3 +1,4 @@
+<%@page import="com.sun.xml.internal.bind.v2.runtime.Location"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -29,19 +30,30 @@ function cancel(){
 </head>
 <body>
 <%@ include file="../../main/header.jsp" %>
+<%
+	if(session.getAttribute("user_num") == null){
+		%>
+		<script type="text/javascript">
+		alert("권한이 없습니다.");
+		history.back();
+		</script>
+		<%
+	}
+%>
+	
+	<%@ include file="../myPageNav.jsp" %>
+	
+	<h2>회원 탈퇴</h2>
+	<h4>회원탈퇴후 한달간 정상적으로 이용 가능하시며 한달후 탈퇴 처리가 진행됩니다.</h4>
+	<form action="./DeleteAction.us" method="post" name="fr" onsubmit="return check();">
+		<input type="email" name="email" placeholder="이메일을 입력하세요." style="text-align:center"><br>
+		<br>
+		<input type="pw" name="pw" placeholder="비밀번호를 입력하세요." style="text-align:center"><br>
+		<br>
+		<input type="submit" value="탈퇴하기"> | <input type="button" value="취소" onclick="return cancel();">
+	</form>
+	</center>
 
-	<main class="myPageWrapper">
-		<%@ include file="../myPageNav.jsp" %>
-		<center>
-		<h2>회원 탈퇴</h2>
-		<h4>회원탈퇴후 한달간 정상적으로 이용 가능하시며 한달후 탈퇴 처리가 진행됩니다.</h4>
-		<form action="./DeleteAction.us" method="post" name="fr" onsubmit="return check();">
-			<input type="email" name="email" placeholder="이메일을 입력하세요." style="text-align:center"><br>
-			<input type="pw" name="pw" placeholder="비밀번호를 입력하세요." style="text-align:center"><br>
-			<input type="submit" value="탈퇴하기">
-			<input type="button" value="취소" onclick="return cancel();">
-		</form>
-		</center>
 	</main>
 </body>
 </html>

@@ -12,7 +12,7 @@ public class calendarDTO {
 	private String type;
 	private String backgroundcolor;
 	private String textcolor;
-	private String allday;
+	private boolean allday;
 	public int getIdx() {
 		return idx;
 	}
@@ -73,10 +73,10 @@ public class calendarDTO {
 	public void setTextcolor(String textcolor) {
 		this.textcolor = textcolor;
 	}
-	public String getAllday() {
+	public boolean isAllday() {
 		return allday;
 	}
-	public void setAllday(String allday) {
+	public void setAllday(boolean allday) {
 		this.allday = allday;
 	}
 	@Override
@@ -85,4 +85,5 @@ public class calendarDTO {
 				+ ", description=" + description + ", start=" + start + ", end=" + end + ", type=" + type
 				+ ", backgroundcolor=" + backgroundcolor + ", textcolor=" + textcolor + ", allday=" + allday + "]";
 	}
+	
 }

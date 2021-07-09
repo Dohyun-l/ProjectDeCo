@@ -1,5 +1,7 @@
 package com.deco.team.member;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -7,12 +9,12 @@ import javax.servlet.http.HttpSession;
 import com.deco.Action;
 import com.deco.ActionForward;
 
-public class insertScheduleAction implements Action {
+public class updateDateScheduleAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-
-		System.out.println("M : insertScheduleAction_execute() 호출");
+		
+		System.out.println("M : updateDateScheduleAction_execute() 호출");
 		
 		HttpSession session = req.getSession();
 		int user_num = 0;
@@ -21,20 +23,20 @@ public class insertScheduleAction implements Action {
 		}
 		calendarDTO cdto = new calendarDTO();
 		
-		cdto.setAllday(Boolean.parseBoolean(req.getParameter("allDay")));
-		cdto.setDescription(req.getParameter("description"));
+		cdto.setIdx(Integer.parseInt(req.getParameter("idx")));
 		cdto.setEnd(req.getParameter("end"));
 		cdto.setStart(req.getParameter("start"));
-		cdto.setTeam_idx(Integer.parseInt(req.getParameter("team_idx")));
-		cdto.setTextcolor(req.getParameter("textColor"));
-		cdto.setBackgroundcolor(req.getParameter("backgroundColor"));
-		cdto.setTitle(req.getParameter("title"));
-		cdto.setType(req.getParameter("type"));
 		cdto.setUser_idx(user_num);
 		
 		calendarDAO cdao = new calendarDAO();
+		int result = cdao.updateDateSchedule(cdto);
 		
-		cdao.insertSchedule(cdto);
+		resp.setContentType("text/html; charset=utf-8");
+		PrintWriter out = resp.getWriter();
+		
+		out.print(result);
+		
+		out.close();
 		
 		return null;
 	}

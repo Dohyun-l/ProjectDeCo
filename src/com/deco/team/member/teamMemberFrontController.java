@@ -147,6 +147,30 @@ public class teamMemberFrontController extends Controller {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}			
+		} else if (command.equals("/updateSchedule.tm")) {
+			System.out.println("C : /updateSchedule.tm 호출");
+			action = new updateScheduleAction();
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/deleteSchedule.tm")) {
+			System.out.println("C : /deleteSchedule.tm 호출");
+			action = new deleteScheduleAction();
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/updateDateSchedule.tm")) {
+			System.out.println("C : /updateDateSchedule.tm 호출");
+			action = new updateDateScheduleAction();
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 		/////////////////////////////////////////////////////////

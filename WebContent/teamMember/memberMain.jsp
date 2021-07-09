@@ -7,34 +7,35 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link href="./teamMember/teamMember.css" rel="stylesheet">
 </head>
 <body>
-
-	<h1>WebContent/teamMember/memberMain.jsp</h1>
-	
 	<%
 		String idx = request.getParameter("idx");
 
-		int user_num = 0;	
+		int userN = 0;	
 		if(session.getAttribute("user_num") == null) {
 			response.sendRedirect("./teamList.te");
 		} else {
-			user_num = (int) session.getAttribute("user_num");
+			userN = (int) session.getAttribute("user_num");
 		}
 		
-		teamDAO tdao = new teamDAO();
-		teamDTO tdto = tdao.getteamView(Integer.parseInt(idx));
+		teamDAO tdaoM = new teamDAO();
+		teamDTO tdtoM = tdaoM.getteamView(Integer.parseInt(idx));
 	%>
-	<a href="./teamView.te?idx=<%=idx %>">팀 뷰가기</a>
+	<div id="subNav">
+	<ul>
+	<li><a href="./teamView.te?idx=<%=idx %>">팀 뷰가기</a></li>
 	
-	<a href="./teamMemberTalk.tm?idx=<%=idx%>">팀 채팅방</a>
+	<li><a href="./teamMemberTalk.tm?idx=<%=idx%>">팀 채팅방</a></li>
 	
-	<a href="./teamMemberCalendar.tm?idx=<%=idx%>">일정 공유</a>
+	<li><a href="./teamMemberCalendar.tm?idx=<%=idx%>">일정 공유</a></li>
 	
-	<%if(user_num == tdto.getMaster()) { %>
-	<a href="./memberList.tm?idx=<%=idx%>">멤버 관리</a>	
+	<%if(userN == tdtoM.getMaster()) { %>
+	<li><a href="./memberList.tm?idx=<%=idx%>">멤버 관리</a></li>	
 	<%} %>
-
+	</ul>
+	</div>
 
 
 </body>
