@@ -17,15 +17,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <title>Deco - 팀뷰</title>
-
 </head>
 <body>
+<div id="page1"></div>
 <%@ include file="../../main/header.jsp" %>
 <div class="wrap">
 <center>
 	<div id="up"><a href="#page1"><img src="https://img.icons8.com/color/48/000000/circled-up-2--v2.png"/></a></div>
 	<div id="cont"><a href="#content"><img src="https://img.icons8.com/color/48/000000/circled-down-2--v2.png"/></a></div>
-	<div id="page1"></div>
+	
 <%
 	/* int user_num = 0; */
 		if(session.getAttribute("user_num")!=null){
@@ -168,9 +168,9 @@ function dropteam(){
 		$(function(){
 			var t ="<form name='fr<%=i%>'>";
 				if(<%=tcdto.getSecret() %>==1){
-				t +="공개 : <input type='radio' value='1' name='ret<%=i %>' checked> / 비공개 : <input type='radio' value='0' name='ret<%=i %>'>";
+				t +="공개 <input type='radio' value='1' name='ret<%=i %>' checked> / 비공개 <input type='radio' value='0' name='ret<%=i %>'>";
 				}else{
-				t +="공개 : <input type='radio' value='1' name='ret<%=i %>' > / 비공개 : <input type='radio' value='0' name='ret<%=i %>' checked>";
+				t +="공개 <input type='radio' value='1' name='ret<%=i %>' > / 비공개 <input type='radio' value='0' name='ret<%=i %>' checked>";
 				}
 				t +="<br><br><input type='text' id='re<%=i %>' name='content2' placeholder='수정할내용을 입력해주세요.' size='40'' style='text-align:center'>&nbsp";
 				t +="<button id='remove<%=i %>'>수정하기</button>";
@@ -264,18 +264,17 @@ function dropteam(){
 		<br>
 				<% if(session.getAttribute("user_num")!=null){ %>
 	 	<form name="fr" onsubmit="return false;">
-	 
-	 	
+			<div class="rdio">
+			 	공개 <input type="radio" checked="checked" name="secret" value="1" id="sec">
+			 	비공개 <input type="radio" name="secret" value="0" id="sec">
+		 	</div>
 	 	<br>
 	 	<label>
 	 		<input type="text"  name="content" id="content" placeholder="궁금한점을 작성해주세요." size="50" style="text-align:center" maxlength="100"/>
 	 	</label>
 	 	<br>
 	 	<br>
-	 	<div class="rdio">
-		 	공개 <input type="radio" checked="checked" name="secret" value="1" id="sec">
-		 	비공개 <input type="radio" name="secret" value="0" id="sec">
-	 	</div>
+	 	
 	 	<br>
 	 		<button id="red" type="button" class="oh">등록</button>
 	 	</form>

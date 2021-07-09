@@ -22,7 +22,7 @@ public class userLogoutAction implements Action{
 			
 			out.print("<script>");
 			out.print("alert('로그아웃 성공!');");
-			out.print("location.href='./login.us';");
+			out.print("location.href='./main.us';");
 			out.print("</script>");
 			out.close();
 			

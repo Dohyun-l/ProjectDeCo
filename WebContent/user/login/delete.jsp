@@ -1,3 +1,4 @@
+<%@page import="com.sun.xml.internal.bind.v2.runtime.Location"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -7,7 +8,7 @@
 <title>Deco</title>
 <script type="text/javascript">
 function cancel(){
-		location.href="./main.use";
+		location.href="./main.us";
 	}
 </script>
 <script>
@@ -26,8 +27,20 @@ function cancel(){
 </script>
 </head>
 <body>
+<%@ include file="../../main/header.jsp" %>
+<%
+	if(session.getAttribute("user_num") == null){
+		%>
+		<script type="text/javascript">
+		alert("권한이 없습니다.");
+		history.back();
+		</script>
+		<%
+	}
+%>
+
 	<center>
-	<h2>회원탈퇴? 해보시지</h2>
+	<h2>회원탈퇴</h2>
 	<h4>회원탈퇴후 한달간 정상적으로 이용 가능하시며 한달후 탈퇴 처리가 진행됩니다.</h4>
 	<form action="./DeleteAction.us" method="post" name="fr" onsubmit="return check();">
 		<input type="email" name="email" placeholder="이메일을 입력하세요." style="text-align:center"><br>

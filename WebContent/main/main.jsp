@@ -22,15 +22,15 @@
 <div class="container">
   <div class="sections">
     <div class="section active" data-bgcolor="#364652">
-      <h2 class="section--header">한글 폰트 </h2>
+      <h2 class="section--header">Hello world!</h2>
       <div class="section--image"><img src="https://images.unsplash.com/photo-1532275948649-7d97f309ef16?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=db3d266a0c1ec46b95f03a271a78603f&auto=format&fit=crop&w=2250&q=80" /></div>
     </div>
     <div class="section" data-bgcolor="#C1A5A9">
-      <h2 class="section--header">좋은 거</h2>
+      <h2 class="section--header">계산기를 만들어보자</h2>
       <div class="section--image"><img src="https://images.unsplash.com/photo-1532173311168-91e999ce4e47?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=cf6ff267733890306ca709fa2184dd3a&auto=format&fit=crop&w=1301&q=80" /></div>
     </div>
     <div class="section" data-bgcolor="#4ECDC4">
-      <h2 class="section--header">없을까요</h2>
+      <h2 class="section--header">또산기</h2>
       <div class="section--image"><img src="https://images.unsplash.com/photo-1532275948649-7d97f309ef16?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=db3d266a0c1ec46b95f03a271a78603f&auto=format&fit=crop&w=2250&q=80" /></div>
     </div>
     <div class="section" data-bgcolor="#D4CBE5">
