@@ -39,9 +39,15 @@ function cancel(){
 		</script>
 		<%
 	}
+	uDAO = new userDAO();
+	int admin_Auth = uDAO.getAdminByNum(user_num);
+	if(admin_Auth == 2){
+		response.sendRedirect("./cancel.us");
+		return;
+	}
 %>
 	<main class="myPageWrapper">
-
+	
 	<%@ include file="../../user/myPageNav.jsp" %>
 	<div style="margin:0 auto;">
 	<h2>회원 탈퇴</h2>

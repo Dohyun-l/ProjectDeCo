@@ -17,7 +17,6 @@ public class SocialJoin implements Action {
 		HttpSession session = req.getSession();
 		int user_num = (Integer)session.getAttribute("user_num");
 		uDTO = uDAO.getUserInfo(user_num);
-		
 		req.setAttribute("uDTO", uDTO);
 		
 		return new ActionForward("./user/join/socialJoin.jsp",false);
