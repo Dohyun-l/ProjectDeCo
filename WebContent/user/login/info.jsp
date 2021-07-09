@@ -6,18 +6,27 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="./user/login/info.css">
-<link rel="stylesheet" href="./user/form.css">
 <link rel="stylesheet" href="./user/myPage/layout.css">
 <title>Deco | UserInfo</title>
 </head>
 <body>
+	<%@ include file="../../main/header.jsp" %>
 	<%
 		request.setCharacterEncoding("UTF-8");
 		userDTO udto = (userDTO) request.getAttribute("udto");
-		
+		if(session.getAttribute("user_num")!=null){
+			user_num = (int) session.getAttribute("user_num");
+		}
+		if(user_num != udto.getUser_num()){
+			%>
+			<script type="text/javascript">
+			alert("다른회원의 정보는 열람 불가입니다.");
+			location.href="./main.us";
+			</script>
+			<%
+		}
 	%>
-	<%@ include file="../../main/header.jsp" %>
-	
+
 	<main class="myPageWrapper">
 	
 		<%@ include file="../../user/myPageNav.jsp" %>

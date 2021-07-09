@@ -10,15 +10,15 @@
 <%
 	String team_idx = request.getParameter("idx");
 
-	int user_num = 0;
+	int usernum = 0;
 
 	if(session.getAttribute("user_num") == null) {
 		response.sendRedirect("./teamList.te");
 	} else {
-		user_num = (int) session.getAttribute("user_num");
+		usernum = (int) session.getAttribute("user_num");
 	}
 	
-	if(new teamDAO().getteamView(Integer.parseInt(team_idx)).getMaster() != user_num) {
+	if(new teamDAO().getteamView(Integer.parseInt(team_idx)).getMaster() != usernum) {
 		%>
 		<script type="text/javascript">
 		alert("입장권한이 없습니다.");
@@ -115,6 +115,7 @@ $(function(){
 </script>
 </head>
 <body>
+<%@ include file="../../main/header.jsp" %>
 <h1>멤버관리</h1>
 <a href="./teamPage.tm?idx=<%=team_idx%>">팀페이지</a>
 <hr>

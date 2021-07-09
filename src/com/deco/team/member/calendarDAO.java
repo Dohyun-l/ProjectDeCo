@@ -92,7 +92,7 @@ public class calendarDAO {
 			pstmt.setString(8, cdto.getType());
 			pstmt.setString(9, cdto.getBackgroundcolor());
 			pstmt.setString(10, cdto.getTextcolor());
-			pstmt.setString(11, cdto.getAllday());
+			pstmt.setBoolean(11, cdto.isAllday());
 			
 			pstmt.executeUpdate();
 			
@@ -110,7 +110,7 @@ public class calendarDAO {
 		
 		try {			
 			conn = getConnection();
-			sql = "select * from team_calendar where team_idx=? and start>? and end<?";
+			sql = "select * from team_calendar where team_idx=? and !(end<? and start>?)";
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setInt(1, cdto.getTeam_idx());
@@ -131,7 +131,7 @@ public class calendarDAO {
 				schedule.put("type", rs.getString("type"));
 				schedule.put("backgroundColor", rs.getString("backgroundcolor"));
 				schedule.put("textColor", rs.getString("textcolor"));
-				schedule.put("allDay", rs.getString("allday"));
+				schedule.put("allDay", rs.getBoolean("allday"));
 				
 				scheduleList.add(schedule);
 			}
@@ -142,6 +142,120 @@ public class calendarDAO {
 			closeDB();
 		}
 		return scheduleList;
+	}
+	
+	public int updateSchedule(calendarDTO cdto) {
+		int result = -1;
+		
+		try {
+			conn = getConnection();
+			sql = "select user_idx from team_calendar where idx=?";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, cdto.getIdx());
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				if(rs.getInt(1) == cdto.getUser_idx()) {
+					
+					sql = "update team_calendar set allDay=?, description=?, end=?, start=?, "
+							+ "backgroundColor=?, title=?, type=? where idx=?";
+					pstmt = conn.prepareStatement(sql);
+					
+					pstmt.setBoolean(1, cdto.isAllday());
+					pstmt.setString(2, cdto.getDescription());
+					pstmt.setString(3, cdto.getEnd());
+					pstmt.setString(4, cdto.getStart());
+					pstmt.setString(5, cdto.getBackgroundcolor());
+					pstmt.setString(6, cdto.getTitle());
+					pstmt.setString(7, cdto.getType());
+					pstmt.setInt(8, cdto.getIdx());
+					
+					result = pstmt.executeUpdate();
+					
+				} else {
+					result = 0;
+				}
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		return result;
+	}
+	
+	public int updateDateSchedule(calendarDTO cdto) {
+		int result = -1;
+		
+		try {
+			conn = getConnection();
+			sql = "select user_idx from team_calendar where idx=?";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, cdto.getIdx());
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				if(rs.getInt(1) == cdto.getUser_idx()) {
+					
+					sql = "update team_calendar set end=?, start=? "
+							+ " where idx=?";
+					pstmt = conn.prepareStatement(sql);
+					
+					pstmt.setString(1, cdto.getEnd());
+					pstmt.setString(2, cdto.getStart());
+					pstmt.setInt(3, cdto.getIdx());
+					
+					result = pstmt.executeUpdate();
+					
+				} else {
+					result = 0;
+				}
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		return result;
+	}
+	
+	public int deleteSchedule(calendarDTO cdto) {
+		int result = -1;
+		
+		try {
+			conn = getConnection();
+			sql = "select user_idx from team_calendar where idx=?";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, cdto.getIdx());
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				if(rs.getInt(1) == cdto.getUser_idx()) {
+					sql = "delete from team_calendar where idx=?";
+					pstmt = conn.prepareStatement(sql);
+					
+					pstmt.setInt(1, cdto.getIdx());
+					
+					result = pstmt.executeUpdate();
+					
+				} else {
+					result = 0;
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		return result;
 	}
 
 }

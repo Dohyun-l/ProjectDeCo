@@ -43,7 +43,7 @@ public class DeleteAction implements Action{
 		
 		out.print("<script>");
 		out.print("alert('한달뒤에 뵙겠습니다.');");
-		out.print("location.href='/ProjectDeCo/login.us';");
+		out.print("location.href='/ProjectDeCo/main.us';");
 		out.print("</script>");
 		out.close();
 		return null;

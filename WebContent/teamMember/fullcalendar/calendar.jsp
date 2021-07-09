@@ -23,18 +23,31 @@
 
     <link rel="stylesheet" href="./teamMember/fullcalendar/css/main.css">
 
+<style>
+body {
+	padding: 0;
+}
+</style>
+
 </head>
 
 <body>
-	
+	<%@ include file="../../main/header.jsp" %>
+	<%@ include file="../../teamMember/memberMain.jsp" %>
 	<%
 		String team_idx = request.getParameter("idx");
 	
-		List<teamMemberDTO> tmList = (ArrayList<teamMemberDTO>) request.getAttribute("teamMemberList"); 
+		List<teamMemberDTO> tmList = (ArrayList<teamMemberDTO>) request.getAttribute("teamMemberList");
+		
+		int usernum = 0;
+		if(session.getAttribute("user_num") != null) {
+			usernum = (int) session.getAttribute("user_num");
+		}
 	%>
 	
 	
 	<input type="hidden" id="team_idx" name="team_idx" value="<%=team_idx%>">
+	<input type="hidden" id="username" name="username" value="<%=new userDAO().getUserNickNameByNum(usernum) %>">
 
     <div class="container">
 
@@ -42,10 +55,10 @@
         <div id="contextMenu" class="dropdown clearfix">
             <ul class="dropdown-menu dropNewEvent" role="menu" aria-labelledby="dropdownMenu"
                 style="display:block;position:static;margin-bottom:5px;">
-                <li><a tabindex="-1" href="#">카테고리1</a></li>
-                <li><a tabindex="-1" href="#">카테고리2</a></li>
-                <li><a tabindex="-1" href="#">카테고리3</a></li>
-                <li><a tabindex="-1" href="#">카테고리4</a></li>
+                <li><a tabindex="-1" href="#">진행일정</a></li>
+                <li><a tabindex="-1" href="#">모임일정</a></li>
+                <li><a tabindex="-1" href="#">개인일정</a></li>
+                <li><a tabindex="-1" href="#">기타</a></li>
                 <li class="divider"></li>
                 <li><a tabindex="-1" href="#" data-role="close">Close</a></li>
             </ul>
@@ -98,10 +111,10 @@
                             <div class="col-xs-12">
                                 <label class="col-xs-4" for="edit-type">구분</label>
                                 <select class="inputModal" type="text" name="edit-type" id="edit-type">
-                                    <option value="카테고리1">카테고리1</option>
-                                    <option value="카테고리2">카테고리2</option>
-                                    <option value="카테고리3">카테고리3</option>
-                                    <option value="카테고리4">카테고리4</option>
+                                    <option value="진행일정">진행일정</option>
+		                            <option value="모임일정">모임일정</option>
+		                            <option value="개인일정">개인일정</option>
+		                            <option value="기타">기타</option>
                                 </select>
                             </div>
                         </div>
@@ -154,10 +167,10 @@
                     <label for="calendar_view">구분별</label>
                     <div class="input-group">
                         <select class="filter" id="type_filter" multiple="multiple">
-                            <option value="카테고리1">카테고리1</option>
-                            <option value="카테고리2">카테고리2</option>
-                            <option value="카테고리3">카테고리3</option>
-                            <option value="카테고리4">카테고리4</option>
+                            <option value="진행일정">진행일정</option>
+                            <option value="모임일정">모임일정</option>
+                            <option value="개인일정">개인일정</option>
+                            <option value="기타">기타</option>
                         </select>
                     </div>
                 </div>

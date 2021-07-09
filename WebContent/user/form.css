@@ -5,7 +5,7 @@ body, p, input, select, textarea, button {
   font-size: 16px;
 }
 
-form {
+.userForm {
   padding: 16px;
   width: 320px;
   margin: 0 auto;
