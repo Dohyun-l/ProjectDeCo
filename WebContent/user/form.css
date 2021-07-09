@@ -1,22 +1,16 @@
 
-body, p, input, select, textarea, button {
-  font-family: "Montserrat", sans-serif;
-  letter-spacing: -0.2px;
-  font-size: 16px;
-}
-
 .userForm {
   padding: 16px;
   width: 320px;
   margin: 0 auto;
 }
 
-.segment {
+.userForm .segment {
   padding: 32px 0;
   text-align: center;
 }
 
-button, input {
+.userForm button, .userForm input {
   border: 0;
   outline: 0;
   font-size: 16px;
@@ -25,13 +19,13 @@ button, input {
   text-shadow: 1px 1px 0 #FFF;
 }
 
-label {
+.userForm label {
   display: block;
   margin-bottom: 24px;
   width: 100%;
 }
 
-input:not([type="checkbox"]){
+.userForm input:not([type="checkbox"]){
   margin-right: 8px;
   box-shadow: inset 2px 2px 5px #BABECC, inset -5px -5px 10px #FFF;
   width: 100%;
@@ -40,11 +34,11 @@ input:not([type="checkbox"]){
   appearance: none;
   -webkit-appearance: none;
 }
-input:focus:not(:read-only) {
+.userForm input:focus:not(:read-only) {
   box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
 }
 
-button {
+.userForm button {
   color: #61677C;
   font-weight: bold;
   box-shadow: -5px -5px 20px #FFF, 5px 5px 20px #BABECC;
@@ -52,16 +46,16 @@ button {
   cursor: pointer;
   font-weight: 600;
 }
-button:hover {
+.userForm button:hover {
   box-shadow: -2px -2px 5px #FFF, 2px 2px 5px #BABECC;
 }
-button:active {
+.userForm button:active {
   box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
 }
-button .icon {
+.userForm button .icon {
   margin-right: 8px;
 }
-button.unit {
+.userForm button.unit {
   border-radius: 8px;
   line-height: 0;
   width: 48px;
@@ -72,10 +66,10 @@ button.unit {
   margin: 0 8px;
   font-size: 19.2px;
 }
-button.unit .icon {
+.userForm button.unit .icon {
   margin-right: 0;
 }
-button.red {
+.userForm button.red {
   display: block;
   width: 100%;
   color: #AE1100;
@@ -91,26 +85,26 @@ button.red {
   flex: 1;
 }
 
-input:focus::-webkit-input-placeholder,
-textarea:focus::-webkit-input-placeholder {
+.userForm input:focus::-webkit-input-placeholder,
+.userForm textarea:focus::-webkit-input-placeholder {
 	/* WebKit browsers */
 	color: transparent;
 }
 
-input:focus:-moz-placeholder,
-textarea:focus:-moz-placeholder {
+.userForm input:focus:-moz-placeholder,
+.userForm textarea:focus:-moz-placeholder {
 	/* Mozilla Firefox 4 to 18 */
 	color: transparent;
 }
 
-input:focus::-moz-placeholder,
-textarea:focus::-moz-placeholder {
+.userForm input:focus::-moz-placeholder,
+.userForm textarea:focus::-moz-placeholder {
 	/* Mozilla Firefox 19+ */
 	color: transparent;
 }
 
-input:focus:-ms-input-placeholder,
-textarea:focus:-ms-input-placeholder {
+.userForm input:focus:-ms-input-placeholder,
+.userForm textarea:focus:-ms-input-placeholder {
 	/* Internet Explorer 10+ */
 	color: transparent;
 }
