@@ -141,17 +141,17 @@ function shareWriteCheck() {
     	<input type="checkbox" name="tag" class="tag" value="Objective-C">Objective-C
     	<input type="checkbox" name="tag" class="tag" value="OS">OS
     	<input type="checkbox" name="tag" class="tag" value="PWA">PWA
-    	<input type="checkbox" name="tag" class="tag" value="Python">Python
-    	<input type="checkbox" name="tag" class="tag" value="React">React<br>
+    	<input type="checkbox" name="tag" class="tag" value="Python">Python<br>
+    	<input type="checkbox" name="tag" class="tag" value="React">React
     	<input type="checkbox" name="tag" class="tag" value="React Native">React Native
     	<input type="checkbox" name="tag" class="tag" value="Redux">Redux
     	<input type="checkbox" name="tag" class="tag" value="Rust complie">Rust complie
     	<input type="checkbox" name="tag" class="tag" value="SASS">SASS
     	<input type="checkbox" name="tag" class="tag" value="Service Workers">Service Workers
     	<input type="checkbox" name="tag" class="tag" value="Shared Service">Shared Service
-    	<input type="checkbox" name="tag" class="tag" value="SSG(site generator)">SSG(site generator)
+    	<input type="checkbox" name="tag" class="tag" value="SSG(site generator)">SSG(site generator)<br>
     	<input type="checkbox" name="tag" class="tag" value="Svelte">Svelte
-    	<input type="checkbox" name="tag" class="tag" value="Switft">Switft<br>
+    	<input type="checkbox" name="tag" class="tag" value="Switft">Switft
     	<input type="checkbox" name="tag" class="tag" value="Tailwind">Tailwind
     	<input type="checkbox" name="tag" class="tag" value="Tkinter">Tkinter
     	<input type="checkbox" name="tag" class="tag" value="Vue">Vue
@@ -167,7 +167,8 @@ function shareWriteCheck() {
 		
 		<!-- 파일첨부 -->
 		<div class="filebox">
-		<label for="ex_file"><i class="fas fa-file-upload"></i>업로드</label>
+		<i class="fas fa-file-upload"></i>
+		<!-- <label for="ex_file">업로드</label> -->
 		<input type="file" name="filename" id="ex_file">
 		</div>
 		<br>
