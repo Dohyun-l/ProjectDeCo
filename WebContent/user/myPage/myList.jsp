@@ -8,7 +8,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="./user/myPage/layout.css">
 <link rel="stylesheet" href="./user/myPage/myList.css">
-<link rel="stylesheet" href="./user/form.css">
 <link rel="stylesheet" href="./user/login/info.css">
 <title>Insert title here</title>
 </head>
@@ -21,7 +20,7 @@
 		<div class="userContentList-Wrapper">
 			<div class="userContentList-tableWrapper">
 			<div class="tableWrapper__title-Wrapper"><span>좋아요한 게시물</span></div>
-			<table>
+			<table class ="info-table__detail">
 			<c:forEach items="${AllList.likeShare }" var="likeShareOne">
 					<tr>
 						<td class="list__category">[${likeShareOne.category }]</td>
@@ -31,7 +30,7 @@
 			</table>	
 			</div>
 			<div class="userContentList-tableWrapper">
-			<table>
+			<table class ="info-table__detail">
 			<div class="tableWrapper__title-Wrapper"><span>즐겨찾기 게시물</span></div>
 			<c:forEach items="${AllList.bookShare }" var="bookShareOne">
 					<tr>
@@ -47,7 +46,7 @@
 			</table>	
 			</div>
 			<div class="userContentList-tableWrapper">
-			<table>
+			<table class ="info-table__detail">
 			<div class="tableWrapper__title-Wrapper"><span>내가 쓴 게시물</span></div>
 			<c:forEach items="${AllList.userWriteShare }" var="userWriteShareOne">
 					<tr>
