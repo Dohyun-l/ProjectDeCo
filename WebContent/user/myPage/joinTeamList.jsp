@@ -22,7 +22,7 @@
 		
 		<div class="userTeamList-Wrapper">
 			<div class="userTeamList-JoinedList">
-			<h1>가입된 리스트</h1>
+			<div class="userTeamList__title"><span>가입된 리스트</span></div>
 			
 			<div class="TeamList-Wrapper">
 			<c:forEach items="${TeamList[0] }" var="joinTeam">
@@ -48,7 +48,7 @@
 			</div>
 			
 			<div class="userTeamList-WaitingList">
-			<h1>승인 대기중 리스트</h1>
+			<div class="userTeamList__title"><span>승인 대기중 리스트</span></div>
 			<div class="TeamList-Wrapper">
 				<c:forEach items="${TeamList[1] }" var="waitingTeam">
 				<a href="./teamView.te?idx=${waitingTeam.idx }">

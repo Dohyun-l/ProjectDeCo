@@ -8,6 +8,7 @@
 <title>Deco - 회원정보수정</title>
 <link rel="stylesheet" href="./user/form.css">
 <link rel="stylesheet" href="./user/login/update.css">
+<link rel="stylesheet" href="./user/myPage/layout.css">
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -86,11 +87,14 @@ function check(){
 </head>
 <body>
 
+	<%@ include file="../../main/header.jsp" %>
 	<%
 		request.setCharacterEncoding("UTF-8");
 		userDTO udto = (userDTO) request.getAttribute("udto");
-		int user_num = Integer.parseInt(request.getParameter("user_num"));
 	%>
+	<main class="myPageWrapper">
+
+	<%@ include file="../../user/myPageNav.jsp" %>
 	<form action="./UpdateAction.us" method="post" onsubmit="return check();" name="fr" class="userForm">
 		<div class="userForm-TitleWrapper">
 			<h2 class="Title">User Update</h2>
@@ -136,6 +140,6 @@ function check(){
 		<input type="submit" value="수정하기">
 		<input type="button" value="취소하기" onclick="history.back();">
 	</form>
-	
+	</main>
 </body>
 </html>
