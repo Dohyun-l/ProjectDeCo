@@ -1,0 +1,14 @@
+.myPageWrapper{
+	display: grid;
+	grid-template-columns:100px 1fr;
+}
+
+.myPageNavigator ul{
+	padding:0;
+	padding-left: 10px;
+	list-style: none;
+}
+
+.myPageNavigator ul li{
+	margin-bottom: 12px;
+}

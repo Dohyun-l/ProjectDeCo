@@ -1,8 +1,14 @@
 .TeamList-Wrapper{
 	display:grid;
 	grid-template-columns: repeat(6,minmax(150px,1fr));
-    grid-gap: 30px;
+    grid-gap: 15px;
     grid-row-gap: 50px;
+    text-shadow: 1px 2px 1px black !important;
+}
+
+.TeamList-Wrapper a{
+	text-decoration: none;
+	color:white !important;
 }
 
 .myPage-TeamCard{
@@ -10,4 +16,16 @@
 	width: 200px;
 	height: 200px;
 	background-color: #7658EE;
+	margin: 0 auto;
+	transition: transform 2s;
+}
+
+.myPage-TeamCard:hover{
+	transform: scale(1.2);
+}
+
+.userTeamList-TeamCard__item-title{
+	margin: 0 auto;
+	text-align: center;
+	padding: 15px 0;
 }
