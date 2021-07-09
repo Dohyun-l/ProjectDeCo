@@ -600,10 +600,9 @@ public class shareDAO {
 		
 		try{
 			conn = getConnection();
-			sql = "select s.idx, s.title, s.user_num, s.category "
+			sql = "select s.idx, s.title, s.user_num, s.category, l.content_type "
 					+ "from share s join like_ l "
-					+ "on (s.idx = l.content_num and l.content_type = 1) "
-					+ "where s.user_num=?";
+					+ "on (s.idx = l.content_num and l.content_type = 1 and l.user_num=?)";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, user_num);
@@ -646,10 +645,9 @@ public class shareDAO {
 		
 		try {
 			conn = getConnection();
-			sql = "select s.idx, s.title, s.user_num, s.category "
+			sql = "select s.idx, s.title, s.user_num, s.category, b.type "
 					+ "from share s join bookmark b "
-					+ "on (s.idx = b.content_num and b.type in (2,3,4,5,6)) "
-					+ "where s.user_num=?";
+					+ "on (s.idx = b.content_num and b.user_num=? and b.type between 1 and 6);";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, user_num);
 			
@@ -660,6 +658,9 @@ public class shareDAO {
 				sDTO.setTitle(rs.getString(2));
 				sDTO.setUser_num(rs.getInt(3));
 				sDTO.setCategory(rs.getString(4));
+				
+				//type을 임의로 anony에 세팅해 줌.
+				sDTO.setAnony(rs.getInt(5));
 				
 				bookShareList.add(sDTO);
 			}
@@ -689,7 +690,7 @@ public class shareDAO {
 				sDTO.setIdx(rs.getInt(1));
 				sDTO.setUser_num(rs.getInt(2));
 				sDTO.setTitle(rs.getString(3));
-				sDTO.setCategory(rs.getString(4));
+				sDTO.setCategory(rs.getString(6));
 				
 				userWriteList.add(sDTO);
 			}

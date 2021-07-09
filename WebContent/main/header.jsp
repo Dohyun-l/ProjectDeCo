@@ -37,7 +37,7 @@
 	<nav-1 id="HnavDeco">
 	  <ul>
 		<li>
-		<a class="HmenuDeco" href="./Main.nt">Notice</a>
+		<a class="HmenuDeco" href="./noticelist.nt">Notice</a>
 		</li>
 		<li>
 		<a class="HmenuDeco" href="./shareList.sh">Share</a>
@@ -52,7 +52,20 @@
 	</nav-1>	
 	
 	<div id="HsearchDeco">
-		<input type="text" value="검색창" onclick="this.value=''"> <!-- 나중에 구글 검색 넣기  -->
+		<!-- Search Google -->
+	<form method=get action="http://www.google.co.kr/search" target="_blank" id="googleSearch">
+		<table bgcolor="#FFFFFF">
+			<tr>
+				<td>
+				<input type=text name=q size=25 maxlength=255 value="" />
+				<!-- 구글 검색 입력 창 -->
+				<input type=submit name=btnG value="Google 검색" />
+				<!-- 검색 버튼 -->
+				</td>
+			</tr>
+		</table>
+	</form>
+	<!-- Search Google -->
 	</div>
 	
 	<%if(name == null && user_num == -1) {%>
@@ -69,7 +82,6 @@
 	<div id="HloginDeco">
 	<form class="userFormDeco loginFormDeco" name="frDeco">	
 		<h2 class="HloginDeco">Welcome <%=name %></h2>
-<a class="Hlogin" href="./info.us?user_num=<%=user_num %>">회원정보 조회</a>
 <%-- 관리자 페이지 추천 	<%if(admin_auth == 2){ %><a class="Hlogin" href="./cancel.us">회원탈퇴 취소</a><%} %> --%>
 <!-- 		<a class="Hlogin" href="./userlogout.us">logout</a> -->
 		<main class="userMainDeco">

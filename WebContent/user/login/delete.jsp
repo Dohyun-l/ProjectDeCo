@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="./user/myPage/layout.css">
+<link rel="stylesheet" href="./user/form.css">
 <title>Deco</title>
 <script type="text/javascript">
 function cancel(){
@@ -38,8 +40,8 @@ function cancel(){
 		<%
 	}
 %>
-
-	<center>
+	
+	<%@ include file="../myPageNav.jsp" %>
 	
 	<h2>회원 탈퇴</h2>
 	<h4>회원탈퇴후 한달간 정상적으로 이용 가능하시며 한달후 탈퇴 처리가 진행됩니다.</h4>
@@ -51,5 +53,7 @@ function cancel(){
 		<input type="submit" value="탈퇴하기"> | <input type="button" value="취소" onclick="return cancel();">
 	</form>
 	</center>
+
+	</main>
 </body>
 </html>

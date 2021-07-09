@@ -1,0 +1,31 @@
+html,body{
+	width: 100%;
+	height: 100%;
+}
+.myPageWrapper{
+	display: grid;
+	grid-template-columns:125px 1fr;
+	grid-gap: 25px;
+	height: 100%;
+}
+
+.myPageNavigator{
+	border-radius:10px;	
+	background-color:#86D0C7;
+}
+
+.myPageNavigator ul{
+	padding:0;
+	padding-left: 10px;
+	list-style: none;
+}
+
+.myPageNavigator ul li{
+	margin-bottom: 12px;
+}
+
+.myPageNavigator ul li a{
+	text-decoration:none;
+	color:black;
+	text-shadow: 1px 2px 1px white;
+}

@@ -23,10 +23,17 @@
 
     <link rel="stylesheet" href="./teamMember/fullcalendar/css/main.css">
 
+<style>
+body {
+	padding: 0;
+}
+</style>
+
 </head>
 
 <body>
 	<%@ include file="../../main/header.jsp" %>
+	<%@ include file="../../teamMember/memberMain.jsp" %>
 	<%
 		String team_idx = request.getParameter("idx");
 	

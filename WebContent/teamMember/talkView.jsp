@@ -88,6 +88,7 @@ hr {
 </head>
 <body>
 <%@ include file="../../main/header.jsp" %>
+<%@ include file="../../teamMember/memberMain.jsp" %>
 	<script type="text/javascript">
 	
 	$(function(){
@@ -158,20 +159,7 @@ hr {
 	<a href="./calendarView.jsp" target="boradArea">일정관리</a>
 	<a href="https://map.naver.com/" target="boradArea">지도보기</a>
 
-	<!-- Search Google -->
-	<form method=get action="http://www.google.co.kr/search" target="_blank" id="googleSearch">
-		<table bgcolor="#FFFFFF">
-			<tr>
-				<td>
-				<input type=text name=q size=25 maxlength=255 value="" />
-				<!-- 구글 검색 입력 창 -->
-				<input type=submit name=btnG value="Google 검색" />
-				<!-- 검색 버튼 -->
-				</td>
-			</tr>
-		</table>
-	</form>
-	<!-- Search Google -->
+	
 	</div>
 	
 	<hr>

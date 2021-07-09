@@ -19,7 +19,7 @@
 <link href="./css/notice/write.css" rel="stylesheet">
 </head>
 <body>
-<h1>WebContent/notice/edit.html</h1>
+<%@ include file="../../main/header.jsp" %>
 
 
 <!-- <h1>WebContent/notice/index.html</h1> -->
@@ -28,7 +28,7 @@
 <div id="se2_sample">
 
 	<%
-		int user_num = 0;
+		
 		if(session.getAttribute("user_num") != null) {
 			user_num = (int) session.getAttribute("user_num");
 		}
