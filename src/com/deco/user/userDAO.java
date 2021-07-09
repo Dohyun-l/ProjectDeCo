@@ -731,7 +731,7 @@ public class userDAO {
 				tDTO.setMaster(rs.getInt(5));
 				tDTO.setLimit_p(rs.getString(6));
 				tDTO.setDeadline(rs.getString(7));
-				
+				 
 				int submit = rs.getInt(8);
 				if(submit == 1){
 					allowedList.add(tDTO);
