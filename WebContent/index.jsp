@@ -9,6 +9,7 @@
 <body>
 	<h1>TeamProject_Project DeCo</h1>
 
+
 	<h2>현재 파일은 수정하지 말것!</h2>
 	
 	현재 index파일은 최종 index파일로 사용하기 위함으로 테스트를 위한 index파일은 각자 해당 폴더에 제작하여 테스트 바람<br>
