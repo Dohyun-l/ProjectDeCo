@@ -21,8 +21,15 @@
 		uDAO = new userDAO();
 		name = uDAO.getUserNickNameByNum(user_num);
 		admin_auth = uDAO.getAdminByNum(user_num);
+		if(admin_auth == -1){
+			if(request.getRequestURI().indexOf("needEmail_auth") == -1)
+				response.sendRedirect("./emailAuth.us");
+		} 
+		if(admin_auth == -10){
+			if(request.getRequestURI().indexOf("socialJoin") == -1)
+				response.sendRedirect("./SocialJoin.us");
+		}
 	}
-	
 %>
 <div id="wrapDeco">
 <header>
