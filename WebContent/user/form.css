@@ -5,11 +5,6 @@ body, p, input, select, textarea, button {
   font-size: 16px;
 }
 
-div, p {
-  color: #BABECC;
-  text-shadow: 1px 1px 1px #FFF;
-}
-
 form {
   padding: 16px;
   width: 320px;
