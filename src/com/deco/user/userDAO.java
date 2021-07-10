@@ -798,4 +798,5 @@ public class userDAO {
 		return retList;
 	}
 	//getAdminNotice
+	
 }

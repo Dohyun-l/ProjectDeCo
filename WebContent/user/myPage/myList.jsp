@@ -37,7 +37,7 @@
 						<td class="list__category">
 						<c:choose>
 							<c:when test="${bookShareOne.anony != 1 }">[${bookShareOne.category }]</c:when>
-							<c:when test="${bookShareOne.anony == 1 }">[Notion]</c:when>
+							<c:when test="${bookShareOne.anony == 1 }">[Notice]</c:when>
 						</c:choose>
 						</td>
 						<td class="list__title"><a href="./shareContent.sh?pageNum=1&pageSize=5&contentNum=${bookShareOne.idx }&category=null">${bookShareOne.title }</a></td>
@@ -56,7 +56,7 @@
 			</c:forEach>
 			<c:forEach items="${AllList.noticeList }" var="noticeOne">
 					<tr>
-						<td class="list__category">[Notion]</td>
+						<td class="list__category">[Notice]</td>
 						<td class="list__title"><a href="./noticecontent.nt?idx=${noticeOne.idx }&user_num=${noticeOne.user_num }&pageNum=1&cnt=1">${noticeOne.title }</a></td>
 					</tr>	
 			</c:forEach>
