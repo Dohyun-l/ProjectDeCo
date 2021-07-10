@@ -248,4 +248,60 @@ public class reportDAO {
 	}
 	//isSendReport
 	
+	//shareFilter
+	public List shareFilter(List shareList){
+		List resultList = null;
+		
+		try {
+			conn = getConnection();
+			
+			shareDTO sDTO = null;
+			String str = "";
+			
+			for(int i = 0; i < shareList.size(); i++){
+				sDTO = (shareDTO)shareList.get(i);
+				str += sDTO.getIdx()+(shareList.size() - 1 <= i ? "":",");
+			}
+			
+			sql = "select s.* from ("
+								+ "select content_num idx, count(*) "
+								+ "from ("
+									+ "select * from report where content_type=1"
+									+ ") "
+								+ "group by content_num "
+								+ "where content_num in ("+str+")"
+								+ ") r "
+				+ "join share s "
+				+ "on r.content_num = s.idx";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				sDTO = new shareDTO();
+
+				sDTO.setAnony(rs.getInt("anony"));
+				sDTO.setCategory(rs.getString("category"));
+				sDTO.setContent(rs.getString("content"));
+				sDTO.setCreate_at(rs.getString("create_at"));
+				sDTO.setFile(rs.getString("file"));
+				sDTO.setIdx(rs.getInt("idx"));
+				sDTO.setLike_(rs.getInt("like_"));
+				sDTO.setRead_cnt(rs.getInt("read_cnt"));
+				sDTO.setTag(rs.getString("tag"));
+				sDTO.setTitle(rs.getString("title"));
+				sDTO.setUser_num(rs.getInt("user_num"));
+				sDTO.setRepo_cnt(rs.getInt("repo_cnt"));
+
+				resultList.add(sDTO);
+			}
+			System.out.println("결과 ===========>" + resultList);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			closeDB();
+		}
+		
+		return resultList;
+	}
+	//shareFilter
 }

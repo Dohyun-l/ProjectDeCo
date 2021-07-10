@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import com.deco.Action;
 import com.deco.ActionForward;
+import com.deco.report.reportDAO;
 
 public class shareListAction implements Action {
 
@@ -69,6 +70,9 @@ public class shareListAction implements Action {
 		} else {
 			shareList = sDAO.getShareList(startRow,pageSize, category);
 		}
+		
+		reportDAO rDAO = new reportDAO();
+		shareList = rDAO.shareFilter(shareList);
 		
 		req.setAttribute("shareList", shareList);
 		req.setAttribute("pageNum", pageNum);
