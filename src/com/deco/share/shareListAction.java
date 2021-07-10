@@ -72,8 +72,8 @@ public class shareListAction implements Action {
 		}
 		
 		//5개 이상 신고 게시물 필터링
-		reportDAO rDAO = new reportDAO();
-		shareList = rDAO.shareFilter(shareList);
+//		reportDAO rDAO = new reportDAO();
+//		shareList = rDAO.shareFilter(shareList);
 		
 		req.setAttribute("shareList", shareList);
 		req.setAttribute("pageNum", pageNum);

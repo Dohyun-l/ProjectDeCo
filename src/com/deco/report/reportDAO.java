@@ -263,21 +263,16 @@ public class reportDAO {
 				str += sDTO.getIdx()+(shareList.size() - 1 <= i ? "":",");
 			}
 			
-			sql = "select s.* "
-					+ "from("
-							+ "select content_num idx, count(*) "
-							+ "from("
-								+ "select * from report where content_type=1"
+			sql = "select * "
+					+ "from share "
+					+ "where idx in ("+str+") "
+						+ "and idx not in ("
+							+ "select idx from ("
+								+ "select content_num idx, count(*) from(select * from report where content_type=1"
 								+ ") c "
-							+ "group by content_num "
-							+ "having count(*) >= 5"
-							+ ") r "
-					+ "join ("
-						+ "select * "
-						+ "from share "
-						+ "where idx in("+str+")"
-						+ ") s "
-					+ "on r.idx != s.idx";
+							+ "group by content_num having count(*) >= 5"
+							+ ") f"
+						+ ") order by idx desc";
 			System.out.println(sql);
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();

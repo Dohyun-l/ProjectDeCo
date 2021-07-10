@@ -80,7 +80,7 @@ public class shareContentAction implements Action{
 			PrintWriter out = res.getWriter();
 			out.println("<script>");
 			out.println("alert('신고가 많아 제재당한 게시물입니다!');");
-			out.println("location.href='./shareList.sh'");
+			out.println("history.back();");
 			out.println("</script>");
 			
 			out.close();
