@@ -250,7 +250,7 @@ public class reportDAO {
 	
 	//shareFilter
 	public List shareFilter(List shareList){
-		List resultList = null;
+		List resultList = new ArrayList();
 		
 		try {
 			conn = getConnection();
@@ -263,16 +263,22 @@ public class reportDAO {
 				str += sDTO.getIdx()+(shareList.size() - 1 <= i ? "":",");
 			}
 			
-			sql = "select s.* from ("
-								+ "select content_num idx, count(*) "
-								+ "from ("
-									+ "select * from report where content_type=1"
-									+ ") "
-								+ "group by content_num "
-								+ "where content_num in ("+str+")"
-								+ ") r "
-				+ "join share s "
-				+ "on r.content_num = s.idx";
+			sql = "select s.* "
+					+ "from("
+							+ "select content_num idx, count(*) "
+							+ "from("
+								+ "select * from report where content_type=1"
+								+ ") c "
+							+ "group by content_num "
+							+ "having count(*) >= 5"
+							+ ") r "
+					+ "join ("
+						+ "select * "
+						+ "from share "
+						+ "where idx in("+str+")"
+						+ ") s "
+					+ "on r.idx != s.idx";
+			System.out.println(sql);
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			

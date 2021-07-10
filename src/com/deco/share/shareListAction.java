@@ -71,6 +71,7 @@ public class shareListAction implements Action {
 			shareList = sDAO.getShareList(startRow,pageSize, category);
 		}
 		
+		//5개 이상 신고 게시물 필터링
 		reportDAO rDAO = new reportDAO();
 		shareList = rDAO.shareFilter(shareList);
 		

@@ -1,5 +1,8 @@
 package com.deco.share;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -7,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import com.deco.Action;
 import com.deco.ActionForward;
+import com.deco.report.reportDAO;
 import com.deco.share_comment.commentDAO;
 
 public class shareContentAction implements Action{
@@ -34,6 +38,13 @@ public class shareContentAction implements Action{
 		
 		// 글 목록 -> 글 상세 : 글번호(idx)
 		int idx = Integer.parseInt(req.getParameter("contentNum"));
+		
+		reportDAO rDAO = new reportDAO();
+		int reportCnt = rDAO.getReportCount(1, idx);
+		if(reportCnt > 4){
+			overReportRedirect(resp);
+			return null;
+		}
 	 	
 	 	// 쿠키 세션 입력
 		if (session.getAttribute(idx+":cookie") == null) {
@@ -64,5 +75,14 @@ public class shareContentAction implements Action{
 	}
 
 	
-	
+	private void overReportRedirect(HttpServletResponse res) throws IOException{
+			res.setContentType("text/html; charset=utf-8");
+			PrintWriter out = res.getWriter();
+			out.println("<script>");
+			out.println("alert('신고가 많아 제재당한 게시물입니다!');");
+			out.println("location.href='./shareList.sh'");
+			out.println("</script>");
+			
+			out.close();
+	}
 }
