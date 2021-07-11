@@ -163,7 +163,7 @@ hr {
 	%>
 	
 	
-	<a href="./calendarView.jsp" target="boradArea">일정관리</a>
+	<a href="./calendarView.tm?idx=<%=team_idx%>" target="boradArea">일정관리</a>
 	<a href="https://map.naver.com/" target="boradArea">지도보기</a>
 
 	
@@ -173,7 +173,7 @@ hr {
 	<div id="teamContent">
 		<div id="talkContent"></div>
 	
-		<iframe src="./calendarView.jsp" width="54%" height="700" id="boradArea" name="boradArea"></iframe>	
+		<iframe src="./calendarView.tm?idx=<%=team_idx%>" width="54%" height="700" id="boradArea" name="boradArea"></iframe>	
 		
 	</div>
 	<hr>
