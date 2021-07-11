@@ -127,6 +127,7 @@ hr {
 				    data: {nickname: nickname, content:content},
 				    method: "POST",
 				    success: function(data){
+				    	document.getElementById("content").value = "";
 				    	$.ajax({
 						    url: "./printTalk.tm",
 						    data: { team_idx: <%=team_idx%>},
