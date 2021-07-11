@@ -113,11 +113,13 @@ $(function(){
 	}
 });
 </script>
+<link href="./teamMember/teamMember.css" rel="stylesheet">
+
 </head>
 <body>
 <%@ include file="../../main/header.jsp" %>
 <h1>멤버관리</h1>
-<a href="./teamPage.tm?idx=<%=team_idx%>">팀페이지</a>
+<div id="userArea">
 <hr>
 <h2>승인유저</h2>
 <div id="submitMember"></div>
@@ -125,7 +127,10 @@ $(function(){
 <h2>미승인유저</h2>
 <div id="noneSubmitMember"></div>
 <hr>
+</div>
+<div id="infoArea">
 <div id="userInfo"></div>
+</div>
 
 </body>
 </html>
