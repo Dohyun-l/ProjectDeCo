@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -57,6 +58,13 @@ public class createTeamAction implements Action{
 		
 		
 		///////////////////////////////////////////////////////////////
+		String savePath ="teamMember/talk";
+		// 파일이 업로드된 경로   
+		ServletContext ctx = req.getServletContext();
+		String sDownloadPath = ctx.getRealPath(savePath);
+	   
+		System.out.println("upload 폴더의 실제주소(서버안에 있는 실제주소)" + sDownloadPath);
+	   
 		
 		req.setCharacterEncoding("UTF-8");
 
@@ -70,9 +78,14 @@ public class createTeamAction implements Action{
 		talkDAO tadao = new talkDAO();
 		tadao.createTalk(tadto);
 		
+		// 서버에 업로드된 파일명 생성
+		String sFilePath = sDownloadPath +"\\"+filename + ".txt";
+	   
+		System.out.println("다운로드할 파일 주소 : "+sFilePath);
+		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
-		PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("C://talk/team/"+filename+".txt")));
+		PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(sFilePath)));
 		
 		br.close();
 		pw.close();

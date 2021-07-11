@@ -171,8 +171,17 @@ public class teamMemberFrontController extends Controller {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if (command.equals("/calendarView.tm")) {
+			System.out.println("C : /calendarView.tm 호출");
+			action = new teamMemberCalendarViewAction();
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-
+		
+		
 		/////////////////////////////////////////////////////////
 
 		if (forward != null) {

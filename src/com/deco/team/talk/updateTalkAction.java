@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -31,6 +32,15 @@ public class updateTalkAction implements Action {
 			user_num = (int)session.getAttribute("user_num");
 		}
 		
+		// 업로드한 가상 경로
+		String savePath ="teamMember/talk";
+		// 파일이 업로드된 경로   
+		ServletContext ctx = req.getServletContext();
+		String sDownloadPath = ctx.getRealPath(savePath);
+		   
+		System.out.println("upload 폴더의 실제주소(서버안에 있는 실제주소)" + sDownloadPath);
+		
+		
 		String team_idx = req.getParameter("team_idx");
 		String content = req.getParameter("content");
 		
@@ -45,7 +55,7 @@ public class updateTalkAction implements Action {
 
 		String time1 = format1.format(time);
 
-		FileReader fReader = new FileReader("C://talk/team/" + tdto.getFilename() + ".txt");
+		FileReader fReader = new FileReader(sDownloadPath + "\\" + tdto.getFilename() + ".txt");
 		BufferedReader br = new BufferedReader(fReader);
 		String s;
 		String str = "";
@@ -61,7 +71,7 @@ public class updateTalkAction implements Action {
 
 		FileWriter fw = null;
 		BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
-		fw = new FileWriter("C://talk/team/" + tdto.getFilename() + ".txt");
+		fw = new FileWriter(sDownloadPath + "\\" + tdto.getFilename() + ".txt");
 
 		str += "[" + nickname + "::" + content + "::" + time1 + "]";
 		fw.write(str);

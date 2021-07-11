@@ -140,11 +140,11 @@ if(new shareDAO().postContentNum(sDTO.getIdx(), category) != 0){ %>
 <table id="commentListfr">
 	<thead>
 	<tr>
-		<td>글번호</td>
-		<td>작성자</td>
-		<td>내용</td>
-		<td>작성날짜</td>
-		<td>수정/삭제</td>
+		<td class="commentIdx_share">글번호</td>
+		<td class="commentUser_share">작성자</td>
+		<td class="commentContent_share">내용</td>
+		<td class="commentDate_share">작성날짜</td>
+		<td class="commentOption_share">수정/삭제</td>
 	</tr>
 	</thead>
 <%
