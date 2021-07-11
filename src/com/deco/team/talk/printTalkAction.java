@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.PrintWriter;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,11 +17,20 @@ public class printTalkAction implements Action {
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 
 		System.out.println("M : printTalkAction_execute() 호출");
-
+   
+		// 업로드한 가상 경로
+		String savePath ="teamMember/talk";
+		// 파일이 업로드된 경로   
+		ServletContext ctx = req.getServletContext();
+		String sDownloadPath = ctx.getRealPath(savePath);
+		   
+		System.out.println("upload 폴더의 실제주소(서버안에 있는 실제주소)" + sDownloadPath);
+		   
+		
 		String team_idx = req.getParameter("team_idx");
 		talkDAO tdao = new talkDAO();
 		talkDTO tdto = tdao.getTalkInfo(Integer.parseInt(team_idx));
-		FileReader fReader = new FileReader("C://talk/team/" + tdto.getFilename() + ".txt");
+		FileReader fReader = new FileReader(sDownloadPath + "\\" + tdto.getFilename() + ".txt");
 		BufferedReader br = new BufferedReader(fReader);
 		String s = new String("");
 		String write_nickname = "";

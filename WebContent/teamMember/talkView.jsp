@@ -127,7 +127,14 @@ hr {
 				    data: {nickname: nickname, content:content},
 				    method: "POST",
 				    success: function(data){
-				    	location.reload();
+				    	$.ajax({
+						    url: "./printTalk.tm",
+						    data: { team_idx: <%=team_idx%>},
+						    success: function(data){
+						    	$("#talkContent").html(data);
+						    	$("#talkContent").scrollTop(100000);
+						    }
+						});
 				    }
 				});
 				
