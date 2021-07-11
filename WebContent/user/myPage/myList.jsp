@@ -40,7 +40,15 @@
 							<c:when test="${bookShareOne.anony == 1 }">[Notice]</c:when>
 						</c:choose>
 						</td>
-						<td class="list__title"><a href="./shareContent.sh?pageNum=1&pageSize=5&contentNum=${bookShareOne.idx }&category=null">${bookShareOne.title }</a></td>
+						<c:choose>
+							<c:when test="${bookShareOne.anony != 1 }">
+								<td class="list__title"><a href="./shareContent.sh?pageNum=1&pageSize=5&contentNum=${bookShareOne.idx }&category=null">${bookShareOne.title }</a></td>
+							</c:when>
+							<c:when test="${bookShareOne.anony == 1 }">
+								<td class="list__title"><a href="./noticecontent.nt?pageNum=1&pageSize=5&idx=${bookShareOne.idx }&category=null">${bookShareOne.title }</a></td>
+							</c:when>
+						</c:choose>
+						
 					</tr>	
 			</c:forEach>
 			</table>	

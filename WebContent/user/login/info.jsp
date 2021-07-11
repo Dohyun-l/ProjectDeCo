@@ -60,7 +60,11 @@
 				</tr>
 				<tr>
 					<th>Inter</th>
+					<%if (udto.getInter() != null) { %>
 					<td><%=udto.getInter() %></td>
+					<%} else { %>
+					<td></td>
+					<%} %>
 				</tr>
 				<tr>
 					<th>생성일</th>

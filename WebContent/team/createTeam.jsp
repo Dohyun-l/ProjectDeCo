@@ -114,7 +114,7 @@ function createTeamCheck() {
 		<div id="buttons">
 		<input type="submit" value="팀만들기"> /
 		<input type="reset" value="취소"> /
-		<input type="button" value="메인으로" onclick="window.location.href='./teamList.te'">
+		<input type="button" value="목록으로" onclick="window.location.href='./teamList.te'">
 		</div>
 		</form>
 		</div>

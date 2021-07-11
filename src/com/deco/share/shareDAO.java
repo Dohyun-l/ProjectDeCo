@@ -645,25 +645,62 @@ public class shareDAO {
 		
 		try {
 			conn = getConnection();
-			sql = "select s.idx, s.title, s.user_num, s.category, b.type "
-					+ "from share s join bookmark b "
-					+ "on (s.idx = b.content_num and b.user_num=? and b.type between 1 and 6);";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, user_num);
 			
-			rs = pstmt.executeQuery();
-			while(rs.next()){
-				shareDTO sDTO = new shareDTO();
-				sDTO.setIdx(rs.getInt(1));
-				sDTO.setTitle(rs.getString(2));
-				sDTO.setUser_num(rs.getInt(3));
-				sDTO.setCategory(rs.getString(4));
+			String sql_ = "select idx, type from bookmark where user_num=?";
+			PreparedStatement pstmt_ = conn.prepareStatement(sql_);
+			
+			pstmt_.setInt(1, user_num);
+			
+			ResultSet rs_ = pstmt_.executeQuery();
+			
+			while(rs_.next()){
 				
-				//type을 임의로 anony에 세팅해 줌.
-				sDTO.setAnony(rs.getInt(5));
 				
-				bookShareList.add(sDTO);
+				if(rs_.getInt(2) == 1) {
+					sql = "select s.idx, s.title, s.user_num, b.type "
+							+ "from notice s join bookmark b "
+							+ "on (s.idx = b.content_num and b.user_num=? and b.type between 1 and 6) where b.idx=?";
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setInt(1, user_num);
+					pstmt.setInt(2, rs_.getInt(1));
+					
+					rs = pstmt.executeQuery();
+					while(rs.next()){
+						shareDTO sDTO = new shareDTO();
+						sDTO.setIdx(rs.getInt(1));
+						sDTO.setTitle(rs.getString(2));
+						sDTO.setUser_num(rs.getInt(3));
+						sDTO.setCategory("");
+						
+						//type을 임의로 anony에 세팅해 줌.
+						sDTO.setAnony(rs.getInt(4));
+						
+						bookShareList.add(sDTO);
+					}
+				} else if(rs_.getInt(2) == 2) {
+					sql = "select s.idx, s.title, s.user_num, s.category, b.type "
+							+ "from share s join bookmark b "
+							+ "on (s.idx = b.content_num and b.user_num=? and b.type between 1 and 6) where b.idx=?";
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setInt(1, user_num);
+					pstmt.setInt(2, rs_.getInt(1));
+					
+					rs = pstmt.executeQuery();
+					while(rs.next()){
+						shareDTO sDTO = new shareDTO();
+						sDTO.setIdx(rs.getInt(1));
+						sDTO.setTitle(rs.getString(2));
+						sDTO.setUser_num(rs.getInt(3));
+						sDTO.setCategory(rs.getString(4));
+						
+						//type을 임의로 anony에 세팅해 줌.
+						sDTO.setAnony(rs.getInt(5));
+						
+						bookShareList.add(sDTO);
+					}
+				}
 			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally{
