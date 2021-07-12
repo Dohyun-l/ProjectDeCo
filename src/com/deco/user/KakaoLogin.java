@@ -17,7 +17,7 @@ public class KakaoLogin {
 
 	public String getToken(String code) throws Exception{
 		String url = "https://kauth.kakao.com/oauth/token";
-		String redirectURI = "http://localhost:8088/ProjectDeCo/kakaoLoginFin.us";
+		String redirectURI = "http://itwillbs7.cafe24.com/deco/kakaoLoginFin.us";
 	    String urlParameters = "grant_type=authorization_code"+"&client_id="+REST_API_KEY
 	    						+"&redirect_uri="+redirectURI+"&code="+code;
 	    
