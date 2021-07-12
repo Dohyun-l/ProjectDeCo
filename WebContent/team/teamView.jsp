@@ -165,14 +165,15 @@ function dropteam(){
 		<script type="text/javascript">
 		// 댓글 수정버튼 이벤트 처리
 		$(function(){
-			var t ="<form name='fr<%=i%>'>";
+			var t ="<form name='fr<%=i%>' action=''>";
 				if(<%=tcdto.getSecret() %>==1){
 				t +="공개 <input type='radio' value='1' name='ret<%=i %>' checked> / 비공개 <input type='radio' value='0' name='ret<%=i %>'>";
 				}else{
 				t +="공개 <input type='radio' value='1' name='ret<%=i %>' > / 비공개 <input type='radio' value='0' name='ret<%=i %>' checked>";
 				}
 				t +="<br><br><input type='text' id='re<%=i %>' name='content2' placeholder='수정할내용을 입력해주세요.' size='40'' style='text-align:center'>&nbsp";
-				t +="<button id='remove<%=i %>'>수정하기</button>";
+				<%-- t +="<button id='remove<%=i %>'>수정하기</button>"; --%>
+				t += "<input type='button' value='수정하기' id='remove<%=i %>'>"
 				t +="</form>";
 			$("#god<%=i %>").on("click",function(){
 				$(".hid<%=i %>").html(t);
