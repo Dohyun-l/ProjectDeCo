@@ -26,6 +26,7 @@ public class joinMemberAction implements Action {
 		resp.setContentType("text/html; charset=utf-8");
 		PrintWriter out = resp.getWriter();
 		
+		
 		if(limit_p > submitMember){
 			tmdao.joinMember(idx);
 			out.print("1");
