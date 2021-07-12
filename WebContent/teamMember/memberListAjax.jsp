@@ -68,9 +68,15 @@ $(function(){
 			url: "./joinTeam.tm",
 			data: {idx:$(this).attr("id").substr(8)},
 			success: function(data){
-				alert("승인완료");
-				$("#userInfo").html("");
-				userReload();
+				if(data == 1) {
+					alert("승인완료");
+					$("#userInfo").html("");
+					userReload();				
+				} else {
+					alert("승인가능한 인원이 가득 찼습니다.");
+					$("#userInfo").html("");
+					userReload();
+				}
 			}
 		});
 		
