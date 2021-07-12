@@ -15,10 +15,7 @@
 		userDTO udto = (userDTO) request.getAttribute("memberInfo");
 		
 		int masterNum = (int)request.getAttribute("masterNum");
-		int userNum = 0;
-		if(session.getAttribute("user_num") != null) {
-			userNum = (int) session.getAttribute("user_num");
-		}
+		
 	%>
 	<div class="header"><span>User Info</span></div>
 	<table cellspacing="0" class="info-table__detail">
@@ -52,7 +49,7 @@
 	<%if(tmdto.getSubmit() == 0){%>
 		<input type="button" value="승인하기" id="joinTeam<%=tmdto.getIdx()%>">
 	<%}%>
-	<%if(masterNum != userNum){ %>
+	<%if(masterNum != udto.getUser_num()){ %>
 	<input type="button" value="퇴출하기" id="outMember<%=tmdto.getIdx()%>">
 	<%} %>
 	

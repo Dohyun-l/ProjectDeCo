@@ -42,7 +42,7 @@ public class teamListAction implements Action{
 		
 		int pageSize = 0;
 		if (str_pageSize == null){
-			pageSize = 5;
+			pageSize = 10;
 		} else {
 			pageSize = Integer.parseInt(str_pageSize);
 			
