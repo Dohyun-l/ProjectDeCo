@@ -20,32 +20,32 @@
 			userNum = (int) session.getAttribute("user_num");
 		}
 	%>
-	<h2>멤버 정보</h2>
-	<table border="1">
+	<div class="header"><span>User Info</span></div>
+	<table cellspacing="0" class="info-table__detail">
 		<tr>
-			<td>이름</td>
+			<th>이름</th>
 			<td><%=udto.getName() %></td>
-			<td>닉네임</td>
+			<th>닉네임</th>
 			<td><%=udto.getNickname() %></td>
 		</tr>
 		<tr>
-			<td>이메일</td>
+			<th>이메일</th>
 			<td colspan="3"><%=udto.getEmail()%></td>
 		</tr>
 		<tr>
-			<td>주소</td>
+			<th>주소</th>
 			<td colspan="3"><%=udto.getAddr()%></td>
 		</tr>
 		<tr>
-			<td>전문분야</td>
+			<th>전문분야</th>
 			<td colspan="3"><%=udto.getMajor()%></td>
 		</tr>
 		<tr>
-			<td>관심분야</td>
-			<td colspan="3"><%=udto.getInter()%></td>
+			<th>관심분야</th>
+			<td colspan="3"><%=udto.getInter() == null ? "" : udto.getInter()%></td>
 		</tr>
 		<tr>
-			<td>전화번호</td>
+			<th>전화번호</th>
 			<td colspan="3"><%=udto.getPhone()%></td>
 		</tr>
 	</table>

@@ -12,15 +12,7 @@
 <script type="text/javascript">
 function createTeamCheck() {
     document.fr.content.value= oEditor.getIR();
-   
-   var tags = document.querySelectorAll(".tag");
-   var cnt = 0;
-   for(var i = 0; i < tags.length;i++){
-      if(tags[i].checked){
-         cnt++;
-      }
-   }
-   
+    
    if(document.fr.title.value == ""){
       alert("제목을 작성해주세요.");
       document.fr.title.focus();
@@ -31,6 +23,12 @@ function createTeamCheck() {
       alert("지역을 선택해주세요.");
       document.fr.location.focus();
       return false;
+   }
+   
+   if(document.fr.limit_p.value == ""){
+   	alert("인원을 설정해주세요.");
+   	document.fr.limit_p.focus();
+   	return false;
    }
    
    if(document.fr.content.value == "" || document.fr.content.value == "<p><br></p>"){

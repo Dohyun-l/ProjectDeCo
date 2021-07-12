@@ -4,6 +4,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link rel="stylesheet" href="./user/login/info.css">
+<link rel="stylesheet" href="./teamMember/memberList.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>DeCo - 팀프로젝트(멤버 관리)</title>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -124,18 +126,16 @@ $(function(){
 </head>
 <body>
 <%@ include file="../../main/header.jsp" %>
-<h1>멤버관리</h1>
+<%@ include file="../../teamMember/memberMain.jsp" %>
+<!-- <div class="team-memberList__TopTitle"><span>멤버관리 현황</span></div> -->
 <div id="userArea">
-<hr>
-<h2>승인유저</h2>
-<div id="submitMember"></div>
-<hr>
-<h2>미승인유저</h2>
-<div id="noneSubmitMember"></div>
-<hr>
+<div class="team-memberList__Title"><span>승인유저</span></div>
+<div id="submitMember" class="userArea-userList table-users"></div>
+<div class="team-memberList__Title"><span>미승인유저</span></div>
+<div id="noneSubmitMember" class="userArea-userList table-users"></div>
 </div>
 <div id="infoArea">
-<div id="userInfo"></div>
+<div id="userInfo" class="userInfo-Wrapper"></div>
 </div>
 
 </body>

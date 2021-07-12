@@ -14,7 +14,7 @@
 	List<teamMemberDTO> memberList = (ArrayList<teamMemberDTO>) request.getAttribute("submitMemberList");
 %>
 <body>
-	<table border="1">
+	<table cellspacing="0" class="info-table__detail">
 		<tr>
 			<th>닉네임</th>
 			<th>신청일</th>
