@@ -77,7 +77,7 @@ public class userController extends Controller{
 		}else if(command.equals("/kakaoLoginStart.us")){
 			KakaoLogin kakao = new KakaoLogin();
 			
-			String redirectURI = "http://localhost:8088/ProjectDeCo/kakaoLoginFin.us";
+			String redirectURI = "http://itwillbs7.cafe24.com/deco/kakaoLoginFin.us";
 			String scope = "profile,account_email";
 			String baseURL = "https://kauth.kakao.com/oauth/authorize?client_id="+kakao.getREST_API_KEY()+"&redirect_uri="+redirectURI+"&response_type=code&scope="+scope;
 			
