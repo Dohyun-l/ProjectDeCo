@@ -68,7 +68,7 @@ $(function(){
 	$(document).on('click',"[id*=joinTeam]",function(){
 		$.ajax({
 			url: "./joinTeam.tm",
-			data: {idx:$(this).attr("id").substr(8)},
+			data: {idx:$(this).attr("id").substr(8), team_idx:"<%=team_idx%>"},
 			success: function(data){
 				if(data == 1) {
 					alert("승인완료");

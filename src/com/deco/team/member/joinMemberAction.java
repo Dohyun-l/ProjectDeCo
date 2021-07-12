@@ -17,11 +17,12 @@ public class joinMemberAction implements Action {
 		System.out.println("M : joinMemberAction_execute() 호출");
 		
 		int idx = Integer.parseInt(req.getParameter("idx"));
+		int team_idx = Integer.parseInt(req.getParameter("team_idx"));
 		
-		int limit_p = Integer.parseInt(new teamDAO().getteamView(idx).getLimit_p());
+		int limit_p = Integer.parseInt(new teamDAO().getteamView(team_idx).getLimit_p());
 		
 		teamMemberDAO tmdao = new teamMemberDAO();
-		int submitMember = tmdao.checkSubmitMember(idx);
+		int submitMember = tmdao.checkSubmitMember(team_idx);
 		
 		resp.setContentType("text/html; charset=utf-8");
 		PrintWriter out = resp.getWriter();
