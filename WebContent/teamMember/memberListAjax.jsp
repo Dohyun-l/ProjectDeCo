@@ -54,7 +54,7 @@ $(function(){
 	$(document).on('click',"[id*=member]",function(){
 		$.ajax({
 			url: "./memberInfo.tm",
-			data: {idx:$(this).attr("id").substr(6)},
+			data: {idx:$(this).attr("id").substr(6), team_idx:"<%=team_idx%>"},
 			success: function(data){
 				$("#userInfo").html(data);
 				setTimeout(function(){isAjaxing=false;}, 1000);
