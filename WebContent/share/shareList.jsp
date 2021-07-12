@@ -24,6 +24,7 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js" charset="UTF-8"></script>
 
 	<%
+	
 		List shareList = (ArrayList)request.getAttribute("shareList");
 	
 		int usernum = 0;
@@ -31,6 +32,7 @@
 			usernum = (int) session.getAttribute("user_num");
 		}
 	
+		
 		int pageSize = (int)request.getAttribute("pageSize");
 		String pageNum = (String)request.getAttribute("pageNum");
 		String category = request.getParameter("category");
