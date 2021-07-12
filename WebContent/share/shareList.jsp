@@ -26,6 +26,11 @@
 	<%
 		List shareList = (ArrayList)request.getAttribute("shareList");
 	
+		int usernum = 0;
+		if(session.getAttribute("user_num") != null) {
+			usernum = (int) session.getAttribute("user_num");
+		}
+	
 		int pageSize = (int)request.getAttribute("pageSize");
 		String pageNum = (String)request.getAttribute("pageNum");
 		String category = request.getParameter("category");
@@ -90,8 +95,7 @@
 		<script type="text/javascript">
 			function share_write_userCheck() {
 
-				var user_num =
-		<%=user_num%>;
+				var user_num =<%=usernum%>;
 			
 			if (user_num == 0){
 				if(confirm("로그인이 필요합니다. 로그인 하시겠습니까?")){
