@@ -52,7 +52,7 @@ public class UpdateAction implements Action{
 		}else if(check == -1){
 			out.print("<script>");
 			out.print("alert('잘못된 접근입니다.');");
-			out.print("location.href='/ProjectDeCo/login.us';");
+			out.print("location.href='./login.us';");
 			out.print("</script>");
 			out.close();
 			
@@ -60,7 +60,7 @@ public class UpdateAction implements Action{
 		}
 		out.print("<script>");
 		out.print("alert('수정완료!');");
-		out.print("location.href='/ProjectDeCo/main.us';");
+		out.print("location.href='./main.us';");
 		out.print("</script>");
 		out.close();
 		
