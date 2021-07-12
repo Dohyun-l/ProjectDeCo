@@ -16,7 +16,7 @@
 <link href="./share/css/list.css" rel="stylesheet">
 <link href="./share/css/side.css" rel="stylesheet"> 
 <link href="./share/css/button.css" rel="stylesheet"> 
-<title>정보공유</title>
+<title>Deco - Sharelist</title>
 <link rel="stylesheet" href="./share/css/share.css">
 </head>
 <body class="">

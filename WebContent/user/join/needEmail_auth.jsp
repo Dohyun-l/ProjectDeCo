@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="./user/form.css">
-<title>DeCo | Email 인증</title>
+<title>DeCo - Emailproof</title>
 </head>
 <body>
 <%@ include file="../../main/header.jsp" %>

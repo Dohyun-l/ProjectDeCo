@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 <link href="./share/css/list.css" rel="stylesheet">
 <link href="./share/css/button.css" rel="stylesheet">
-<title>Insert title here</title>
+<title>Deco - Shareview</title>
  <!-- jquery 준비 시작 -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- jquery 준비 끝 -->

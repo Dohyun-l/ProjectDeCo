@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Deco - 회원정보수정</title>
+<title>Deco - Userupdate</title>
 <link rel="stylesheet" href="./user/login/update.css">
 <link rel="stylesheet" href="./user/myPage/layout.css">
 

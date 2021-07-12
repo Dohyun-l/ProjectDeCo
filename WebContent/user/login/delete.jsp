@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="./user/myPage/layout.css">
 <link rel="stylesheet" href="./user/login/delete.css">
-<title>Deco</title>
+<title>Deco - Userleave</title>
 <script type="text/javascript">
 function cancel(){
 		history.back();

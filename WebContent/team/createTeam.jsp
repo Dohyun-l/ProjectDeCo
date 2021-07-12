@@ -8,7 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link href="./team/css/write.css" rel="stylesheet">
-<title>팀 - 스터디</title>
+<title>Deco - Teamproject</title>
 <script type="text/javascript">
 function createTeamCheck() {
     document.fr.content.value= oEditor.getIR();

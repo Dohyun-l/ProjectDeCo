@@ -9,7 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link href="./share/css/write.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-<title>정보 공유 - 글쓰기</title>
+<title>Deco - Update</title>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 

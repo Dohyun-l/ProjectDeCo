@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="./team/css/teamView.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<title>Deco - 팀뷰</title>
+<title>Deco - Teamview</title>
 </head>
 <body>
 <div id="page1"></div>

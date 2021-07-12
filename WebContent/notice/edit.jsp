@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Script-Type" content="text/javascript">
 <meta http-equiv="Content-Style-Type" content="text/css">
-<title>네이버 :: Smart Editor 2 &#8482;</title>
+<title>Deco - Noticewrite &#8482;</title>
 <link href="css/ko_KR/smart_editor2.css" rel="stylesheet" type="text/css">
 <style type="text/css">
 	body { margin: 10px; }

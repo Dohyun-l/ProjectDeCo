@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="./user/myPage/layout.css">
 <link rel="stylesheet" href="./user/myPage/myList.css">
 <link rel="stylesheet" href="./user/login/info.css">
-<title>Insert title here</title>
+<title>Deco - User</title>
 </head>
 <body>
 	<%@ include file="../../main/header.jsp" %>

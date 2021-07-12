@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="./user/login/info.css">
 <link rel="stylesheet" href="./user/myPage/layout.css">
-<title>Deco | UserInfo</title>
+<title>Deco - Userinfo</title>
 </head>
 <body>
 	<%@ include file="../../main/header.jsp" %>
