@@ -71,7 +71,7 @@ public class Team_commentDAO {
 			if(rs.next()){
 				idx = rs.getInt(1)+1;
 			}
-			sql ="insert into deco.team_comment(idx, team_idx, user_num, content, create_at, secret) "
+			sql ="insert into team_comment(idx, team_idx, user_num, content, create_at, secret) "
 					+ "values(?,?,?,?,now(),?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, idx);

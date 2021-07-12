@@ -241,8 +241,10 @@ public class teamMemberDAO {
 
 		try {
 			conn = getConnection();
-			sql = "select count(*) from deco.team_member where team_idx=? and submit=1";
+			sql = "select count(*) from team_member where team_idx=? and submit=1";
 			pstmt = conn.prepareStatement(sql);
+			
+			System.out.println(sql);
 
 			pstmt.setInt(1, team_idx);
 
